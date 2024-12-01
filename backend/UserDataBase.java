@@ -44,11 +44,15 @@ public class UserDataBase {
             JSONObject userObj = (JSONObject) us;
             String id = (String) userObj.get("id");
             String username = (String) userObj.get("username");
-            String password = (String) userObj.get("password");
+            String password = (String) userObj.get("hashedPassword");
+            String salt= (String) userObj.get("salt");
+            byte[] s=Base64.getDecoder().decode(password);
             String email = (String) userObj.get("email");
             LocalDate dob=LocalDate.parse((String)userObj.get("dob"));
             String gender = (String) userObj.get("gender");
             User user =new User(id,email,username,gender,dob);
+            user.setHashedPassword(password);
+            user.setSalt(s);
             data.add(user);
         }
     }
