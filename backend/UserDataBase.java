@@ -5,7 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Base64;
-import java.util.Date;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
