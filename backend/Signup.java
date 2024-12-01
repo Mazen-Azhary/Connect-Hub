@@ -1,76 +1,49 @@
 package backend;
-
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class Signup {
-    
-    
-  /* for testing  
-    public static void main(String[] args) throws IOException{
-    
-       if(Signup("user", "email", "", "male", new Date())){
-       
-           System.out.println("succesful");
-       }
-    
-    
-    }
-*/
-    private static int IDcounter = 1; //helps us for the unique id
-    private static final String filePath = "src/database/Users.json";
-
-    public static boolean Signup(String userName, String email, String password, String gender, Date dateOFBirth) throws IOException {
-        FileReader fileReader;
+    private static Signup instance;
+    private int IDcounter=1; //helps us for the unique id
+    private final String filePath = "src/database/Users.json";
+    private  UserDataBase userDataBase;
+    private Signup() {
         try {
-            fileReader = new FileReader(filePath);
-        } catch (FileNotFoundException ex) {
-            System.out.println("file doesn't exist or wrong path");
+            userDataBase=new UserDataBase(filePath);
+            IDcounter=userDataBase.getData().size()+1;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void increment()
+    {
+        IDcounter++;
+    }
+    public static synchronized Signup getInstance() {
+        if (instance == null) {
+            instance = new Signup();
+        }
+        return instance;
+    }
+    public boolean signup(String userName, String email, String password, String gender, LocalDate dateOFBirth) {
+        String id=IDcounter+"";
+        System.out.println(id);
+        User user=new User(id,email,userName,password,gender,dateOFBirth);
+        if (userDataBase.addData(user))
+        {
+            IDcounter++;
+            return true;
+        }
+        else {
             return false;
         }
-        JSONParser FileToJsonOBJ = new JSONParser();
-        
-            JSONArray usersArray;
-        try {
-            
-            Object obj = FileToJsonOBJ.parse(fileReader);
-            usersArray = (JSONArray) obj;
-        } catch (ParseException ex) {
-                       
-            usersArray = new JSONArray(); 
-        }
-        finally{
-        fileReader.close();
-        }
-        
-        //add validations here when implemented 
-        
-        JSONObject newUser = new JSONObject();
-        newUser.put("id",IDcounter);
-        newUser.put("username", userName);
-        newUser.put("email", email);
-        //hash password then uncomment this line
-        //newUser.put("password", password);
-        newUser.put("gender", gender);
-        newUser.put("DOB", dateOFBirth);
-        JSONArray friends = new JSONArray();//empty friend list
-        newUser.put("friends", friends);
-        usersArray.add(newUser);
-        
-         try (FileWriter file = new FileWriter(filePath)) {
-                file.write(usersArray.toJSONString());
-                file.flush();//forces data from buffer to file 
-            }
-         
-        IDcounter++;//auto increment
-        return true;
+    }
+    public void save()
+    {
+        userDataBase.save();
     }
 
 }

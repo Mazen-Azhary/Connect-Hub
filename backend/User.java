@@ -1,5 +1,6 @@
 package backend;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -8,20 +9,29 @@ public class User {
     private String email;
     private String username;
     private String password;
-    private Date dateOfBirth;
+    private String gender;
+    private LocalDate dateOfBirth;
     private String status;
     private ArrayList<User> friends;
     private String profilePhoto;
     private String coverPhoto;
     private String bio;
-
-    public User(String userID, String email, String username, String password, Date dateOfBirth) {
+    public User(String userID, String email, String username, String password,String gender, LocalDate dateOfBirth) {
         this.userID = userID;
         this.email = email;
         this.username = username;
         this.password = password;
         this.dateOfBirth = dateOfBirth;
+        this.gender=gender;
         this.friends = new ArrayList<>();
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getUserID() {
@@ -56,11 +66,11 @@ public class User {
         this.password = password;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
