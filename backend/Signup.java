@@ -13,7 +13,7 @@ import org.json.simple.parser.ParseException;
 public class Signup {
     
     
-    
+  /* for testing  
     public static void main(String[] args) throws IOException{
     
        if(Signup("user", "email", "", "male", new Date())){
@@ -23,7 +23,7 @@ public class Signup {
     
     
     }
-
+*/
     private static int IDcounter = 1; //helps us for the unique id
     private static final String filePath = "src/database/Users.json";
 
@@ -43,9 +43,8 @@ public class Signup {
             Object obj = FileToJsonOBJ.parse(fileReader);
             usersArray = (JSONArray) obj;
         } catch (ParseException ex) {
-            
-            System.out.println("error in parsing file to json obj");
-            return false;
+                       
+            usersArray = new JSONArray(); 
         }
         finally{
         fileReader.close();
