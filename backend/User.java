@@ -1,5 +1,6 @@
 package backend;
 
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,7 +9,8 @@ public class User {
     private String userID;
     private String email;
     private String username;
-    private String password;
+    private String hashedPassword;
+    private byte[] salt;
     private String gender;
     private LocalDate dateOfBirth;
     private String status;
@@ -16,14 +18,40 @@ public class User {
     private String profilePhoto;
     private String coverPhoto;
     private String bio;
-    public User(String userID, String email, String username, String password,String gender, LocalDate dateOfBirth) {
+    public User(String userID, String email, String username, String password,String gender, LocalDate dateOfBirth) throws NoSuchAlgorithmException {
         this.userID = userID;
         this.email = email;
         this.username = username;
-        this.password = password;
+        this.salt=PasswordHasher.salt();
+        this.hashedPassword=PasswordHasher.hashedPassword(password,salt);
         this.dateOfBirth = dateOfBirth;
         this.gender=gender;
         this.friends = new ArrayList<>();
+    }
+    public User(String userID, String email, String username,String gender, LocalDate dateOfBirth) {
+        this.userID = userID;
+        this.email = email;
+        this.username = username;
+        this.salt=PasswordHasher.salt();
+        this.dateOfBirth = dateOfBirth;
+        this.gender=gender;
+        this.friends = new ArrayList<>();
+    }
+
+    public String getHashedPassword() {
+        return hashedPassword;
+    }
+
+    public void setHashedPassword(String hashedPassword) {
+        this.hashedPassword = hashedPassword;
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
     }
 
     public String getGender() {
@@ -58,13 +86,7 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public LocalDate getDateOfBirth() {
         return dateOfBirth;

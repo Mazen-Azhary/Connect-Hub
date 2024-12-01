@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Base64;
 import java.util.Date;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -47,7 +48,7 @@ public class UserDataBase {
             String email = (String) userObj.get("email");
             LocalDate dob=LocalDate.parse((String)userObj.get("dob"));
             String gender = (String) userObj.get("gender");
-            User user =new User(id,email,username,password,gender,dob);
+            User user =new User(id,email,username,gender,dob);
             data.add(user);
         }
     }
@@ -99,7 +100,8 @@ public class UserDataBase {
             JSONObject userObj = new JSONObject();
             userObj.put("id",u.getUserID());
             userObj.put("username",u.getUsername());
-            userObj.put("password",u.getPassword());
+            userObj.put("salt", Base64.getEncoder().encodeToString(u.getSalt()));
+            userObj.put("hashedPassword",u.getHashedPassword());
             userObj.put("email",u.getEmail());
             userObj.put("gender",u.getGender());
             userObj.put("dob",u.getDateOfBirth().toString());
