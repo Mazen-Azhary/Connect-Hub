@@ -11,6 +11,7 @@ public class User {
     private byte[] salt;
     private String gender;
     private LocalDate dateOfBirth;
+    private Profile profile;
     public User(String userID, String email, String username, String password,String gender, LocalDate dateOfBirth) throws NoSuchAlgorithmException {
         this.userID = userID;
         this.email = email;
@@ -19,6 +20,8 @@ public class User {
         this.hashedPassword=PasswordHasher.hashedPassword(password,salt);
         this.dateOfBirth = dateOfBirth;
         this.gender=gender;
+        ProfileBuilder profileBuilder=new ProfileBuilder();
+        this.profile=profileBuilder.build();
     }
     public User(String userID, String email, String username,String gender, LocalDate dateOfBirth) {
         this.userID = userID;
@@ -77,7 +80,13 @@ public class User {
         this.username = username;
     }
 
+    public Profile getProfile() {
+        return profile;
+    }
 
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
 
     public LocalDate getDateOfBirth() {
         return dateOfBirth;

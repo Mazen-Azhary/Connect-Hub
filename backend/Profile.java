@@ -1,21 +1,15 @@
 package backend;
-
 import java.util.ArrayList;
-import java.util.Comparator;
-
 public class Profile {
     private ArrayList<User> friends;
     private String profilePhoto;
     private String coverPhoto;
     private String bio;
     ArrayList<Content> contents;
-
-    public Profile(String profilePhoto, String coverPhoto, String bio) {
-        this.profilePhoto = profilePhoto;
-        this.coverPhoto = coverPhoto;
-        this.bio = bio;
+    public Profile()
+    {
         this.friends = new ArrayList<>();
-        this.contents = new ArrayList<>();
+        this.contents=new ArrayList<>();
     }
 
     public ArrayList<User> getFriends() {
