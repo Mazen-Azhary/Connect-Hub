@@ -5,7 +5,10 @@
 package frontend;
 
 import backend.Signup;
+import backend.Validations;
+
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.logging.Level;
@@ -25,7 +28,7 @@ public class SignUpPage extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Sign Up");
-        
+
         Male.setActionCommand("Male");
         Female.setActionCommand("Female");
         //button group allows one button only to be active
@@ -64,7 +67,11 @@ public class SignUpPage extends javax.swing.JFrame {
         signUpButton.setText("Sign Up");
         signUpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signUpButtonActionPerformed(evt);
+                try {
+                    signUpButtonActionPerformed(evt);
+                } catch (NoSuchAlgorithmException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -194,7 +201,7 @@ public class SignUpPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-        
+
 
     private void FemaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleActionPerformed
         // TODO add your handling code here:
@@ -207,48 +214,67 @@ public class SignUpPage extends javax.swing.JFrame {
     private void showPasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordButtonActionPerformed
          if(!(PassWordHidden=!PassWordHidden)){
          passWordText.setEchoChar('\0');
-         retypePasswordTxt.setEchoChar('\0');             
+         retypePasswordTxt.setEchoChar('\0');
          }else{
          passWordText.setEchoChar('*');
-         retypePasswordTxt.setEchoChar('*');                      
-         }      
+         retypePasswordTxt.setEchoChar('*');
+         }
     }//GEN-LAST:event_showPasswordButtonActionPerformed
 
-    private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
-        
+    private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) throws NoSuchAlgorithmException {//GEN-FIRST:event_signUpButtonActionPerformed
+
         String userName = userNameTxt.getText().trim().replace("\n","");
-        
-        
+
+
         String email = emailTxt.getText().trim().replace("\n","");
-        String password = new String(passWordText.getPassword()).trim();       
+        String password = new String(passWordText.getPassword()).trim();
         String reTypePassword = new String(retypePasswordTxt.getPassword()).trim();
         LocalDate dob = DOBcalendar.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        
-        if(userName.isEmpty()||buttonGroup1.getSelection()==null||email.isEmpty()||password.isEmpty()||reTypePassword.isEmpty()){   
+
+        if(userName.isEmpty()||buttonGroup1.getSelection()==null||email.isEmpty()||password.isEmpty()||reTypePassword.isEmpty()){
             //any missing data entry
             JOptionPane.showMessageDialog(null,"Please Fill All Fields to signup!" ,"empty fields",JOptionPane.ERROR_MESSAGE);
             return;
         }
-            
+
             String gender = buttonGroup1.getSelection().getActionCommand();
             //this line could cause nullptr exception so put it after checking getSelection doesn't return null
-            
-            if(!password.equals(reTypePassword)){                 
+
+            if(!password.equals(reTypePassword)){
             JOptionPane.showMessageDialog(null,"Please make sure password matches reentered password!" ,"password",JOptionPane.ERROR_MESSAGE);
             return ;
             }
-        
-            backend.Signup s = Signup.getInstance();
-            s.signup(userName, email, password, gender, dob);
-        
+            if(!Validations.validateName(userName)){
+                JOptionPane.showMessageDialog(null,"Please enter a valid name!" ,"name error",JOptionPane.ERROR_MESSAGE);
+                return ;
+            }
+            if(!Validations.validatePassword(password)){
+                JOptionPane.showMessageDialog(null,"the password should contain 8 characters at least, one alphabet , one symbol" ,"password error",JOptionPane.ERROR_MESSAGE);
+                return ;
+            }
+            if(!Validations.validateEmailFormat(email)){
+                JOptionPane.showMessageDialog(null,"Please enter a valid email format!" ,"email error",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            //trying to signup
+            Signup s=Signup.getInstance();
+            if(s.signup(userName, email, password, gender, dob))
+            {
+
         JOptionPane.showMessageDialog(null, "Succesful Signup,please wait");
+        s.save();
         try {
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
             Logger.getLogger(SignUpPage.class.getName()).log(Level.SEVERE, null, ex);
         }
         dispose();
-        
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null,"this Email already existed","Error",JOptionPane.ERROR_MESSAGE);
+            }
+
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     /**
@@ -258,7 +284,7 @@ public class SignUpPage extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

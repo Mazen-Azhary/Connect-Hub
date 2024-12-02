@@ -2,8 +2,6 @@ package backend;
 
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class User {
     private String userID;
@@ -13,11 +11,6 @@ public class User {
     private byte[] salt;
     private String gender;
     private LocalDate dateOfBirth;
-    private String status;
-    private ArrayList<User> friends;
-    private String profilePhoto;
-    private String coverPhoto;
-    private String bio;
     public User(String userID, String email, String username, String password,String gender, LocalDate dateOfBirth) throws NoSuchAlgorithmException {
         this.userID = userID;
         this.email = email;
@@ -26,7 +19,6 @@ public class User {
         this.hashedPassword=PasswordHasher.hashedPassword(password,salt);
         this.dateOfBirth = dateOfBirth;
         this.gender=gender;
-        this.friends = new ArrayList<>();
     }
     public User(String userID, String email, String username,String gender, LocalDate dateOfBirth) {
         this.userID = userID;
@@ -35,7 +27,6 @@ public class User {
         this.salt=PasswordHasher.salt();
         this.dateOfBirth = dateOfBirth;
         this.gender=gender;
-        this.friends = new ArrayList<>();
     }
 
     public String getHashedPassword() {
@@ -94,55 +85,5 @@ public class User {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public ArrayList<User> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(ArrayList<User> friends) {
-        this.friends = friends;
-    }
-
-    public String getProfilePhoto() {
-        return profilePhoto;
-    }
-
-    public void setProfilePhoto(String profilePhoto) {
-        this.profilePhoto = profilePhoto;
-    }
-
-    public String getCoverPhoto() {
-        return coverPhoto;
-    }
-
-    public void setCoverPhoto(String coverPhoto) {
-        this.coverPhoto = coverPhoto;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public void addFriend(User friend) {
-        if (!friends.contains(friend))
-            friends.add(friend);
-    }
-
-    public void removeFriend(User friend) {
-        if (friends.contains(friend))
-            friends.add(friend);
     }
 }
