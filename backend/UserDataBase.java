@@ -4,7 +4,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.Base64;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -43,11 +43,15 @@ public class UserDataBase {
             JSONObject userObj = (JSONObject) us;
             String id = (String) userObj.get("id");
             String username = (String) userObj.get("username");
-            String password = (String) userObj.get("password");
+            String password = (String) userObj.get("hashedPassword");
+            String salt= (String) userObj.get("salt");
+            byte[] s=Base64.getDecoder().decode(salt);
             String email = (String) userObj.get("email");
             LocalDate dob=LocalDate.parse((String)userObj.get("dob"));
             String gender = (String) userObj.get("gender");
-            User user =new User(id,email,username,password,gender,dob);
+            User user =new User(id,email,username,gender,dob);
+            user.setHashedPassword(password);
+            user.setSalt(s);
             data.add(user);
         }
     }
@@ -99,7 +103,8 @@ public class UserDataBase {
             JSONObject userObj = new JSONObject();
             userObj.put("id",u.getUserID());
             userObj.put("username",u.getUsername());
-            userObj.put("password",u.getPassword());
+            userObj.put("salt", Base64.getEncoder().encodeToString(u.getSalt()));
+            userObj.put("hashedPassword",u.getHashedPassword());
             userObj.put("email",u.getEmail());
             userObj.put("gender",u.getGender());
             userObj.put("dob",u.getDateOfBirth().toString());

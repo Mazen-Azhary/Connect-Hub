@@ -1,6 +1,7 @@
 package backend;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.Date;
 import org.json.simple.parser.ParseException;
@@ -28,7 +29,7 @@ public class Signup {
         }
         return instance;
     }
-    public boolean signup(String userName, String email, String password, String gender, LocalDate dateOFBirth) {
+    public boolean signup(String userName, String email, String password, String gender, LocalDate dateOFBirth) throws NoSuchAlgorithmException {
         String id=IDcounter+"";
         System.out.println(id);
         User user=new User(id,email,userName,password,gender,dateOFBirth);
@@ -44,6 +45,11 @@ public class Signup {
     public void save()
     {
         userDataBase.save();
+    }
+    public static void main(String [] args) throws NoSuchAlgorithmException {
+        Signup s=Signup.getInstance();
+        s.signup("mohamed","asfssd@fsad.gasfg","123456","male",LocalDate.now());
+        s.save();
     }
 
 }
