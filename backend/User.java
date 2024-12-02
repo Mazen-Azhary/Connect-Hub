@@ -7,11 +7,22 @@ public class User {
     private String userID;
     private String email;
     private String username;
+    private String status;
     private String hashedPassword;
     private byte[] salt;
     private String gender;
     private LocalDate dateOfBirth;
-    public User(String userID, String email, String username, String password,String gender, LocalDate dateOfBirth) throws NoSuchAlgorithmException {
+    private Profile profile;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public User(String userID, String email, String username, String password, String gender, LocalDate dateOfBirth) throws NoSuchAlgorithmException {
         this.userID = userID;
         this.email = email;
         this.username = username;
@@ -19,14 +30,18 @@ public class User {
         this.hashedPassword=PasswordHasher.hashedPassword(password,salt);
         this.dateOfBirth = dateOfBirth;
         this.gender=gender;
+        ProfileBuilder profileBuilder=new ProfileBuilder();
+        this.profile=profileBuilder.build();
+        this.status="offline";
     }
-    public User(String userID, String email, String username,String gender, LocalDate dateOfBirth) {
+    public User(String userID, String email, String username,String gender, LocalDate dateOfBirth,String status)  { //this constructor for reading from file
         this.userID = userID;
         this.email = email;
         this.username = username;
         this.salt=PasswordHasher.salt();
         this.dateOfBirth = dateOfBirth;
         this.gender=gender;
+        this.status=status;
     }
 
     public String getHashedPassword() {
@@ -77,7 +92,13 @@ public class User {
         this.username = username;
     }
 
+    public Profile getProfile() {
+        return profile;
+    }
 
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
 
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
