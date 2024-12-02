@@ -7,17 +7,12 @@ public class ContentBuilder {
     public ContentBuilder(Content content) {
         this.content = content;
     }
-    public Content getContent() {
-        return content;
-    }
-    public ContentBuilder setContent(String content) {
+    public void setContent(String content) {
         this.content.setContent(content);
-        return this;
     }
 
-    public ContentBuilder setImage(String image) {
+    public void setImage(String image) {
         this.content.setImage(image);
-        return this;
     }
     public Content build() {
         return content;
