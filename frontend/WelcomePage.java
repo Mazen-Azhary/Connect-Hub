@@ -101,7 +101,8 @@ private Image backgroundImage;
     }// </editor-fold>//GEN-END:initComponents
 
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
-        // TODO add your handling code here:
+        SignUpPage signUpPage = new SignUpPage();
+        dispose();
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     /**

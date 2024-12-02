@@ -28,7 +28,7 @@ public class SignUpPage extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Sign Up");
-
+        setVisible(true);
         Male.setActionCommand("Male");
         Female.setActionCommand("Female");
         //button group allows one button only to be active
