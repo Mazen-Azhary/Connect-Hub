@@ -33,4 +33,8 @@ public class Login {
         }
         return false;
     }
+    public void save()
+    {
+        userDataBase.save();
+    }
 }

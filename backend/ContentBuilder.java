@@ -10,7 +10,6 @@ public class ContentBuilder {
     public void setContent(String content) {
         this.content.setContent(content);
     }
-
     public void setImage(String image) {
         this.content.setImage(image);
     }
