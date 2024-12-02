@@ -1,8 +1,9 @@
 package backend;
 
-public class Post extends Content{
+import java.time.LocalDateTime;
 
-    public Post(int authorId, String content, String image) {
-        super(authorId, content, image);
+public class Post extends Content{
+    public Post(int authorId, LocalDateTime timestamp) {
+        super(authorId, timestamp);
     }
 }

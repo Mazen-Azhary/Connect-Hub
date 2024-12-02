@@ -2,7 +2,7 @@ package backend;
 
 import java.time.LocalDateTime;
 
-public class Content {
+public abstract class Content {
     private int contentId;
     private int authorId;
     private String content;
@@ -10,11 +10,9 @@ public class Content {
     private LocalDateTime timestamp;
     private static int postCount = 0;
 
-    public Content(int authorId, String content, String image) {
+    public Content(int authorId, LocalDateTime timestamp) {
         this.authorId = authorId;
-        this.content = content;
-        this.image = image;
-        this.timestamp = LocalDateTime.now();
+        this.timestamp = timestamp;
         this.contentId = ++postCount;
     }
 
@@ -53,4 +51,6 @@ public class Content {
     public static int getPostCount() {
         return postCount;
     }
+
+
 }
