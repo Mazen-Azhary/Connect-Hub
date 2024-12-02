@@ -23,7 +23,7 @@ public class User {
         ProfileBuilder profileBuilder=new ProfileBuilder();
         this.profile=profileBuilder.build();
     }
-    public User(String userID, String email, String username,String gender, LocalDate dateOfBirth) {
+    public User(String userID, String email, String username,String gender, LocalDate dateOfBirth)  {
         this.userID = userID;
         this.email = email;
         this.username = username;

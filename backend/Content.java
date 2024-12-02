@@ -16,6 +16,14 @@ public abstract class Content {
         this.contentId = ++postCount;
     }
 
+    public Content(int contentId, int authorId, String content, String image, LocalDateTime timestamp) {
+        this.contentId = contentId;
+        this.authorId = authorId;
+        this.content = content;
+        this.image = image;
+        this.timestamp = timestamp;
+    }
+
     public int getContentId() {
         return contentId;
     }

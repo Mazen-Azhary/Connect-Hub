@@ -1,7 +1,7 @@
 package backend;
 import java.util.ArrayList;
 public class Profile {
-    private ArrayList<User> friends;
+    private ArrayList<String> friends;
     private String profilePhoto;
     private String coverPhoto;
     private String bio;
@@ -12,11 +12,19 @@ public class Profile {
         this.contents=new ArrayList<>();
     }
 
-    public ArrayList<User> getFriends() {
+    public Profile(ArrayList<String> friends, String profilePhoto, String bio, String coverPhoto, ArrayList<Content> contents) {
+        this.friends = friends;
+        this.profilePhoto = profilePhoto;
+        this.bio = bio;
+        this.coverPhoto = coverPhoto;
+        this.contents = contents;
+    }
+
+    public ArrayList<String> getFriends() {
         return friends;
     }
 
-    public void setFriends(ArrayList<User> friends) {
+    public void setFriends(ArrayList<String> friends) {
         this.friends = friends;
     }
 
@@ -44,12 +52,12 @@ public class Profile {
         this.bio = bio;
     }
 
-    public void addFriend(User friend) {
+    public void addFriend(String friend) {
         if (!friends.contains(friend))
             friends.add(friend);
     }
 
-    public void removeFriend(User friend) {
+    public void removeFriend(String friend) {
         if (friends.contains(friend))
             friends.add(friend);
     }
