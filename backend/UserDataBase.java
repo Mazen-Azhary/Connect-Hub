@@ -48,7 +48,8 @@ public class UserDataBase {
             String email = (String) userObj.get("email");
             LocalDate dob=LocalDate.parse((String)userObj.get("dob"));
             String gender = (String) userObj.get("gender");
-            User user =new User(id,email,username,gender,dob);
+            String status= (String) userObj.get("status");
+            User user =new User(id,email,username,gender,dob,status);
             user.setHashedPassword(password);
             user.setSalt(s);
             data.add(user);
@@ -152,6 +153,7 @@ public class UserDataBase {
             userObj.put("email",u.getEmail());
             userObj.put("gender",u.getGender());
             userObj.put("dob",u.getDateOfBirth().toString());
+            userObj.put("status",u.getStatus());
             Profile profile=u.getProfile();
             JSONObject profileObj = new JSONObject();
             profileObj.put("profilePhoto",profile.getProfilePhoto());
