@@ -1,15 +1,17 @@
 package backend;
 
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 public class Login {
     private static Login instance;
     private final String filePath = "src/database/Users.json";
     private  UserDataBase userDataBase;
-    private Login(){
-
+    private Login() throws IOException {
+        userDataBase=new UserDataBase(filePath);
     }
-    public static synchronized Login getInstance() {
+    public static synchronized Login getInstance() throws IOException {
         if (instance == null) {
             instance = new Login();
         }

@@ -45,7 +45,7 @@ public class UserDataBase {
             String username = (String) userObj.get("username");
             String password = (String) userObj.get("hashedPassword");
             String salt= (String) userObj.get("salt");
-            byte[] s=Base64.getDecoder().decode(password);
+            byte[] s=Base64.getDecoder().decode(salt);
             String email = (String) userObj.get("email");
             LocalDate dob=LocalDate.parse((String)userObj.get("dob"));
             String gender = (String) userObj.get("gender");

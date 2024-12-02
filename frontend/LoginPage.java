@@ -4,7 +4,11 @@
  */
 package frontend;
 
+import backend.Login;
+
 import javax.swing.JOptionPane;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  *
@@ -17,6 +21,7 @@ private boolean PassWordHidden = true;
      */
     public LoginPage() {
         initComponents();
+        setTitle("Login");
         setLocationRelativeTo(null);
     }
 
@@ -61,7 +66,11 @@ private boolean PassWordHidden = true;
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
+                try {
+                    loginButtonActionPerformed(evt);
+                } catch (NoSuchAlgorithmException | IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -122,13 +131,22 @@ private boolean PassWordHidden = true;
         
     }//GEN-LAST:event_showPasswordButtonActionPerformed
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws NoSuchAlgorithmException, IOException {//GEN-FIRST:event_loginButtonActionPerformed
        
         String email = emailTxt.getText().trim();
-        String password = new String(passwordField.getPassword()).trim();
-        
+        String password = new String(passwordField.getPassword());
         if(email.isEmpty() || password.isEmpty()){
             JOptionPane.showMessageDialog(null, "Please fill email and password", "insufficient fields", HEIGHT);
+            return;
+        }
+        backend.Login login= Login.getInstance();
+        if(login.login(email,password))
+        {
+            com.mycompany.frontend.ProfilePage profilePage = new com.mycompany.frontend.ProfilePage();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Incorrect email or password","Error",JOptionPane.ERROR_MESSAGE);
             return;
         }
         
