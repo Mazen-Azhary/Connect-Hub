@@ -143,7 +143,7 @@ private boolean PassWordHidden = true;
         if(login.login(email,password))
         {
             login.save();
-            com.mycompany.frontend.ProfilePage profilePage = new com.mycompany.frontend.ProfilePage();
+            frontend.ProfilePage profilePage = new frontend.ProfilePage();
         }
         else
         {

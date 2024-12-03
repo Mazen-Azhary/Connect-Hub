@@ -85,6 +85,8 @@ public class NewsFeed extends javax.swing.JFrame {
         centralPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));  
     
         centralPanel.add(new JLabel("Loading posts..."));
+    //    centralPanel.add(new JLabel("Loading posts..."));
+
         
         for (backend.Content content : contents) {
             Post post = new Post(content.getContentId(), content.getContent(), "Author" + content.getContent(),content.getImage());
@@ -121,7 +123,7 @@ public class NewsFeed extends javax.swing.JFrame {
         
         CreatePostWindow createPostWindow = new CreatePostWindow();
         createPostWindow.setVisible(true);
-        
+               
 
     }
 
