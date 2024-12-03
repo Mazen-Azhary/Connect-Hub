@@ -5,19 +5,30 @@ public class Profile {
     private String profilePhoto;
     private String coverPhoto;
     private String bio;
-    ArrayList<Content> contents;
+    private ArrayList<FriendRequest> friendRequests;
+   private ArrayList<Content> contents;
     public Profile()
     {
         this.friends = new ArrayList<>();
         this.contents=new ArrayList<>();
+        this.friendRequests=new ArrayList<>();
     }
 
-    public Profile(ArrayList<String> friends, String profilePhoto, String bio, String coverPhoto, ArrayList<Content> contents) {
+    public Profile(ArrayList<String> friends, String profilePhoto, String bio, String coverPhoto, ArrayList<Content> contents,ArrayList<FriendRequest> friendRequests) {
         this.friends = friends;
         this.profilePhoto = profilePhoto;
         this.bio = bio;
         this.coverPhoto = coverPhoto;
         this.contents = contents;
+        this.friendRequests = friendRequests;
+    }
+
+    public ArrayList<FriendRequest> getFriendRequests() {
+        return friendRequests;
+    }
+
+    public void setFriendRequests(ArrayList<FriendRequest> friendRequests) {
+        this.friendRequests = friendRequests;
     }
 
     public ArrayList<String> getFriends() {
