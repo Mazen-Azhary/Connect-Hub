@@ -6,7 +6,7 @@ package frontend;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -23,6 +23,8 @@ public class NewsFeed extends javax.swing.JFrame {
     public NewsFeed() {
         initComponents();
         setTitle("NewsFeed");
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
@@ -34,7 +36,7 @@ public class NewsFeed extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jInternalFrame1 = new javax.swing.JInternalFrame("myFrame");
+        jInternalFrame1 = new javax.swing.JInternalFrame("UserName");
         storiesScrollable = new javax.swing.JScrollPane();
         createPostButton = new javax.swing.JButton();
         friendsScroll = new javax.swing.JScrollPane();
@@ -66,6 +68,7 @@ public class NewsFeed extends javax.swing.JFrame {
 
         mb.add(om);
         jInternalFrame1.setJMenuBar(mb);
+        jInternalFrame1.setFrameIcon(new ImageIcon("src/database/Signup.png"));
         jInternalFrame1.setSize(400, 300);
         jInternalFrame1.setVisible(true);
 
