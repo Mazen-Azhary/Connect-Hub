@@ -6,10 +6,11 @@ package frontend;
 
 import backend.Content;
 import backend.ContentFactory;
-import java.awt.Dimension;
+
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import javax.swing.Box;
+import javax.swing.*;
 
 /**
  *
@@ -17,32 +18,58 @@ import javax.swing.Box;
  */
 public class ProfilePage extends javax.swing.JFrame {
     private ArrayList<Content> contents = new ArrayList<>(); //posts
-
+    
     /**
      * Creates new form profilePage
      */
     public ProfilePage() {
         initComponents();
         setVisible(true);
+        setResizable(false);
         jLabel1.setText("Omar");
         
         for (int i = 0; i < 1000; i++) {
             if (i % 2 == 0) {
-                
-
-                contents.add(ContentFactory.createContent("post", i, LocalDateTime.MAX));
-
+                Content n = ContentFactory.createContent("post", i, LocalDateTime.MAX);
+                n.setContent("content" + i);
+                n.setAuthorId(i);
+                contents.add(n);
             } else {
                 Content n = ContentFactory.createContent("post", i, LocalDateTime.MAX);
                 n.setContent("content" + i);
                 n.setAuthorId(i);
-                n.setImage("src/database/Signup.png");
+                n.setImage("src/database/Signup.png");      
                 contents.add(n);
             }
         }
+
+        postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
+
+        // Add posts to jPanel1
+        for (Content post : contents) {
+            // Create components for each post
+            JLabel contentLabel = new JLabel("Content: " + post.getContent());
+            JLabel authorLabel = new JLabel("Author ID: " + post.getAuthorId());
+            JLabel imageLabel = new JLabel(new ImageIcon(post.getImage()));
+            System.out.println(post.getContent());
+//            jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
+//            jPanel1.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+            // Add labels to the post panel
+            postPanel.add(authorLabel, BorderLayout.NORTH);
+            postPanel.add(contentLabel, BorderLayout.CENTER);
+            postPanel.add(imageLabel, BorderLayout.SOUTH);
+
+        }
+
+        postScrollPane.getVerticalScrollBar().setUnitIncrement(20); // 20 pixels per scroll step
+        postScrollPane.getHorizontalScrollBar().setUnitIncrement(20); // (Optional) for horizontal scrolling
+        postScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         
         setLocationRelativeTo(null);
-        setSize(new Dimension(1000, 1000));
+        //setSize(new Dimension(1000, 1000));
+        revalidate();
         repaint();
         
     }
@@ -67,7 +94,12 @@ public class ProfilePage extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        postScrollPane = new javax.swing.JScrollPane();
+        postPanel = new javax.swing.JPanel();
+        ContentLabel1 = new javax.swing.JLabel();
+        AuthorUsername1 = new javax.swing.JLabel();
+        ImageLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -130,7 +162,7 @@ public class ProfilePage extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)))
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         BioPanelLayout.setVerticalGroup(
             BioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,10 +207,44 @@ public class ProfilePage extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 138, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 318, Short.MAX_VALUE)
+        );
+
+        jScrollPane2.setViewportView(jPanel2);
+
+        javax.swing.GroupLayout postPanelLayout = new javax.swing.GroupLayout(postPanel);
+        postPanel.setLayout(postPanelLayout);
+        postPanelLayout.setHorizontalGroup(
+            postPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ContentLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(AuthorUsername1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ImageLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+        );
+        postPanelLayout.setVerticalGroup(
+            postPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(postPanelLayout.createSequentialGroup()
+                .addComponent(AuthorUsername1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ContentLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ImageLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
+
+        postScrollPane.setViewportView(postPanel);
+
         for (backend.Content content : contents) {
             Post post = new Post(content.getContentId(), content.getContent(), "Author" + content.getContent(),content.getImage());
-            jScrollPane1.add(post);
-            jScrollPane1.add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between posts
+            postScrollPane.add(post);
+            postScrollPane.add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between posts
         }
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -197,12 +263,12 @@ public class ProfilePage extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(postScrollPane)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
@@ -216,11 +282,11 @@ public class ProfilePage extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(postScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jScrollPane1, jScrollPane2});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jScrollPane2, postScrollPane});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -262,10 +328,13 @@ public class ProfilePage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddStoryButton;
+    private javax.swing.JLabel AuthorUsername1;
     private javax.swing.JPanel BioPanel;
+    private javax.swing.JLabel ContentLabel1;
     private javax.swing.JPanel CoverPhotoPanl;
     private javax.swing.JButton EditProfileButton;
     private javax.swing.JPanel HeaderPanel;
+    private javax.swing.JLabel ImageLabel1;
     private javax.swing.JPanel ProfilePicturePanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -273,7 +342,9 @@ public class ProfilePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel postPanel;
+    private javax.swing.JScrollPane postScrollPane;
     // End of variables declaration//GEN-END:variables
 }
