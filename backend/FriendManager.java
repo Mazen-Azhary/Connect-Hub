@@ -5,9 +5,9 @@ public class FriendManager {
 
     public boolean removeFriend(String removerID, String removedID) {
 
-        if (userDataBase.search(removerID).getProfile().getFriends().contains(removedID)) {
-            userDataBase.search(removerID).getProfile().removeFriend(removedID);
-            userDataBase.search(removedID).getProfile().removeFriend(removerID);
+        if (userDataBase.search(Integer.parseInt(removerID)).getProfile().getFriends().contains(removedID)) {
+            userDataBase.search(Integer.parseInt(removerID)).getProfile().removeFriend(removedID);
+            userDataBase.search(Integer.parseInt(removedID)).getProfile().removeFriend(removerID);
             userDataBase.save();
             return true;
         }
@@ -15,14 +15,14 @@ public class FriendManager {
     }
 
     public boolean blockUser(String blockerID, String blockedID) {
-        userDataBase.search(blockerID).getProfile().addBlockedUser(blockedID);
-        userDataBase.search(blockedID).getProfile().addBlockedUser(blockerID);
+        userDataBase.search(Integer.parseInt(blockerID)).getProfile().addBlockedUser(blockedID);
+        userDataBase.search(Integer.parseInt(blockedID)).getProfile().addBlockedUser(blockerID);
         return true;
     }
 
     public boolean unblockUser(String unblockerID, String unblockedID) {
-        userDataBase.search(unblockerID).getProfile().removeBlockedUser(unblockedID);
-        userDataBase.search(unblockedID).getProfile().removeBlockedUser(unblockerID);
+        userDataBase.search(Integer.parseInt(unblockerID)).getProfile().removeBlockedUser(unblockedID);
+        userDataBase.search(Integer.parseInt(unblockedID)).getProfile().removeBlockedUser(unblockerID);
         return true;
     }
 }
