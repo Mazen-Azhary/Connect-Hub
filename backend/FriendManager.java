@@ -75,5 +75,16 @@ public class FriendManager {
         return true;
     }
 
+    public boolean suggestFriends(String user) {
+        for (String friend : userDataBase.search(Integer.parseInt(user)).getProfile().getFriends()) {
+            for (String mutualFriend : userDataBase.search(Integer.parseInt(friend)).getProfile().getFriends()) {
+                if (!userDataBase.search(Integer.parseInt(user)).getProfile().getFriends().contains(mutualFriend))
+                    userDataBase.search(Integer.parseInt(user)).getProfile().addFriendSuggestion(mutualFriend);
+            }
+        }
+        userDataBase.save();
+        return true;
+    }
+
 
 }
