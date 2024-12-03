@@ -17,12 +17,14 @@ public class FriendManager {
     public boolean blockUser(String blockerID, String blockedID) {
         userDataBase.search(Integer.parseInt(blockerID)).getProfile().addBlockedUser(blockedID);
         userDataBase.search(Integer.parseInt(blockedID)).getProfile().addBlockedUser(blockerID);
+        userDataBase.save();
         return true;
     }
 
     public boolean unblockUser(String unblockerID, String unblockedID) {
         userDataBase.search(Integer.parseInt(unblockerID)).getProfile().removeBlockedUser(unblockedID);
         userDataBase.search(Integer.parseInt(unblockedID)).getProfile().removeBlockedUser(unblockerID);
+        userDataBase.save();
         return true;
     }
 }
