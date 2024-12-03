@@ -1,6 +1,4 @@
 package backend;
-
-import java.security.Timestamp;
 import java.time.LocalDateTime;
 
 public class ContentFactory {
