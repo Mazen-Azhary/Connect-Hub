@@ -6,21 +6,43 @@ public class Profile {
     private String coverPhoto;
     private String bio;
     private ArrayList<FriendRequest> friendRequests;
+    private ArrayList<FriendRequest> friendRecievedRequests;
+    private ArrayList<String> friendSuggestions;
    private ArrayList<Content> contents;
     public Profile()
     {
         this.friends = new ArrayList<>();
         this.contents=new ArrayList<>();
         this.friendRequests=new ArrayList<>();
+        this.friendRecievedRequests=new ArrayList<>();
+        this.friendSuggestions=new ArrayList<>();
     }
 
-    public Profile(ArrayList<String> friends, String profilePhoto, String bio, String coverPhoto, ArrayList<Content> contents,ArrayList<FriendRequest> friendRequests) {
+    public Profile(ArrayList<String> friends, String profilePhoto, String bio, String coverPhoto, ArrayList<Content> contents,ArrayList<FriendRequest> friendRequests, ArrayList<FriendRequest> friendRecievedRequests, ArrayList<String> friendSuggestions) {
         this.friends = friends;
         this.profilePhoto = profilePhoto;
         this.bio = bio;
         this.coverPhoto = coverPhoto;
         this.contents = contents;
         this.friendRequests = friendRequests;
+        this.friendRecievedRequests = friendRecievedRequests;
+        this.friendSuggestions = friendSuggestions;
+    }
+
+    public ArrayList<FriendRequest> getFriendRecievedRequests() {
+        return friendRecievedRequests;
+    }
+
+    public void setFriendRecievedRequests(ArrayList<FriendRequest> friendRecievedRequests) {
+        this.friendRecievedRequests = friendRecievedRequests;
+    }
+
+    public ArrayList<String> getFriendSuggestions() {
+        return friendSuggestions;
+    }
+
+    public void setFriendSuggestions(ArrayList<String> friendSuggestions) {
+        this.friendSuggestions = friendSuggestions;
     }
 
     public ArrayList<FriendRequest> getFriendRequests() {
@@ -29,6 +51,24 @@ public class Profile {
 
     public void setFriendRequests(ArrayList<FriendRequest> friendRequests) {
         this.friendRequests = friendRequests;
+    }
+    public void addFriendRequest(FriendRequest friendRequest) {
+        this.friendRequests.add(friendRequest);
+    }
+    public void removeFriendRequest(FriendRequest friendRequest) {
+        this.friendRequests.remove(friendRequest);
+    }
+    public void addFriendRecievedRequest(FriendRequest friendRequest) {
+        this.friendRecievedRequests.add(friendRequest);
+    }
+    public void removeFriendRecievedRequest(FriendRequest friendRequest) {
+        this.friendRecievedRequests.remove(friendRequest);
+    }
+    public void addFriendSuggestion(String suggestion) {
+        this.friendSuggestions.add(suggestion);
+    }
+    public void removeFriendSuggestion(String suggestion) {
+        this.friendSuggestions.remove(suggestion);
     }
 
     public ArrayList<String> getFriends() {
