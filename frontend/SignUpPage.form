@@ -65,10 +65,7 @@
                                   <Component id="jLabel5" linkSize="1" min="-2" pref="41" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="retypePasswordTxt" pref="346" max="32767" attributes="0"/>
-                                  <Component id="DOBcalendar" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="retypePasswordTxt" min="-2" pref="346" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -120,11 +117,8 @@
                   <Component id="retypePasswordTxt" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel5" linkSize="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="DOBcalendar" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
+              <Component id="jLabel5" linkSize="2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
               <Component id="signUpButton" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace pref="43" max="32767" attributes="0"/>
           </Group>
@@ -201,8 +195,6 @@
     <Component class="javax.swing.JPasswordField" name="retypePasswordTxt">
     </Component>
     <Component class="javax.swing.JPasswordField" name="passWordText">
-    </Component>
-    <Component class="de.wannawork.jcalendar.JCalendarComboBox" name="DOBcalendar">
     </Component>
   </SubComponents>
 </Form>
