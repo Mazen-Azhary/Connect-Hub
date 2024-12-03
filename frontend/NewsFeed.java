@@ -117,10 +117,10 @@ public class NewsFeed extends javax.swing.JFrame {
     }
     
     private void createPostActionPerformed(ActionEvent evt){
-        /* 
+        
         CreatePostWindow createPostWindow = new CreatePostWindow();
         createPostWindow.setVisible(true);
-        */
+        
 
     }
 
