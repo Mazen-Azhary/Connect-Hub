@@ -142,6 +142,7 @@ private boolean PassWordHidden = true;
         backend.Login login= Login.getInstance();
         if(login.login(email,password))
         {
+            login.save();
             com.mycompany.frontend.ProfilePage profilePage = new com.mycompany.frontend.ProfilePage();
         }
         else

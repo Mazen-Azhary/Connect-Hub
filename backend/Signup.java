@@ -46,10 +46,5 @@ public class Signup {
     {
         userDataBase.save();
     }
-    public static void main(String [] args) throws NoSuchAlgorithmException {
-        Signup s=Signup.getInstance();
-        s.signup("mohamed","asfssd@fsad.gasfg","123456","male",LocalDate.now());
-        s.save();
-    }
 
 }

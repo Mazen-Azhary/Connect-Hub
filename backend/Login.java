@@ -26,10 +26,15 @@ public class Login {
             byte[] salt = user.getSalt();
             if(PasswordHasher.hashedPassword(password,salt).equals(user.getHashedPassword()))
             {
+                user.setStatus("online");
                 return true;
             }
 
         }
         return false;
+    }
+    public void save()
+    {
+        userDataBase.save();
     }
 }
