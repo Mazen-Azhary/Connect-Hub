@@ -14,12 +14,18 @@ public class Signup {
     private int IDcounter=1; //helps us for the unique id
     private final String filePath = "src/database/Login.json";
     private final String profilePath = "src/database/Profile.json";
+    private final String FriendsPath = "src/database/Friends.json";
+    private final String UserContentsPath = "src/database/UserContents.json";
     private  LoginDatabase loginDatabase;
-    private ProfileDataBase profileDataBase;
+    private  ProfileDataBase profileDataBase;
+    private FriendDatabase friendDatabase;
+    private UserContentDatabase userContentDatabase;
     private Signup() {
 
             loginDatabase=new LoginDatabase(filePath);
             profileDataBase=new ProfileDataBase(profilePath);
+            friendDatabase=new FriendDatabase(FriendsPath);
+            userContentDatabase=new UserContentDatabase(UserContentsPath);
             try {
             IDcounter=loginDatabase.getMap().size()+1;
             }
@@ -44,6 +50,8 @@ public class Signup {
         if (loginDatabase.addData(map))
         {
             profileDataBase.addUser(user);
+            userContentDatabase.addUser(user);
+            friendDatabase.addUser(user);
             IDcounter++;
             return true;
         }
