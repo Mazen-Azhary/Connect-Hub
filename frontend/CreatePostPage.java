@@ -21,6 +21,7 @@ public class CreatePostPage extends javax.swing.JFrame {
     private static ArrayList<Content> contents = new ArrayList<>(); 
     public CreatePostPage(ArrayList<Content> contents) {
         initComponents();
+        setLocationRelativeTo(null);
         this.contents=contents;
     }
 

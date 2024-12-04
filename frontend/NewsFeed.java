@@ -9,6 +9,7 @@ import backend.ContentFactory;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.swing.Box;
@@ -33,7 +34,7 @@ public class NewsFeed extends javax.swing.JFrame {
     /**
      * Creates new form NewsFeed
      */
-    public NewsFeed() {
+    public NewsFeed() throws IOException {
         initComponents();
         setTitle("NewsFeed");
         setLocationRelativeTo(null);
@@ -288,7 +289,11 @@ public class NewsFeed extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewsFeed().setVisible(true);
+                try {
+                    new NewsFeed().setVisible(true);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }

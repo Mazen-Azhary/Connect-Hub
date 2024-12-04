@@ -6,6 +6,8 @@ package frontend;
 
 import backend.Signup;
 import backend.Validations;
+
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -221,7 +223,7 @@ public class SignUpPage extends javax.swing.JFrame {
          }
     }//GEN-LAST:event_showPasswordButtonActionPerformed
 
-    private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) throws NoSuchAlgorithmException, IOException {//GEN-FIRST:event_signUpButtonActionPerformed
+    private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) throws NoSuchAlgorithmException, IOException, IOException {//GEN-FIRST:event_signUpButtonActionPerformed
 
         String userName = userNameTxt.getText().trim().replace("\n","");
 

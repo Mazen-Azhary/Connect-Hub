@@ -17,6 +17,7 @@ public class ProfilePage extends javax.swing.JFrame {
         initComponents();
         setVisible(true);
         jLabel1.setText("Omar");
+        setLocationRelativeTo(null);
     }
 
     /**

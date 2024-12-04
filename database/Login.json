@@ -3,4 +3,9 @@
   "hashedPassword" : "oJfARWsrSgYx1b8nazGkPjHnT8aieZnbm7y5MSJU048=",
   "userId" : "1",
   "email" : "mohamed@gmail.com"
+}, {
+  "salt" : "G9pIIWuR8PKRrSZR7WHC3A==",
+  "hashedPassword" : "5woAx9hOFujc8AfZ3OJi45xceYYdVvbj6xs5bOIanRY=",
+  "userId" : "2",
+  "email" : "oadel1814@gmail.com"
 } ]
