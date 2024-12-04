@@ -50,7 +50,6 @@ public class FriendDatabase extends Database {
                 profile.put("friendSuggestions", user.getProfile().getFriendSuggestions());
                 profile.put("friends", user.getProfile().getFriends());
                 profile.put("blockedUsers", user.getProfile().getBlockedUsers());
-
                 userNode.put("profile", profile);
                 break; // Found and modified the user, no need to continue
             }
