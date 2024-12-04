@@ -50,6 +50,11 @@ public class CreatePostPage extends javax.swing.JFrame {
         jLabel1.setText("What's in your mind?");
 
         PostButton.setText("Post");
+        PostButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PostButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,6 +105,10 @@ public class CreatePostPage extends javax.swing.JFrame {
         System.out.println("Image path: " + imagePath);
 }
     }//GEN-LAST:event_AddImageButtonActionPerformed
+
+    private void PostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostButtonActionPerformed
+        
+    }//GEN-LAST:event_PostButtonActionPerformed
 
     /**
      * @param args the command line arguments
