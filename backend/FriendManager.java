@@ -42,18 +42,6 @@ public class FriendManager {
         return true;
     }
     //singleton design pattern
-    UserDataBase userDataBase = new UserDataBase("src/database/Users.json");
-    private static FriendManager instance;
-    private FriendManager() throws IOException {
-
-    }
-    public synchronized static FriendManager getInstance() throws IOException {
-        if(instance==null)
-        {
-            instance=new FriendManager();
-        }
-        return instance;
-    }
     public boolean requestFriend(String sender, String receiver) {
         FriendRequest friendRequest=new FriendRequest(sender,receiver,"pending");
         Profile send= userDataBase.search(Integer.parseInt(sender)).getProfile();

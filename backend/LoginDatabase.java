@@ -1,19 +1,21 @@
 package backend;
-import com.fasterxml.jackson.core.type.TypeReference;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-public class UserDataBase {
+public class LoginDatabase {
     private String fileName;
     private ArrayList<User> data;
-    public UserDataBase(String fileName) throws IOException {
+    LoginDatabase(String fileName) {
         this.fileName = fileName;
-        data=new ArrayList<>(); //initialize the users
+        data = new ArrayList<>();
         readFromFile();
     }
+
     public void readFromFile()  {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
@@ -24,7 +26,7 @@ public class UserDataBase {
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+
         }
 
     }

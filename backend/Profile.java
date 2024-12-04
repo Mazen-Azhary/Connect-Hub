@@ -20,7 +20,6 @@ public class Profile {
         this.blockedUsers=new ArrayList<>();
         this.friendRecievedRequests=new ArrayList<>();
     }
-
     public Profile(ArrayList<String> friends, String profilePhoto, String bio, String coverPhoto, ArrayList<Content> contents, ArrayList<FriendRequest> friendRequests, ArrayList<FriendRequest> friendRecievedRequests, ArrayList<String> friendSuggestions, ArrayList<String> blockedUsers) {
         this.friends = friends;
         this.profilePhoto = profilePhoto;

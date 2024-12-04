@@ -9,19 +9,16 @@ import org.json.simple.parser.ParseException;
 public class Signup {
     private static Signup instance;
     private int IDcounter=1; //helps us for the unique id
-    private final String filePath = "src/database/Users.json";
-    private  UserDataBase userDataBase;
+    private final String filePath = "src/database/Login.json";
+    private  LoginDatabase loginDatabase;
     private Signup() {
-        try {
-            userDataBase=new UserDataBase(filePath);
-            IDcounter=userDataBase.getData().size()+1;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public void increment()
-    {
-        IDcounter++;
+
+            loginDatabase=new LoginDatabase(filePath);
+            try {
+            IDcounter=loginDatabase.getData().size()+1;
+            }
+            catch (Exception e) {
+            }
     }
     public static synchronized Signup getInstance() {
         if (instance == null) {
@@ -33,7 +30,7 @@ public class Signup {
         String id=IDcounter+"";
         System.out.println(id);
         User user=new User(id,email,userName,password,gender,dateOFBirth);
-        if (userDataBase.addData(user))
+        if (loginDatabase.addData(user))
         {
             IDcounter++;
             return true;
@@ -44,7 +41,7 @@ public class Signup {
     }
     public void save()
     {
-        userDataBase.save();
+        loginDatabase.save();
     }
 
 }

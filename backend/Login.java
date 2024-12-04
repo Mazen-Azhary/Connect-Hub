@@ -6,10 +6,10 @@ import java.util.Base64;
 
 public class Login {
     private static Login instance;
-    private final String filePath = "src/database/Users.json";
-    private  UserDataBase userDataBase;
+    private final String filePath = "src/database/Login.json";
+    private LoginDatabase loginDataBase;
     private Login() throws IOException {
-        userDataBase=new UserDataBase(filePath);
+        loginDataBase = new LoginDatabase(filePath);
     }
     public static synchronized Login getInstance() throws IOException {
         if (instance == null) {
@@ -20,9 +20,9 @@ public class Login {
     public boolean login(String email,String password) throws NoSuchAlgorithmException {
         //checking from the data base
         //hashing the password
-        if(userDataBase.contains(email))
+        if(loginDataBase.contains(email))
         {
-            User user=userDataBase.search(email);
+            User user=loginDataBase.search(email);
             byte[] salt = user.getSalt();
             if(PasswordHasher.hashedPassword(password,salt).equals(user.getHashedPassword()))
             {
@@ -35,6 +35,6 @@ public class Login {
     }
     public void save()
     {
-        userDataBase.save();
+        loginDataBase.save();
     }
 }

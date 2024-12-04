@@ -4,11 +4,13 @@ public class FriendRequest {
     private String senderId;
     private String receiverId;
     private String status;
-
     public FriendRequest(String senderId, String receiverId, String status) {
         this.senderId = senderId;
         this.receiverId = receiverId;
         this.status = status;
+    }
+    public FriendRequest() {
+
     }
 
     public String getSenderId() {
