@@ -9,9 +9,14 @@ import java.util.Map;
 public class Login {
     private static Login instance;
     private final String filePath = "src/database/Login.json";
+    private final String contentPath="src/database/UserContents.json";
     private LoginDatabase loginDataBase;
+    private UserContentDatabase userContentDatabase;
+    private String userID;
     private Login() throws IOException {
         loginDataBase = new LoginDatabase(filePath);
+        userContentDatabase = new UserContentDatabase(contentPath);
+
 
     }
     public static synchronized Login getInstance() throws IOException {
@@ -20,7 +25,7 @@ public class Login {
         }
         return instance;
     }
-    public boolean login(String email,String password) throws NoSuchAlgorithmException {
+    public boolean login(String email,String password) throws NoSuchAlgorithmException, IOException {
         //checking from the data base
         //hashing the password
         Map<String,Object> loginData = new HashMap<>();
@@ -31,17 +36,19 @@ public class Login {
             byte[] salt = Base64.getDecoder().decode(user.get("salt").toString());
             if(PasswordHasher.hashedPassword(password,salt).equals(user.get("hashedPassword").toString()))
             {
-                //don't forget the status
+                User use=userContentDatabase.getUser(user.get("userId").toString());
+                userID= user.get("userId").toString();
+                use.setStatus("online");
+                userContentDatabase.modifyUserById(use);
                 return true;
             }
 
         }
         return false;
     }
-    public void save()
+    public String save()
     {
         loginDataBase.save();
+        return userID;
     }
-
-
 }

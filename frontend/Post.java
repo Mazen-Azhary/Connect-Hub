@@ -7,6 +7,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class Post extends JPanel {
+    
+
     private int id;
     private String content;
     private String author;
