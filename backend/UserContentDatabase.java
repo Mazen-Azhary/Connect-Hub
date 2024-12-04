@@ -1,34 +1,34 @@
 package backend;
-import com.fasterxml.jackson.databind.JsonNode;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProfileDataBase extends Database {
-    public ProfileDataBase(String filename) {
+public class UserContentDatabase extends Database {
+    public UserContentDatabase(String filename) {
         super(filename);
     }
     public String readString()  {
         try {
 
-        return new String(Files.readAllBytes(new File(fileName).toPath()));
+            return new String(Files.readAllBytes(new File(fileName).toPath()));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            return null;
         }
     }
     public ArrayList<Map<String, Object>> parseUsers(String jsonString) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
 
-        return objectMapper.readValue(jsonString, ArrayList.class);
+            return objectMapper.readValue(jsonString, ArrayList.class);
         }
         catch (Exception e) {
             return null;
@@ -41,19 +41,32 @@ public class ProfileDataBase extends Database {
         if(users == null) return;
         for (Map<String, Object> userNode : users) {
             if (userNode.get("userID").equals(user.getUserID())){
-                userNode.put("gender", user.getGender());
                 userNode.put("username", user.getUsername());
+                userNode.put("status", user.getStatus());
                 Object profileObj = userNode.get("profile");
                 Map<String, Object> profile = (Map<String, Object>) profileObj;
-                profile.put("profilePhoto", user.getProfile().getProfilePhoto());
-                profile.put("coverPhoto", user.getProfile().getCoverPhoto());
-                profile.put("bio", user.getProfile().getBio());
+                ArrayList<Map<String, Object>> newContents = new ArrayList<>();
+                for (Content content : user.getProfile().getContents()) {
+                    newContents.add(parseContent(content));
+                }
+                profile.put("contents", newContents);
                 userNode.put("profile", profile);
-            break; // Found the user and modified, no need to continue
+                break; // Found the user and modified, no need to continue
+            }
         }
-        }
-        String updatedJsonString = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(users);
-            writeUpdatedJSONToFile(fileName, updatedJsonString);
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        String updatedJsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(users);
+        writeUpdatedJSONToFile(fileName, updatedJsonString);
+    }
+    private Map<String, Object> parseContent(Content content) {
+        Map<String, Object> contentMap = new HashMap<>();
+        contentMap.put("authorId", content.getAuthorId());
+        contentMap.put("contentId", content.getContentId());
+        contentMap.put("timestamp", content.getTimestamp());
+        contentMap.put("image", content.getImage());
+        contentMap.put("content", content.getContent());
+        return contentMap;
     }
     public void addUser(User user) throws IOException {
         String jsonString = readString();
@@ -73,7 +86,6 @@ public class ProfileDataBase extends Database {
     }
     public User getUser(String id) throws IOException {
         String jsonString = readString();
-        System.out.println(jsonString);
         ArrayList<Map<String, Object>> users = parseUsers(jsonString);
         if(users == null) return null;
         ObjectMapper objectMapper = new ObjectMapper();
@@ -84,21 +96,23 @@ public class ProfileDataBase extends Database {
                 return objectMapper.readValue(userJson, User.class);
             }
         }
-            return null;
+        return null;
     }
     private Map<String,Object> parse(User u)
     {
-        Map<String,Object> map = new HashMap<>();
-        map.put("username",u.getUsername());
+        Map<String, Object> map = new HashMap<>();
+        map.put("username", u.getUsername());
         map.put("userID", u.getUserID());
-        map.put("gender", u.getGender());
-        map.put("dateOfBirth", u.getDateOfBirth());
+        map.put("status", u.getStatus());
         Profile p = u.getProfile();
-        Map<String,Object> profile = new HashMap<>();
-        profile.put("profilePhoto", p.getProfilePhoto());
-        profile.put("coverPhoto", p.getCoverPhoto());
-        profile.put("bio", p.getBio());
+        Map<String, Object> profile = new HashMap<>();
+        ArrayList<Map<String, Object>> parsedContents = new ArrayList<>();
+        for (Content content : p.getContents()) {
+            parsedContents.add(parseContent(content)); // Convert each Content to a Map
+        }
+        profile.put("contents", parsedContents);
         map.put("profile", profile);
+
         return map;
     }
     public void save()
@@ -109,5 +123,24 @@ public class ProfileDataBase extends Database {
         FileWriter writer = new FileWriter(filePath);
         writer.write(jsonString);  // Write the updated string back to the file
         writer.close();
+    }
+
+    public static void main(String[] args) throws IOException {
+        UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
+//        User user =new User();
+//        user.setUsername("admin");
+//        user.setStatus("active");
+//        user.setUserID("1");
+//        user.setProfile(new Profile());
+//        user.getProfile().setContents(new ArrayList<>());
+//        Content content=ContentFactory.createContent("post",Integer.parseInt(user.getUserID()), LocalDate.now());
+//        ContentBuilder contentBuilder=new ContentBuilder(content);
+//        contentBuilder.setContent("mohamed is here");
+//        user.getProfile().getContents().add(contentBuilder.build());
+//        userContentDatabase.addUser(user);
+        User us=userContentDatabase.getUser("1");
+        us.getProfile().getContents().get(0).setContent("abotrika");
+        userContentDatabase.modifyUserById(us);
+
     }
 }

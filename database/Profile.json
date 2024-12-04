@@ -1,10 +1,11 @@
 [ {
-  "gender" : "female",
+  "gender" : "Male",
   "profile" : {
     "profilePhoto" : null,
     "coverPhoto" : null,
-    "bio" : "leo"
+    "bio" : null
   },
   "dateOfBirth" : [ 2024, 12, 4 ],
-  "userID" : "1"
+  "userID" : "1",
+  "username" : "mohamed"
 } ]

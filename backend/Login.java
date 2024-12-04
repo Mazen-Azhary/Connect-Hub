@@ -3,6 +3,8 @@ package backend;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Login {
     private static Login instance;
@@ -21,13 +23,15 @@ public class Login {
     public boolean login(String email,String password) throws NoSuchAlgorithmException {
         //checking from the data base
         //hashing the password
-        if(loginDataBase.contains(email))
+        Map<String,Object> loginData = new HashMap<>();
+        loginData.put("email",email);
+        if(loginDataBase.contains(loginData))
         {
-            User user=loginDataBase.search(email);
-            byte[] salt = user.getSalt();
-            if(PasswordHasher.hashedPassword(password,salt).equals(user.getHashedPassword()))
+            Map<String,Object> user=loginDataBase.search(loginData);
+            byte[] salt = Base64.getDecoder().decode(user.get("salt").toString());
+            if(PasswordHasher.hashedPassword(password,salt).equals(user.get("hashedPassword").toString()))
             {
-                user.setStatus("online");
+                //don't forget the status
                 return true;
             }
 

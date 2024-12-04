@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.json.simple.parser.ParseException;
 
 public class Signup {
@@ -18,7 +21,7 @@ public class Signup {
             loginDatabase=new LoginDatabase(filePath);
             profileDataBase=new ProfileDataBase(profilePath);
             try {
-            IDcounter=loginDatabase.getData().size()+1;
+            IDcounter=loginDatabase.getMap().size()+1;
             }
             catch (Exception e) {
             }
@@ -29,13 +32,18 @@ public class Signup {
         }
         return instance;
     }
-    public boolean signup(String userName, String email, String password, String gender, LocalDate dateOFBirth) throws NoSuchAlgorithmException {
+    public boolean signup(String userName, String email, String password, String gender, LocalDate dateOFBirth) throws NoSuchAlgorithmException, IOException {
         String id=IDcounter+"";
-        System.out.println(id);
         User user=new User(id,email,userName,password,gender,dateOFBirth);
-        if (loginDatabase.addData(user))
+        System.out.println(user.getUserID());
+        Map<String,Object> map=new HashMap<>();
+        map.put("userId",user.getUserID());
+        map.put("email",user.getEmail());
+        map.put("hashedPassword",user.getHashedPassword());
+        map.put("salt",user.getSalt());
+        if (loginDatabase.addData(map))
         {
-            profileDataBase.addData(user);
+            profileDataBase.addUser(user);
             IDcounter++;
             return true;
         }
@@ -46,7 +54,7 @@ public class Signup {
     public void save()
     {
         loginDatabase.save();
-        profileDataBase.save();
     }
+
 
 }

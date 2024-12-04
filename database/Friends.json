@@ -1,0 +1,11 @@
+[ {
+  "profile" : {
+    "friendRequests" : [ "2" ],
+    "friendSuggestions" : [ ],
+    "blockedUsers" : [ "4" ],
+    "friendReceivedRequests" : [ ],
+    "friends" : [ "3" ]
+  },
+  "userID" : "1",
+  "username" : "admin"
+} ]

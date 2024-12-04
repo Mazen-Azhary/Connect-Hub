@@ -8,24 +8,32 @@ public class Content {
     private int authorId;
     private String content;
     private String image;
-    private LocalDate timestamp;
-    private static int postCount = 0;
+    private LocalDateTime timestamp=LocalDateTime.now();
     public Content()
     {
 
     }
-    public Content(int authorId, LocalDate timestamp) {
+
+    public Content(int contentId, int authorId, LocalDateTime timestamp) {
+        this.contentId = contentId;
         this.authorId = authorId;
         this.timestamp = timestamp;
-        this.contentId = ++postCount;
     }
 
-    public Content(int contentId, int authorId, String content, String image, LocalDate timestamp) {
+    public Content(int contentId, int authorId, String content, String image, LocalDateTime timestamp) {
         this.contentId = contentId;
         this.authorId = authorId;
         this.content = content;
         this.image = image;
         this.timestamp = timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setContentId(int contentId) {
+        this.contentId = contentId;
     }
 
     public int getContentId() {
@@ -56,13 +64,10 @@ public class Content {
         this.image = image;
     }
 
-    public LocalDate getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
-    public static int getPostCount() {
-        return postCount;
-    }
 
 
 }

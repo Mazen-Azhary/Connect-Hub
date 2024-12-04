@@ -71,6 +71,8 @@ public class SignUpPage extends javax.swing.JFrame {
                     signUpButtonActionPerformed(evt);
                 } catch (NoSuchAlgorithmException e) {
                     throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });
@@ -221,7 +223,7 @@ public class SignUpPage extends javax.swing.JFrame {
          }
     }//GEN-LAST:event_showPasswordButtonActionPerformed
 
-    private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) throws NoSuchAlgorithmException {//GEN-FIRST:event_signUpButtonActionPerformed
+    private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) throws NoSuchAlgorithmException, IOException {//GEN-FIRST:event_signUpButtonActionPerformed
 
         String userName = userNameTxt.getText().trim().replace("\n","");
 
@@ -260,8 +262,7 @@ public class SignUpPage extends javax.swing.JFrame {
             Signup s=Signup.getInstance();
             if(s.signup(userName, email, password, gender, dob))
             {
-
-        JOptionPane.showMessageDialog(null, "Succesful Signup,please wait");
+        JOptionPane.showMessageDialog(null, "Successful Signup,please wait");
         s.save();
         try {
             Thread.sleep(5000);
