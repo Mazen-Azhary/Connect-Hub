@@ -4,25 +4,31 @@
  */
 package frontend;
 
-import backend.Content;
+import backend.*;
+
 import java.io.File;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import javax.swing.JFileChooser;
+import javax.swing.*;
 
 /**
  *
  * @author Etijah
  */
 public class CreatePostPage extends javax.swing.JFrame {
-
-    /**
+private UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
+private static String userID;
+private ContentDatabase contentDatabase = new ContentDatabase("src/database/Contents.json");
+/**
      * Creates new form CreatePostPage
      */
-    private static ArrayList<Content> contents = new ArrayList<>(); 
-    public CreatePostPage(ArrayList<Content> contents) {
+
+    public CreatePostPage(String userID) {
+        this.userID=userID;
         initComponents();
         setLocationRelativeTo(null);
-        this.contents=contents;
+
     }
 
     /**
@@ -94,21 +100,42 @@ public class CreatePostPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+        String imagePath;
     private void AddImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddImageButtonActionPerformed
         JFileChooser fileChooser = new JFileChooser();
     fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
     int result = fileChooser.showOpenDialog(null);
-    
+
     if (result == JFileChooser.APPROVE_OPTION) {
+
         File selectedFile = fileChooser.getSelectedFile();
-        String imagePath = selectedFile.getAbsolutePath();
         // Save the image path or display it as needed
-        System.out.println("Image path: " + imagePath);
-}
+    imagePath =  selectedFile.getAbsolutePath();
+
+
+    }
     }//GEN-LAST:event_AddImageButtonActionPerformed
 
     private void PostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostButtonActionPerformed
-        
+        if(PostContentTextField.getText().isEmpty() && imagePath.isEmpty()){
+            JOptionPane.showMessageDialog(null,"You must input data","Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        ContentFactory factory = new ContentFactory();
+        try {
+            Content n = factory.createContent("post",Integer.parseInt(userID), LocalDateTime.now());
+            ContentBuilder builder = new ContentBuilder(n);
+            builder.setContent(PostContentTextField.getText());
+           if(imagePath!=null)
+            builder.setImage(imagePath);
+           n = builder.build();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }//GEN-LAST:event_PostButtonActionPerformed
 
     /**
@@ -141,7 +168,7 @@ public class CreatePostPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreatePostPage(contents).setVisible(true);
+                new CreatePostPage(userID).setVisible(true);
             }
         });
     }

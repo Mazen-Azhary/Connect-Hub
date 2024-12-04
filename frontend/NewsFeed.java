@@ -261,7 +261,7 @@ public class NewsFeed extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createPostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPostButtonActionPerformed
-          createPostPage=new CreatePostPage(contents);
+          createPostPage=new CreatePostPage(id);
           
     }//GEN-LAST:event_createPostButtonActionPerformed
 
