@@ -6,8 +6,6 @@ package frontend;
 
 import backend.Signup;
 import backend.Validations;
-
-import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.ZoneId;
