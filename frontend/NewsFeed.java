@@ -56,40 +56,40 @@ public class NewsFeed extends javax.swing.JFrame {
             }
         }
 
-//        JPanel postPanel = new JPanel();
-//        postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
-//
-//        for (Content post : contents) {
-//            JLabel contentLabel = new JLabel("Content: " + post.getContent());
-//            JLabel authorLabel = new JLabel("Author ID: " + post.getAuthorId());
-//            JLabel imageLabel = new JLabel(new ImageIcon(post.getImage()));
-//            postPanel.add(authorLabel);
-//            postPanel.add(contentLabel);
-//            postPanel.add(imageLabel);
-//            postPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between posts
-//        }
-//
-//        JPanel storiesPanel = new JPanel();
-//        storiesPanel.setLayout(new BoxLayout(storiesPanel, BoxLayout.X_AXIS));
-//
-//        for (Content post : contents) {
-//            ImageIcon storyThumbnail = new ImageIcon(post.getImage());
-//            StoryFrontend storyFrontend = new StoryFrontend(post.getAuthorId(), "User" + post.getAuthorId(), storyThumbnail);
-//            storiesPanel.add(storyFrontend);
-//            storiesPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between stories
-//        }
-//
-//        FriendSuggestionPannel friendSuggestionPannel = new FriendSuggestionPannel();
-//        suggestionsScroll.setViewportView(friendSuggestionPannel);
-//
-//
-//        postsScroll.getVerticalScrollBar().setUnitIncrement(20);
-//        storiesScrollable.setViewportView(storiesPanel);
-//        postsScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-//        postsScroll.setViewportView(postPanel);
-//
-//        revalidate();
-//        repaint();
+        JPanel postPanel = new JPanel();
+        postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
+
+        for (Content post : contents) {
+            JLabel contentLabel = new JLabel("Content: " + post.getContent());
+            JLabel authorLabel = new JLabel("Author ID: " + post.getAuthorId());
+            JLabel imageLabel = new JLabel(new ImageIcon(post.getImage()));
+            postPanel.add(authorLabel);
+            postPanel.add(contentLabel);
+            postPanel.add(imageLabel);
+            postPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between posts
+        }
+
+        JPanel storiesPanel = new JPanel();
+        storiesPanel.setLayout(new BoxLayout(storiesPanel, BoxLayout.X_AXIS));
+
+        for (Content post : contents) {
+            ImageIcon storyThumbnail = new ImageIcon(post.getImage());
+            StoryFrontend storyFrontend = new StoryFrontend(post.getAuthorId(), "User" + post.getAuthorId(), storyThumbnail);
+            storiesPanel.add(storyFrontend);
+            storiesPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between stories
+        }
+
+        FriendSuggestionPannel friendSuggestionPannel = new FriendSuggestionPannel();
+        suggestionsScroll.setViewportView(friendSuggestionPannel);
+
+
+        postsScroll.getVerticalScrollBar().setUnitIncrement(20);
+        storiesScrollable.setViewportView(storiesPanel);
+        postsScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        postsScroll.setViewportView(postPanel);
+
+        revalidate();
+        repaint();
     }
 
 

@@ -8,4 +8,9 @@
   "hashedPassword" : "5woAx9hOFujc8AfZ3OJi45xceYYdVvbj6xs5bOIanRY=",
   "userId" : "2",
   "email" : "oadel1814@gmail.com"
+}, {
+  "salt" : "EPigaVkUWvqPIa5G6aNvFg==",
+  "hashedPassword" : "ozyLh873MOjUZV+idwyUDjROX48OnNd1WWJzx1CNCNs=",
+  "userId" : "3",
+  "email" : "AZHARY@gmail.com"
 } ]

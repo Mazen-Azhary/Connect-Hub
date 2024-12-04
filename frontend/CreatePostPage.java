@@ -22,6 +22,7 @@ public class CreatePostPage extends javax.swing.JFrame {
     public CreatePostPage(ArrayList<Content> contents) {
         initComponents();
         setLocationRelativeTo(null);
+        setVisible(true);
         this.contents=contents;
     }
 
