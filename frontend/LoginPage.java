@@ -144,6 +144,7 @@ private boolean PassWordHidden = true;
         {
             login.save();
             //frontend.ProfilePage profilePage = new frontend.ProfilePage();
+
             NewsFeed newsFeed = new NewsFeed();
         }
         else

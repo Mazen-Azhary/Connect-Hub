@@ -6,6 +6,8 @@ package frontend;
 
 import backend.Content;
 import backend.ContentFactory;
+import backend.User;
+
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,21 +23,25 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
+import backend.LoginDatabase;
 /**
  *
  * @author Mazen
  */
 public class NewsFeed extends javax.swing.JFrame {
-    
+    User user;
     CreatePostPage createPostPage;
     private ArrayList<Content> contents = new ArrayList<>(); //posts
-
+    private static String id;
     /**
      * Creates new form NewsFeed
      */
-    public NewsFeed() throws IOException {
+    public NewsFeed(String id) throws IOException {
+        //this.user = new LoginDatabase() ;
+        this.id=id;
         initComponents();
+
+
         setTitle("NewsFeed");
         setLocationRelativeTo(null);
         setResizable(false);
@@ -290,7 +296,7 @@ public class NewsFeed extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new NewsFeed().setVisible(true);
+                    new NewsFeed(id).setVisible(true);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
