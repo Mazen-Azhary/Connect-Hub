@@ -1,0 +1,10 @@
+[ {
+  "gender" : "female",
+  "profile" : {
+    "profilePhoto" : null,
+    "coverPhoto" : null,
+    "bio" : "leo"
+  },
+  "dateOfBirth" : [ 2024, 12, 4 ],
+  "userID" : "1"
+} ]

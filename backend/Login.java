@@ -10,6 +10,7 @@ public class Login {
     private LoginDatabase loginDataBase;
     private Login() throws IOException {
         loginDataBase = new LoginDatabase(filePath);
+
     }
     public static synchronized Login getInstance() throws IOException {
         if (instance == null) {

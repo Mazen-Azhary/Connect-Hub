@@ -10,10 +10,13 @@ public class Signup {
     private static Signup instance;
     private int IDcounter=1; //helps us for the unique id
     private final String filePath = "src/database/Login.json";
+    private final String profilePath = "src/database/Profile.json";
     private  LoginDatabase loginDatabase;
+    private ProfileDataBase profileDataBase;
     private Signup() {
 
             loginDatabase=new LoginDatabase(filePath);
+            profileDataBase=new ProfileDataBase(profilePath);
             try {
             IDcounter=loginDatabase.getData().size()+1;
             }
@@ -32,6 +35,7 @@ public class Signup {
         User user=new User(id,email,userName,password,gender,dateOFBirth);
         if (loginDatabase.addData(user))
         {
+            profileDataBase.addData(user);
             IDcounter++;
             return true;
         }
@@ -42,6 +46,7 @@ public class Signup {
     public void save()
     {
         loginDatabase.save();
+        profileDataBase.save();
     }
 
 }

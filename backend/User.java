@@ -1,24 +1,18 @@
 package backend;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 
 public class User {
     private String userID;
     private String email;
-    @JsonIgnore
     private String username;
-    @JsonIgnore
     private String status;
     private String hashedPassword;
     private byte[] salt;
-    @JsonIgnore
     private String gender;
-    @JsonIgnore
     private LocalDate dateOfBirth=LocalDate.now();
-    @JsonIgnore
     private Profile profile;
 
     public String getStatus() {
