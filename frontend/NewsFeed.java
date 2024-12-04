@@ -4,18 +4,31 @@
  */
 package frontend;
 
+import backend.Content;
+import backend.ContentFactory;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
  * @author Mazen
  */
 public class NewsFeed extends javax.swing.JFrame {
+
+    private ArrayList<Content> contents = new ArrayList<>(); //posts
 
     /**
      * Creates new form NewsFeed
@@ -25,6 +38,50 @@ public class NewsFeed extends javax.swing.JFrame {
         setTitle("NewsFeed");
         setLocationRelativeTo(null);
         setResizable(false);
+        for (int i = 0; i < 1000; i++) {
+            if (i % 2 == 0) {
+                Content n = ContentFactory.createContent("post", i, LocalDateTime.MAX);
+                n.setContent("content" + i);
+                n.setAuthorId(i);
+                contents.add(n);
+            } else {
+                Content n = ContentFactory.createContent("post", i, LocalDateTime.MAX);
+                n.setContent("content" + i);
+                n.setAuthorId(i);
+                n.setImage("src/database/Signup.png");
+                contents.add(n);
+            }
+        }
+        JPanel postPanel = new JPanel();
+        postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
+
+
+        // Add posts to jPanel1
+        for (Content post : contents) {
+            // Create components for each post
+            JLabel contentLabel = new JLabel("Content: " + post.getContent());
+            JLabel authorLabel = new JLabel("Author ID: " + post.getAuthorId());
+            JLabel imageLabel = new JLabel(new ImageIcon(post.getImage()));
+            System.out.println(post.getContent());
+//            jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
+//            jPanel1.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+            // Add labels to the post panel
+            postPanel.add(authorLabel, BorderLayout.NORTH);
+            postPanel.add(contentLabel, BorderLayout.CENTER);
+            postPanel.add(imageLabel, BorderLayout.SOUTH);
+
+        }
+
+        postsScroll.getVerticalScrollBar().setUnitIncrement(20); // 20 pixels per scroll step
+        postsScroll.getHorizontalScrollBar().setUnitIncrement(20); // (Optional) for horizontal scrolling
+        postsScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        postsScroll.setViewportView(postPanel);
+        //setSize(new Dimension(1000, 1000));
+        revalidate();
+        repaint();
+
     }
 
     /**
@@ -94,6 +151,12 @@ public class NewsFeed extends javax.swing.JFrame {
                 createPostButtonActionPerformed(evt);
             }
         });
+
+        for (backend.Content content : contents) {
+            Post post = new Post(content.getContentId(), content.getContent(), "Author" + content.getContent(),content.getImage());
+            postsScroll.add(post);
+            postsScroll.add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between posts
+        }
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -183,7 +246,7 @@ public class NewsFeed extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createPostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPostButtonActionPerformed
-        
+
     }//GEN-LAST:event_createPostButtonActionPerformed
 
     /**

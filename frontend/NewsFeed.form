@@ -151,6 +151,9 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
     </Container>
     <Container class="javax.swing.JScrollPane" name="postsScroll">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="for (backend.Content content : contents) {&#xa;            Post post = new Post(content.getContentId(), content.getContent(), &quot;Author&quot; + content.getContent(),content.getImage());&#xa;            postsScroll.add(post);&#xa;            postsScroll.add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between posts&#xa;        }"/>
+      </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
     </Container>
