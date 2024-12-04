@@ -19,6 +19,7 @@ public class Profile {
         this.friendRequests=new ArrayList<>();
         this.blockedUsers=new ArrayList<>();
         this.friendReceivedRequests=new ArrayList<>();
+        this.friendSuggestions=new ArrayList<>();
     }
 
     public ArrayList<String> getFriendReceivedRequests() {
