@@ -8,8 +8,11 @@ import backend.Content;
 import backend.ContentFactory;
 
 import java.awt.*;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -22,7 +25,7 @@ public class ProfilePage extends javax.swing.JFrame {
     /**
      * Creates new form profilePage
      */
-    public ProfilePage() {
+    public ProfilePage() throws IOException {
         initComponents();
         setVisible(true);
         setResizable(false);
@@ -321,7 +324,11 @@ public class ProfilePage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frontend.ProfilePage().setVisible(true);
+                try {
+                    new frontend.ProfilePage().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(ProfilePage.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
