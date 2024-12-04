@@ -6,7 +6,6 @@ package frontend;
 
 import backend.Content;
 import backend.ContentFactory;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,49 +33,62 @@ public class NewsFeed extends javax.swing.JFrame {
      * Creates new form NewsFeed
      */
     public NewsFeed() {
-    initComponents();
-    setTitle("NewsFeed");
-    setLocationRelativeTo(null);
-    setResizable(false);
+        initComponents();
+        setTitle("NewsFeed");
+        setLocationRelativeTo(null);
+        setResizable(false);
         setSize(1000, 700);
-    FriendListPannel friendPanel = new FriendListPannel();
-    friendsScroll.setViewportView(friendPanel);
+        
+        FriendListPannel friendPanel = new FriendListPannel();
+        friendsScroll.setViewportView(friendPanel);
 
-    for (int i = 0; i < 1000; i++) {
-        Content n = ContentFactory.createContent("post", i, LocalDateTime.MAX);
-        n.setContent("content" + i);
-        n.setAuthorId(i);
-        if (i % 2 == 0) {
-            contents.add(n);
-        } else {
-            n.setImage("src/database/Signup.png");
-            contents.add(n);
+        for (int i = 0; i < 1000; i++) {
+            Content n = ContentFactory.createContent("post", i, LocalDateTime.MAX);
+            n.setContent("content" + i);
+            n.setAuthorId(i);
+            if (i % 2 == 0) {
+                contents.add(n);
+            } else {
+                n.setImage("src/database/Signup.png");
+                contents.add(n);
+            }
         }
-    }
 
-    JPanel postPanel = new JPanel();
-    postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
+        JPanel postPanel = new JPanel();
+        postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
 
-    for (Content post : contents) {
-        JLabel contentLabel = new JLabel("Content: " + post.getContent());
+        for (Content post : contents) {
+            JLabel contentLabel = new JLabel("Content: " + post.getContent());
             JLabel authorLabel = new JLabel("Author ID: " + post.getAuthorId());
             JLabel imageLabel = new JLabel(new ImageIcon(post.getImage()));
             postPanel.add(authorLabel);
             postPanel.add(contentLabel);
             postPanel.add(imageLabel);
+            postPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between posts
+        }
+
+        JPanel storiesPanel = new JPanel();
+        storiesPanel.setLayout(new BoxLayout(storiesPanel, BoxLayout.X_AXIS));
+
+        for (Content post : contents) {
+            ImageIcon storyThumbnail = new ImageIcon(post.getImage());
+            StoryFrontend storyFrontend = new StoryFrontend(post.getAuthorId(), "User" + post.getAuthorId(), storyThumbnail);
+            storiesPanel.add(storyFrontend);
+            storiesPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between stories
+        }
+
+        FriendSuggestionPannel friendSuggestionPannel = new FriendSuggestionPannel();
+        suggestionsScroll.setViewportView(friendSuggestionPannel);
+
+
+        postsScroll.getVerticalScrollBar().setUnitIncrement(20);
+        storiesScrollable.setViewportView(storiesPanel);
+        postsScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        postsScroll.setViewportView(postPanel);
+
+        revalidate();
+        repaint();
     }
-    
-    FriendSuggestionPannel friendSuggestionPannel = new FriendSuggestionPannel();
-    suggestionsScroll.setViewportView(friendSuggestionPannel);
-
-    postsScroll.getVerticalScrollBar().setUnitIncrement(20);
-    postsScroll.getVerticalScrollBar().setUnitIncrement(20);
-    postsScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-    postsScroll.setViewportView(postPanel);
-
-    revalidate();
-    repaint();
-}
 
 
     /**
