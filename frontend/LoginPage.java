@@ -6,7 +6,7 @@ package frontend;
 
 import backend.Login;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
@@ -23,6 +23,7 @@ private boolean PassWordHidden = true;
         initComponents();
         setTitle("Login");
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**

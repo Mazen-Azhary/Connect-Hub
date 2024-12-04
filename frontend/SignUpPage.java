@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
@@ -28,7 +28,7 @@ public class SignUpPage extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Sign Up");
-
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         Male.setActionCommand("Male");
         Female.setActionCommand("Female");
         //button group allows one button only to be active

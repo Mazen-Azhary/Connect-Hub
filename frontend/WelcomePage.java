@@ -29,6 +29,7 @@ public class WelcomePage extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Welcome Page");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
     }
@@ -108,11 +109,13 @@ public class WelcomePage extends javax.swing.JFrame {
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
         SignUpPage signUpPage = new SignUpPage();
         signUpPage.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         LoginPage loginPage = new LoginPage();
         loginPage.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
