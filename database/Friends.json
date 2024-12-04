@@ -1,7 +1,6 @@
 [ {
   "profile" : {
     "friendRequests" : [ ],
-    "friendSuggestions" : null,
     "blockedUsers" : [ ],
     "friendReceivedRequests" : [ ],
     "friends" : [ ]
