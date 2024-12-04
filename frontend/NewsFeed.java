@@ -40,7 +40,7 @@ public class NewsFeed extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setSize(1000, 700);
-        
+        setVisible(true);
         FriendListPannel friendPanel = new FriendListPannel();
         friendsScroll.setViewportView(friendPanel);
 
