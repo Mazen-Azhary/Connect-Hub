@@ -21,6 +21,10 @@ public class FriendManager {
     public boolean removeFriend(String removerID, String removedID) throws IOException {
         User user1=friendsDataBase.getUser(removedID);
         User user2=friendsDataBase.getUser(removerID);
+        if(!user1.getProfile().getFriends().contains(removedID))
+        {
+            return false;
+        }
         user1.getProfile().getFriends().remove(user2.getUserID());
         user2.getProfile().getFriends().remove(user1.getUserID());
         friendsDataBase.modifyUserById(user1);
@@ -49,6 +53,10 @@ public class FriendManager {
     public boolean requestFriend(String sender, String receiver) throws IOException {
         User user1=friendsDataBase.getUser(sender);
         User user2=friendsDataBase.getUser(receiver);
+        if(user1.getProfile().getFriends().contains(receiver)||user1.getProfile().getFriendReceivedRequests().contains(receiver))
+        {
+            return false;
+        }
         user1.getProfile().getFriendRequests().add(user2.getUserID());
         user2.getProfile().getFriendReceivedRequests().add(user1.getUserID());
         friendsDataBase.modifyUserById(user1);
@@ -58,6 +66,10 @@ public class FriendManager {
     public boolean respond (String sender, String receiver,boolean accepted) throws IOException {
         User user1=friendsDataBase.getUser(sender);
         User user2=friendsDataBase.getUser(receiver);
+        if(!user1.getProfile().getFriendReceivedRequests().contains(receiver))
+        {
+            return false;
+        }
         user1.getProfile().getFriendReceivedRequests().remove(receiver);
         user2.getProfile().getFriendRequests().remove(sender);
         if(accepted)
@@ -72,6 +84,10 @@ public class FriendManager {
     public boolean removeRequest(String sender,String receiver) throws IOException {
         User user1=friendsDataBase.getUser(sender);
         User user2=friendsDataBase.getUser(receiver);
+        if(!user1.getProfile().getFriendRequests().contains(receiver))
+        {
+            return false;
+        }
         user1.getProfile().getFriendRequests().remove(receiver);
         user2.getProfile().getFriendReceivedRequests().remove(sender);
         friendsDataBase.modifyUserById(user1);
