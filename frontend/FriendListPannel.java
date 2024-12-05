@@ -14,7 +14,7 @@ String userID;
         for (int i = 0; i < 10; i++) {
             ImageIcon userPhoto = new ImageIcon(new ImageIcon("src/database/Signup.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
 
-            FriendFrontend friend = new FriendFrontend("Friend " + (i + 1), userPhoto,"1");
+            FriendFrontend friend = new FriendFrontend("Friend " + (i + 1), userPhoto,userID);
 
             friends.add(friend);
             this.add(friend);
