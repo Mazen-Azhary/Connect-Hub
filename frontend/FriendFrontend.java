@@ -15,7 +15,7 @@ public class FriendFrontend extends JPanel {
 
     private ProfileDataBase profileDataBase = new ProfileDataBase("src/database/Profile.json");
     private FriendManager friendManager;
-
+    private UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
     {
         try {
             friendManager = FriendManager.getInstance();
@@ -23,6 +23,8 @@ public class FriendFrontend extends JPanel {
             throw new RuntimeException(e);
         }
     }
+
+
 
     private JLabel friendPhoto;
     private JLabel friendName;
@@ -32,7 +34,7 @@ public class FriendFrontend extends JPanel {
     private String friendID;
     private String userID;
 
-    public FriendFrontend(String userID, String friendID) {
+    public FriendFrontend(String userID, String friendID) throws IOException {
         setLayout(new BorderLayout());
         this.userID = userID;
         this.friendID = friendID;
@@ -45,7 +47,6 @@ public class FriendFrontend extends JPanel {
             throw new RuntimeException(e);
         }
 
-        // Load the profile photo
         ImageIcon photo = new ImageIcon(friendProfile.getProfile().getProfilePhoto());
 
         // Check if the image is valid (non-zero width/height)
@@ -54,26 +55,33 @@ public class FriendFrontend extends JPanel {
         }
 
         // Resize the image and create a circular version
-        int diameter = 50; // Set the desired diameter
+        int diameter = 50;
         ImageIcon circularPhoto = getCircularImageIcon(photo, diameter);
 
-        // Set the circular photo in the JLabel
         friendPhoto = new JLabel(circularPhoto);
         friendPhoto.setPreferredSize(new Dimension(diameter, diameter));
         friendPhoto.setHorizontalAlignment(JLabel.CENTER);
 
-        // Active status
         activeStatus = new JLabel();
-        activeStatus.setText(friendProfile.getStatus());
-        activeStatus.setHorizontalAlignment(JLabel.CENTER);
+        if(userContentDatabase.getUser(friendId).getStatus().equalsIgnoreCase("online")){
+            activeStatus.setText("                           "+"online");
+            activeStatus.setForeground(Color.GREEN);
+        }
+        else{
+            activeStatus.setText("                       "+"offline");
+            activeStatus.setForeground(Color.RED);
+        }
+        activeStatus.setHorizontalAlignment(JLabel.LEFT);
+        activeStatus.setFont(new Font("Arial", Font.PLAIN, 12));
+        activeStatus.setVerticalAlignment(JLabel.TOP);
+        activeStatus.setBounds(0,0,50,0);
 
-        // Friend name
+
         friendName = new JLabel(friendProfile.getUsername());
         friendName.setHorizontalAlignment(JLabel.CENTER);
         friendName.setFont(new Font("Arial", Font.BOLD, 16));
         friendName.setBorder(new EmptyBorder(0, -5, 0, 10)); // Top, Left, Bottom, Right
 
-        // Remove button
         removeButton = new JButton("Remove");
         removeButton.addActionListener(new ActionListener() {
             @Override
@@ -103,21 +111,18 @@ public class FriendFrontend extends JPanel {
             }
         });
 
-        // Button panel
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
         buttonPanel.add(removeButton);
         buttonPanel.add(Box.createRigidArea(new Dimension(10, 0))); // Adds horizontal spacing
         buttonPanel.add(blockButton);
 
-        // Add components to the panel
         add(friendPhoto, BorderLayout.WEST);
         add(friendName, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.EAST);
         add(activeStatus, BorderLayout.SOUTH);
     }
 
-    // Helper method to create a circular image
     private static ImageIcon getCircularImageIcon(ImageIcon icon, int diameter) {
         // Create a new buffered image with transparency
         BufferedImage circularImage = new BufferedImage(diameter, diameter, BufferedImage.TYPE_INT_ARGB);
