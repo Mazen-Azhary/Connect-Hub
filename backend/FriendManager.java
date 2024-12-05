@@ -69,4 +69,13 @@ public class FriendManager {
         friendsDataBase.modifyUserById(user2);
         return true;
     }
+    public boolean removeRequest(String sender,String receiver) throws IOException {
+        User user1=friendsDataBase.getUser(sender);
+        User user2=friendsDataBase.getUser(receiver);
+        user1.getProfile().getFriendRequests().remove(receiver);
+        user2.getProfile().getFriendReceivedRequests().remove(sender);
+        friendsDataBase.modifyUserById(user1);
+        friendsDataBase.modifyUserById(user2);
+        return true;
+    }
 }
