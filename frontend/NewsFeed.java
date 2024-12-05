@@ -81,8 +81,11 @@ public class NewsFeed extends javax.swing.JFrame {
             storiesPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between stories
         }
 
-        FriendSuggestionPannel friendSuggestionPannel = new FriendSuggestionPannel();
-        suggestionsScroll.setViewportView(friendSuggestionPannel);
+//        FriendSuggestionPannel friendSuggestionPannel = new FriendSuggestionPannel(id);
+//        suggestionsScroll.setViewportView(friendSuggestionPannel);
+
+        FriendSuggestionFrontEnd friendSuggestionFrontend = new FriendSuggestionFrontEnd(id);
+        suggestionsScroll.setViewportView(friendSuggestionFrontend);
 
 
         postsScroll.getVerticalScrollBar().setUnitIncrement(20);
@@ -150,7 +153,6 @@ public class NewsFeed extends javax.swing.JFrame {
         });
         JMenuItem friendRequests = new JMenuItem("Friend Requests");
         friendRequests.addActionListener(new ActionListener() {
-
             public void actionPerformed(ActionEvent e) {
                 try {
                     new FriendRequestPage(id);

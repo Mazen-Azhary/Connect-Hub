@@ -70,7 +70,6 @@ public class ContentDatabase extends Database {
 
     public void addContent(Content content) throws IOException {
         String jsonString = readString();
-
         ArrayList<Map<String, Object>> contents = parseContents(jsonString);
         if (contents == null) {
             contents = new ArrayList<>();

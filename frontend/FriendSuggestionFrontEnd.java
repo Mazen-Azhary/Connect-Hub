@@ -37,15 +37,15 @@ public class FriendSuggestionFrontEnd extends JPanel {
     public FriendSuggestionFrontEnd(String userID) {
         this.userID = userID;
 
-        setLayout(new BoxLayout(this, BoxLayout.X_AXIS)); // Use X_AXIS to align components horizontally
-        setPreferredSize(new Dimension(300, 60));
-
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Use Y_AXIS for vertical stacking
+        setPreferredSize(new Dimension(300, 600)); // Adjusted for multiple suggestions
 
         try {
             suggestionGenerator.generateSuggestions(userID);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         ArrayList<String> suggestions;
         try {
             suggestions = suggestionGenerator.shuffleSuggestions(userID);
@@ -53,37 +53,66 @@ public class FriendSuggestionFrontEnd extends JPanel {
             throw new RuntimeException(e);
         }
 
-
         for (String suggestion : suggestions) {
-                User user;
+            User user;
             try {
-                        user= profileDataBase.getUser(suggestion);
+                user = profileDataBase.getUser(suggestion);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            JLabel photoLabel = new JLabel(new ImageIcon(user.getProfile().getProfilePhoto()));
+
+            // Create a panel for this suggestion
+            JPanel suggestionPanel = new JPanel();
+            suggestionPanel.setLayout(new BoxLayout(suggestionPanel, BoxLayout.Y_AXIS));
+            suggestionPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+            // Profile photo
+            JLabel photoLabel;
+            String ImageIcon = user.getProfile().getProfilePhoto();
+            if (ImageIcon != null) {
+                photoLabel = new JLabel(new ImageIcon(ImageIcon));
+            } else {
+                photoLabel = new JLabel(new ImageIcon("src/database/defaultIcon.png"));
+            }
             photoLabel.setPreferredSize(new Dimension(50, 50));
-            photoLabel.setHorizontalAlignment(JLabel.CENTER);
+            photoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            suggestionPanel.add(photoLabel);
 
             // Name label
             JLabel nameLabel = new JLabel(user.getUsername());
+            nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            suggestionPanel.add(nameLabel);
 
             // Add Friend Button
-            addFriendButton = new JButton("Add Friend");
+            JButton addFriendButton = new JButton("Add Friend");
+            addFriendButton.setAlignmentX(Component.CENTER_ALIGNMENT);
             addFriendButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     addFriend(suggestion);
+                    JOptionPane.showMessageDialog(null, "Add Request successful");
+                    new FriendSuggestionFrontEnd(userID);
                 }
             });
+            suggestionPanel.add(addFriendButton);
 
             // Block Button
-            blockButton = new JButton("Block");
+            JButton blockButton = new JButton("Block");
+            blockButton.setAlignmentX(Component.CENTER_ALIGNMENT);
             blockButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     blockUser(suggestion);
-                    JOptionPane.showMessageDialog(null, suggestion+"blocked!");
+                    JOptionPane.showMessageDialog(null, user.getUsername() + " blocked!");
+                    revalidate();
+                    repaint();
                 }
             });
+            suggestionPanel.add(blockButton);
+
+            // Add a spacer between suggestions
+            suggestionPanel.add(Box.createVerticalStrut(10));
+
+            // Add the suggestion panel to the main container
+            add(suggestionPanel);
 
             // Add components to panel with spacing
             JPanel buttonPanel = new JPanel();
@@ -92,7 +121,9 @@ public class FriendSuggestionFrontEnd extends JPanel {
             buttonPanel.add(blockButton);
 
             // Add components to the main panel
+            if(photoLabel!=null){
             add(photoLabel);
+            }
             add(nameLabel);
             add(Box.createHorizontalStrut(10)); // Add space between the name and buttons
             add(buttonPanel);

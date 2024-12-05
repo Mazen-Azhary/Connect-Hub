@@ -19,13 +19,11 @@ public class FriendRequestPage extends JFrame {
 
     public FriendRequestPage(String id) throws IOException {
         this.id = id;
-
         // Set JFrame properties
         setTitle("Friend Requests");
         setSize(500, 600);
         setLocationRelativeTo(null); // Center the window on the screen
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only this JFrame on exit
-
         // Initialize components
         initComponents();
         loadFriendRequests();

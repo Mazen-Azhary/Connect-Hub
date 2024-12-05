@@ -36,7 +36,6 @@ public class ProfileDataBase extends Database {
     }
     public void modifyUserById(User user) throws IOException {
         String jsonString = readString();
-        System.out.println(jsonString);
         ArrayList<Map<String, Object>> users = parseUsers(jsonString);
         if(users == null) return;
         for (Map<String, Object> userNode : users) {
@@ -73,7 +72,6 @@ public class ProfileDataBase extends Database {
     }
     public User getUser(String id) throws IOException {
         String jsonString = readString();
-        System.out.println(jsonString);
         ArrayList<Map<String, Object>> users = parseUsers(jsonString);
         if(users == null) return null;
         ObjectMapper objectMapper = new ObjectMapper();

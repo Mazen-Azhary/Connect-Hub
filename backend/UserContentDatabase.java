@@ -36,7 +36,6 @@ public class UserContentDatabase extends Database {
     }
     public void modifyUserById(User user) throws IOException {
         String jsonString = readString();
-        System.out.println(jsonString);
         ArrayList<Map<String, Object>> users = parseUsers(jsonString);
         if(users == null) return;
         for (Map<String, Object> userNode : users) {
@@ -70,7 +69,6 @@ public class UserContentDatabase extends Database {
     }
     public void addUser(User user) throws IOException {
         String jsonString = readString();
-
         ArrayList<Map<String, Object>> users = parseUsers(jsonString);
         if (users == null) {
             users = new ArrayList<>();

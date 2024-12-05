@@ -7,27 +7,7 @@
   },
   "dateOfBirth" : [ 2024, 12, 5 ],
   "userID" : "1",
-  "username" : "mohamed"
-}, {
-  "gender" : "Male",
-  "profile" : {
-    "profilePhoto" : null,
-    "coverPhoto" : null,
-    "bio" : null
-  },
-  "dateOfBirth" : [ 2024, 12, 4 ],
-  "userID" : "2",
-  "username" : "omar"
-}, {
-  "gender" : "Male",
-  "profile" : {
-    "profilePhoto" : null,
-    "coverPhoto" : null,
-    "bio" : null
-  },
-  "dateOfBirth" : [ 2024, 12, 4 ],
-  "userID" : "3",
-  "username" : "MAZEN"
+  "username" : "Lamine"
 }, {
   "gender" : "Male",
   "profile" : {
@@ -37,5 +17,45 @@
   },
   "dateOfBirth" : [ 2024, 12, 5 ],
   "userID" : "2",
-  "username" : "Omar Adel"
+  "username" : "Pedri"
+}, {
+  "gender" : "Male",
+  "profile" : {
+    "profilePhoto" : null,
+    "coverPhoto" : null,
+    "bio" : null
+  },
+  "dateOfBirth" : [ 2024, 12, 5 ],
+  "userID" : "3",
+  "username" : "Freinke"
+}, {
+  "gender" : "Male",
+  "profile" : {
+    "profilePhoto" : null,
+    "coverPhoto" : null,
+    "bio" : null
+  },
+  "dateOfBirth" : [ 2024, 12, 5 ],
+  "userID" : "4",
+  "username" : "Mbappe"
+}, {
+  "gender" : "Male",
+  "profile" : {
+    "profilePhoto" : null,
+    "coverPhoto" : null,
+    "bio" : null
+  },
+  "dateOfBirth" : [ 2024, 12, 5 ],
+  "userID" : "5",
+  "username" : "Vinicius"
+}, {
+  "gender" : "Male",
+  "profile" : {
+    "profilePhoto" : null,
+    "coverPhoto" : null,
+    "bio" : null
+  },
+  "dateOfBirth" : [ 2024, 12, 5 ],
+  "userID" : "6",
+  "username" : "Bellingham"
 } ]
