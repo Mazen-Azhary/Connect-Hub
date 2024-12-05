@@ -67,7 +67,12 @@ private FriendManager friendManager;
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+
+                repaint();
+                revalidate();
+
             }
+
         });
         
         blockButton = new JButton("Block");
@@ -79,6 +84,8 @@ private FriendManager friendManager;
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+                repaint();
+                revalidate();
 
             }
         });
