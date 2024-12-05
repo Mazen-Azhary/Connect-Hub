@@ -27,11 +27,12 @@ import javax.swing.JScrollPane;
  * @author Mazen
  */
 public class NewsFeed extends javax.swing.JFrame {
-    User user;
-    CreatePostPage createPostPage;
-    CreateStoryPage createStoryPage;
-    WelcomePage welcomePage;
-    UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
+    private User user;
+    private CreatePostPage createPostPage;
+    private CreateStoryPage createStoryPage;
+    private WelcomePage welcomePage;
+    private UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
+    private ProfileDataBase profileDataBase = new ProfileDataBase("src/database/Profile.json");
     private ArrayList<Content> contents = new ArrayList<>(); //posts
     private String id;
     /**
@@ -41,8 +42,7 @@ public class NewsFeed extends javax.swing.JFrame {
         //this.user = new LoginDatabase() ;
         this.id=id;
         initComponents();
-
-
+        user=profileDataBase.getUser(id);
         setTitle("NewsFeed");
         setLocationRelativeTo(null);
         setResizable(false);
@@ -160,7 +160,7 @@ public class NewsFeed extends javax.swing.JFrame {
 
         mb.add(om);
         OptionsMenu.setJMenuBar(mb);
-        if(user.getProfile().getProfilePhoto()!=null){
+        if(user!=null&&user.getProfile().getProfilePhoto()!=null){
         OptionsMenu.setFrameIcon(new ImageIcon(user.getProfile().getProfilePhoto()));
         OptionsMenu.setSize(400, 300);
         }
