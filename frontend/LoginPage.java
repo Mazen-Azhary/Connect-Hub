@@ -143,9 +143,11 @@ private boolean PassWordHidden = true;
         backend.Login login= Login.getInstance();
         if(login.login(email,password))
         {
-            login.save();
+            String id=login.save();
+            System.out.println("LOgin page:"+id);
             //frontend.ProfilePage profilePage = new frontend.ProfilePage();
-            NewsFeed newsFeed = new NewsFeed();
+
+            NewsFeed newsFeed = new NewsFeed(id);
         }
         else
         {

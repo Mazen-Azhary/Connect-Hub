@@ -1,9 +1,7 @@
 package backend;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,17 +12,23 @@ public class Signup {
     private int IDcounter=1; //helps us for the unique id
     private final String filePath = "src/database/Login.json";
     private final String profilePath = "src/database/Profile.json";
+    private final String FriendsPath = "src/database/Friends.json";
+    private final String UserContentsPath = "src/database/UserContents.json";
     private  LoginDatabase loginDatabase;
-    private ProfileDataBase profileDataBase;
+    private  ProfileDataBase profileDataBase;
+    private FriendDatabase friendDatabase;
+    private UserContentDatabase userContentDatabase;
     private Signup() {
 
-            loginDatabase=new LoginDatabase(filePath);
-            profileDataBase=new ProfileDataBase(profilePath);
-            try {
+        loginDatabase=new LoginDatabase(filePath);
+        profileDataBase=new ProfileDataBase(profilePath);
+        friendDatabase=new FriendDatabase(FriendsPath);
+        userContentDatabase=new UserContentDatabase(UserContentsPath);
+        try {
             IDcounter=loginDatabase.getMap().size()+1;
-            }
-            catch (Exception e) {
-            }
+        }
+        catch (Exception e) {
+        }
     }
     public static synchronized Signup getInstance() {
         if (instance == null) {
@@ -44,6 +48,8 @@ public class Signup {
         if (loginDatabase.addData(map))
         {
             profileDataBase.addUser(user);
+            userContentDatabase.addUser(user);
+            friendDatabase.addUser(user);
             IDcounter++;
             return true;
         }

@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FriendManager {
-    UserDataBase userDataBase = new UserDataBase("src/database/Users.json");
+    private FriendDatabase friendsDataBase = new FriendDatabase("src/database/Friends.json");
     private static FriendManager instance;
+    SuggestionGenerator suggestionGenerator=SuggestionGenerator.getInstance();
     private FriendManager() throws IOException {
 
     }
@@ -17,65 +18,55 @@ public class FriendManager {
         return instance;
     }
 
-    public boolean removeFriend(String removerID, String removedID) {
+    public boolean removeFriend(String removerID, String removedID) throws IOException {
+        User user1=friendsDataBase.getUser(removedID);
+        User user2=friendsDataBase.getUser(removerID);
+        user1.getProfile().getFriends().remove(user2.getUserID());
+        user2.getProfile().getFriends().remove(user1.getUserID());
+        friendsDataBase.modifyUserById(user1);
+        friendsDataBase.modifyUserById(user2);
+        return true;
+    }
 
-        if (userDataBase.search(Integer.parseInt(removerID)).getProfile().getFriends().contains(removedID)) {
-            userDataBase.search(Integer.parseInt(removerID)).getProfile().removeFriend(removedID);
-            userDataBase.search(Integer.parseInt(removedID)).getProfile().removeFriend(removerID);
-            userDataBase.save();
-            return true;
+    public boolean blockUser(String blockerID, String blockedID) throws IOException {
+        //if the id positive then you are the blocker, if negative you are the blocked
+        User user1=friendsDataBase.getUser(blockerID);
+        User user2=friendsDataBase.getUser(blockedID);
+        user1.getProfile().getBlockedUsers().add(user2.getUserID());
+        user2.getProfile().getBlockedUsers().add("-"+user1.getUserID());
+        friendsDataBase.modifyUserById(user1);
+        friendsDataBase.modifyUserById(user2);
+        return true;
+    }
+
+    public boolean unblockUser(String unblockerID, String unblockedID) throws IOException {
+        User user1=friendsDataBase.getUser(unblockerID);
+        User user2=friendsDataBase.getUser(unblockedID);
+        user1.getProfile().getBlockedUsers().remove(user2.getUserID());
+        user2.getProfile().getBlockedUsers().remove("-"+user1.getUserID());
+        return true;
+    }
+    public boolean requestFriend(String sender, String receiver) throws IOException {
+        User user1=friendsDataBase.getUser(sender);
+        User user2=friendsDataBase.getUser(receiver);
+        user1.getProfile().getFriendRequests().add(user2.getUserID());
+        user2.getProfile().getFriendReceivedRequests().add(user1.getUserID());
+        friendsDataBase.modifyUserById(user1);
+        friendsDataBase.modifyUserById(user2);
+        return true;
+    }
+    public boolean respond (String sender, String receiver,boolean accepted) throws IOException {
+        User user1=friendsDataBase.getUser(sender);
+        User user2=friendsDataBase.getUser(receiver);
+        user1.getProfile().getFriendReceivedRequests().remove(receiver);
+        user2.getProfile().getFriendRequests().remove(sender);
+        if(accepted)
+        {
+            user1.getProfile().addFriend(receiver);
+            user2.getProfile().addFriend(sender);
         }
-        return false;
-    }
-
-    public boolean blockUser(String blockerID, String blockedID) {
-        userDataBase.search(Integer.parseInt(blockerID)).getProfile().addBlockedUser(blockedID);
-        userDataBase.search(Integer.parseInt(blockedID)).getProfile().addBlockedUser(blockerID);
-        userDataBase.save();
+        friendsDataBase.modifyUserById(user1);
+        friendsDataBase.modifyUserById(user2);
         return true;
     }
-
-    public boolean unblockUser(String unblockerID, String unblockedID) {
-        userDataBase.search(Integer.parseInt(unblockerID)).getProfile().removeBlockedUser(unblockedID);
-        userDataBase.search(Integer.parseInt(unblockedID)).getProfile().removeBlockedUser(unblockerID);
-        userDataBase.save();
-        return true;
-    }
-    //singleton design pattern
-    public boolean requestFriend(String sender, String receiver) {
-//        FriendRequest friendRequest=new FriendRequest(sender,receiver,"pending");
-//        Profile send= userDataBase.search(Integer.parseInt(sender)).getProfile();
-//        Profile receive= userDataBase.search(Integer.parseInt(receiver)).getProfile();
-//        send.addFriendRequest(friendRequest.getReceiverId());
-//        receive.addFriendRecievedRequest(friendRequest.getSenderId());
-//        userDataBase.save();
-//        return true;
-//    }
-//    public boolean respond (String sender, String receiver,boolean accepted) {
-//        Profile send= userDataBase.search(Integer.parseInt(sender)).getProfile();
-//        Profile receive= userDataBase.search(Integer.parseInt(receiver)).getProfile();
-//        ArrayList<String> friendRequests=send.getFriendRequests();
-//        FriendRequest friendRequest = null;
-//        for(String request:friendRequests)
-//        {
-//            if(request.equals(receiver))
-//            {
-//                friendRequest=request;
-//                break;
-//            }
-//        }
-//        if(accepted)
-//        {
-//            friendRequest.setStatus("accepted");
-//            send.addFriend(receiver);
-//            receive.addFriend(sender);
-//        }
-//        else {
-//            friendRequest.setStatus("rejected");
-//        }
-//        userDataBase.save();
-        //modify
-        return true;
-    }
-
 }
