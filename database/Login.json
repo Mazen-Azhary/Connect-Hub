@@ -28,4 +28,9 @@
   "hashedPassword" : "BVUOT93Zib7KQGNJyeE2Eq4YsexOLKfkyS9C+8p+KGg=",
   "userId" : "6",
   "email" : "bellingham@gmail.com"
+}, {
+  "salt" : "23DUntgYsEH0pTFEEy/xDg==",
+  "hashedPassword" : "o2eXBJnGPELmUZaPWbxI+iPXqpRwguDL4ER0P+PL8XU=",
+  "userId" : "7",
+  "email" : "mazen@gmail.com"
 } ]

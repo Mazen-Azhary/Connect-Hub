@@ -40,4 +40,11 @@
   "userID" : "6",
   "username" : "Bellingham",
   "status" : "online"
+}, {
+  "profile" : {
+    "contents" : [ ]
+  },
+  "userID" : "7",
+  "username" : "mazen azhary",
+  "status" : "online"
 } ]

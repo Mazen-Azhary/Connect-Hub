@@ -29,6 +29,7 @@ import javax.swing.JScrollPane;
 public class NewsFeed extends javax.swing.JFrame {
     private UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
     private ProfileDataBase profileDataBase = new ProfileDataBase("src/database/Profile.json");
+    private FriendDatabase friendDatabase = new FriendDatabase("src/database/Friends.json");
     private ArrayList<Content> contents = new ArrayList<>(); //posts
     private String id;
     /**
@@ -45,6 +46,10 @@ public class NewsFeed extends javax.swing.JFrame {
         setVisible(true);
         FriendListPannel friendPanel = new FriendListPannel(id);
         friendsScroll.setViewportView(friendPanel);
+        for(int i=0;i<friendDatabase.getData().size();i++){
+
+
+        }
 
         for (int i = 0; i < 1000; i++) {
             Content n = ContentFactory.createContent("post", i, LocalDateTime.MAX);

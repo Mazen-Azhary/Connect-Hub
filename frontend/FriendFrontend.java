@@ -9,8 +9,17 @@ import java.io.IOException;
 import backend.*;
 
 public class FriendFrontend extends JPanel {
-private FriendDatabase friendDatabase = new FriendDatabase("src/database/Friends.json");
-private ProfileDataBase profileDataBase = new ProfileDataBase("src/database/Profile.json");
+    private UserDataBase userDataBase;
+    {
+        try {
+            userDataBase = new UserDataBase("src/database/UserContents.json");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    private ProfileDataBase profileDataBase = new ProfileDataBase("src/database/Profile.json");
 private FriendManager friendManager;
     {
         try {
@@ -25,22 +34,15 @@ private FriendManager friendManager;
     private JButton removeButton;
     private JButton blockButton; // New block button
     private JLabel activeStatus;
-    private String id;
+    private String friendID;
+    private String userID;
 
-    public FriendFrontend(String name, ImageIcon photo,String id) {
+    public FriendFrontend(String userID,String friendID) {
         setLayout(new BorderLayout());
-       User user;
-       this.id = id;
-        try {
-            user = friendDatabase.getUser(this.id);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        //database.getUser();
-    for(int i=0;i<user.getProfile().getFriends().size();i++){
+        this.userID = userID;
+       this.friendID = friendID;
 
-
-        String friendId = user.getProfile().getFriends().get(i);
+        String friendId = this.friendID;
             User friendProfile;
         try {
                    friendProfile = profileDataBase.getUser(friendId);
@@ -52,18 +54,18 @@ private FriendManager friendManager;
         friendPhoto.setHorizontalAlignment(JLabel.CENTER);
 
         activeStatus = new JLabel();
-        activeStatus.setText(user.getStatus());
+        activeStatus.setText(friendProfile.getStatus());
         activeStatus.setHorizontalAlignment(JLabel.CENTER);
 
-        friendName = new JLabel(user.getUsername());
+        friendName = new JLabel(friendProfile.getUsername());
         friendName.setHorizontalAlignment(JLabel.CENTER);
-        
+
         removeButton = new JButton("Remove");
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    friendManager.removeFriend(user.getUserID(), friendId);
+                    friendManager.removeFriend(userID, friendId);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -74,13 +76,13 @@ private FriendManager friendManager;
             }
 
         });
-        
+
         blockButton = new JButton("Block");
         blockButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    friendManager.blockUser(user.getUserID(), friendId);
+                    friendManager.blockUser(userID, friendId);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -89,15 +91,15 @@ private FriendManager friendManager;
 
             }
         });
-        
+
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
         buttonPanel.add(removeButton);
-        buttonPanel.add(blockButton); 
+        buttonPanel.add(blockButton);
 
         add(friendPhoto, BorderLayout.WEST);
         add(friendName, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.EAST);
         add(activeStatus, BorderLayout.SOUTH);
     }}
-}
+
