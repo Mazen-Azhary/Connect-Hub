@@ -8,4 +8,14 @@
   },
   "userID" : "1",
   "username" : "lamine yamal"
+}, {
+  "profile" : {
+    "friendRequests" : [ ],
+    "friendSuggestions" : [ ],
+    "blockedUsers" : [ ],
+    "friendReceivedRequests" : [ ],
+    "friends" : [ ]
+  },
+  "userID" : "2",
+  "username" : "Omar Adel"
 } ]

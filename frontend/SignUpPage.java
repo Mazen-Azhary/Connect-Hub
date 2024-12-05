@@ -24,13 +24,16 @@ public class SignUpPage extends javax.swing.JFrame {
     /**
      * Creates new form SignUpPage
      */
-    public SignUpPage() {
+    WelcomePage welcomePage;
+    public SignUpPage(WelcomePage welcomePage) {
         initComponents();
         setLocationRelativeTo(null);
+        this.welcomePage = welcomePage;
         setTitle("Sign Up");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         Male.setActionCommand("Male");
         Female.setActionCommand("Female");
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         //button group allows one button only to be active
         buttonGroup1.add(Male);
         buttonGroup1.add(Female);
@@ -264,6 +267,8 @@ public class SignUpPage extends javax.swing.JFrame {
             {
         JOptionPane.showMessageDialog(null, "Successful Signup,please wait");
         s.save();
+        setVisible(false);
+        welcomePage.setVisible(true);
         try {
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
@@ -308,7 +313,7 @@ public class SignUpPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SignUpPage().setVisible(true);
+                new SignUpPage(new WelcomePage()).setVisible(true);
             }
         });
     }

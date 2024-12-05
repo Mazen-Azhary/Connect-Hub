@@ -11,4 +11,11 @@
   "userID" : "1",
   "username" : "lamine yamal",
   "status" : "online"
+}, {
+  "profile" : {
+    "contents" : [ ]
+  },
+  "userID" : "2",
+  "username" : "Omar Adel",
+  "status" : "online"
 } ]

@@ -6,31 +6,28 @@ package frontend;
 
 import backend.*;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import javax.swing.*;
 
 /**
  *
  * @author Etijah
  */
-public class CreatePostPage extends javax.swing.JFrame {
-private UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
-private static String userID;
-private ContentDatabase contentDatabase = new ContentDatabase("src/database/Contents.json");
-/**
-     * Creates new form CreatePostPage
+public class CreateStoryPage extends javax.swing.JFrame {
+    private UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
+    private static String userID;
+    private ContentDatabase contentDatabase = new ContentDatabase("src/database/Contents.json");
+    /**
+     * Creates new form CreateStoryPage
      */
-
-    public CreatePostPage(String userID) {
+    public CreateStoryPage(String userID) {
         this.userID=userID;
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setVisible(true);
         setLocationRelativeTo(null);
-
+        setVisible(true);
     }
 
     /**
@@ -43,9 +40,9 @@ private ContentDatabase contentDatabase = new ContentDatabase("src/database/Cont
     private void initComponents() {
 
         AddImageButton = new javax.swing.JButton();
-        PostContentTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         PostButton = new javax.swing.JButton();
+        StoryContentTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,7 +53,7 @@ private ContentDatabase contentDatabase = new ContentDatabase("src/database/Cont
             }
         });
 
-        jLabel1.setText("What's in your mind?");
+        jLabel1.setText("Want to say something?");
 
         PostButton.setText("Post");
         PostButton.addActionListener(new java.awt.event.ActionListener() {
@@ -70,79 +67,73 @@ private ContentDatabase contentDatabase = new ContentDatabase("src/database/Cont
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(163, 163, 163))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(PostButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(PostContentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(AddImageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(AddImageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(PostButton, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                            .addComponent(StoryContentTextField))))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(50, 50, 50)
+                .addComponent(AddImageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PostContentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(AddImageButton)
-                .addGap(18, 18, 18)
+                .addComponent(StoryContentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PostButton)
-                .addGap(34, 34, 34))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-        String imagePath;
+    String imagePath;
     private void AddImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddImageButtonActionPerformed
         JFileChooser fileChooser = new JFileChooser();
-    fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-    int result = fileChooser.showOpenDialog(null);
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        int result = fileChooser.showOpenDialog(null);
 
-    if (result == JFileChooser.APPROVE_OPTION) {
+        if (result == JFileChooser.APPROVE_OPTION) {
 
-        File selectedFile = fileChooser.getSelectedFile();
-        // Save the image path or display it as needed
-    imagePath =  selectedFile.getAbsolutePath();
-
-
-    }
+            File selectedFile = fileChooser.getSelectedFile();
+            // Save the image path or display it as needed
+            imagePath =  selectedFile.getAbsolutePath();
+        }
     }//GEN-LAST:event_AddImageButtonActionPerformed
 
     private void PostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostButtonActionPerformed
-        if(PostContentTextField.getText().isEmpty() && imagePath.isEmpty()){
+        if(StoryContentTextField.getText().isEmpty() && imagePath.isEmpty()){
             JOptionPane.showMessageDialog(null,"You must input data","Error",JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         ContentFactory factory = new ContentFactory();
         try {
-            Content n = factory.createContent("post",Integer.parseInt(userID), LocalDateTime.now());
+            Content n = factory.createContent("story",Integer.parseInt(userID), LocalDateTime.now());
             ContentBuilder builder = new ContentBuilder(n);
-            builder.setContent(PostContentTextField.getText());
-           if(imagePath!=null)
-            builder.setImage(imagePath);
-           n = builder.build();
+            builder.setContent(StoryContentTextField.getText());
+            if(imagePath!=null)
+                builder.setImage(imagePath);
+            n = builder.build();
 
-           contentDatabase.addContent(n);
-           User u=userContentDatabase.getUser(userID);
-           u.getProfile().addContent(n);
-           userContentDatabase.modifyUserById(u);
+            contentDatabase.addContent(n);
+            User u=userContentDatabase.getUser(userID);
+            u.getProfile().addContent(n);
+            userContentDatabase.modifyUserById(u);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }//GEN-LAST:event_PostButtonActionPerformed
 
     /**
@@ -152,7 +143,7 @@ private ContentDatabase contentDatabase = new ContentDatabase("src/database/Cont
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -162,20 +153,20 @@ private ContentDatabase contentDatabase = new ContentDatabase("src/database/Cont
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreatePostPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateStoryPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreatePostPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateStoryPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreatePostPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateStoryPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreatePostPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateStoryPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreatePostPage(userID).setVisible(true);
+                new CreateStoryPage(userID).setVisible(true);
             }
         });
     }
@@ -183,7 +174,7 @@ private ContentDatabase contentDatabase = new ContentDatabase("src/database/Cont
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddImageButton;
     private javax.swing.JButton PostButton;
-    private javax.swing.JTextField PostContentTextField;
+    private javax.swing.JTextField StoryContentTextField;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

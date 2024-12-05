@@ -28,4 +28,14 @@
   "dateOfBirth" : [ 2024, 12, 4 ],
   "userID" : "3",
   "username" : "MAZEN"
+}, {
+  "gender" : "Male",
+  "profile" : {
+    "profilePhoto" : null,
+    "coverPhoto" : null,
+    "bio" : null
+  },
+  "dateOfBirth" : [ 2024, 12, 5 ],
+  "userID" : "2",
+  "username" : "Omar Adel"
 } ]

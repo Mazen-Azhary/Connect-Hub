@@ -107,17 +107,14 @@ public class WelcomePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
-        SignUpPage signUpPage = new SignUpPage();
-        setVisible(false);
+        SignUpPage signUpPage = new SignUpPage(this);
         signUpPage.setVisible(true);
-        setVisible(false);
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        LoginPage loginPage = new LoginPage();
-        setVisible(false);
+        LoginPage loginPage = new LoginPage(this);
         loginPage.setVisible(true);
-        setVisible(false);
+
     }//GEN-LAST:event_loginButtonActionPerformed
 
     /**

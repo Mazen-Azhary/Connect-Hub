@@ -19,9 +19,11 @@ private boolean PassWordHidden = true;
     /**
      * Creates new form LoginPage
      */
-    public LoginPage() {
+    WelcomePage welcomePage;
+    public LoginPage(WelcomePage welcomePage) {
         initComponents();
         setTitle("Login");
+        this.welcomePage = welcomePage;
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
@@ -194,7 +196,7 @@ private boolean PassWordHidden = true;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginPage().setVisible(true);
+                new LoginPage(new WelcomePage()).setVisible(true);
             }
         });
     }

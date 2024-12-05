@@ -34,14 +34,9 @@
                           <Component id="storiesScrollable" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="jInternalFrame1" min="-2" max="-2" attributes="0"/>
+                              <Component id="OptionsMenu" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="382" max="-2" attributes="0"/>
-                      <Component id="createPostButton" min="-2" pref="144" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="384" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -55,19 +50,30 @@
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel2" max="32767" attributes="0"/>
-                          <Component id="postsScroll" pref="425" max="32767" attributes="0"/>
-                      </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="friendsScroll" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel2" max="32767" attributes="0"/>
+                                  <Component id="postsScroll" pref="425" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="friendsScroll" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                                      <Component id="jLabel4" min="-2" pref="78" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
-                              <Component id="jLabel4" min="-2" pref="78" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="createPostButton" min="-2" pref="144" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                              <Component id="AddStoryButton" min="-2" pref="125" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="309" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -85,13 +91,16 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jInternalFrame1" min="-2" max="-2" attributes="0"/>
+              <Component id="OptionsMenu" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="storiesScrollable" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="createPostButton" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="createPostButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="AddStoryButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -112,13 +121,13 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JInternalFrame" name="jInternalFrame1">
+    <Container class="javax.swing.JInternalFrame" name="OptionsMenu">
       <Properties>
         <Property name="visible" type="boolean" value="true"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JInternalFrame(&quot;UserName&quot;)"/>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="JMenuBar mb = new JMenuBar();&#xa;JMenu om = new JMenu(&quot;Options&quot;);&#xa;JMenuItem ref = new JMenuItem(&quot;Refresh page&quot;);&#xa;&#xa;        ref.addActionListener(new ActionListener(){&#xa;    public void actionPerformed(ActionEvent e) {&#xa;        //refreshPage();&#xa;    }&#xa;});&#xa;&#xa;&#xa;        JMenuItem logoutItem = new JMenuItem(&quot;Logout&quot;);&#xa;        logoutItem.addActionListener(new ActionListener() {&#xa;       &#xa;            public void actionPerformed(ActionEvent e) {&#xa;                //logout();&#xa;            }&#xa;        });&#xa;&#xa;        om.add(ref);&#xa;        om.add(logoutItem);&#xa;&#xa;        mb.add(om);&#xa;        jInternalFrame1.setJMenuBar(mb);&#xa;jInternalFrame1.setFrameIcon(new ImageIcon(&quot;src/database/Signup.png&quot;));&#xa;jInternalFrame1.setSize(400, 300);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="JMenuBar mb = new JMenuBar();&#xa;JMenu om = new JMenu(&quot;Options&quot;);&#xa;JMenuItem ref = new JMenuItem(&quot;Refresh page&quot;);&#xa;&#xa;        ref.addActionListener(new ActionListener(){&#xa;    public void actionPerformed(ActionEvent e) {&#xa;        //refreshPage();&#xa;    }&#xa;});&#xa;&#xa;&#xa;        JMenuItem logoutItem = new JMenuItem(&quot;Logout&quot;);&#xa;        logoutItem.addActionListener(new ActionListener() {&#xa;       &#xa;            public void actionPerformed(ActionEvent e) {&#xa;                //logout();&#xa;            }&#xa;        });&#xa;&#xa;        om.add(ref);&#xa;        om.add(logoutItem);&#xa;&#xa;        mb.add(om);&#xa;        OptionsMenu.setJMenuBar(mb);&#xa;OptionsMenu.setFrameIcon(new ImageIcon(&quot;src/database/Signup.png&quot;));&#xa;OptionsMenu.setSize(400, 300);"/>
       </AuxValues>
 
       <Layout>
@@ -196,6 +205,14 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Friends"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="AddStoryButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Add Story"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddStoryButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

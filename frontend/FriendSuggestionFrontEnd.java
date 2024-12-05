@@ -72,7 +72,6 @@ public class FriendSuggestionFrontEnd extends JPanel {
             addFriendButton = new JButton("Add Friend");
             addFriendButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-
                     addFriend(suggestion);
                 }
             });
@@ -81,8 +80,8 @@ public class FriendSuggestionFrontEnd extends JPanel {
             blockButton = new JButton("Block");
             blockButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-
                     blockUser(suggestion);
+                    JOptionPane.showMessageDialog(null, suggestion+"blocked!");
                 }
             });
 
