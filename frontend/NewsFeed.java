@@ -27,10 +27,6 @@ import javax.swing.JScrollPane;
  * @author Mazen
  */
 public class NewsFeed extends javax.swing.JFrame {
-    private User user;
-    private CreatePostPage createPostPage;
-    private CreateStoryPage createStoryPage;
-    private WelcomePage welcomePage;
     private UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
     private ProfileDataBase profileDataBase = new ProfileDataBase("src/database/Profile.json");
     private ArrayList<Content> contents = new ArrayList<>(); //posts
@@ -42,7 +38,6 @@ public class NewsFeed extends javax.swing.JFrame {
         //this.user = new LoginDatabase() ;
         this.id=id;
         initComponents();
-        user=profileDataBase.getUser(id);
         setTitle("NewsFeed");
         setLocationRelativeTo(null);
         setResizable(false);
@@ -107,9 +102,14 @@ public class NewsFeed extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
-        OptionsMenu = new javax.swing.JInternalFrame("UserName");
+    private void initComponents() throws IOException {
+        User user= null;
+        try {
+            user = userContentDatabase.getUser(id);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        OptionsMenu = new javax.swing.JInternalFrame(user.getUsername());
         storiesScrollable = new javax.swing.JScrollPane();
         createPostButton = new javax.swing.JButton();
         friendsScroll = new javax.swing.JScrollPane();
@@ -136,28 +136,33 @@ public class NewsFeed extends javax.swing.JFrame {
 
         JMenuItem logoutItem = new JMenuItem("Logout");
         logoutItem.addActionListener(new ActionListener() {
-
+            User us=userContentDatabase.getUser(id);
             public void actionPerformed(ActionEvent e) {
                 try {
                     userContentDatabase.getUser(id).setStatus("offline");
+                    userContentDatabase.modifyUserById(us);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
                 setVisible(false);
-                welcomePage.setVisible(true);
+                new WelcomePage().setVisible(true);
             }
         });
         JMenuItem friendRequests = new JMenuItem("Friend Requests");
-        logoutItem.addActionListener(new ActionListener() {
+        friendRequests.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-
+                try {
+                    new FriendRequestPage(id);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
         om.add(ref);
         om.add(logoutItem);
-
+        om.add(friendRequests);
         mb.add(om);
         OptionsMenu.setJMenuBar(mb);
         if(user!=null&&user.getProfile().getProfilePhoto()!=null){
@@ -291,12 +296,12 @@ public class NewsFeed extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createPostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPostButtonActionPerformed
-          createPostPage=new CreatePostPage(id);
+          new CreatePostPage(id);
           
     }//GEN-LAST:event_createPostButtonActionPerformed
 
     private void AddStoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddStoryButtonActionPerformed
-        createStoryPage = new CreateStoryPage(id);
+        new CreateStoryPage(id);
     }//GEN-LAST:event_AddStoryButtonActionPerformed
 
     /**
