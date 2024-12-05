@@ -1,8 +1,8 @@
 [ {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : null,
-    "coverPhoto" : null,
+    "profilePhoto" : "C:\\Users\\etijah\\Downloads\\Lamine.jpg",
+    "coverPhoto" : "C:\\Users\\etijah\\Downloads\\fcb.jpg",
     "bio" : null
   },
   "dateOfBirth" : [ 2024, 12, 5 ],

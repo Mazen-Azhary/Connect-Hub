@@ -23,15 +23,18 @@ public class ProfilePage extends javax.swing.JFrame {
     /**
      * Creates new form profilePage
      */
-    public ProfilePage(String UserId) throws IOException {
-        initComponents();
-        setVisible(true);
-        setResizable(false);
-        this.userId=UserId;
-        User user =profileDataBase.getUser(userId);
+    public void edit()
+    {
+        User user = null;
+        try {
+            user = profileDataBase.getUser(userId);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         jLabel1.setText(user.getUsername());
         jLabel1.setFont(new Font("Arial",Font.BOLD,14));
         String icon = user.getProfile().getProfilePhoto();
+        String icon2=user.getProfile().getCoverPhoto();
         ImageIcon imageIcon;
         if (icon == null) {
             // Use a default icon with fixed size
@@ -45,8 +48,27 @@ public class ProfilePage extends javax.swing.JFrame {
                     .getScaledInstance(100, 100, Image.SCALE_SMOOTH));
         }
         ProfilePictureLabel.setIcon(imageIcon);
-
-
+        ImageIcon imageIcon2;
+        if (icon2 == null) {
+            // Use a default icon with fixed size
+            imageIcon2 = new ImageIcon(new ImageIcon("src/database/defaultIcon.jpg")
+                    .getImage()
+                    .getScaledInstance(630, 150, Image.SCALE_SMOOTH));
+        } else {
+            // Use the user's icon with fixed size
+            imageIcon2 = new ImageIcon(new ImageIcon(icon2)
+                    .getImage()
+                    .getScaledInstance(630, 150, Image.SCALE_SMOOTH));
+        }
+        System.out.println(icon2);
+        CoverLabel.setIcon(imageIcon2);
+    }
+    public ProfilePage(String UserId) throws IOException {
+        initComponents();
+        setVisible(true);
+        setResizable(false);
+        this.userId=UserId;
+        edit();
         for (int i = 0; i < 1000; i++) {
             if (i % 2 == 0) {
                 Content n = ContentFactory.createContent("post", i, LocalDateTime.MAX);
@@ -363,7 +385,7 @@ public class ProfilePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void changeProfilePictureButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeProfilePictureButtonActionPerformed
-        // TODO add your handling code here:
+        ProfilePictureChange profilePictureChange=new ProfilePictureChange(userId,this,0);
     }//GEN-LAST:event_changeProfilePictureButtonActionPerformed
 
     private void AddStoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddStoryButtonActionPerformed
@@ -379,7 +401,7 @@ public class ProfilePage extends javax.swing.JFrame {
     }//GEN-LAST:event_EditProfileButtonActionPerformed
 
     private void changeCoverPictureButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeCoverPictureButtonActionPerformed
-        // TODO add your handling code here:
+        ProfilePictureChange profilePictureChange=new ProfilePictureChange(userId,this,1);
     }//GEN-LAST:event_changeCoverPictureButtonActionPerformed
 
     private void EditBioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditBioButtonActionPerformed

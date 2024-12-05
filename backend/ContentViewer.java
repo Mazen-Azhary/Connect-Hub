@@ -20,8 +20,8 @@ public class ContentViewer {
         for (String friend : friends) {
             User f=userContentDatabase.getUser(friend);
             for(Content content:f.getProfile().getContents()) {
-                if(content instanceof Post) {
-                    posts.add((Post)content);
+                if(content.getContentId()>0) {
+                    posts.add(content);
                 }
             }
         }
@@ -35,7 +35,8 @@ public class ContentViewer {
         for (String friend : friends) {
             User f=userContentDatabase.getUser(friend);
             for(Content content:f.getProfile().getContents()) {
-                if(content instanceof Story story) {
+                if(content.getContentId()<0) {
+                    Story story=(Story) content;
                     if(!story.isExpired()) {
                         stories.add(story);
                     }

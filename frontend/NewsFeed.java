@@ -36,8 +36,7 @@ public class NewsFeed extends javax.swing.JFrame {
      * Creates new form NewsFeed
      */
     public NewsFeed(String id) throws IOException {
-        //this.user = new LoginDatabase() ;
-        this.id=id;
+        this.id = id;
         initComponents();
         setTitle("NewsFeed");
         setLocationRelativeTo(null);
@@ -48,58 +47,52 @@ public class NewsFeed extends javax.swing.JFrame {
         friendsScroll.setViewportView(friendPanel);
         for(int i=0;i<friendDatabase.getData().size();i++){
 
+            
 
         }
-
-        for (int i = 0; i < 1000; i++) {
-            Content n = ContentFactory.createContent("post", i, LocalDateTime.MAX);
-            n.setContent("content" + i);
-            n.setAuthorId(i);
-            if (i % 2 == 0) {
-                contents.add(n);
-            } else {
-                n.setImage("src/database/Signup.png");
-                contents.add(n);
-            }
-        }
+        ContentViewer contentViewer = ContentViewer.getInstance();
+        ArrayList<Content> posts = contentViewer.generatePosts(id);
+        ArrayList<Content> stories = contentViewer.generateStories(id);
 
         JPanel postPanel = new JPanel();
         postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
 
-        for (Content post : contents) {
-            JLabel contentLabel = new JLabel("Content: " + post.getContent());
-            JLabel authorLabel = new JLabel("Author ID: " + post.getAuthorId());
-            JLabel imageLabel = new JLabel(new ImageIcon(post.getImage()));
+        for (Content post : posts) {
+            System.out.println(post.getContent());
+            User user=profileDataBase.getUser(""+post.getAuthorId());
+
+            JLabel contentLabel = new JLabel( post.getContent());
+            JLabel authorLabel = new JLabel( user.getUsername());
+            JLabel imageLabel = null;
+            if (post.getImage() != null) {
+                imageLabel = new JLabel(new ImageIcon(post.getImage()));
+            }
             postPanel.add(authorLabel);
             postPanel.add(contentLabel);
-            postPanel.add(imageLabel);
-            postPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between posts
+            if (imageLabel != null) {
+                postPanel.add(imageLabel);
+            }
+            postPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         }
 
         JPanel storiesPanel = new JPanel();
         storiesPanel.setLayout(new BoxLayout(storiesPanel, BoxLayout.X_AXIS));
-
-        for (Content post : contents) {
-            ImageIcon storyThumbnail = new ImageIcon(post.getImage());
-            StoryFrontend storyFrontend = new StoryFrontend(post.getAuthorId(), "User" + post.getAuthorId(), storyThumbnail);
+        for (Content story : stories) {
+            ImageIcon storyThumbnail = new ImageIcon(story.getImage());
+            StoryFrontend storyFrontend = new StoryFrontend(story.getAuthorId(), "User" + story.getAuthorId(), storyThumbnail);
             storiesPanel.add(storyFrontend);
-            storiesPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between stories
+            storiesPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         }
 
-//        FriendSuggestionPannel friendSuggestionPannel = new FriendSuggestionPannel(id);
-//        suggestionsScroll.setViewportView(friendSuggestionPannel);
-
-        FriendSuggestionFrontEnd friendSuggestionFrontend = new FriendSuggestionFrontEnd(id);
-        suggestionsScroll.setViewportView(friendSuggestionFrontend);
-
+        postsScroll.setViewportView(postPanel);
+        storiesScrollable.setViewportView(storiesPanel);
 
         postsScroll.getVerticalScrollBar().setUnitIncrement(20);
-        storiesScrollable.setViewportView(storiesPanel);
         postsScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        postsScroll.setViewportView(postPanel);
 
         revalidate();
         repaint();
+
     }
 
 

@@ -14,7 +14,7 @@ public class ContentFactory {
             return new Post(contentId,id,timestamp);
         }
         if (type.equalsIgnoreCase("story")) {
-            return new Story(contentId,id,timestamp);
+            return new Story(-contentId,id,timestamp);
         }
         return null;
     }
