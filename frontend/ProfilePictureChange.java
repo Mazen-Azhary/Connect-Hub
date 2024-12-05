@@ -17,12 +17,17 @@ public class ProfilePictureChange extends javax.swing.JFrame {
     private ProfileDataBase profileDataBase=new ProfileDataBase("src/database/Profile.json");
     private String userId;
     private String imagePath;
-    public ProfilePictureChange(String userId) {
+    private ProfilePage profilePage;
+    int type;
+    public ProfilePictureChange(String userId,ProfilePage profilePage,int type) {
         initComponents();
         setVisible(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setTitle("picture change");
         setLocationRelativeTo(null);
         this.userId=userId;
+        this.profilePage=profilePage;
+        this.type=type;
     }
 
 
@@ -93,6 +98,11 @@ public class ProfilePictureChange extends javax.swing.JFrame {
     }
 
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
+        if(imagePath==null)
+        {
+            JOptionPane.showMessageDialog(this, "Please select a profile picture");
+            return;
+        }
         User user;
         try {
             user=profileDataBase.getUser(userId);
@@ -100,44 +110,23 @@ public class ProfilePictureChange extends javax.swing.JFrame {
             throw new RuntimeException(e);
         }
         ProfileBuilder builder = new ProfileBuilder(user.getProfile());
+        if(type==0)
         builder.setPhoto(imagePath);
+        else if(type==1)
+            builder.setCover(imagePath);
         user.setProfile(builder.build());
+        try {
+            profileDataBase.modifyUserById(user);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        this.profilePage.edit();
+        dispose();
     }//GEN-LAST:event_SubmitButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProfilePictureChange.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProfilePictureChange.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProfilePictureChange.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProfilePictureChange.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ProfilePictureChange("1").setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddImageButton;
