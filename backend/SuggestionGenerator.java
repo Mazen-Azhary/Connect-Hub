@@ -38,10 +38,10 @@ public class SuggestionGenerator {
         user.getProfile().setFriendSuggestions(suggestions);
         friendsDataBase.modifyUserById(user);
     }
-    public ArrayList<String> shuffleSuggestions(String id) throws IOException {
+    public HashSet<String> shuffleSuggestions(String id) throws IOException {
         ArrayList<String> suggestions = friendsDataBase.getUser(id).getProfile().getFriendSuggestions();
         Collections.shuffle(suggestions);
-        if(suggestions.size()==0)
+        if(suggestions.isEmpty())
         {
             Set<String> exclusions = new HashSet<String>();
             exclusions.add(id);
@@ -62,8 +62,7 @@ public class SuggestionGenerator {
                     System.out.println(mutual);
                 }
             }
-
         }
-        return suggestions;
-    }
+        return new HashSet<>(suggestions);
+ }
 }

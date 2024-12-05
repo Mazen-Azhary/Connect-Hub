@@ -20,11 +20,11 @@ public class Signup {
     private UserContentDatabase userContentDatabase;
     private Signup() {
 
-        loginDatabase=new LoginDatabase(filePath);
-        profileDataBase=new ProfileDataBase(profilePath);
-        friendDatabase=new FriendDatabase(FriendsPath);
-        userContentDatabase=new UserContentDatabase(UserContentsPath);
-        try {
+            loginDatabase=new LoginDatabase(filePath);
+            profileDataBase=new ProfileDataBase(profilePath);
+            friendDatabase=new FriendDatabase(FriendsPath);
+            userContentDatabase=new UserContentDatabase(UserContentsPath);
+            try {
             IDcounter=loginDatabase.getMap().size()+1;
         }
         catch (Exception e) {

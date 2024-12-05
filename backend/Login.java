@@ -12,11 +12,9 @@ public class Login {
     private final String contentPath="src/database/UserContents.json";
     private LoginDatabase loginDataBase;
     private UserContentDatabase userContentDatabase;
-    private String userID;
     private Login() throws IOException {
         loginDataBase = new LoginDatabase(filePath);
         userContentDatabase = new UserContentDatabase(contentPath);
-
 
     }
     public static synchronized Login getInstance() throws IOException {
@@ -37,8 +35,6 @@ public class Login {
             if(PasswordHasher.hashedPassword(password,salt).equals(user.get("hashedPassword").toString()))
             {
                 User use=userContentDatabase.getUser(user.get("userId").toString());
-                userID= user.get("userId").toString();
-                System.out.println(userID);
                 use.setStatus("online");
                 userContentDatabase.modifyUserById(use);
                 return true;
