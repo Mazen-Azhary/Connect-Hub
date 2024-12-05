@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class FriendSuggestionFrontEnd extends JPanel {
     SuggestionGenerator suggestionGenerator;
@@ -49,7 +50,7 @@ public class FriendSuggestionFrontEnd extends JPanel {
             throw new RuntimeException(e);
         }
 
-        ArrayList<String> suggestions;
+        HashSet<String> suggestions;
         try {
             suggestions = suggestionGenerator.shuffleSuggestions(userID);
         } catch (IOException e) {
