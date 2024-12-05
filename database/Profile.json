@@ -5,27 +5,7 @@
     "coverPhoto" : null,
     "bio" : null
   },
-  "dateOfBirth" : [ 2024, 12, 4 ],
+  "dateOfBirth" : [ 2024, 12, 5 ],
   "userID" : "1",
-  "username" : "mohamed"
-}, {
-  "gender" : "Male",
-  "profile" : {
-    "profilePhoto" : null,
-    "coverPhoto" : null,
-    "bio" : null
-  },
-  "dateOfBirth" : [ 2024, 12, 4 ],
-  "userID" : "2",
-  "username" : "omar"
-}, {
-  "gender" : "Male",
-  "profile" : {
-    "profilePhoto" : null,
-    "coverPhoto" : null,
-    "bio" : null
-  },
-  "dateOfBirth" : [ 2004, 6, 28 ],
-  "userID" : "3",
-  "username" : "mazen azhary"
+  "username" : "lamine yamal"
 } ]

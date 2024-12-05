@@ -27,16 +27,18 @@ private FriendManager friendManager;
     private JLabel activeStatus;
     private String id;
 
-    public FriendFrontend(String name, ImageIcon photo) {
+    public FriendFrontend(String name, ImageIcon photo,String id) {
         setLayout(new BorderLayout());
        User user;
+       this.id = id;
         try {
-            user = friendDatabase.getUser(id);
+            user = friendDatabase.getUser(this.id);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         //database.getUser();
     for(int i=0;i<user.getProfile().getFriends().size();i++){
+
 
         String friendId = user.getProfile().getFriends().get(i);
             User friendProfile;

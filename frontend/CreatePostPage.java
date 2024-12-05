@@ -131,6 +131,11 @@ private ContentDatabase contentDatabase = new ContentDatabase("src/database/Cont
             builder.setImage(imagePath);
            n = builder.build();
 
+           contentDatabase.addContent(n);
+           User u=userContentDatabase.getUser(userID);
+           u.getProfile().addContent(n);
+           userContentDatabase.modifyUserById(u);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

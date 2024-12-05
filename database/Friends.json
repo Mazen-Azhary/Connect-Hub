@@ -1,11 +1,11 @@
 [ {
   "profile" : {
-    "friendRequests" : [ "2" ],
+    "friendRequests" : [ ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ "4" ],
+    "blockedUsers" : [ ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "3" ]
+    "friends" : [ ]
   },
   "userID" : "1",
-  "username" : "admin"
+  "username" : "lamine yamal"
 } ]
