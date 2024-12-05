@@ -36,9 +36,12 @@ public class FriendSuggestionFrontEnd extends JPanel {
 
     public FriendSuggestionFrontEnd(String userID) {
         this.userID = userID;
-
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Use Y_AXIS for vertical stacking
         setPreferredSize(new Dimension(300, 600)); // Adjusted for multiple suggestions
+        displaySuggestions();
+    }
+    void displaySuggestions() {
+        this.removeAll(); // Clear all existing components in the panel
 
         try {
             suggestionGenerator.generateSuggestions(userID);
@@ -68,13 +71,12 @@ public class FriendSuggestionFrontEnd extends JPanel {
 
             // Profile photo
             JLabel photoLabel;
-            String ImageIcon = user.getProfile().getProfilePhoto();
-            if (ImageIcon != null) {
-                photoLabel = new JLabel(new ImageIcon(ImageIcon));
+            String imageIconPath = user.getProfile().getProfilePhoto();
+            if (imageIconPath != null) {
+                photoLabel = new JLabel(new ImageIcon(imageIconPath));
             } else {
                 photoLabel = new JLabel(new ImageIcon("src/database/defaultIcon.png"));
             }
-            photoLabel.setPreferredSize(new Dimension(50, 50));
             photoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             suggestionPanel.add(photoLabel);
 
@@ -86,49 +88,35 @@ public class FriendSuggestionFrontEnd extends JPanel {
             // Add Friend Button
             JButton addFriendButton = new JButton("Add Friend");
             addFriendButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-            addFriendButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    addFriend(suggestion);
-                    JOptionPane.showMessageDialog(null, "Add Request successful");
-                    new FriendSuggestionFrontEnd(userID);
-                }
+            addFriendButton.addActionListener(e -> {
+                addFriend(suggestion);
+                JOptionPane.showMessageDialog(null, "Add Request successful");
+                displaySuggestions(); // Reload suggestions after adding a friend
             });
             suggestionPanel.add(addFriendButton);
 
             // Block Button
             JButton blockButton = new JButton("Block");
             blockButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-            blockButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    blockUser(suggestion);
-                    JOptionPane.showMessageDialog(null, user.getUsername() + " blocked!");
-                    revalidate();
-                    repaint();
-                }
+            blockButton.addActionListener(e -> {
+                blockUser(suggestion);
+                JOptionPane.showMessageDialog(null, user.getUsername() + " blocked!");
+                displaySuggestions(); // Reload suggestions after blocking
             });
             suggestionPanel.add(blockButton);
 
-            // Add a spacer between suggestions
+            // Add a vertical spacer between suggestions
             suggestionPanel.add(Box.createVerticalStrut(10));
 
-            // Add the suggestion panel to the main container
-            add(suggestionPanel);
-
-            // Add components to panel with spacing
-            JPanel buttonPanel = new JPanel();
-            buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS)); // Stack buttons vertically
-            buttonPanel.add(addFriendButton);
-            buttonPanel.add(blockButton);
-
-            // Add components to the main panel
-            if(photoLabel!=null){
-            add(photoLabel);
-            }
-            add(nameLabel);
-            add(Box.createHorizontalStrut(10)); // Add space between the name and buttons
-            add(buttonPanel);
+            // Add the suggestionPanel to the main container
+            this.add(suggestionPanel);
         }
+
+        // Revalidate and repaint the main panel to reflect changes
+        this.revalidate();
+        this.repaint();
     }
+
     private void addFriend(String r) {
 
         try {

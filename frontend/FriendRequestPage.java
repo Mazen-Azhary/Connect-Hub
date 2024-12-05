@@ -45,11 +45,13 @@ public class FriendRequestPage extends JFrame {
         requestListPanel.removeAll();
         for (String request : friendRequests) {
             JPanel requestPanel = new JPanel();
+            requestPanel.setPreferredSize(new Dimension(100, 100));
             requestPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
             requestPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
             JLabel nameLabel = new JLabel(friendDatabase.getUser(request).getUsername());
             nameLabel.setPreferredSize(new Dimension(150, 30));
+            nameLabel.setFont(nameLabel.getFont().deriveFont(Font.BOLD));
             requestPanel.add(nameLabel);
 
             JButton acceptButton = new JButton("Accept");
