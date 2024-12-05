@@ -37,7 +37,7 @@ public class FriendSuggestionFrontEnd extends JPanel {
     public FriendSuggestionFrontEnd(String userID) {
         this.userID = userID;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Use Y_AXIS for vertical stacking
-        setPreferredSize(new Dimension(300, 600)); // Adjusted for multiple suggestions
+        setPreferredSize(new Dimension(150, 600)); // Adjusted for multiple suggestions
         displaySuggestions();
     }
     void displaySuggestions() {
@@ -70,13 +70,26 @@ public class FriendSuggestionFrontEnd extends JPanel {
             suggestionPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
             // Profile photo
-            JLabel photoLabel;
-            String imageIconPath = user.getProfile().getProfilePhoto();
-            if (imageIconPath != null) {
-                photoLabel = new JLabel(new ImageIcon(imageIconPath));
+            String icon = user.getProfile().getProfilePhoto();
+            ImageIcon imageIcon;
+            if (icon == null) {
+                // Use a default icon with fixed size
+                imageIcon = new ImageIcon(new ImageIcon("src/database/defaultIcon.jpg")
+                        .getImage()
+                        .getScaledInstance(50, 50, Image.SCALE_SMOOTH));
             } else {
-                photoLabel = new JLabel(new ImageIcon("src/database/defaultIcon.png"));
+                // Use the user's icon with fixed size
+                imageIcon = new ImageIcon(new ImageIcon(icon)
+                        .getImage()
+                        .getScaledInstance(50, 50, Image.SCALE_SMOOTH));
             }
+            JLabel photoLabel = new JLabel(imageIcon);
+            photoLabel.setPreferredSize(new Dimension(50, 50)); // Ensure the JLabel matches the scaled image
+            photoLabel.setMaximumSize(new Dimension(50, 50)); // Prevent resizing
+            photoLabel.setMinimumSize(new Dimension(50, 50)); // Prevent resizing
+            photoLabel.setAlignmentY(Component.CENTER_ALIGNMENT); // Align vertically
+            suggestionPanel.add(Box.createHorizontalStrut(10)); // Add spacing
+            suggestionPanel.add(photoLabel);
             photoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             suggestionPanel.add(photoLabel);
 
