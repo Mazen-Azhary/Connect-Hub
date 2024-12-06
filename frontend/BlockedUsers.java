@@ -5,16 +5,13 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import backend.FriendDatabase;
-import backend.FriendManager;
-import backend.ProfileDataBase;
-import backend.User;
+import backend.*;
 
 public class BlockedUsers extends JFrame {
-
+    private FriendsViewer friendsViewer=FriendsViewer.getInstance();
+    private ProfileManager profileManager=ProfileManager.getInstance();
     private String id;
     private ArrayList<String> blocked;
-    private FriendDatabase friendDatabase = new FriendDatabase("src/database/Friends.json");
     private ProfileDataBase profileDataBase = new ProfileDataBase("src/database/Profile.json");
     private FriendManager friendManager = FriendManager.getInstance();
     private JPanel blockedListPanel;
@@ -37,11 +34,7 @@ public class BlockedUsers extends JFrame {
     }
 
     private void loadblocked() {
-        try {
-            blocked = friendDatabase.getUser(id).getProfile().getBlockedUsers();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+            blocked = friendsViewer.getBlocked(id);
     }
 
     private void displayblocked() throws IOException {
@@ -53,7 +46,7 @@ public class BlockedUsers extends JFrame {
             blockedPanel.setLayout(new BoxLayout(blockedPanel, BoxLayout.X_AXIS));
             blockedPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Add padding
             blockedPanel.setPreferredSize(new Dimension(400, 70)); // Adjust width and height
-            User user = profileDataBase.getUser(block);
+            User user =profileManager.getUser(block) ;
             JLabel nameLabel = new JLabel(user.getUsername());
             nameLabel.setPreferredSize(new Dimension(100, 30)); // Set a fixed size
             nameLabel.setFont(new Font("Arial", Font.BOLD, 14)); // Adjust font size for compactness

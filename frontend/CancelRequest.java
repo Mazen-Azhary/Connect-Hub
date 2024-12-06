@@ -5,18 +5,15 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import backend.FriendDatabase;
-import backend.FriendManager;
-import backend.ProfileDataBase;
-import backend.User;
+import backend.*;
 
 public class CancelRequest extends JFrame {
 
     private String id;
     private ArrayList<String> request;
-    private FriendDatabase friendDatabase = new FriendDatabase("src/database/Friends.json");
-    private ProfileDataBase profileDataBase = new ProfileDataBase("src/database/Profile.json");
+    private FriendsViewer friendsViewer=FriendsViewer.getInstance();
     private FriendManager friendManager = FriendManager.getInstance();
+    private ProfileManager profileManager = ProfileManager.getInstance();
     private JPanel requestListPanel;
     private JScrollPane scrollPane;
 
@@ -38,11 +35,7 @@ public class CancelRequest extends JFrame {
 
 
     private void loadrequest() {
-        try {
-            request = friendDatabase.getUser(id).getProfile().getFriendRequests();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        request=friendsViewer.getRequests(id);
     }
 
     private void displayrequest() throws IOException {
@@ -53,7 +46,7 @@ public class CancelRequest extends JFrame {
             requestPanel.setLayout(new BoxLayout(requestPanel, BoxLayout.X_AXIS));
             requestPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Add padding
             requestPanel.setPreferredSize(new Dimension(400, 70)); // Adjust width and height
-            User user = profileDataBase.getUser(r);
+            User user =profileManager.getUser(r);
             JLabel nameLabel = new JLabel(user.getUsername());
             nameLabel.setPreferredSize(new Dimension(100, 30)); // Set a fixed size
             nameLabel.setFont(new Font("Arial", Font.BOLD, 14)); // Adjust font size for compactness

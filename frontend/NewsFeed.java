@@ -21,11 +21,10 @@ import javax.swing.border.EmptyBorder;
  * @author Mazen
  */
 public class NewsFeed extends javax.swing.JFrame {
-    private UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
-    private ProfileDataBase profileDataBase = new ProfileDataBase("src/database/Profile.json");
-    private FriendDatabase friendDatabase = new FriendDatabase("src/database/Friends.json");
+    private ProfileManager manager=ProfileManager.getInstance();
     private ArrayList<Content> contents = new ArrayList<>(); //posts
     private String id;
+    private FriendsViewer friendViewer=FriendsViewer.getInstance();
     /**
      * Creates new form NewsFeed
      */
@@ -50,7 +49,7 @@ public class NewsFeed extends javax.swing.JFrame {
 
         for (Content post : posts) {
             // Retrieve user details
-            User user = profileDataBase.getUser("" + post.getAuthorId());
+            User user = manager.getUser("" + post.getAuthorId());
             ImageIcon photo = new ImageIcon(user.getProfile().getProfilePhoto());
 
             // Check if the image is valid
@@ -147,12 +146,13 @@ public class NewsFeed extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() throws IOException {
-        User user= null;
-        try {
-            user = userContentDatabase.getUser(id);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        User user= null;
+//        try {
+//            user = userContentDatabase.getUser(id);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+        User user=manager.getUser(id);
         OptionsMenu = new javax.swing.JInternalFrame(user.getUsername());
         storiesScrollable = new javax.swing.JScrollPane();
         createPostButton = new javax.swing.JButton();
@@ -197,14 +197,8 @@ public class NewsFeed extends javax.swing.JFrame {
 
         JMenuItem logoutItem = new JMenuItem("Logout");
         logoutItem.addActionListener(new ActionListener() {
-            User us=userContentDatabase.getUser(id);
             public void actionPerformed(ActionEvent e) {
-                try {
-                    us.setStatus("offline");
-                    userContentDatabase.modifyUserById(us);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                friendViewer.setStatus(id,"offline");
                 setVisible(false);
                 new WelcomePage().setVisible(true);
             }
@@ -248,13 +242,12 @@ public class NewsFeed extends javax.swing.JFrame {
         om.add(friendRequests);
         mb.add(om);
         OptionsMenu.setJMenuBar(mb);
-        User p = profileDataBase.getUser(id);
+        User p = manager.getUser(id);
         if(p.getProfile().getProfilePhoto() == null) {
             OptionsMenu.setFrameIcon(new ImageIcon("src/database/defaultIcon.jpg"));
             OptionsMenu.setSize(400, 300);
         }
         if(p.getProfile().getProfilePhoto()!=null){
-            System.out.println("hala");
         OptionsMenu.setFrameIcon(new ImageIcon(p.getProfile().getProfilePhoto()));
         OptionsMenu.setSize(400, 300);
         }

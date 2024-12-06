@@ -13,9 +13,8 @@ import backend.*;
 
 public class FriendSuggestionFrontEnd extends JPanel {
 
-    private ProfileDataBase profileDataBase = new ProfileDataBase("src/database/Profile.json");
+    ProfileManager profileManager=ProfileManager.getInstance();
     private FriendManager friendManager;
-    private UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
     {
         try {
             friendManager = FriendManager.getInstance();
@@ -41,11 +40,8 @@ public class FriendSuggestionFrontEnd extends JPanel {
         this.newsFeed=newsFeed;
         String friendId = this.friendID;
         User friendProfile;
-        try {
-            friendProfile = profileDataBase.getUser(friendId);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+            friendProfile = profileManager.getUser(friendId);
+
 
         ImageIcon photo = new ImageIcon(friendProfile.getProfile().getProfilePhoto());
 
