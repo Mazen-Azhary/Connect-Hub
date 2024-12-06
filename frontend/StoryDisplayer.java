@@ -1,6 +1,7 @@
 package frontend;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class StoryDisplayer extends javax.swing.JFrame {
 
@@ -17,8 +18,7 @@ public class StoryDisplayer extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setTitle("story displayer");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        // Dynamically add the thumbnail and content
+        setPreferredSize(new Dimension(400, 500));
         setupStoryDisplay();
     }
 
@@ -28,14 +28,22 @@ public class StoryDisplayer extends javax.swing.JFrame {
 
         // Add the thumbnail photo
         JLabel thumbnailLabel = new JLabel();
+        if(thumbnailPhoto!=null)
+        {
         thumbnailLabel.setIcon(new ImageIcon(thumbnailPhoto)); // Set the image as an icon
         thumbnailLabel.setAlignmentX(CENTER_ALIGNMENT);
         add(thumbnailLabel);
+
+        }
 
         // Add the content if it exists
         if (content != null && !content.isEmpty()) {
             JLabel contentLabel = new JLabel("<html>" + content.replace("\n", "<br>") + "</html>");
             contentLabel.setAlignmentX(CENTER_ALIGNMENT);
+            if(thumbnailPhoto==null)
+            {
+                contentLabel.setAlignmentY(CENTER_ALIGNMENT);
+            }
             add(contentLabel);
         }
 

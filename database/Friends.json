@@ -1,8 +1,8 @@
 [ {
   "profile" : {
-    "friendRequests" : [ ],
+    "friendRequests" : [ "2", "5" ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ "2", "6", "7", "-3", "-4" ],
+    "blockedUsers" : [ "-3", "-4" ],
     "friendReceivedRequests" : [ ],
     "friends" : [ ]
   },
@@ -12,8 +12,8 @@
   "profile" : {
     "friendRequests" : [ "6" ],
     "friendSuggestions" : [ "3", "5" ],
-    "blockedUsers" : [ "-1" ],
-    "friendReceivedRequests" : [ ],
+    "blockedUsers" : [ ],
+    "friendReceivedRequests" : [ "1" ],
     "friends" : [ "4" ]
   },
   "userID" : "2",
@@ -43,7 +43,7 @@
     "friendRequests" : [ ],
     "friendSuggestions" : [ "3" ],
     "blockedUsers" : [ ],
-    "friendReceivedRequests" : [ "6" ],
+    "friendReceivedRequests" : [ "6", "1" ],
     "friends" : [ "4" ]
   },
   "userID" : "5",
@@ -52,7 +52,7 @@
   "profile" : {
     "friendRequests" : [ "5" ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ "-1" ],
+    "blockedUsers" : [ ],
     "friendReceivedRequests" : [ "2", "4" ],
     "friends" : [ "3" ]
   },
@@ -62,7 +62,7 @@
   "profile" : {
     "friendRequests" : [ ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ "-1" ],
+    "blockedUsers" : [ ],
     "friendReceivedRequests" : [ ],
     "friends" : [ ]
   },
