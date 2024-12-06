@@ -15,7 +15,7 @@ public class WelcomePage extends javax.swing.JFrame {
         setTitle("Welcome Page");
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-        getContentPane().setBackground(new Color(255, 245, 238)); // Set a soft background color
+        getContentPane().setBackground(new Color(255, 245, 238));
     }
 
     /**
@@ -33,7 +33,6 @@ public class WelcomePage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        // Styling the "Sign up" button
         signUpButton.setText("Sign up");
         signUpButton.setFont(new Font("Arial", Font.BOLD, 16));
         signUpButton.setBackground(new Color(70, 130, 180)); // Steel Blue
@@ -46,10 +45,9 @@ public class WelcomePage extends javax.swing.JFrame {
             }
         });
 
-        // Styling the "Login" button
         loginButton.setText("Login");
         loginButton.setFont(new Font("Arial", Font.BOLD, 16));
-        loginButton.setBackground(new Color(34, 139, 34)); // Forest Green
+        loginButton.setBackground(new Color(34, 139, 34));
         loginButton.setForeground(Color.WHITE);
         loginButton.setFocusPainted(false);
         loginButton.setBorderPainted(false);
@@ -60,11 +58,10 @@ public class WelcomePage extends javax.swing.JFrame {
         });
 
 
-        // Styling the label
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Arial", Font.BOLD, 50)); // Larger font
+        jLabel1.setFont(new java.awt.Font("Arial", Font.BOLD, 50));
 
-        jLabel1.setForeground(new Color(0, 125, 125)); // Black color for text
+        jLabel1.setForeground(new Color(0, 125, 125));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Connect Hub");
 
@@ -81,13 +78,13 @@ public class WelcomePage extends javax.swing.JFrame {
                                         .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(304, 304, 304))
         );
-        // Updating the layout
+
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(100) // Optional: Adjust the gap to control the space before the label
+                                .addGap(100)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50) // Optional: Adjust the gap to control space between the label and buttons
+                                .addGap(50)
                                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)

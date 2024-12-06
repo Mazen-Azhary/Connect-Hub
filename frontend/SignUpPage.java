@@ -281,12 +281,8 @@ public class SignUpPage extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Successful Signup,please wait");
         s.save();
         setVisible(false);
+
         welcomePage.setVisible(true);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SignUpPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
         dispose();
             }
             else
