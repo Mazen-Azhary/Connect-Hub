@@ -40,7 +40,8 @@ public class NewsFeed extends javax.swing.JFrame {
         setVisible(true);
         FriendListPannel friendPanel = new FriendListPannel(this,id);
         friendsScroll.setViewportView(friendPanel);
-
+        FriendSuggestionPannel friendSuggestionPanel = new FriendSuggestionPannel(this,id);
+        suggestionsScroll.setViewportView(friendSuggestionPanel);
         ContentViewer contentViewer = ContentViewer.getInstance();
         ArrayList<Content> posts = contentViewer.generatePosts(id);
         ArrayList<Content> stories = contentViewer.generateStories(id);
@@ -161,8 +162,6 @@ public class NewsFeed extends javax.swing.JFrame {
         friendsScroll = new javax.swing.JScrollPane();
         postsScroll = new javax.swing.JScrollPane();
         suggestionsScroll = new javax.swing.JScrollPane();
-        FriendSuggestionFrontEnd friendSuggestionFrontend = new FriendSuggestionFrontEnd(id);
-        suggestionsScroll.setViewportView(friendSuggestionFrontend);
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();

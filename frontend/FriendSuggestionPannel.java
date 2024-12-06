@@ -1,27 +1,30 @@
 package frontend;
 
+import backend.FriendDatabase;
+import backend.ProfileDataBase;
+import backend.SuggestionGenerator;
+import backend.User;
+
+import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import java.util.HashSet;
 
 public class FriendSuggestionPannel extends JPanel {
-    private ArrayList<FriendSuggestionFrontEnd> friendSuggestions = new ArrayList<>();
-    String userID;
-    public FriendSuggestionPannel(String userID) {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+    private String userID;
+    private  NewsFeed newsFeed;
+    public FriendSuggestionPannel(NewsFeed newsFeed,String userID) throws IOException {
         this.userID = userID;
-        for (int i = 0; i < 10; i++) {
-            ImageIcon userPhoto = new ImageIcon(new ImageIcon("src/database/Signup.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+        this.newsFeed = newsFeed;
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-            FriendSuggestionFrontEnd suggestion = new FriendSuggestionFrontEnd(userID);
-
-            friendSuggestions.add(suggestion);
-            this.add(suggestion);
-
-            // Add space between each suggestion component
+        SuggestionGenerator generator= SuggestionGenerator.getInstance();
+        generator.generateSuggestions(userID);
+        HashSet<String> suggestions=generator.shuffleSuggestions(userID);
+        for (String suggestion : suggestions) {
+            FriendSuggestionFrontEnd friend = new FriendSuggestionFrontEnd(userID,suggestion,this.newsFeed);
+            this.add(friend);
             this.add(Box.createRigidArea(new Dimension(0, 10)));
         }
     }

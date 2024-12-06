@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 public class FriendListPannel extends JPanel {
     private FriendDatabase friendDatabase = new FriendDatabase("src/database/Friends.json");
-    private ProfileDataBase profileDatabase = new ProfileDataBase("src/database/Profile.json");
 private String userID;
 private  NewsFeed newsFeed;
     public FriendListPannel(NewsFeed newsFeed,String userID) throws IOException {
