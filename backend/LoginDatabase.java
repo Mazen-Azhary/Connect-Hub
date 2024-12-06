@@ -53,6 +53,10 @@ public class LoginDatabase extends Database {
             {
                 return u;
             }
+            if(u.get("userId").equals(user.get("userId")))
+            {
+                return u;
+            }
         }
         return null;
     }

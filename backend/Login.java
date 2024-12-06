@@ -38,7 +38,6 @@ public class Login {
             {
                 User use=userContentDatabase.getUser(user.get("userId").toString());
                 userID= user.get("userId").toString();
-                System.out.println(userID);
                 use.setStatus("online");
                 userContentDatabase.modifyUserById(use);
                 return true;

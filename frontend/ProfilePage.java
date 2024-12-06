@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package frontend;
+
 import backend.*;
 import backend.Content;
 import backend.ContentFactory;
@@ -10,6 +11,7 @@ import backend.ProfileDataBase;
 
 import java.awt.*;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -18,13 +20,14 @@ import javax.swing.*;
 
 public class ProfilePage extends javax.swing.JFrame {
     private ArrayList<Content> contents = new ArrayList<>(); //posts
-    private ProfileDataBase profileDataBase=new ProfileDataBase("src/database/Profile.json");
-    private String userId; //posts
+    private ProfileDataBase profileDataBase = new ProfileDataBase("src/database/Profile.json");
+    private String userId;
+    private JLabel bioLabel = null;
+
     /**
      * Creates new form profilePage
      */
-    public void edit()
-    {
+    public void edit() {
         User user = null;
         try {
             user = profileDataBase.getUser(userId);
@@ -32,9 +35,10 @@ public class ProfilePage extends javax.swing.JFrame {
             throw new RuntimeException(e);
         }
         jLabel1.setText(user.getUsername());
-        jLabel1.setFont(new Font("Arial",Font.BOLD,14));
+        jLabel1.setFont(new Font("Arial", Font.BOLD, 14));
+
         String icon = user.getProfile().getProfilePhoto();
-        String icon2=user.getProfile().getCoverPhoto();
+        String icon2 = user.getProfile().getCoverPhoto();
         ImageIcon imageIcon;
         if (icon == null) {
             // Use a default icon with fixed size
@@ -60,29 +64,35 @@ public class ProfilePage extends javax.swing.JFrame {
                     .getImage()
                     .getScaledInstance(630, 150, Image.SCALE_SMOOTH));
         }
-        System.out.println(icon2);
+//        for (Component comp : BioPanel.getComponents()) {
+//            if (comp instanceof JLabel) {
+//                BioPanel.remove(comp);
+//            }
+//        }
         CoverLabel.setIcon(imageIcon2);
+        JLabel bioLabel = new JLabel();
+
+        bioLabel.setText(user.getProfile().getBio()); // Assuming `getBio()` returns the user's bio
+        bioLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+        bioLabel.setForeground(Color.GRAY); // Optional: Set a different color
+        bioLabel.setHorizontalAlignment(SwingConstants.CENTER); // Optional: Center-align the text
+        bioLabel.setBounds(jLabel1.getX(), jLabel1.getY() + 30, jLabel1.getWidth(), 20); // Position below the username
+        if(this.bioLabel!=null)
+        BioPanel.remove(this.bioLabel);
+        BioPanel.add(bioLabel);
+        this.bioLabel=bioLabel;
+        BioPanel.repaint();
     }
+
     public ProfilePage(String UserId) throws IOException {
         initComponents();
         setVisible(true);
         setResizable(false);
-        this.userId=UserId;
+        this.userId = UserId;
         edit();
-        for (int i = 0; i < 1000; i++) {
-            if (i % 2 == 0) {
-                Content n = ContentFactory.createContent("post", i, LocalDateTime.MAX);
-                n.setContent("content" + i);
-                n.setAuthorId(i);
-                contents.add(n);
-            } else {
-                Content n = ContentFactory.createContent("post", i, LocalDateTime.MAX);
-                n.setContent("content" + i);
-                n.setAuthorId(i);
-                n.setImage("src/database/Signup.png");
-                contents.add(n);
-            }
-        }
+
+        UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
+        contents = userContentDatabase.getUser(userId).getProfile().getContents();
 
         postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
 
@@ -182,7 +192,7 @@ public class ProfilePage extends javax.swing.JFrame {
 
         jLabel1.setText("Username");
 
-        jLabel2.setText("Number of friends");
+//        jLabel2.setText("Number of friends");
 
         EditProfileButton.setText("Change Password");
         EditProfileButton.setFocusable(false);
@@ -335,7 +345,7 @@ public class ProfilePage extends javax.swing.JFrame {
         postScrollPane.setViewportView(postPanel);
 
         for (backend.Content content : contents) {
-            Post post = new Post(content.getContentId(), content.getContent(), "Author" + content.getContent(),content.getImage());
+            Post post = new Post(content.getContentId(), content.getContent(), "Author" + content.getContent(), content.getImage());
             postScrollPane.add(post);
             postScrollPane.add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between posts
         }
@@ -379,33 +389,75 @@ public class ProfilePage extends javax.swing.JFrame {
                                 .addGap(20, 20, 20))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jScrollPane2, postScrollPane});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[]{jScrollPane2, postScrollPane});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void changeProfilePictureButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeProfilePictureButtonActionPerformed
-        ProfilePictureChange profilePictureChange=new ProfilePictureChange(userId,this,0);
+        try {
+            PictureChange profilePictureChange = new PictureChange(userId, this, 0);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }//GEN-LAST:event_changeProfilePictureButtonActionPerformed
 
     private void AddStoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddStoryButtonActionPerformed
-        // TODO add your handling code here:
+        new CreateStoryPage(userId);
     }//GEN-LAST:event_AddStoryButtonActionPerformed
 
     private void CreatePostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreatePostButtonActionPerformed
-        // TODO add your handling code here:
+        new CreatePostPage(userId);
     }//GEN-LAST:event_CreatePostButtonActionPerformed
 
     private void EditProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditProfileButtonActionPerformed
-        // TODO add your handling code here:
+        //we will handle the password changer here
+        PasswordChangeDialog passwordChangeDialog=new PasswordChangeDialog();
+        try {
+            passwordChangeDialog.showPasswordChangeDialog(userId);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+
     }//GEN-LAST:event_EditProfileButtonActionPerformed
 
     private void changeCoverPictureButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeCoverPictureButtonActionPerformed
-        ProfilePictureChange profilePictureChange=new ProfilePictureChange(userId,this,1);
+        try {
+            PictureChange profilePictureChange = new PictureChange(userId, this, 1);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }//GEN-LAST:event_changeCoverPictureButtonActionPerformed
 
     private void EditBioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditBioButtonActionPerformed
-        // TODO add your handling code here:
+
+        String newBio = JOptionPane.showInputDialog(this, "Enter your new bio:", "Edit Bio", JOptionPane.PLAIN_MESSAGE);
+
+
+        if (newBio != null ) {
+            if(newBio.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Bio cannot be empty. Please enter a valid bio.", "Invalid Input", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            String userBio = newBio.trim();
+            User user;
+            try {
+                user=profileDataBase.getUser(userId);
+                user.getProfile().setBio(userBio);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            try {
+                profileDataBase.modifyUserById(user);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            edit();
+
+        } else {
+
+        }
     }//GEN-LAST:event_EditBioButtonActionPerformed
 
     /**
