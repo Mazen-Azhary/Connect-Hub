@@ -4,7 +4,7 @@
     "friendSuggestions" : [ ],
     "blockedUsers" : [ "-3", "-4" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "5" ]
+    "friends" : [ ]
   },
   "userID" : "1",
   "username" : "Lamine"
@@ -41,10 +41,10 @@
 }, {
   "profile" : {
     "friendRequests" : [ ],
-    "friendSuggestions" : [ "3" ],
-    "blockedUsers" : [ ],
+    "friendSuggestions" : [ ],
+    "blockedUsers" : [ "7", "6" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "6", "1" ]
+    "friends" : [ ]
   },
   "userID" : "5",
   "username" : "Vinicius"
@@ -52,9 +52,9 @@
   "profile" : {
     "friendRequests" : [ ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ ],
+    "blockedUsers" : [ "-5" ],
     "friendReceivedRequests" : [ "2" ],
-    "friends" : [ "3", "5" ]
+    "friends" : [ "3" ]
   },
   "userID" : "6",
   "username" : "Bellingham"
@@ -62,7 +62,7 @@
   "profile" : {
     "friendRequests" : [ ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ ],
+    "blockedUsers" : [ "-5" ],
     "friendReceivedRequests" : [ ],
     "friends" : [ ]
   },
