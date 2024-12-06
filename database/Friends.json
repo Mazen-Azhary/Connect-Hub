@@ -1,8 +1,8 @@
 [ {
   "profile" : {
     "friendRequests" : [ ],
-    "friendSuggestions" : [ ],
-    "blockedUsers" : [ "4", "2", "6" ],
+    "friendSuggestions" : [ "4", "4" ],
+    "blockedUsers" : [ "2", "6" ],
     "friendReceivedRequests" : [ ],
     "friends" : [ "3", "5", "7" ]
   },
@@ -32,7 +32,7 @@
   "profile" : {
     "friendRequests" : [ "6" ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ "-1" ],
+    "blockedUsers" : [ ],
     "friendReceivedRequests" : [ "2" ],
     "friends" : [ "3", "5" ]
   },

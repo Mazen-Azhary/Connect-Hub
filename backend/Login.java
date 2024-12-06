@@ -16,8 +16,6 @@ public class Login {
     private Login() throws IOException {
         loginDataBase = new LoginDatabase(filePath);
         userContentDatabase = new UserContentDatabase(contentPath);
-
-
     }
     public static synchronized Login getInstance() throws IOException {
         if (instance == null) {

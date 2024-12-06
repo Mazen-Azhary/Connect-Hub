@@ -50,14 +50,14 @@
   },
   "userID" : "5",
   "username" : "Vinicius",
-  "status" : "online"
+  "status" : "offline"
 }, {
   "profile" : {
     "contents" : [ ]
   },
   "userID" : "6",
   "username" : "Bellingham",
-  "status" : "online"
+  "status" : "offline"
 }, {
   "profile" : {
     "contents" : [ {

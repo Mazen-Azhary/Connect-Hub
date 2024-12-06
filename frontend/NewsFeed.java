@@ -234,8 +234,9 @@ public class NewsFeed extends javax.swing.JFrame {
         om.add(friendRequests);
         mb.add(om);
         OptionsMenu.setJMenuBar(mb);
+        User p = profileDataBase.getUser(id);
         if(user!=null&&user.getProfile().getProfilePhoto()!=null){
-        OptionsMenu.setFrameIcon(new ImageIcon(user.getProfile().getProfilePhoto()));
+        OptionsMenu.setFrameIcon(new ImageIcon(p.getProfile().getProfilePhoto()));
         OptionsMenu.setSize(400, 300);
         }
         OptionsMenu.setVisible(true);
