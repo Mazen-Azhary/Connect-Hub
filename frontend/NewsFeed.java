@@ -38,7 +38,7 @@ public class NewsFeed extends javax.swing.JFrame {
         setResizable(false);
         setSize(1000, 700);
         setVisible(true);
-        FriendListPannel friendPanel = new FriendListPannel(this,id);
+        FriendListPannel friendPanel = new FriendListPannel(this,null,id);
         friendsScroll.setViewportView(friendPanel);
         FriendSuggestionPannel friendSuggestionPanel = new FriendSuggestionPannel(this,id);
         suggestionsScroll.setViewportView(friendSuggestionPanel);
@@ -174,7 +174,19 @@ public class NewsFeed extends javax.swing.JFrame {
         JMenuBar mb = new JMenuBar();
         JMenu om = new JMenu("Options");
         JMenuItem ref = new JMenuItem("Refresh page");
+        JMenuItem view =new JMenuItem("View Profile");
 
+        view.addActionListener(new ActionListener(){
+            public void actionPerformed (ActionEvent e)
+            {
+                dispose();
+                try {
+                    new ProfilePage(id);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
         ref.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -231,6 +243,7 @@ public class NewsFeed extends javax.swing.JFrame {
                 }
             }
         });
+        om.add(view);
         om.add(sentRequests);
         om.add(ref);
         om.add(logoutItem);

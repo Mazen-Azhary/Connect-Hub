@@ -64,11 +64,6 @@ public class ProfilePage extends javax.swing.JFrame {
                     .getImage()
                     .getScaledInstance(630, 150, Image.SCALE_SMOOTH));
         }
-//        for (Component comp : BioPanel.getComponents()) {
-//            if (comp instanceof JLabel) {
-//                BioPanel.remove(comp);
-//            }
-//        }
         CoverLabel.setIcon(imageIcon2);
         JLabel bioLabel = new JLabel();
 
@@ -82,6 +77,13 @@ public class ProfilePage extends javax.swing.JFrame {
         BioPanel.add(bioLabel);
         this.bioLabel=bioLabel;
         BioPanel.repaint();
+        FriendListPannel friendsPanel;
+        try {
+             friendsPanel = new FriendListPannel(null,this,userId);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        jScrollPane2.setViewportView(friendsPanel);
     }
 
     public ProfilePage(String UserId) throws IOException {
@@ -357,6 +359,7 @@ public class ProfilePage extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Friends");
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

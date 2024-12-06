@@ -34,12 +34,14 @@ public class FriendFrontend extends JPanel {
     private String friendID;
     private String userID;
     private NewsFeed newsFeed;
-    public FriendFrontend(String userID, String friendID,NewsFeed newsFeed) throws IOException {
+    private ProfilePage profilePage;
+    public FriendFrontend(String userID, String friendID,NewsFeed newsFeed,ProfilePage profilePage) throws IOException {
         setLayout(new BorderLayout());
         this.userID = userID;
         this.friendID = friendID;
         this.newsFeed=newsFeed;
         String friendId = this.friendID;
+        this.profilePage = profilePage;
         User friendProfile;
         try {
             friendProfile = profileDataBase.getUser(friendId);
@@ -92,6 +94,16 @@ public class FriendFrontend extends JPanel {
                     friendManager.removeFriend(userID, friendId);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
+                }
+                if(newsFeed==null)
+                {
+                    profilePage.dispose();
+                    try {
+                        new ProfilePage(userID);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    return;
                 }
                 newsFeed.dispose();
                 try {

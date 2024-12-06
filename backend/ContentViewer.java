@@ -18,29 +18,40 @@ public class ContentViewer {
         ArrayList<Content> posts = new ArrayList<>();
         ArrayList<String> friends=friendDatabase.getUser(id).getProfile().getFriends();
         for (String friend : friends) {
-            User f=userContentDatabase.getUser(friend);
-            for(Content content:f.getProfile().getContents()) {
-                if(content.getContentId()>0) {
+            User f = userContentDatabase.getUser(friend);
+            for (Content content : f.getProfile().getContents()) {
+                if (content.getContentId() > 0) {
                     posts.add(content);
                 }
             }
         }
+        User user=userContentDatabase.getUser(id);
+        for(Content content:user.getProfile().getContents()) {
+            if(content.getContentId()>0) {
+                posts.add(content);
+            }
+        }
             Collections.shuffle(posts);
         return posts;
-
     }
     public ArrayList<Content> generateStories(String id) throws IOException {
         ArrayList<Content> stories = new ArrayList<>();
-        ArrayList<String> friends=friendDatabase.getUser(id).getProfile().getFriends();
+        ArrayList<String> friends = friendDatabase.getUser(id).getProfile().getFriends();
         for (String friend : friends) {
-            User f=userContentDatabase.getUser(friend);
-            for(Content content:f.getProfile().getContents()) {
-                if(content.getContentId()<0) {
-                    Story story=(Story) content;
-                    if(!story.isExpired()) {
+            User f = userContentDatabase.getUser(friend);
+            for (Content content : f.getProfile().getContents()) {
+                if (content.getContentId() < 0) {
+                    Story story = (Story) content;
+                    if (!story.isExpired()) {
                         stories.add(story);
                     }
                 }
+            }
+        }
+        User user = userContentDatabase.getUser(id);
+        for (Content content : user.getProfile().getContents()) {
+            if (content.getContentId() < 0) {
+                stories.add(content);
             }
         }
         Collections.shuffle(stories);
