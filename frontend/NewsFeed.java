@@ -6,21 +6,16 @@ package frontend;
 
 import backend.*;
 
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+import static frontend.FriendFrontend.getCircularImageIcon;
 
 /**
  *
@@ -29,6 +24,7 @@ import javax.swing.JScrollPane;
 public class NewsFeed extends javax.swing.JFrame {
     private UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
     private ProfileDataBase profileDataBase = new ProfileDataBase("src/database/Profile.json");
+    private FriendDatabase friendDatabase = new FriendDatabase("src/database/Friends.json");
     private ArrayList<Content> contents = new ArrayList<>(); //posts
     private String id;
     /**
@@ -44,6 +40,7 @@ public class NewsFeed extends javax.swing.JFrame {
         setVisible(true);
         FriendListPannel friendPanel = new FriendListPannel(id);
         friendsScroll.setViewportView(friendPanel);
+
         ContentViewer contentViewer = ContentViewer.getInstance();
         ArrayList<Content> posts = contentViewer.generatePosts(id);
         ArrayList<Content> stories = contentViewer.generateStories(id);
@@ -52,21 +49,75 @@ public class NewsFeed extends javax.swing.JFrame {
         postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
 
         for (Content post : posts) {
-            System.out.println(post.getContent());
-            User user=profileDataBase.getUser(""+post.getAuthorId());
+            // Retrieve user details
+            User user = profileDataBase.getUser("" + post.getAuthorId());
+            ImageIcon photo = new ImageIcon(user.getProfile().getProfilePhoto());
 
-            JLabel contentLabel = new JLabel( post.getContent());
-            JLabel authorLabel = new JLabel( user.getUsername());
+            // Check if the image is valid
+            if (photo.getIconWidth() <= 0 || photo.getIconHeight() <= 0) {
+                photo = new ImageIcon("src/database/defaultIcon.jpg");
+            }
+
+            // Create circular profile photo
+            int diameter = 30;
+            ImageIcon circularPhoto = FriendFrontend.getCircularImageIcon(photo, diameter);
+            JLabel friendPhoto = new JLabel(circularPhoto);
+            friendPhoto.setPreferredSize(new Dimension(diameter, diameter));
+            friendPhoto.setHorizontalAlignment(JLabel.CENTER);
+
+            // Username label
+            JLabel friendName = new JLabel(user.getUsername());
+            friendName.setHorizontalAlignment(JLabel.LEFT);
+            friendName.setFont(new Font("Arial", Font.BOLD, 14));
+            friendName.setBorder(new EmptyBorder(0, 5, 0, 0)); // Add spacing from the photo
+
+            // Content label
+            JLabel contentLabel = new JLabel("<html>" + post.getContent().replace("\n", "<br>") + "</html>");
+            contentLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+            contentLabel.setForeground(Color.BLACK);
+            contentLabel.setBorder(new EmptyBorder(5, 0, 0, 0));
+
+            // Image (if applicable)
             JLabel imageLabel = null;
             if (post.getImage() != null) {
-                imageLabel = new JLabel(new ImageIcon(post.getImage()));
+                ImageIcon postImage = new ImageIcon(post.getImage());
+                // Resize the image while maintaining aspect ratio
+                int maxWidth = 200; // Desired maximum width
+                int maxHeight = 150; // Desired maximum height
+                Image scaledImage = postImage.getImage().getScaledInstance(maxWidth, maxHeight, Image.SCALE_SMOOTH);
+
+                // Wrap the resized image in an ImageIcon
+                imageLabel = new JLabel(new ImageIcon(scaledImage));
+                imageLabel.setBorder(new EmptyBorder(5, 0, 0, 0));
             }
-            postPanel.add(authorLabel);
-            postPanel.add(contentLabel);
+
+            // Create a horizontal panel for photo and username
+            JPanel headerPanel = new JPanel();
+            headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.X_AXIS));
+            headerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+            headerPanel.setOpaque(false); // Ensure it blends with background
+            headerPanel.add(friendPhoto);
+            headerPanel.add(Box.createRigidArea(new Dimension(10, 0))); // Space between photo and name
+            headerPanel.add(friendName);
+
+            // Create a vertical panel for the entire post
+            JPanel singlePostPanel = new JPanel();
+            singlePostPanel.setLayout(new BoxLayout(singlePostPanel, BoxLayout.Y_AXIS));
+            singlePostPanel.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
+                    BorderFactory.createEmptyBorder(10, 10, 10, 10)
+            ));
+            singlePostPanel.setBackground(Color.WHITE);
+            singlePostPanel.add(headerPanel);
+            singlePostPanel.add(contentLabel);
             if (imageLabel != null) {
-                postPanel.add(imageLabel);
+                singlePostPanel.add(imageLabel);
             }
-            postPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+            singlePostPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Space between posts
+
+            // Add the single post to the main postPanel
+            postPanel.add(singlePostPanel);
+            postPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Space between posts in the main panel
         }
 
         JPanel storiesPanel = new JPanel();
@@ -110,6 +161,8 @@ public class NewsFeed extends javax.swing.JFrame {
         friendsScroll = new javax.swing.JScrollPane();
         postsScroll = new javax.swing.JScrollPane();
         suggestionsScroll = new javax.swing.JScrollPane();
+        FriendSuggestionFrontEnd friendSuggestionFrontend = new FriendSuggestionFrontEnd(id);
+        suggestionsScroll.setViewportView(friendSuggestionFrontend);
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -125,7 +178,7 @@ public class NewsFeed extends javax.swing.JFrame {
 
         ref.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                //refreshPage();
+                repaint();
             }
         });
 
@@ -153,9 +206,31 @@ public class NewsFeed extends javax.swing.JFrame {
                 }
             }
         });
+        JMenuItem sentRequests= new JMenuItem("Sent Requests");
+        sentRequests.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new CancelRequest(id);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
 
+        JMenuItem blocks = new JMenuItem("Block menu");
+        blocks.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new BlockedUsers(id);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+        om.add(sentRequests);
         om.add(ref);
         om.add(logoutItem);
+        om.add(blocks);
         om.add(friendRequests);
         mb.add(om);
         OptionsMenu.setJMenuBar(mb);
@@ -291,7 +366,6 @@ public class NewsFeed extends javax.swing.JFrame {
 
     private void createPostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPostButtonActionPerformed
           new CreatePostPage(id);
-          
     }//GEN-LAST:event_createPostButtonActionPerformed
 
     private void AddStoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddStoryButtonActionPerformed

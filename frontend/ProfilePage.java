@@ -491,7 +491,7 @@ public class ProfilePage extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new frontend.ProfilePage("1").setVisible(true);
+                    new frontend.ProfilePage("2").setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(ProfilePage.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -10,54 +10,54 @@ import backend.FriendManager;
 import backend.ProfileDataBase;
 import backend.User;
 
-public class BlockedUsers extends JFrame {
+public class CancelRequest extends JFrame {
 
     private String id;
-    private ArrayList<String> blocked;
+    private ArrayList<String> request;
     private FriendDatabase friendDatabase = new FriendDatabase("src/database/Friends.json");
     private ProfileDataBase profileDataBase = new ProfileDataBase("src/database/Profile.json");
     private FriendManager friendManager = FriendManager.getInstance();
-    private JPanel blockedListPanel;
+    private JPanel requestListPanel;
     private JScrollPane scrollPane;
 
-    public BlockedUsers(String id) throws IOException {
+    public CancelRequest(String id) throws IOException {
         this.id = id;
         // Set JFrame properties
-        setTitle("Block list");
+        setTitle("sent requests");
         setSize(500, 600);
         setLocationRelativeTo(null); // Center the window on the screen
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only this JFrame on exit
         // Initialize components
         initComponents();
-        loadblocked();
-        displayblocked();
+        loadrequest();
+        displayrequest();
         setResizable(false);
         // Make the frame visible
         setVisible(true);
     }
 
-    private void loadblocked() {
+
+    private void loadrequest() {
         try {
-            blocked = friendDatabase.getUser(id).getProfile().getBlockedUsers();
+            request = friendDatabase.getUser(id).getProfile().getFriendRequests();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private void displayblocked() throws IOException {
-        blockedListPanel.removeAll(); // Clear the panel before re-rendering
+    private void displayrequest() throws IOException {
+        requestListPanel.removeAll(); // Clear the panel before re-rendering
 
-        for (String block : blocked) {
-            if(block.startsWith("-")) continue;
-            JPanel blockedPanel = new JPanel();
-            blockedPanel.setLayout(new BoxLayout(blockedPanel, BoxLayout.X_AXIS));
-            blockedPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Add padding
-            blockedPanel.setPreferredSize(new Dimension(400, 70)); // Adjust width and height
-            User user = profileDataBase.getUser(block);
+        for (String r : request) {
+            JPanel requestPanel = new JPanel();
+            requestPanel.setLayout(new BoxLayout(requestPanel, BoxLayout.X_AXIS));
+            requestPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Add padding
+            requestPanel.setPreferredSize(new Dimension(400, 70)); // Adjust width and height
+            User user = profileDataBase.getUser(r);
             JLabel nameLabel = new JLabel(user.getUsername());
             nameLabel.setPreferredSize(new Dimension(100, 30)); // Set a fixed size
             nameLabel.setFont(new Font("Arial", Font.BOLD, 14)); // Adjust font size for compactness
-            blockedPanel.add(nameLabel);
+            requestPanel.add(nameLabel);
 
             // Icon Label with Fixed Size
             JLabel iconLabel;
@@ -81,33 +81,33 @@ public class BlockedUsers extends JFrame {
             iconLabel.setMaximumSize(new Dimension(50, 50)); // Prevent resizing
             iconLabel.setMinimumSize(new Dimension(50, 50)); // Prevent resizing
             iconLabel.setAlignmentY(Component.CENTER_ALIGNMENT); // Align vertically
-            blockedPanel.add(Box.createHorizontalStrut(10)); // Add spacing
-            blockedPanel.add(iconLabel);
+            requestPanel.add(Box.createHorizontalStrut(10)); // Add spacing
+            requestPanel.add(iconLabel);
 
             // Accept Button
-            JButton acceptButton = new JButton("Unblock");
+            JButton acceptButton = new JButton("Remove Request");
             acceptButton.setFont(new Font("Arial", Font.PLAIN, 12)); // Smaller button font
             acceptButton.setPreferredSize(new Dimension(80, 30)); // Button size
             acceptButton.addActionListener(e -> {
                 try {
-                    friendManager.unblockUser(id,block);
+                    friendManager.removeRequest(id,r);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                blockedListPanel.remove(blockedPanel); // Remove the panel upon action
-                blockedListPanel.revalidate();
-                blockedListPanel.repaint();
+                requestListPanel.remove(requestPanel); // Remove the panel upon action
+                requestListPanel.revalidate();
+                requestListPanel.repaint();
             });
-            blockedPanel.add(Box.createHorizontalStrut(10)); // Add space between components
-            blockedPanel.add(acceptButton);
-            // Add the blocked panel to the list
-            blockedListPanel.add(blockedPanel);
-            blockedListPanel.add(Box.createVerticalStrut(5)); // Add spacing between rows
+            requestPanel.add(Box.createHorizontalStrut(10)); // Add space between components
+            requestPanel.add(acceptButton);
+            // Add the request panel to the list
+            requestListPanel.add(requestPanel);
+            requestListPanel.add(Box.createVerticalStrut(5)); // Add spacing between rows
         }
 
         // Refresh the panel to apply changes
-        blockedListPanel.revalidate();
-        blockedListPanel.repaint();
+        requestListPanel.revalidate();
+        requestListPanel.repaint();
     }
 
 
@@ -116,10 +116,10 @@ public class BlockedUsers extends JFrame {
     private void initComponents() {
         this.setLayout(new BorderLayout());
 
-        blockedListPanel = new JPanel();
-        blockedListPanel.setLayout(new BoxLayout(blockedListPanel, BoxLayout.Y_AXIS));
+        requestListPanel = new JPanel();
+        requestListPanel.setLayout(new BoxLayout(requestListPanel, BoxLayout.Y_AXIS));
 
-        scrollPane = new JScrollPane(blockedListPanel);
+        scrollPane = new JScrollPane(requestListPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 

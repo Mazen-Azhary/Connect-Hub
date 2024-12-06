@@ -4,7 +4,7 @@
     "friendSuggestions" : [ ],
     "blockedUsers" : [ "4", "2", "6" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "3", "5" ]
+    "friends" : [ "3", "5", "7" ]
   },
   "userID" : "1",
   "username" : "Lamine"
@@ -58,4 +58,14 @@
   },
   "userID" : "6",
   "username" : "Bellingham"
+}, {
+  "profile" : {
+    "friendRequests" : [ ],
+    "friendSuggestions" : [ ],
+    "blockedUsers" : [ ],
+    "friendReceivedRequests" : [ ],
+    "friends" : [ "1" ]
+  },
+  "userID" : "7",
+  "username" : "mazen azhary"
 } ]

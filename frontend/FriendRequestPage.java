@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import backend.FriendDatabase;
 import backend.FriendManager;
+import backend.ProfileDataBase;
 import backend.User;
 
 public class FriendRequestPage extends JFrame {
@@ -14,6 +15,7 @@ public class FriendRequestPage extends JFrame {
     private String id;
     private ArrayList<String> friendRequests;
     private FriendDatabase friendDatabase = new FriendDatabase("src/database/Friends.json");
+    private ProfileDataBase profileDataBase = new ProfileDataBase("src/database/Profile.json");
     private FriendManager friendManager = FriendManager.getInstance();
     private JPanel requestListPanel;
     private JScrollPane scrollPane;
@@ -53,7 +55,7 @@ public class FriendRequestPage extends JFrame {
             requestPanel.setPreferredSize(new Dimension(400, 70)); // Adjust width and height
 
             // Get user details
-            User user = friendDatabase.getUser(request);
+            User user = profileDataBase.getUser(request);
 
             // Name label
             JLabel nameLabel = new JLabel(user.getUsername());

@@ -48,6 +48,8 @@ public class FriendManager {
         User user2=friendsDataBase.getUser(unblockedID);
         user1.getProfile().getBlockedUsers().remove(user2.getUserID());
         user2.getProfile().getBlockedUsers().remove("-"+user1.getUserID());
+        friendsDataBase.modifyUserById(user1);
+        friendsDataBase.modifyUserById(user2);
         return true;
     }
     public boolean requestFriend(String sender, String receiver) throws IOException {

@@ -58,4 +58,14 @@
   "dateOfBirth" : [ 2024, 12, 5 ],
   "userID" : "6",
   "username" : "Bellingham"
+}, {
+  "gender" : "Male",
+  "profile" : {
+    "profilePhoto" : null,
+    "coverPhoto" : null,
+    "bio" : null
+  },
+  "dateOfBirth" : [ 2024, 12, 5 ],
+  "userID" : "7",
+  "username" : "mazen azhary"
 } ]

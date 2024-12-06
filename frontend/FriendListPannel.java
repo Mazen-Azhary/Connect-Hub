@@ -1,22 +1,30 @@
 package frontend;
 
+import backend.FriendDatabase;
+import backend.ProfileDataBase;
+import backend.User;
+
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class FriendListPannel extends JPanel {
-    private ArrayList<FriendFrontend> friends = new ArrayList<>();
+    FriendDatabase friendDatabase = new FriendDatabase("src/database/Friends.json");
+    ProfileDataBase profileDatabase = new ProfileDataBase("src/database/Profile.json");
 String userID;
-    public FriendListPannel(String userID) {
+    public FriendListPannel(String userID) throws IOException {
         this.userID = userID;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        for (int i = 0; i < 10; i++) {
-            ImageIcon userPhoto = new ImageIcon(new ImageIcon("src/database/Signup.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+        ArrayList<String> friendIDs=friendDatabase.getUser(userID).getProfile().getFriends();
 
-            FriendFrontend friend = new FriendFrontend("Friend " + (i + 1), userPhoto,userID);
+        for (int i = 0; i < friendIDs.size(); i++) {
 
-            friends.add(friend);
+
+            FriendFrontend friend = new FriendFrontend(userID,friendIDs.get(i));
+
+
             this.add(friend);
             
             this.add(Box.createRigidArea(new Dimension(0, 10))); 
