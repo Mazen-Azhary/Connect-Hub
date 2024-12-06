@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -136,7 +137,10 @@ public class ProfilePage extends javax.swing.JFrame {
             friendPhoto.setHorizontalAlignment(JLabel.CENTER);
 
             // Username label
-            JLabel friendName = new JLabel(user.getUsername());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+            LocalDateTime localDateTime=post.getTimestamp();
+            String formattedDate = localDateTime.format(formatter);
+            JLabel friendName = new JLabel(user.getUsername()+"        "+formattedDate);
             friendName.setHorizontalAlignment(JLabel.LEFT);
             friendName.setFont(new Font("Arial", Font.BOLD, 14));
             friendName.setBorder(new EmptyBorder(0, 5, 0, 0)); // Add spacing from the photo
