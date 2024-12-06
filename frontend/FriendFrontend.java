@@ -33,12 +33,12 @@ public class FriendFrontend extends JPanel {
     private JLabel activeStatus;
     private String friendID;
     private String userID;
-
-    public FriendFrontend(String userID, String friendID) throws IOException {
+    private NewsFeed newsFeed;
+    public FriendFrontend(String userID, String friendID,NewsFeed newsFeed) throws IOException {
         setLayout(new BorderLayout());
         this.userID = userID;
         this.friendID = friendID;
-
+        this.newsFeed=newsFeed;
         String friendId = this.friendID;
         User friendProfile;
         try {
@@ -83,16 +83,22 @@ public class FriendFrontend extends JPanel {
         friendName.setBorder(new EmptyBorder(0, -5, 0, 10)); // Top, Left, Bottom, Right
 
         removeButton = new JButton("Remove");
+
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    System.out.println(userID+friendID);
                     friendManager.removeFriend(userID, friendId);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                repaint();
-                revalidate();
+                newsFeed.dispose();
+                try {
+                    new NewsFeed(userID);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
@@ -106,8 +112,12 @@ public class FriendFrontend extends JPanel {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                repaint();
-                revalidate();
+                newsFeed.dispose();
+                try {
+                    new NewsFeed(userID);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 

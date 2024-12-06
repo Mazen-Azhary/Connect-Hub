@@ -10,11 +10,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FriendListPannel extends JPanel {
-    FriendDatabase friendDatabase = new FriendDatabase("src/database/Friends.json");
-    ProfileDataBase profileDatabase = new ProfileDataBase("src/database/Profile.json");
-String userID;
-    public FriendListPannel(String userID) throws IOException {
+    private FriendDatabase friendDatabase = new FriendDatabase("src/database/Friends.json");
+    private ProfileDataBase profileDatabase = new ProfileDataBase("src/database/Profile.json");
+private String userID;
+private  NewsFeed newsFeed;
+    public FriendListPannel(NewsFeed newsFeed,String userID) throws IOException {
         this.userID = userID;
+        this.newsFeed = newsFeed;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         ArrayList<String> friendIDs=friendDatabase.getUser(userID).getProfile().getFriends();
@@ -22,7 +24,7 @@ String userID;
         for (int i = 0; i < friendIDs.size(); i++) {
 
 
-            FriendFrontend friend = new FriendFrontend(userID,friendIDs.get(i));
+            FriendFrontend friend = new FriendFrontend(userID,friendIDs.get(i),this.newsFeed);
 
 
             this.add(friend);

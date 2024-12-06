@@ -38,7 +38,7 @@ public class NewsFeed extends javax.swing.JFrame {
         setResizable(false);
         setSize(1000, 700);
         setVisible(true);
-        FriendListPannel friendPanel = new FriendListPannel(id);
+        FriendListPannel friendPanel = new FriendListPannel(this,id);
         friendsScroll.setViewportView(friendPanel);
 
         ContentViewer contentViewer = ContentViewer.getInstance();
@@ -178,7 +178,12 @@ public class NewsFeed extends javax.swing.JFrame {
 
         ref.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                repaint();
+                try {
+                    dispose();
+                    new NewsFeed(id);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 

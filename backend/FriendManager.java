@@ -19,14 +19,14 @@ public class FriendManager {
     }
 
     public boolean removeFriend(String removerID, String removedID) throws IOException {
-        User user1=friendsDataBase.getUser(removedID);
-        User user2=friendsDataBase.getUser(removerID);
+        User user1=friendsDataBase.getUser(removerID);
+        User user2=friendsDataBase.getUser(removedID);
         if(!user1.getProfile().getFriends().contains(removedID))
         {
             return false;
         }
-        user1.getProfile().getFriends().remove(user2.getUserID());
-        user2.getProfile().getFriends().remove(user1.getUserID());
+        user1.getProfile().removeFriend(removedID);
+        user2.getProfile().removeFriend(removerID);
         friendsDataBase.modifyUserById(user1);
         friendsDataBase.modifyUserById(user2);
         return true;

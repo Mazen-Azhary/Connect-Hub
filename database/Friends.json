@@ -1,10 +1,10 @@
 [ {
   "profile" : {
     "friendRequests" : [ ],
-    "friendSuggestions" : [ "4", "4" ],
+    "friendSuggestions" : [ ],
     "blockedUsers" : [ "2", "6" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "3", "5", "7" ]
+    "friends" : [ ]
   },
   "userID" : "1",
   "username" : "Lamine"
@@ -24,7 +24,7 @@
     "friendSuggestions" : [ "5", "5", "5" ],
     "blockedUsers" : [ ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "1", "2", "4", "6" ]
+    "friends" : [ "2", "4", "6", "2" ]
   },
   "userID" : "3",
   "username" : "Freinke"
@@ -44,7 +44,7 @@
     "friendSuggestions" : [ "3" ],
     "blockedUsers" : [ ],
     "friendReceivedRequests" : [ "6" ],
-    "friends" : [ "1", "2", "4" ]
+    "friends" : [ "2", "4" ]
   },
   "userID" : "5",
   "username" : "Vinicius"
@@ -64,7 +64,7 @@
     "friendSuggestions" : [ ],
     "blockedUsers" : [ ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "1" ]
+    "friends" : [ ]
   },
   "userID" : "7",
   "username" : "mazen azhary"

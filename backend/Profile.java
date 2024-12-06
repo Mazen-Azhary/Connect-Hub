@@ -123,7 +123,7 @@ public class Profile {
 
     public void removeFriend(String friend) {
         if (friends.contains(friend))
-            friends.add(friend);
+            friends.remove(friend);
     }
 
     public ArrayList<Content> getContents() {
