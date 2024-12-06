@@ -123,7 +123,7 @@ public class FriendFrontend extends JPanel {
         add(activeStatus, BorderLayout.SOUTH);
     }
 
-    private static ImageIcon getCircularImageIcon(ImageIcon icon, int diameter) {
+    public static ImageIcon getCircularImageIcon(ImageIcon icon, int diameter) {
         // Create a new buffered image with transparency
         BufferedImage circularImage = new BufferedImage(diameter, diameter, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = circularImage.createGraphics();
