@@ -1,5 +1,6 @@
 package backend;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -66,6 +67,10 @@ public class Content {
 
     public LocalDateTime getTimestamp() {
         return timestamp;
+    }
+    public boolean isExpired()
+    {
+        return Duration.between(getTimestamp(), LocalDateTime.now()).toHours() >= 24;
     }
 
 

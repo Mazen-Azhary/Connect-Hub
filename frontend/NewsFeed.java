@@ -10,12 +10,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
-import static frontend.FriendFrontend.getCircularImageIcon;
 
 /**
  *
@@ -92,6 +89,7 @@ public class NewsFeed extends javax.swing.JFrame {
                 imageLabel.setBorder(new EmptyBorder(5, 0, 0, 0));
             }
 
+
             // Create a horizontal panel for photo and username
             JPanel headerPanel = new JPanel();
             headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.X_AXIS));
@@ -121,18 +119,13 @@ public class NewsFeed extends javax.swing.JFrame {
             postPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Space between posts in the main panel
         }
 
-        JPanel storiesPanel = new JPanel();
-        storiesPanel.setLayout(new BoxLayout(storiesPanel, BoxLayout.X_AXIS));
-        for (Content story : stories) {
-            ImageIcon storyThumbnail = new ImageIcon(story.getImage());
-            StoryFrontend storyFrontend = new StoryFrontend(story.getAuthorId(), "User" + story.getAuthorId(), storyThumbnail);
-            storiesPanel.add(storyFrontend);
-            storiesPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        }
+        JPanel storiesPanel = new StoryPanel(id);
+
+
 
         postsScroll.setViewportView(postPanel);
         storiesScrollable.setViewportView(storiesPanel);
-
+        storiesScrollable.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         postsScroll.getVerticalScrollBar().setUnitIncrement(20);
         postsScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 

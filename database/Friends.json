@@ -24,7 +24,7 @@
     "friendSuggestions" : [ "5", "2" ],
     "blockedUsers" : [ "1" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "4", "6" ]
+    "friends" : [ "6" ]
   },
   "userID" : "3",
   "username" : "Freinke"
@@ -34,7 +34,7 @@
     "friendSuggestions" : [ ],
     "blockedUsers" : [ "1" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "3", "5", "2" ]
+    "friends" : [ "5", "2" ]
   },
   "userID" : "4",
   "username" : "Mbappe"
