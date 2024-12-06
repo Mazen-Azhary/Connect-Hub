@@ -114,6 +114,7 @@ public class CreateStoryPage extends javax.swing.JFrame {
     private void PostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostButtonActionPerformed
         if(StoryContentTextField.getText().isEmpty() && imagePath.isEmpty()){
             JOptionPane.showMessageDialog(null,"You must input data","Error",JOptionPane.ERROR_MESSAGE);
+            dispose();
             return;
         }
 
@@ -130,6 +131,7 @@ public class CreateStoryPage extends javax.swing.JFrame {
             User u=userContentDatabase.getUser(userID);
             u.getProfile().addContent(n);
             userContentDatabase.modifyUserById(u);
+            dispose();
 
         } catch (IOException e) {
             throw new RuntimeException(e);

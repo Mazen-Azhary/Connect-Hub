@@ -121,6 +121,7 @@ private ContentDatabase contentDatabase = new ContentDatabase("src/database/Cont
     private void PostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostButtonActionPerformed
         if(PostContentTextField.getText().isEmpty() && imagePath.isEmpty()){
             JOptionPane.showMessageDialog(null,"You must input data","Error",JOptionPane.ERROR_MESSAGE);
+            this.dispose();
             return;
         }
 
@@ -137,6 +138,7 @@ private ContentDatabase contentDatabase = new ContentDatabase("src/database/Cont
            User u=userContentDatabase.getUser(userID);
            u.getProfile().addContent(n);
            userContentDatabase.modifyUserById(u);
+           dispose();
 
         } catch (IOException e) {
             throw new RuntimeException(e);

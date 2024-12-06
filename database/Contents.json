@@ -28,4 +28,22 @@
   "authorId" : 1,
   "content" : "post by meeeeeeeeeeeeeeeeee",
   "timestamp" : "2024-12-06T02:54:11.249474200"
+}, {
+  "image" : "C:\\Users\\etijah\\Downloads\\fcb.jpg",
+  "contentId" : 6,
+  "authorId" : 1,
+  "content" : "hey",
+  "timestamp" : "2024-12-06T11:25:51.843514400"
+}, {
+  "image" : "C:\\Users\\etijah\\Downloads\\fcb.jpg",
+  "contentId" : 7,
+  "authorId" : 1,
+  "content" : "hey",
+  "timestamp" : "2024-12-06T11:25:52.881671200"
+}, {
+  "image" : null,
+  "contentId" : 8,
+  "authorId" : 1,
+  "content" : "hey",
+  "timestamp" : "2024-12-06T11:30:47.192127900"
 } ]

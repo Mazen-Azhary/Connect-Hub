@@ -36,6 +36,11 @@ public class FriendManager {
         //if the id positive then you are the blocker, if negative you are the blocked
         User user1=friendsDataBase.getUser(blockerID);
         User user2=friendsDataBase.getUser(blockedID);
+        if(user1.getProfile().getFriends().contains(blockedID))
+        {
+            user1.getProfile().removeFriend(blockedID);
+            user2.getProfile().removeFriend(blockerID);
+        }
         user1.getProfile().getBlockedUsers().add(user2.getUserID());
         user2.getProfile().getBlockedUsers().add("-"+user1.getUserID());
         friendsDataBase.modifyUserById(user1);

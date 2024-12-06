@@ -203,7 +203,7 @@ public class NewsFeed extends javax.swing.JFrame {
             User us=userContentDatabase.getUser(id);
             public void actionPerformed(ActionEvent e) {
                 try {
-                    userContentDatabase.getUser(id).setStatus("offline");
+                    us.setStatus("offline");
                     userContentDatabase.modifyUserById(us);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
