@@ -235,7 +235,12 @@ public class NewsFeed extends javax.swing.JFrame {
         mb.add(om);
         OptionsMenu.setJMenuBar(mb);
         User p = profileDataBase.getUser(id);
-        if(user!=null&&user.getProfile().getProfilePhoto()!=null){
+        if(p.getProfile().getProfilePhoto() == null) {
+            OptionsMenu.setFrameIcon(new ImageIcon("src/database/defaultIcon.jpg"));
+            OptionsMenu.setSize(400, 300);
+        }
+        if(p.getProfile().getProfilePhoto()!=null){
+            System.out.println("hala");
         OptionsMenu.setFrameIcon(new ImageIcon(p.getProfile().getProfilePhoto()));
         OptionsMenu.setSize(400, 300);
         }
