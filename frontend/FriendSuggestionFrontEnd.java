@@ -69,6 +69,7 @@ public class FriendSuggestionFrontEnd extends JPanel {
         friendName.setFont(new Font("Arial", Font.BOLD, 16));
         friendName.setBorder(new EmptyBorder(0, -5, 0, 10)); // Top, Left, Bottom, Right
         addButton = new JButton("Add Request");
+        addButton.setBackground(Color.GREEN);
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -88,6 +89,7 @@ public class FriendSuggestionFrontEnd extends JPanel {
 
         // Block button
         blockButton = new JButton("Block");
+        blockButton.setBackground(Color.RED);
         blockButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -86,6 +86,7 @@ public class CancelRequest extends JFrame {
 
             // Accept Button
             JButton acceptButton = new JButton("Remove Request");
+            acceptButton.setBackground(Color.BLUE);
             acceptButton.setFont(new Font("Arial", Font.PLAIN, 12)); // Smaller button font
             acceptButton.setPreferredSize(new Dimension(80, 30)); // Button size
             acceptButton.addActionListener(e -> {
