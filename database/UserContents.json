@@ -80,11 +80,23 @@
   "status" : "offline"
 }, {
   "profile" : {
-    "contents" : [ ]
+    "contents" : [ {
+      "image" : null,
+      "contentId" : 13,
+      "authorId" : 3,
+      "content" : "gsgdfgdf",
+      "timestamp" : [ 2024, 12, 5, 21, 50, 55, 910942900 ]
+    }, {
+      "image" : null,
+      "contentId" : -14,
+      "authorId" : 3,
+      "content" : "fsdf",
+      "timestamp" : [ 2024, 12, 5, 21, 51, 12, 5761500 ]
+    } ]
   },
   "userID" : "3",
   "username" : "Freinke",
-  "status" : "online"
+  "status" : "offline"
 }, {
   "profile" : {
     "contents" : [ ]

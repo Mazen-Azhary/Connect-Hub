@@ -9,6 +9,8 @@ import backend.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -29,6 +31,17 @@ public class NewsFeed extends javax.swing.JFrame {
      * Creates new form NewsFeed
      */
     public NewsFeed(String id) throws IOException {
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Prevent default behavior
+
+        // Add a custom window listener
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                friendViewer.setStatus(id,"offline");
+                dispose();
+                new WelcomePage().setVisible(true);
+            }
+        });
         this.id = id;
         initComponents();
         setTitle("NewsFeed");
@@ -165,7 +178,6 @@ public class NewsFeed extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         AddStoryButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 255, 255));
 
         JMenuBar mb = new JMenuBar();
@@ -199,7 +211,7 @@ public class NewsFeed extends javax.swing.JFrame {
         logoutItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 friendViewer.setStatus(id,"offline");
-                setVisible(false);
+                dispose();
                 new WelcomePage().setVisible(true);
             }
         });

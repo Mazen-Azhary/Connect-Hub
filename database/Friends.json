@@ -11,20 +11,20 @@
 }, {
   "profile" : {
     "friendRequests" : [ ],
-    "friendSuggestions" : [ "3", "4" ],
+    "friendSuggestions" : [ "4" ],
     "blockedUsers" : [ ],
     "friendReceivedRequests" : [ "1" ],
-    "friends" : [ "6" ]
+    "friends" : [ "6", "3" ]
   },
   "userID" : "2",
   "username" : "Pedri"
 }, {
   "profile" : {
     "friendRequests" : [ ],
-    "friendSuggestions" : [ "5", "2" ],
+    "friendSuggestions" : [ "4" ],
     "blockedUsers" : [ "1" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "6" ]
+    "friends" : [ "6", "2" ]
   },
   "userID" : "3",
   "username" : "Freinke"

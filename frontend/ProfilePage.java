@@ -8,10 +8,11 @@ import backend.*;
 import backend.Content;
 import backend.ContentFactory;
 import backend.ProfileDataBase;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
@@ -27,6 +28,7 @@ public class ProfilePage extends javax.swing.JFrame {
     private ProfileManager profileManager=ProfileManager.getInstance();//posts
     private String userId;
     private JLabel bioLabel = null;
+    private FriendsViewer friendViewer=FriendsViewer.getInstance();
 
     /**
      * Creates new form profilePage
@@ -89,6 +91,17 @@ public class ProfilePage extends javax.swing.JFrame {
 
     public ProfilePage(String UserId) throws IOException {
         initComponents();
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Prevent default behavior
+
+        // Add a custom window listener
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                friendViewer.setStatus(userId,"offline");
+                dispose();
+                new WelcomePage().setVisible(true);
+            }
+        });
         setVisible(true);
         setResizable(false);
         setTitle("ProfilePage");
@@ -238,7 +251,6 @@ public class ProfilePage extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout CoverPhotoPanlLayout = new javax.swing.GroupLayout(CoverPhotoPanl);
         CoverPhotoPanl.setLayout(CoverPhotoPanlLayout);
@@ -577,7 +589,7 @@ public class ProfilePage extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new frontend.ProfilePage("2").setVisible(true);
+                    new frontend.ProfilePage("3").setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(ProfilePage.class.getName()).log(Level.SEVERE, null, ex);
                 }
