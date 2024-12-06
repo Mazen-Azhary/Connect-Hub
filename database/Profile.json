@@ -41,9 +41,9 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : null,
-    "coverPhoto" : null,
-    "bio" : null
+    "profilePhoto" : "src/database/defaultIcon.jpg",
+    "coverPhoto" : "src/database/CoverDefault.jpg",
+    "bio" : "vsdav"
   },
   "dateOfBirth" : [ 2024, 12, 5 ],
   "userID" : "5",

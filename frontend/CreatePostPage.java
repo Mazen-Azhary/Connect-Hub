@@ -17,9 +17,7 @@ import javax.swing.*;
  * @author Etijah
  */
 public class CreatePostPage extends javax.swing.JFrame {
-private UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
 private static String userID;
-private ContentDatabase contentDatabase = new ContentDatabase("src/database/Contents.json");
 /**
      * Creates new form CreatePostPage
      */
@@ -127,17 +125,8 @@ private ContentDatabase contentDatabase = new ContentDatabase("src/database/Cont
 
         ContentFactory factory = new ContentFactory();
         try {
-            Content n = factory.createContent("post",Integer.parseInt(userID), LocalDateTime.now());
-            ContentBuilder builder = new ContentBuilder(n);
-            builder.setContent(PostContentTextField.getText());
-           if(imagePath!=null)
-            builder.setImage(imagePath);
-           n = builder.build();
-
-           contentDatabase.addContent(n);
-           User u=userContentDatabase.getUser(userID);
-           u.getProfile().addContent(n);
-           userContentDatabase.modifyUserById(u);
+            ContentManager contentManager=ContentManager.getInstance();
+            contentManager.addPost(userID,PostContentTextField.getText(),imagePath);
            dispose();
 
         } catch (IOException e) {

@@ -23,8 +23,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class ProfilePage extends javax.swing.JFrame {
-    private ArrayList<Content> contents = new ArrayList<>(); //posts
-    private ProfileDataBase profileDataBase = new ProfileDataBase("src/database/Profile.json");
+    private ArrayList<Content> contents = new ArrayList<>();
+    private ProfileManager profileManager=ProfileManager.getInstance();//posts
     private String userId;
     private JLabel bioLabel = null;
 
@@ -33,11 +33,8 @@ public class ProfilePage extends javax.swing.JFrame {
      */
     public void edit() {
         User user = null;
-        try {
-            user = profileDataBase.getUser(userId);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+            user = profileManager.getUser(userId);
+
         jLabel1.setText(user.getUsername());
         jLabel1.setFont(new Font("Arial", Font.BOLD, 14));
 
@@ -94,6 +91,7 @@ public class ProfilePage extends javax.swing.JFrame {
         initComponents();
         setVisible(true);
         setResizable(false);
+        setTitle("ProfilePage");
         this.userId = UserId;
         edit();
         JButton button = new JButton("Back to News Feed");
@@ -121,7 +119,7 @@ public class ProfilePage extends javax.swing.JFrame {
         // Add posts to jPanel1
         for (Content post : posts) {
             // Retrieve user details
-            User user = profileDataBase.getUser("" + post.getAuthorId());
+            User user = profileManager.getUser("" + post.getAuthorId());
             ImageIcon photo = new ImageIcon(user.getProfile().getProfilePhoto());
 
             // Check if the image is valid
@@ -538,18 +536,9 @@ public class ProfilePage extends javax.swing.JFrame {
             }
             String userBio = newBio.trim();
             User user;
-            try {
-                user=profileDataBase.getUser(userId);
-                user.getProfile().setBio(userBio);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
 
-            try {
-                profileDataBase.modifyUserById(user);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+                user=profileManager.getUser(userId);
+                profileManager.editBio(userId,userBio);
             edit();
 
         } else {

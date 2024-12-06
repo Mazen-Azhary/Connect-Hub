@@ -5,6 +5,7 @@
 package frontend;
 import backend.ProfileBuilder;
 import backend.ProfileDataBase;
+import backend.ProfileManager;
 import backend.User;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ public class PictureChange extends javax.swing.JFrame {
     /**
      * Creates new form PictureChange
      */
-    private ProfileDataBase profileDataBase=new ProfileDataBase("src/database/Profile.json");
+    ProfileManager profileManager=ProfileManager.getInstance();
     private String userId;
     private String imagePath;
     private ProfilePage profilePage;
@@ -112,27 +113,13 @@ public class PictureChange extends javax.swing.JFrame {
     }//GEN-LAST:event_AddImageButtonActionPerformed
     User user;
     private void ClearProfilePictureButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearProfilePictureButtonActionPerformed
-        try {
-            user=profileDataBase.getUser(userId);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        ProfileBuilder builder = new ProfileBuilder(user.getProfile());
+        imagePath="src/database/CoverDefault.jpg";
         if(type==0)
         {
-            imagePath="src/database/defaultIcon.jpg";
-            builder.setPhoto(imagePath);
+            profileManager.editPhoto(userId,"src/database/defaultIcon.jpg");
         }
-        else if(type==1)
-        {
-            imagePath="src/database/CoverDefault.jpg";
-            builder.setCover(imagePath);
-        }
-        user.setProfile(builder.build());
-        try {
-            profileDataBase.modifyUserById(user);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        else {
+            profileManager.editCover(userId,"src/database/CoverDefault.jpg");
         }
         this.profilePage.edit();
     }//GEN-LAST:event_ClearProfilePictureButtonActionPerformed
@@ -143,28 +130,10 @@ public class PictureChange extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please select a profile picture");
             return;
         }
-
-        try {
-            user=profileDataBase.getUser(userId);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        ProfileBuilder builder = new ProfileBuilder(user.getProfile());
         if(type==0)
-        {
-            builder.setPhoto(imagePath);
-        }
+        profileManager.editPhoto(userId,imagePath);
         else if(type==1)
-        {
-            builder.setCover(imagePath);
-        }
-        user.setProfile(builder.build());
-        try {
-            profileDataBase.modifyUserById(user);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        this.profilePage.edit();
+            profileManager.editCover(userId,imagePath);
         dispose();
     }//GEN-LAST:event_SaveChangesButtonActionPerformed
 
