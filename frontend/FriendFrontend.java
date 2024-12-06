@@ -66,11 +66,11 @@ public class FriendFrontend extends JPanel {
 
         activeStatus = new JLabel();
         if(userContentDatabase.getUser(friendId).getStatus().equalsIgnoreCase("online")){
-            activeStatus.setText("                           "+"online");
+            activeStatus.setText("\n                                 online");
             activeStatus.setForeground(Color.GREEN);
         }
         else{
-            activeStatus.setText("                       "+"offline");
+            activeStatus.setText("\n                                 offline");
             activeStatus.setForeground(Color.RED);
         }
         activeStatus.setHorizontalAlignment(JLabel.LEFT);
@@ -85,7 +85,7 @@ public class FriendFrontend extends JPanel {
         friendName.setBorder(new EmptyBorder(0, -5, 0, 10)); // Top, Left, Bottom, Right
 
         removeButton = new JButton("Remove");
-
+        removeButton.setBackground(Color.YELLOW);
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -116,6 +116,7 @@ public class FriendFrontend extends JPanel {
 
         // Block button
         blockButton = new JButton("Block");
+        blockButton.setBackground(Color.RED);
         blockButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

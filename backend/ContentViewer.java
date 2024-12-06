@@ -41,9 +41,8 @@ public class ContentViewer {
             User f = userContentDatabase.getUser(friend);
             for (Content content : f.getProfile().getContents()) {
                 if (content.getContentId() < 0) {
-                    Story story = (Story) content;
-                    if (!story.isExpired()) {
-                        stories.add(story);
+                    if (!content.isExpired()) {
+                        stories.add(content);
                     }
                 }
             }

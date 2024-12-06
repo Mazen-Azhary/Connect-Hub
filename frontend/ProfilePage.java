@@ -10,6 +10,8 @@ import backend.ContentFactory;
 import backend.ProfileDataBase;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
@@ -93,9 +95,24 @@ public class ProfilePage extends javax.swing.JFrame {
         setResizable(false);
         this.userId = UserId;
         edit();
+        JButton button = new JButton("Back to News Feed");
+        button.setBounds(100, 70, 100, 30);
 
-        UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
-                ContentViewer contentViewer=ContentViewer.getInstance();
+        // Add action listener to the button
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                try {
+                    new NewsFeed(userId);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+        button.setVisible(true);
+        this.add(button);
+         ContentViewer contentViewer=ContentViewer.getInstance();
         ArrayList<Content> posts=contentViewer.generateProfilePosts(userId);
 
         postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
@@ -204,6 +221,7 @@ public class ProfilePage extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         EditProfileButton = new javax.swing.JButton();
         AddStoryButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         changeProfilePictureButton = new javax.swing.JButton();
         changeCoverPictureButton = new javax.swing.JButton();
         CreatePostButton = new javax.swing.JButton();
@@ -299,6 +317,17 @@ public class ProfilePage extends javax.swing.JFrame {
                 EditBioButtonActionPerformed(evt);
             }
         });
+        backButton.setText("Back to Newsfeed");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dispose();
+                try {
+                    new NewsFeed(userId);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
         javax.swing.GroupLayout BioPanelLayout = new javax.swing.GroupLayout(BioPanel);
         BioPanel.setLayout(BioPanelLayout);
@@ -316,7 +345,8 @@ public class ProfilePage extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(CreatePostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(EditBioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(EditBioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(BioPanelLayout.createSequentialGroup()
                                                 .addComponent(changeProfilePictureButton)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -338,12 +368,14 @@ public class ProfilePage extends javax.swing.JFrame {
                                                 .addGroup(BioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(AddStoryButton)
                                                         .addComponent(CreatePostButton)
-                                                        .addComponent(EditBioButton))))
+                                                        .addComponent(EditBioButton)
+                                                        .addComponent(backButton))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(BioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(changeProfilePictureButton)
                                         .addComponent(changeCoverPictureButton)
-                                        .addComponent(EditProfileButton))
+                                        .addComponent(EditProfileButton)
+                                        .addComponent(backButton))
                                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -432,7 +464,7 @@ public class ProfilePage extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -552,7 +584,7 @@ public class ProfilePage extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new frontend.ProfilePage("2").setVisible(true);
+                    new frontend.ProfilePage("5").setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(ProfilePage.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -572,6 +604,7 @@ public class ProfilePage extends javax.swing.JFrame {
     private javax.swing.JButton EditProfileButton;
     private javax.swing.JPanel HeaderPanel;
     private javax.swing.JLabel ImageLabel1;
+    private javax.swing.JButton backButton;
     private javax.swing.JLabel ProfilePictureLabel;
     private javax.swing.JPanel ProfilePicturePanel;
     private javax.swing.JButton changeCoverPictureButton;
