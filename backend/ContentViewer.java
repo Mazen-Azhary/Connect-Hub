@@ -50,7 +50,9 @@ public class ContentViewer {
         User user = userContentDatabase.getUser(id);
         for (Content content : user.getProfile().getContents()) {
             if (content.getContentId() < 0) {
-                stories.add(content);
+                if (!content.isExpired()) {
+                    stories.add(content);
+                }
             }
         }
         Collections.shuffle(stories);

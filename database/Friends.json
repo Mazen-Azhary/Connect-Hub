@@ -2,39 +2,39 @@
   "profile" : {
     "friendRequests" : [ "2" ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ "-3", "-4" ],
+    "blockedUsers" : [ "-3", "-4", "-6" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ ]
+    "friends" : [ "5" ]
   },
   "userID" : "1",
   "username" : "Lamine"
 }, {
   "profile" : {
-    "friendRequests" : [ "6" ],
-    "friendSuggestions" : [ "5" ],
+    "friendRequests" : [ ],
+    "friendSuggestions" : [ "4" ],
     "blockedUsers" : [ ],
     "friendReceivedRequests" : [ "1" ],
-    "friends" : [ "4" ]
+    "friends" : [ "6", "3" ]
   },
   "userID" : "2",
   "username" : "Pedri"
 }, {
   "profile" : {
     "friendRequests" : [ ],
-    "friendSuggestions" : [ "5", "2" ],
+    "friendSuggestions" : [ "4" ],
     "blockedUsers" : [ "1" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "6" ]
+    "friends" : [ "6", "2" ]
   },
   "userID" : "3",
   "username" : "Freinke"
 }, {
   "profile" : {
     "friendRequests" : [ ],
-    "friendSuggestions" : [ ],
+    "friendSuggestions" : [ "3", "2" ],
     "blockedUsers" : [ "1" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "2" ]
+    "friends" : [ "6" ]
   },
   "userID" : "4",
   "username" : "Mbappe"
@@ -44,7 +44,7 @@
     "friendSuggestions" : [ ],
     "blockedUsers" : [ "7", "6" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ ]
+    "friends" : [ "1" ]
   },
   "userID" : "5",
   "username" : "Vinicius"
@@ -52,9 +52,9 @@
   "profile" : {
     "friendRequests" : [ ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ "-5" ],
-    "friendReceivedRequests" : [ "2" ],
-    "friends" : [ "3" ]
+    "blockedUsers" : [ "-5", "1" ],
+    "friendReceivedRequests" : [ ],
+    "friends" : [ "3", "2", "4" ]
   },
   "userID" : "6",
   "username" : "Bellingham"

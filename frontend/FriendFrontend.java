@@ -13,9 +13,9 @@ import backend.*;
 
 public class FriendFrontend extends JPanel {
 
-    private ProfileDataBase profileDataBase = new ProfileDataBase("src/database/Profile.json");
+    private FriendsViewer friendsViewer=FriendsViewer.getInstance();
     private FriendManager friendManager;
-    private UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
+    private ProfileManager profileManager=ProfileManager.getInstance();
     {
         try {
             friendManager = FriendManager.getInstance();
@@ -43,12 +43,7 @@ public class FriendFrontend extends JPanel {
         String friendId = this.friendID;
         this.profilePage = profilePage;
         User friendProfile;
-        try {
-            friendProfile = profileDataBase.getUser(friendId);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+        friendProfile = profileManager.getUser(friendId);
         ImageIcon photo = new ImageIcon(friendProfile.getProfile().getProfilePhoto());
 
         // Check if the image is valid (non-zero width/height)
@@ -65,7 +60,7 @@ public class FriendFrontend extends JPanel {
         friendPhoto.setHorizontalAlignment(JLabel.CENTER);
 
         activeStatus = new JLabel();
-        if(userContentDatabase.getUser(friendId).getStatus().equalsIgnoreCase("online")){
+        if(friendsViewer.getStatus(friendID).equalsIgnoreCase("online")){
             activeStatus.setText("\n                                 online");
             activeStatus.setForeground(Color.GREEN);
         }

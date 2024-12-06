@@ -16,9 +16,8 @@ import java.time.LocalDateTime;
  * @author Etijah
  */
 public class CreateStoryPage extends javax.swing.JFrame {
-    private UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
     private static String userID;
-    private ContentDatabase contentDatabase = new ContentDatabase("src/database/Contents.json");
+
     /**
      * Creates new form CreateStoryPage
      */
@@ -120,17 +119,8 @@ public class CreateStoryPage extends javax.swing.JFrame {
 
         ContentFactory factory = new ContentFactory();
         try {
-            Content n = factory.createContent("story",Integer.parseInt(userID), LocalDateTime.now());
-            ContentBuilder builder = new ContentBuilder(n);
-            builder.setContent(StoryContentTextField.getText());
-            if(imagePath!=null)
-                builder.setImage(imagePath);
-            n = builder.build();
-
-            contentDatabase.addContent(n);
-            User u=userContentDatabase.getUser(userID);
-            u.getProfile().addContent(n);
-            userContentDatabase.modifyUserById(u);
+            ContentManager contentManager=ContentManager.getInstance();
+            contentManager.addStory(userID,StoryContentTextField.getText(),imagePath);
             dispose();
 
         } catch (IOException e) {

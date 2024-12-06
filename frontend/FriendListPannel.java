@@ -1,6 +1,7 @@
 package frontend;
 
 import backend.FriendDatabase;
+import backend.FriendsViewer;
 import backend.ProfileDataBase;
 import backend.User;
 
@@ -10,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FriendListPannel extends JPanel {
-    private FriendDatabase friendDatabase = new FriendDatabase("src/database/Friends.json");
+    FriendsViewer friendsViewer=FriendsViewer.getInstance();
 private String userID;
 private  NewsFeed newsFeed;
 private ProfilePage profilePage;
@@ -20,7 +21,7 @@ private ProfilePage profilePage;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.profilePage = profilePage;
 
-        ArrayList<String> friendIDs=friendDatabase.getUser(userID).getProfile().getFriends();
+        ArrayList<String> friendIDs=friendsViewer.getFriends(userID);
 
         for (int i = 0; i < friendIDs.size(); i++) {
 

@@ -5,17 +5,14 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import backend.FriendDatabase;
-import backend.FriendManager;
-import backend.ProfileDataBase;
-import backend.User;
+import backend.*;
 
 public class FriendRequestPage extends JFrame {
 
     private String id;
     private ArrayList<String> friendRequests;
-    private FriendDatabase friendDatabase = new FriendDatabase("src/database/Friends.json");
-    private ProfileDataBase profileDataBase = new ProfileDataBase("src/database/Profile.json");
+    private FriendsViewer friendsViewer=FriendsViewer.getInstance();
+    private ProfileManager profileManager=ProfileManager.getInstance();
     private FriendManager friendManager = FriendManager.getInstance();
     private JPanel requestListPanel;
     private JScrollPane scrollPane;
@@ -37,11 +34,8 @@ public class FriendRequestPage extends JFrame {
     }
 
     private void loadFriendRequests() {
-        try {
-            friendRequests = friendDatabase.getUser(id).getProfile().getFriendRecievedRequests();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+            friendRequests = friendsViewer.getReceived(id);
     }
 
     private void displayFriendRequests() throws IOException {
@@ -55,7 +49,7 @@ public class FriendRequestPage extends JFrame {
             requestPanel.setPreferredSize(new Dimension(400, 70)); // Adjust width and height
 
             // Get user details
-            User user = profileDataBase.getUser(request);
+            User user = profileManager.getUser(request);
 
             // Name label
             JLabel nameLabel = new JLabel(user.getUsername());
