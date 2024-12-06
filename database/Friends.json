@@ -11,7 +11,7 @@
 }, {
   "profile" : {
     "friendRequests" : [ "6" ],
-    "friendSuggestions" : [ ],
+    "friendSuggestions" : [ "3", "5" ],
     "blockedUsers" : [ "-1" ],
     "friendReceivedRequests" : [ ],
     "friends" : [ "4" ]

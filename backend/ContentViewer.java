@@ -57,4 +57,16 @@ public class ContentViewer {
         Collections.shuffle(stories);
         return stories;
     }
+    public ArrayList<Content> generateProfilePosts(String id) throws IOException {
+        ArrayList<Content> posts = new ArrayList<>();
+        User user=userContentDatabase.getUser(id);
+        for(Content content:user.getProfile().getContents()) {
+            if(content.getContentId()>0) {
+                posts.add(content);
+            }
+        }
+            Collections.shuffle(posts);
+        return posts;
+    }
+
 }
