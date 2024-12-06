@@ -3,13 +3,19 @@ package backend;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Login {
     private static Login instance;
-    private final String filePath = "src/database/Users.json";
-    private  UserDataBase userDataBase;
+    private final String filePath = "src/database/Login.json";
+    private final String contentPath="src/database/UserContents.json";
+    private LoginDatabase loginDataBase;
+    private UserContentDatabase userContentDatabase;
+    private String userID;
     private Login() throws IOException {
-        userDataBase=new UserDataBase(filePath);
+        loginDataBase = new LoginDatabase(filePath);
+        userContentDatabase = new UserContentDatabase(contentPath);
     }
     public static synchronized Login getInstance() throws IOException {
         if (instance == null) {
@@ -17,24 +23,30 @@ public class Login {
         }
         return instance;
     }
-    public boolean login(String email,String password) throws NoSuchAlgorithmException {
+    public boolean login(String email,String password) throws NoSuchAlgorithmException, IOException {
         //checking from the data base
         //hashing the password
-        if(userDataBase.contains(email))
+        Map<String,Object> loginData = new HashMap<>();
+        loginData.put("email",email);
+        if(loginDataBase.contains(loginData))
         {
-            User user=userDataBase.search(email);
-            byte[] salt = user.getSalt();
-            if(PasswordHasher.hashedPassword(password,salt).equals(user.getHashedPassword()))
+            Map<String,Object> user=loginDataBase.search(loginData);
+            byte[] salt = Base64.getDecoder().decode(user.get("salt").toString());
+            if(PasswordHasher.hashedPassword(password,salt).equals(user.get("hashedPassword").toString()))
             {
-                user.setStatus("online");
+                User use=userContentDatabase.getUser(user.get("userId").toString());
+                userID= user.get("userId").toString();
+                use.setStatus("online");
+                userContentDatabase.modifyUserById(use);
                 return true;
             }
 
         }
         return false;
     }
-    public void save()
+    public String save()
     {
-        userDataBase.save();
+        loginDataBase.save();
+        return userID;
     }
 }

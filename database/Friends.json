@@ -1,0 +1,71 @@
+[ {
+  "profile" : {
+    "friendRequests" : [ "2" ],
+    "friendSuggestions" : [ ],
+    "blockedUsers" : [ "-3", "-4" ],
+    "friendReceivedRequests" : [ ],
+    "friends" : [ ]
+  },
+  "userID" : "1",
+  "username" : "Lamine"
+}, {
+  "profile" : {
+    "friendRequests" : [ "6" ],
+    "friendSuggestions" : [ "5" ],
+    "blockedUsers" : [ ],
+    "friendReceivedRequests" : [ "1" ],
+    "friends" : [ "4" ]
+  },
+  "userID" : "2",
+  "username" : "Pedri"
+}, {
+  "profile" : {
+    "friendRequests" : [ ],
+    "friendSuggestions" : [ "5", "2" ],
+    "blockedUsers" : [ "1" ],
+    "friendReceivedRequests" : [ ],
+    "friends" : [ "6" ]
+  },
+  "userID" : "3",
+  "username" : "Freinke"
+}, {
+  "profile" : {
+    "friendRequests" : [ ],
+    "friendSuggestions" : [ ],
+    "blockedUsers" : [ "1" ],
+    "friendReceivedRequests" : [ ],
+    "friends" : [ "2" ]
+  },
+  "userID" : "4",
+  "username" : "Mbappe"
+}, {
+  "profile" : {
+    "friendRequests" : [ ],
+    "friendSuggestions" : [ ],
+    "blockedUsers" : [ "7", "6" ],
+    "friendReceivedRequests" : [ ],
+    "friends" : [ ]
+  },
+  "userID" : "5",
+  "username" : "Vinicius"
+}, {
+  "profile" : {
+    "friendRequests" : [ ],
+    "friendSuggestions" : [ ],
+    "blockedUsers" : [ "-5" ],
+    "friendReceivedRequests" : [ "2" ],
+    "friends" : [ "3" ]
+  },
+  "userID" : "6",
+  "username" : "Bellingham"
+}, {
+  "profile" : {
+    "friendRequests" : [ ],
+    "friendSuggestions" : [ ],
+    "blockedUsers" : [ "-5" ],
+    "friendReceivedRequests" : [ ],
+    "friends" : [ ]
+  },
+  "userID" : "7",
+  "username" : "mazen azhary"
+} ]

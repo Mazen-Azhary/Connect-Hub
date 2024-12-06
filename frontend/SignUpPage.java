@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
@@ -24,13 +24,16 @@ public class SignUpPage extends javax.swing.JFrame {
     /**
      * Creates new form SignUpPage
      */
-    public SignUpPage() {
+    WelcomePage welcomePage;
+    public SignUpPage(WelcomePage welcomePage) {
         initComponents();
         setLocationRelativeTo(null);
+        this.welcomePage = welcomePage;
         setTitle("Sign Up");
-
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         Male.setActionCommand("Male");
         Female.setActionCommand("Female");
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         //button group allows one button only to be active
         buttonGroup1.add(Male);
         buttonGroup1.add(Female);
@@ -70,6 +73,8 @@ public class SignUpPage extends javax.swing.JFrame {
                 try {
                     signUpButtonActionPerformed(evt);
                 } catch (NoSuchAlgorithmException e) {
+                    throw new RuntimeException(e);
+                } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             }
@@ -190,7 +195,7 @@ public class SignUpPage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(DOBcalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(187, 187, 187)
+                .addGap(179, 179, 179)
                 .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(43, Short.MAX_VALUE))
         );
@@ -221,7 +226,7 @@ public class SignUpPage extends javax.swing.JFrame {
          }
     }//GEN-LAST:event_showPasswordButtonActionPerformed
 
-    private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) throws NoSuchAlgorithmException {//GEN-FIRST:event_signUpButtonActionPerformed
+    private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) throws NoSuchAlgorithmException, IOException, IOException {//GEN-FIRST:event_signUpButtonActionPerformed
 
         String userName = userNameTxt.getText().trim().replace("\n","");
 
@@ -260,9 +265,10 @@ public class SignUpPage extends javax.swing.JFrame {
             Signup s=Signup.getInstance();
             if(s.signup(userName, email, password, gender, dob))
             {
-
-        JOptionPane.showMessageDialog(null, "Succesful Signup,please wait");
+        JOptionPane.showMessageDialog(null, "Successful Signup,please wait");
         s.save();
+        setVisible(false);
+        welcomePage.setVisible(true);
         try {
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
@@ -307,7 +313,7 @@ public class SignUpPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SignUpPage().setVisible(true);
+                new SignUpPage(new WelcomePage()).setVisible(true);
             }
         });
     }

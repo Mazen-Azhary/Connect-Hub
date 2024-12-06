@@ -1,5 +1,6 @@
 package backend;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 
@@ -11,7 +12,7 @@ public class User {
     private String hashedPassword;
     private byte[] salt;
     private String gender;
-    private LocalDate dateOfBirth;
+    private LocalDate dateOfBirth=LocalDate.now();
     private Profile profile;
 
     public String getStatus() {
@@ -20,6 +21,10 @@ public class User {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+    public User()
+    {
+
     }
 
     public User(String userID, String email, String username, String password, String gender, LocalDate dateOfBirth) throws NoSuchAlgorithmException {
@@ -34,14 +39,17 @@ public class User {
         this.profile=profileBuilder.build();
         this.status="offline";
     }
-    public User(String userID, String email, String username,String gender, LocalDate dateOfBirth,String status)  { //this constructor for reading from file
+
+    public User(String userID, String email, String username, String status, String hashedPassword, byte[] salt, String gender, LocalDate dateOfBirth, Profile profile) {
         this.userID = userID;
         this.email = email;
         this.username = username;
-        this.salt=PasswordHasher.salt();
+        this.status = status;
+        this.hashedPassword = hashedPassword;
+        this.salt = salt;
+        this.gender = gender;
         this.dateOfBirth = dateOfBirth;
-        this.gender=gender;
-        this.status=status;
+        this.profile = profile;
     }
 
     public String getHashedPassword() {

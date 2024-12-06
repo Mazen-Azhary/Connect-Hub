@@ -1,19 +1,24 @@
 package backend;
 
+import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public abstract class Content {
+public class Content {
     private int contentId;
     private int authorId;
     private String content;
     private String image;
-    private LocalDateTime timestamp;
-    private static int postCount = 0;
+    private LocalDateTime timestamp=LocalDateTime.now();
+    public Content()
+    {
 
-    public Content(int authorId, LocalDateTime timestamp) {
+    }
+
+    public Content(int contentId, int authorId, LocalDateTime timestamp) {
+        this.contentId = contentId;
         this.authorId = authorId;
         this.timestamp = timestamp;
-        this.contentId = ++postCount;
     }
 
     public Content(int contentId, int authorId, String content, String image, LocalDateTime timestamp) {
@@ -22,6 +27,14 @@ public abstract class Content {
         this.content = content;
         this.image = image;
         this.timestamp = timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setContentId(int contentId) {
+        this.contentId = contentId;
     }
 
     public int getContentId() {
@@ -55,10 +68,11 @@ public abstract class Content {
     public LocalDateTime getTimestamp() {
         return timestamp;
     }
-
-    public static int getPostCount() {
-        return postCount;
+    public boolean isExpired()
+    {
+        return Duration.between(getTimestamp(), LocalDateTime.now()).toHours() >= 24;
     }
+
 
 
 }

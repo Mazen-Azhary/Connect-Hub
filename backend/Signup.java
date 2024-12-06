@@ -1,27 +1,34 @@
 package backend;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.json.simple.parser.ParseException;
 
 public class Signup {
     private static Signup instance;
     private int IDcounter=1; //helps us for the unique id
-    private final String filePath = "src/database/Users.json";
-    private  UserDataBase userDataBase;
+    private final String filePath = "src/database/Login.json";
+    private final String profilePath = "src/database/Profile.json";
+    private final String FriendsPath = "src/database/Friends.json";
+    private final String UserContentsPath = "src/database/UserContents.json";
+    private  LoginDatabase loginDatabase;
+    private  ProfileDataBase profileDataBase;
+    private FriendDatabase friendDatabase;
+    private UserContentDatabase userContentDatabase;
     private Signup() {
-        try {
-            userDataBase=new UserDataBase(filePath);
-            IDcounter=userDataBase.getData().size()+1;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+
+            loginDatabase=new LoginDatabase(filePath);
+            profileDataBase=new ProfileDataBase(profilePath);
+            friendDatabase=new FriendDatabase(FriendsPath);
+            userContentDatabase=new UserContentDatabase(UserContentsPath);
+            try {
+            IDcounter=loginDatabase.getMap().size()+1;
         }
-    }
-    public void increment()
-    {
-        IDcounter++;
+        catch (Exception e) {
+        }
     }
     public static synchronized Signup getInstance() {
         if (instance == null) {
@@ -29,12 +36,20 @@ public class Signup {
         }
         return instance;
     }
-    public boolean signup(String userName, String email, String password, String gender, LocalDate dateOFBirth) throws NoSuchAlgorithmException {
+    public boolean signup(String userName, String email, String password, String gender, LocalDate dateOFBirth) throws NoSuchAlgorithmException, IOException {
         String id=IDcounter+"";
-        System.out.println(id);
         User user=new User(id,email,userName,password,gender,dateOFBirth);
-        if (userDataBase.addData(user))
+        System.out.println(user.getUserID());
+        Map<String,Object> map=new HashMap<>();
+        map.put("userId",user.getUserID());
+        map.put("email",user.getEmail());
+        map.put("hashedPassword",user.getHashedPassword());
+        map.put("salt",user.getSalt());
+        if (loginDatabase.addData(map))
         {
+            profileDataBase.addUser(user);
+            userContentDatabase.addUser(user);
+            friendDatabase.addUser(user);
             IDcounter++;
             return true;
         }
@@ -44,7 +59,8 @@ public class Signup {
     }
     public void save()
     {
-        userDataBase.save();
+        loginDatabase.save();
     }
+
 
 }
