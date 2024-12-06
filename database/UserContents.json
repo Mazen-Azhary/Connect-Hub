@@ -52,7 +52,7 @@
   },
   "userID" : "1",
   "username" : "Lamine",
-  "status" : "online"
+  "status" : "offline"
 }, {
   "profile" : {
     "contents" : [ {
@@ -128,7 +128,7 @@
   },
   "userID" : "5",
   "username" : "Vinicius",
-  "status" : "online"
+  "status" : "offline"
 }, {
   "profile" : {
     "contents" : [ ]
@@ -148,5 +148,5 @@
   },
   "userID" : "7",
   "username" : "mazen azhary",
-  "status" : "online"
+  "status" : "offline"
 } ]
