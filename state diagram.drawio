@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="25.0.0">
   <diagram name="Page-1" id="KyFJbN3LeG4HaSNtgouU">
-    <mxGraphModel dx="618" dy="331" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="677" dy="363" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -50,18 +50,57 @@
         <mxCell id="ROm6DJFv5Au94kjieVda-12" value="In welcome page" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="1">
           <mxGeometry x="190" y="280" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="ROm6DJFv5Au94kjieVda-13" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;" edge="1" source="ROm6DJFv5Au94kjieVda-12" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="250" y="380" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="ROm6DJFv5Au94kjieVda-17" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#ff0000;" vertex="1" parent="1">
           <mxGeometry x="420" y="40" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ROm6DJFv5Au94kjieVda-13" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;entryX=0.435;entryY=0.002;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" source="ROm6DJFv5Au94kjieVda-12" parent="1" target="ROm6DJFv5Au94kjieVda-21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="260" y="480" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="200" y="480" />
+              <mxPoint x="192" y="480" />
+              <mxPoint x="192" y="510" />
+              <mxPoint x="223" y="510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ROm6DJFv5Au94kjieVda-20" value="Signup attempted" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="ROm6DJFv5Au94kjieVda-13">
+          <mxGeometry x="-0.3179" y="-1" relative="1" as="geometry">
+            <mxPoint x="-93" y="-21" as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="ROm6DJFv5Au94kjieVda-18" value="Close app" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;exitX=0.083;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="ROm6DJFv5Au94kjieVda-8" target="ROm6DJFv5Au94kjieVda-17">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="480" y="100" as="sourcePoint" />
             <mxPoint x="560" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ROm6DJFv5Au94kjieVda-21" value="In Signup window" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="1">
+          <mxGeometry x="140" y="540" width="190" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="ROm6DJFv5Au94kjieVda-22" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;elbow=vertical;" edge="1" source="ROm6DJFv5Au94kjieVda-21" parent="1" target="ROm6DJFv5Au94kjieVda-21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="770" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ROm6DJFv5Au94kjieVda-23" value="non succesful&amp;nbsp;&lt;div&gt;signup&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="ROm6DJFv5Au94kjieVda-22">
+          <mxGeometry x="-0.2141" relative="1" as="geometry">
+            <mxPoint x="40" y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ROm6DJFv5Au94kjieVda-24" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;elbow=vertical;" edge="1" parent="1" source="ROm6DJFv5Au94kjieVda-21" target="ROm6DJFv5Au94kjieVda-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="40" y="310" as="targetPoint" />
+            <mxPoint x="100" y="510" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="41" y="615" />
+              <mxPoint x="41" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ROm6DJFv5Au94kjieVda-25" value="succesful&amp;nbsp;&lt;div&gt;signup&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="ROm6DJFv5Au94kjieVda-24">
+          <mxGeometry x="-0.2141" relative="1" as="geometry">
+            <mxPoint x="40" y="11" as="offset" />
           </mxGeometry>
         </mxCell>
       </root>
