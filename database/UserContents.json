@@ -91,7 +91,7 @@
   },
   "userID" : "4",
   "username" : "Mbappe",
-  "status" : "online"
+  "status" : "offline"
 }, {
   "profile" : {
     "contents" : [ {
@@ -116,7 +116,7 @@
   },
   "userID" : "5",
   "username" : "Vinicius",
-  "status" : "offline"
+  "status" : "online"
 }, {
   "profile" : {
     "contents" : [ ]

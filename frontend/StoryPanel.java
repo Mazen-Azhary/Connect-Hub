@@ -10,12 +10,11 @@ import java.util.ArrayList;
 import backend.*;
 public class StoryPanel extends JPanel {
     private ArrayList<StoryFrontend> stories_ = new ArrayList<>();
-    private ProfileDataBase profileDatabase;
     private ContentViewer contentViewer;
+    private ProfileManager profileManager=ProfileManager.getInstance();
     private ArrayList<Content> stories;
     public StoryPanel(String UserId) {
         contentViewer=ContentViewer.getInstance();
-        profileDatabase=new ProfileDataBase("src/database/Profile.json");
         try {
             stories=contentViewer.generateStories(UserId);
         } catch (IOException e) {
@@ -26,11 +25,9 @@ public class StoryPanel extends JPanel {
         for(Content story : stories) {
             ImageIcon profilePhoto = null;
             String img;
-            try {
-                img=profileDatabase.getUser(story.getAuthorId()+"").getProfile().getProfilePhoto();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+
+                img=profileManager.getUser(story.getAuthorId()+"").getProfile().getProfilePhoto();
+
             if (img != null) {
                 profilePhoto = new ImageIcon(img);
             }
@@ -39,11 +36,9 @@ public class StoryPanel extends JPanel {
                 profilePhoto = new ImageIcon("src/database/defaultIcon.jpg");
             }
             StoryFrontend pack = null;
-            try {
-                pack = new StoryFrontend(UserId, profileDatabase.getUser(story.getAuthorId()+"").getUsername(), profilePhoto,story.getImage(),story.getContent());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+
+                pack = new StoryFrontend(UserId, profileManager.getUser(story.getAuthorId()+"").getUsername(), profilePhoto,story.getImage(),story.getContent());
+
             //stories_.add(pack);
             this.add(pack);
             this.add(Box.createHorizontalStrut(5)); // Space between stories_
