@@ -28,7 +28,6 @@ public class ContentManager {
             User u=userContentDatabase.getUser(userID);
             u.getProfile().addContent(n);
             userContentDatabase.modifyUserById(u);
-
         }
         public void addStory(String userID,String content,String imagePath) throws IOException {
         ContentFactory factory = new ContentFactory();
