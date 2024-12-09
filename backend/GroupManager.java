@@ -18,14 +18,36 @@ public class GroupManager {
         }
         return instance;
     }
-    public Map<String,GroupRole> getGroups(String userId) {
+    public ArrayList<Group> getGroups(String userId) {
         User user=null;
         try {
              user=userGroupsDatabase.getUser(userId);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return user.getProfile().getGroups();
+        Map<String,GroupRole> grps=user.getProfile().getGroups();
+        ArrayList<Group> groups=new ArrayList<>();
+        for(Map.Entry<String,GroupRole> entry:grps.entrySet()){
+            if(entry.getValue()==GroupRole.PENDING){
+                continue;
+            }
+            try {
+                groups.add(groupsDatabase.getGroup(entry.getKey()));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return groups;
+    }
+    public GroupRole getRole(String userId, String groupId)
+    {
+        Group group= null;
+        try {
+            group = groupsDatabase.getGroup(groupId);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return group.getMembers().get(userId);
     }
     public void createGroup(String userId,String groupName,String description) {
         Group group=null;
@@ -102,6 +124,4 @@ public class GroupManager {
         }
         return admins;
     }
-
-
 }
