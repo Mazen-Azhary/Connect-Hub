@@ -58,8 +58,11 @@ public class Profile {
     public void addGroup(String groupId, GroupRole groupRole) {
         this.groups.put(groupId, groupRole);
     }
-    public void leaveGroup(String groupName) {
-        this.groups.remove(groupName);
+    public void leaveGroup(String groupId) {
+        this.groups.remove(groupId);
+    }
+    public void requestJoin(String groupId) {
+        groups.put(groupId,GroupRole.PENDING);
     }
 
     public ArrayList<String> getFriendRecievedRequests() {

@@ -3,8 +3,8 @@
     "friendRequests" : [ "7" ],
     "friendSuggestions" : [ ],
     "blockedUsers" : [ "-3", "-4", "2" ],
-    "friendReceivedRequests" : [ "8" ],
-    "friends" : [ "5", "6" ]
+    "friendReceivedRequests" : [ ],
+    "friends" : [ "5", "6", "8" ]
   },
   "userID" : "1",
   "username" : "Lamine"
@@ -70,11 +70,11 @@
   "username" : "mazen azhary"
 }, {
   "profile" : {
-    "friendRequests" : [ "1", "2", "3", "7" ],
+    "friendRequests" : [ "2", "3", "7" ],
     "friendSuggestions" : [ ],
     "blockedUsers" : [ "4", "5" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ ]
+    "friends" : [ "1" ]
   },
   "userID" : "8",
   "username" : "mohamed"

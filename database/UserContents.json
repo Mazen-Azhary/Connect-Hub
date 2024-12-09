@@ -48,11 +48,17 @@
       "authorId" : 1,
       "content" : "sad",
       "timestamp" : [ 2024, 12, 6, 14, 1, 39, 746829200 ]
+    }, {
+      "image" : null,
+      "contentId" : -17,
+      "authorId" : 1,
+      "content" : "hey",
+      "timestamp" : [ 2024, 12, 10, 0, 10, 7, 392224000 ]
     } ]
   },
   "userID" : "1",
   "username" : "Lamine",
-  "status" : "offline"
+  "status" : "online"
 }, {
   "profile" : {
     "contents" : [ {

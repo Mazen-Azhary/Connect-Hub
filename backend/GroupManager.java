@@ -40,9 +40,67 @@ public class GroupManager {
             throw new RuntimeException(e);
         }
     }
+    public void deleteGroup(String groupName) {
+        Group group=null;
+        try {
+            group=groupsDatabase.getGroup(groupName);
+            group.deleteGroup();
+            groupsDatabase.modifyGroupById(group);
+        }
+        catch(Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
     public ArrayList<String> getAdmins(String groupId)
     {
-
+            ArrayList<String> admins=new ArrayList<>();
+        try {
+            Map <String,GroupRole> members=groupsDatabase.getGroup(groupId).getMembers();
+            for(Map.Entry<String,GroupRole> entry:members.entrySet())
+            {
+                if(entry.getValue().equals(GroupRole.ADMIN))
+                {
+                    admins.add(entry.getKey());
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return admins;
+    }
+    public ArrayList<String> getMembers(String groupId)
+    {
+            ArrayList<String> admins=new ArrayList<>();
+        try {
+            Map <String,GroupRole> members=groupsDatabase.getGroup(groupId).getMembers();
+            for(Map.Entry<String,GroupRole> entry:members.entrySet())
+            {
+                if(entry.getValue().equals(GroupRole.MEMBER))
+                {
+                    admins.add(entry.getKey());
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return admins;
+    }
+    public ArrayList<String> getRequests(String groupId)
+    {
+            ArrayList<String> admins=new ArrayList<>();
+        try {
+            Map <String,GroupRole> members=groupsDatabase.getGroup(groupId).getMembers();
+            for(Map.Entry<String,GroupRole> entry:members.entrySet())
+            {
+                if(entry.getValue().equals(GroupRole.PENDING))
+                {
+                    admins.add(entry.getKey());
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return admins;
     }
 
 
