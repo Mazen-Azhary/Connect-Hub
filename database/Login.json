@@ -33,4 +33,9 @@
   "hashedPassword" : "o2eXBJnGPELmUZaPWbxI+iPXqpRwguDL4ER0P+PL8XU=",
   "userId" : "7",
   "email" : "mazen@gmail.com"
+}, {
+  "salt" : "WomSuLWr7ujGE34eeAsxmQ==",
+  "hashedPassword" : "3qiYvca8a1VoY7q3xdVeQgJKqOw2mKcEgWN+AF1Nyas=",
+  "userId" : "8",
+  "email" : "mohamed@gmail.com"
 } ]

@@ -3,7 +3,7 @@
   "profile" : {
     "profilePhoto" : "C:\\Users\\etijah\\Downloads\\Lamine.jpg",
     "coverPhoto" : "C:\\Users\\etijah\\Downloads\\fcb.jpg",
-    "bio" : "fghdgh"
+    "bio" : "lamine yamal"
   },
   "dateOfBirth" : [ 2024, 12, 5 ],
   "userID" : "1",
@@ -53,7 +53,7 @@
   "profile" : {
     "profilePhoto" : null,
     "coverPhoto" : null,
-    "bio" : null
+    "bio" : "ana jude"
   },
   "dateOfBirth" : [ 2024, 12, 5 ],
   "userID" : "6",
@@ -68,4 +68,24 @@
   "dateOfBirth" : [ 2024, 12, 5 ],
   "userID" : "7",
   "username" : "mazen azhary"
+}, {
+  "gender" : "Male",
+  "profile" : {
+    "profilePhoto" : null,
+    "coverPhoto" : null,
+    "bio" : "انا رقم واحد في كوكب الارض"
+  },
+  "dateOfBirth" : [ 2024, 12, 7 ],
+  "userID" : "8",
+  "username" : "mohamed"
+}, {
+  "gender" : "Male",
+  "profile" : {
+    "profilePhoto" : null,
+    "coverPhoto" : null,
+    "bio" : null
+  },
+  "dateOfBirth" : [ 2004, 2, 5 ],
+  "userID" : "8",
+  "username" : "Mohamed Moeen"
 } ]
