@@ -117,13 +117,4 @@ public class ContentDatabase extends Database {
         writer.write(jsonString); // Write the updated string back to the file
         writer.close();
     }
-
-    public static void main(String[] args) throws IOException {
-        ContentDatabase contentDatabase = new ContentDatabase("src/database/Contents.json");
-        Content content = ContentFactory.createContent("post",1, LocalDateTime.now());
-        ContentBuilder contentBuilder=new ContentBuilder(content);
-        contentBuilder.setContent("ana aho");
-        contentDatabase.addContent(content);
-
-    }
 }

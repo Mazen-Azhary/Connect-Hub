@@ -11,8 +11,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FriendDatabase extends Database {
-    public FriendDatabase(String filename) {
+public class UserGroupsDatabase extends Database {
+
+    public UserGroupsDatabase(String filename) {
         super(filename);
     }
 
@@ -33,8 +34,9 @@ public class FriendDatabase extends Database {
         }
     }
 
-    public void modifyUserById(User user) throws IOException {
+    public void modifyUserGroupsById(User user) throws IOException {
         String jsonString = readString();
+        System.out.println(jsonString);
         ArrayList<Map<String, Object>> users = parseUsers(jsonString);
         if (users == null) return;
 
@@ -43,15 +45,10 @@ public class FriendDatabase extends Database {
                 userNode.put("username", user.getUsername());
                 Object profileObj = userNode.get("profile");
                 Map<String, Object> profile = (Map<String, Object>) profileObj;
-
-                // Update the profile with friend-related attributes
-                profile.put("friendRequests", user.getProfile().getFriendRequests());
-                profile.put("friendReceivedRequests", user.getProfile().getFriendRecievedRequests());
-                profile.put("friendSuggestions", user.getProfile().getFriendSuggestions());
-                profile.put("friends", user.getProfile().getFriends());
-                profile.put("blockedUsers", user.getProfile().getBlockedUsers());
+                profile.put("profilePhoto", user.getProfile().getProfilePhoto());
+                profile.put("groups", user.getProfile().getGroups());
                 userNode.put("profile", profile);
-                break; // Found and modified the user, no need to continue
+                break; // Found the user and modified, no need to continue
             }
         }
 
@@ -60,7 +57,10 @@ public class FriendDatabase extends Database {
         String updatedJsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(users);
         writeUpdatedJSONToFile(fileName, updatedJsonString);
     }
+    public void save()
+    {
 
+    }
     public void addUser(User user) throws IOException {
         String jsonString = readString();
 
@@ -68,6 +68,7 @@ public class FriendDatabase extends Database {
         if (users == null) {
             users = new ArrayList<>();
         }
+
         Map<String, Object> newUser = parse(user);
         users.add(newUser);
 
@@ -97,21 +98,13 @@ public class FriendDatabase extends Database {
         Map<String, Object> map = new HashMap<>();
         map.put("username", user.getUsername());
         map.put("userID", user.getUserID());
-
-        // Parse the profile
+        Profile profileData = user.getProfile();
         Map<String, Object> profile = new HashMap<>();
-        profile.put("friendRequests", user.getProfile().getFriendRequests());
-        profile.put("friendReceivedRequests", user.getProfile().getFriendRecievedRequests());
-        profile.put("friendSuggestions", user.getProfile().getFriendSuggestions());
-        profile.put("friends", user.getProfile().getFriends());
-        profile.put("blockedUsers", user.getProfile().getBlockedUsers());
-
+        profile.put("groups", profileData.getGroups());
+        profile.put("profilePhoto",profileData.getProfilePhoto());
         map.put("profile", profile);
-        return map;
-    }
 
-    public void save() {
-        // Placeholder for save functionality if needed
+        return map;
     }
 
     public void writeUpdatedJSONToFile(String filePath, String jsonString) throws IOException {

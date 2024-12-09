@@ -10,6 +10,7 @@ public class Content {
     private String content;
     private String image;
     private LocalDateTime timestamp=LocalDateTime.now();
+    private boolean deleted=false;
     public Content()
     {
 
@@ -72,7 +73,14 @@ public class Content {
     {
         return Duration.between(getTimestamp(), LocalDateTime.now()).toHours() >= 24;
     }
+    public void deleteContent()
+    {
+        deleted=true;
+    }
 
+    public boolean isDeleted() {
+        return deleted;
+    }
 
 
 }

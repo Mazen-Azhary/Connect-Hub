@@ -11,6 +11,7 @@ public class Group {
     private String photo;
     private Map<String,GroupRole> members;
     private ArrayList<Content>posts;
+    private boolean deleted=false;
 
 
     public Group(String groupId, String name, String description, String photo, Map<String, GroupRole> members, ArrayList<Content> posts) {
@@ -105,5 +106,12 @@ public class Group {
     {
         posts.remove(post);
     }
+    public void deleteGroup()
+    {
+        deleted=true;
+    }
 
+    public boolean isDeleted() {
+        return deleted;
+    }
 }
