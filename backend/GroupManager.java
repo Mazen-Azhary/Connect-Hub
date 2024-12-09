@@ -124,4 +124,56 @@ public class GroupManager {
         }
         return admins;
     }
+    void removeMember(String userId,String groupId){
+        User user=null;
+        try {
+            user = userGroupsDatabase.getUser(userId);
+            Group group=groupsDatabase.getGroup(groupId);
+            group.getMembers().remove(userId);
+            user.getProfile().getGroups().remove(groupId);
+            groupsDatabase.modifyGroupById(group);
+            userGroupsDatabase.modifyUserGroupsById(user);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    void requestJoin(String userId,String groupId)
+    {
+        try
+        {
+            User user=userGroupsDatabase.getUser(userId);
+            Group group=groupsDatabase.getGroup(groupId);
+            user.getProfile().requestJoin(groupId);
+            group.getMembers().put(userId,GroupRole.PENDING);
+            userGroupsDatabase.modifyUserGroupsById(user);
+            groupsDatabase.modifyGroupById(group);
+        }
+        catch (IOException e)
+        {
+           e.printStackTrace();
+        }
+    }
+    void respondRequest(String userId,String groupId,boolean accept){
+        try
+        {
+            User user=userGroupsDatabase.getUser(userId);
+            Group group=groupsDatabase.getGroup(groupId);
+            if(accept)
+            {
+                group.getMembers().put(userId,GroupRole.MEMBER);
+                user.getProfile().getGroups().put(groupId,GroupRole.MEMBER);
+            }
+            else
+            {
+                group.getMembers().remove(userId);
+                user.getProfile().getGroups().remove(groupId);
+            }
+            groupsDatabase.modifyGroupById(group);
+            userGroupsDatabase.modifyUserGroupsById(user);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 }

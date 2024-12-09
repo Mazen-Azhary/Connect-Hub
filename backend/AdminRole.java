@@ -3,7 +3,7 @@ package backend;
 public class AdminRole extends MemberRole{
     private static AdminRole instance;
     private GroupContentManager groupContentManager=GroupContentManager.getInstance();
-    //private GroupManager groupManager=GroupManager.getInstance();
+    private GroupManager groupManager=GroupManager.getInstance();
     protected AdminRole()
     {
         super();
@@ -13,25 +13,19 @@ public class AdminRole extends MemberRole{
         if(instance ==null) return new AdminRole();
         return instance;
     }
-    void promote(String UserId,String GroupId)
+
+    void removeMember(String userId,String groupId){
+        groupManager.removeMember(userId,groupId);
+    }
+    void editPost(String groupId,Content content,String desc,String imagePath)
     {
-        // groupManager.promote(UserId,GroupId);
+        groupContentManager.editPost(groupId,content,desc,imagePath);
     }
-    void demote(String UserId,String GroupId)
-    {
-        // groupManager.demote(UserId,GroupId);
+    void deletePost(String groupId,Content content){
+         groupContentManager.deletePost(groupId,content);
     }
-    void removeMember(String UserId,String GroupId){
-        // groupManager.removeMember(UserId,GroupId);
+    void respondRequest(String userId,String groupId,boolean accept){
+         groupManager.respondRequest(userId,groupId,accept);
     }
-    void editPost(String UserId,String GroupId,String ContentId)
-    {
-        // groupManager.editPost(UserId,GroupId,contentId);
-    }
-    void deletePost(String UserId,String GroupId,String ContentId){
-        // groupManager.deletePost(UserId,GroupId,ContentId);
-    }
-    void respondRequest(String UserId,String GroupId,boolean accept){
-        // groupManager.approveRequest(UserId,GroupId,accept);
-    }
+    //members (delete), pending(approve),posts(edit,delete),add post
 }

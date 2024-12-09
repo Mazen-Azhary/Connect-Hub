@@ -16,8 +16,14 @@ public class PrimaryAdminRole extends AdminRole {
     {
          groupManager.deleteGroup(GroupId);
     }
-    void removeAdmin(String UserId)
+
+    void promote(String UserId,String GroupId)
     {
-         // groupManager.removeAdmin(UserId);
+        // groupManager.promote(UserId,GroupId);
     }
+    void demote(String UserId,String GroupId)
+    {
+        // groupManager.demote(UserId,GroupId);
+    }
+    //members,admins(remove, promote,demote)+admin Role
 }
