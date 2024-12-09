@@ -57,7 +57,6 @@ public class GroupsDatabase extends Database {
                 break;
             }
         }
-
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         String updatedJsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(groups);

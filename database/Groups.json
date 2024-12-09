@@ -1,6 +1,6 @@
 [ {
   "groupId" : "group1",
-  "members" : {
+   "members": {
     "1" : "ADMIN",
     "2" : "MEMBER"
   },
