@@ -42,7 +42,7 @@ public class GroupManager {
     }
     public ArrayList<String> getAdmins(String groupId)
     {
-
+        return null;
     }
 
 
