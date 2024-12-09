@@ -55,8 +55,8 @@ public class Profile {
     public void setGroups(Map<String, GroupRole> groups) {
         this.groups = groups;
     }
-    public void addGroup(String groupName, GroupRole groupRole) {
-        this.groups.put(groupName, groupRole);
+    public void addGroup(String groupId, GroupRole groupRole) {
+        this.groups.put(groupId, groupRole);
     }
     public void leaveGroup(String groupName) {
         this.groups.remove(groupName);

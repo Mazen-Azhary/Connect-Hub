@@ -42,7 +42,7 @@ public class GroupsDatabase extends Database {
                 groupNode.put("name", group.getName());
                 groupNode.put("description", group.getDescription());
                 groupNode.put("photo", group.getPhoto());
-
+                groupNode.put("deleted", group.isDeleted());
                 Map<String, Object> membersMap = new HashMap<>();
                 for (Map.Entry<String, GroupRole> entry : group.getMembers().entrySet()) {
                     membersMap.put(entry.getKey(), entry.getValue().name());
@@ -70,6 +70,7 @@ public class GroupsDatabase extends Database {
         contentMap.put("timestamp", content.getTimestamp());
         contentMap.put("image", content.getImage());
         contentMap.put("content", content.getContent());
+        contentMap.put("deleted", content.isDeleted());
         return contentMap;
     }
 
@@ -108,6 +109,7 @@ public class GroupsDatabase extends Database {
         map.put("name", group.getName());
         map.put("description", group.getDescription());
         map.put("photo", group.getPhoto());
+        map.put("deleted", group.isDeleted());
 
         Map<String, Object> membersMap = new HashMap<>();
         for (Map.Entry<String, GroupRole> entry : group.getMembers().entrySet()) {
@@ -133,30 +135,17 @@ public class GroupsDatabase extends Database {
     {
 
     }
-
-    public static void main(String[] args) throws IOException {
-        GroupsDatabase groupsDatabase = new GroupsDatabase("src/database/Groups.json");
-//        Group group = new Group();
-//        group.setGroupId("group1");
-//        group.setName("Tech Enthusiasts");
-//        group.setDescription("A group for tech lovers");
-//        group.setPhoto("group1.jpg");
-//        group.setMembers(new HashMap<>());
-//        group.getMembers().put("1", GroupRole.ADMIN);
-//        group.getMembers().put("2", GroupRole.MEMBER);
-//        group.setPosts(new ArrayList<>());
-//
-//        Content content = new Content();
-//        content.setContentId(1);
-//        content.setAuthorId(123);
-//        content.setContent("Welcome to the group!");
-//        content.setImage("welcome.jpg");
-//        content.setTimestamp(LocalDateTime.now());
-//        group.getPosts().add(content);
-//        groupsDatabase.addGroup(group);
-        Group grp =groupsDatabase.getGroup("group1");
-        Map<String,GroupRole> map=grp.getMembers();
-        System.out.println(map.get("1").name());
-
+    public int getMax() throws IOException {
+        String jsonString = readString();
+        ArrayList<Map<String, Object>> groups= parseGroups(jsonString);
+        if (groups == null) return 0;
+        int max = 0;
+        for (Map<String, Object> contentNode : groups) {
+            if ((int) contentNode.get("groupId")>max) {
+                max = (int)contentNode.get("groupId");
+            }
+        }
+        return max;
     }
+
 }

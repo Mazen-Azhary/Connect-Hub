@@ -119,31 +119,4 @@ public class FriendDatabase extends Database {
         writer.write(jsonString); // Write the updated string back to the file
         writer.close();
     }
-
-    public static void main(String[] args) throws IOException {
-        FriendDatabase friendDatabase = new FriendDatabase("src/database/Friends.json");
-
-        // Example usage
-        User user = new User();
-        user.setUsername("admin");
-        user.setStatus("active");
-        user.setUserID("1");
-
-        Profile profile = new Profile();
-        profile.setFriendRequests(new ArrayList<>());
-        profile.setFriendRecievedRequests(new ArrayList<>());
-        profile.setFriendSuggestions(new ArrayList<>());
-        profile.setFriends(new ArrayList<>());
-        profile.setBlockedUsers(new ArrayList<>());
-
-        profile.getFriendRequests().add("2");
-        profile.getFriends().add("3");
-
-        user.setProfile(profile);
-        friendDatabase.addUser(user);
-
-        User retrievedUser = friendDatabase.getUser("1");
-        retrievedUser.getProfile().getBlockedUsers().add("4");
-        friendDatabase.modifyUserById(retrievedUser);
-    }
 }
