@@ -27,5 +27,6 @@ public class GroupContentManager {
         contentDatabase.addContent(n);
         Group group=groupsDatabase.getGroup(GroupId);
         group.addPost(n);
+        groupsDatabase.modifyGroupById(group);
     }
 }

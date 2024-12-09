@@ -6,7 +6,7 @@ public class MemberRole extends User{
     private static MemberRole instance;
     private GroupContentManager groupContentManager=GroupContentManager.getInstance();
     //private GroupManager grouptManager=GroupManager.getInstance();
-    private MemberRole()
+    MemberRole()
     {
 
     }
@@ -24,7 +24,7 @@ public class MemberRole extends User{
     }
     void leaveGroup(String UserID,String GroupId)
     {
-        // grouptManager.leaveGroup(UserId,GroupId);
+        // groupManager.leaveGroup(UserId,GroupId);
     }
 
 }
