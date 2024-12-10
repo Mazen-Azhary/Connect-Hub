@@ -2,6 +2,7 @@ package backend;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -217,7 +218,15 @@ public class GroupManager {
             if(group.getMembers().get(userId).equals(GroupRole.PRIMARYADMIN))
             {
                 //shuffle the admins to get the primary
-                //handle law mafeesh admins eshta
+                ArrayList<String> suggestions = getAdmins(groupId);
+                if(suggestions.isEmpty())
+                {
+                    deleteGroup(groupId);
+                }
+                else
+                {
+                    group.getMembers().put(suggestions.get(0),GroupRole.PRIMARYADMIN);
+                }
             }
             group.deleteMember(userId);
             user.getProfile().getGroups().remove(groupId);
