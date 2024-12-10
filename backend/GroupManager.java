@@ -225,7 +225,7 @@ public class GroupManager {
                 }
                 else
                 {
-                    group.getMembers().put(suggestions.getFirst(),GroupRole.PRIMARYADMIN);
+                    group.getMembers().put(suggestions.get(0),GroupRole.PRIMARYADMIN);
                 }
             }
             group.deleteMember(userId);
