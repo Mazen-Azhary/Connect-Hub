@@ -12,16 +12,16 @@ public class PrimaryAdminRole extends AdminRole {
         if(instance ==null) return new PrimaryAdminRole();
         return instance;
     }
-    void deleteGroup(String GroupId)
+    public void deleteGroup(String GroupId)
     {
          groupManager.deleteGroup(GroupId);
     }
 
-    void promote(String UserId,String GroupId)
+    public void promote(String UserId,String GroupId)
     {
          groupManager.promote(UserId,GroupId);
     }
-    void demote(String UserId,String GroupId)
+    public void demote(String UserId,String GroupId)
     {
          groupManager.demote(UserId,GroupId);
     }

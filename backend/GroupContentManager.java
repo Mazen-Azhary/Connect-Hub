@@ -49,13 +49,13 @@ public class GroupContentManager {
         {
             e.printStackTrace();
         }
-        for(Content c:contents)
-        {
-            if(user.getProfile().getBlockedUsers().contains(c.getAuthorId()+"")||c.isDeleted())
-            {
-                contents.remove(c);
-            }
-        }
+//        for(Content c:contents)
+//        {
+//            if(user.getProfile().getBlockedUsers().contains(c.getAuthorId()+"")||c.isDeleted())
+//            {
+//                contents.remove(c);
+//            }
+//        }
         return contents;
     }
     public void deletePost(String groupId,Content content) {

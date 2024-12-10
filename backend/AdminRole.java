@@ -14,17 +14,17 @@ public class AdminRole extends MemberRole{
         return instance;
     }
 
-    void removeMember(String userId,String groupId){
+    public void removeMember(String userId,String groupId){
         groupManager.removeMember(userId,groupId);
     }
-    void editPost(String groupId,Content content,String desc,String imagePath)
+    public void editPost(String groupId,Content content,String desc,String imagePath)
     {
         groupContentManager.editPost(groupId,content,desc,imagePath);
     }
-    void deletePost(String groupId,Content content){
+    public void deletePost(String groupId,Content content){
          groupContentManager.deletePost(groupId,content);
     }
-    void respondRequest(String userId,String groupId,boolean accept){
+    public void respondRequest(String userId,String groupId,boolean accept){
          groupManager.respondRequest(userId,groupId,accept);
     }
     //members (delete), pending(approve),posts(edit,delete),add post

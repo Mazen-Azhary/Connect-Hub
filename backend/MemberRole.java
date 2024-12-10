@@ -2,7 +2,7 @@ package backend;
 
 import java.io.IOException;
 
-public class MemberRole extends User{
+public class MemberRole {
     private static MemberRole instance;
     private GroupContentManager groupContentManager=GroupContentManager.getInstance();
     private GroupManager groupManager=GroupManager.getInstance();
@@ -14,7 +14,7 @@ public class MemberRole extends User{
         if(instance ==null) return new MemberRole();
         return instance;
     }
-    void addPost(String userID,String GroupId,String content,String imagePath)
+    public void addPost(String userID,String GroupId,String content,String imagePath)
     {
         try {
             groupContentManager.addPost(userID,GroupId,content,imagePath);
@@ -22,7 +22,7 @@ public class MemberRole extends User{
             throw new RuntimeException(e);
         }
     }
-    void leaveGroup(String groupId,String userId)
+    public void leaveGroup(String groupId,String userId)
     {
         groupManager.leave(groupId,userId);
     }

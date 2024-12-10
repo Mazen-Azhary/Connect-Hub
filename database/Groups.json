@@ -18,7 +18,8 @@
   "groupId" : "2",
   "members" : {
     "2" : "MEMBER",
-    "3" : "ADMIN"
+    "3" : "ADMIN",
+    "1" : "PRIMARYADMIN"
   },
   "name" : "not my group",
   "description" : null,
