@@ -127,18 +127,17 @@ public class GroupPage extends javax.swing.JFrame {
         loadPosts();
         GroupMembersPannel groupMembersPannel=null;
         try {
-            groupMembersPannel=new GroupMembersPannel(this,userId,groupId);
+            groupMembersPannel=new GroupMembersPannel(this,userId,groupId,false);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         MembersScrollPane1.setViewportView(groupMembersPannel);
-//        FriendListPannel friendPanel = null;
-//        try {
-//            friendPanel = new FriendListPannel(new NewsFeed("1"),null,userId);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        MembersScrollPane.setViewportView(friendPanel);
+        try {
+            groupMembersPannel=new GroupMembersPannel(this,userId,groupId,true);
+            MembersScrollPane.setViewportView(groupMembersPannel);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**

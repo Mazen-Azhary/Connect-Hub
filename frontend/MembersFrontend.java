@@ -22,7 +22,7 @@ public class MembersFrontend extends JPanel {
     private String userID;
     private String groupID;
     private GroupPage groupPage;
-    public MembersFrontend(String userID, String groupId,String memberId,GroupPage groupPage) throws IOException {
+    public MembersFrontend(String userID, String groupId,String memberId,GroupPage groupPage,boolean admin) throws IOException {
         setLayout(new BorderLayout());
         this.userID = userID;
         this.groupID=groupId;
