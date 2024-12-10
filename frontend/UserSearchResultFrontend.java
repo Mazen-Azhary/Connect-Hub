@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -20,7 +22,6 @@ public class UserSearchResultFrontend extends JPanel {
     private JButton viewProfileButton;
     private JButton actionButton;
     private JButton blockButton;
-
 
     public UserSearchResultFrontend(String userID, boolean isFriend) throws IOException {
         setLayout(new BorderLayout());
@@ -42,6 +43,14 @@ public class UserSearchResultFrontend extends JPanel {
         userPhoto.setPreferredSize(new Dimension(diameter, diameter));
         userPhoto.setHorizontalAlignment(JLabel.CENTER);
 
+        // Make the photo clickable and print "Hello World"
+        userPhoto.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                searchResultProfile();
+            }
+        });
+
         userName = new JLabel(user.getUsername());
         userName.setHorizontalAlignment(JLabel.CENTER);
         userName.setFont(new Font("Arial", Font.BOLD, 16));
@@ -50,7 +59,16 @@ public class UserSearchResultFrontend extends JPanel {
         viewProfileButton = new JButton("View Profile");
         viewProfileButton.setBackground(new Color(70, 130, 180)); // Steel blue color
         viewProfileButton.setForeground(Color.WHITE);
+        viewProfileButton.setPreferredSize(new Dimension(100, 40)); // Make the button smaller
+
         viewProfileButton.setFocusPainted(false);
+        // Action for the view profile button
+        viewProfileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                viewProfile();
+            }
+        });
 
         // Action button to add/remove friend
         actionButton = new JButton(isFriend ? "Remove" : "Add");
@@ -66,7 +84,7 @@ public class UserSearchResultFrontend extends JPanel {
                     try {
                         throw new IOException("implement this part");
                     } catch (IOException ex) {
-                        //throw new RuntimeException(ex);
+                        // Handle exception
                     }
                     actionButton.setText("Add Friend");
                     solution[0] = false;
@@ -75,7 +93,7 @@ public class UserSearchResultFrontend extends JPanel {
                     try {
                         throw new IOException("implement this part");
                     } catch (IOException ex) {
-                       // throw new RuntimeException(ex);
+                        // Handle exception
                     }
                     actionButton.setText("Remove Friend");
                     solution[0] = true;
@@ -90,18 +108,29 @@ public class UserSearchResultFrontend extends JPanel {
         blockButton.setPreferredSize(new Dimension(100, 40)); // Make the button smaller
 
         // Layout setup
-        JPanel centerPanel = new JPanel(new BorderLayout());
-        centerPanel.add(userPhoto, BorderLayout.NORTH);
-        centerPanel.add(userName, BorderLayout.CENTER);
+        JPanel topPanel = new JPanel();
+        topPanel.setLayout(new BorderLayout());
+        topPanel.add(userPhoto, BorderLayout.NORTH);
+        topPanel.add(userName, BorderLayout.CENTER);
 
+        // Panel to hold the buttons horizontally
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER)); // Center the buttons
+        buttonPanel.add(viewProfileButton);
         buttonPanel.add(actionButton);
         buttonPanel.add(blockButton);
 
-        add(centerPanel, BorderLayout.CENTER);
-        add(viewProfileButton, BorderLayout.SOUTH);
-        add(buttonPanel, BorderLayout.SOUTH); // Add buttons below profile info
+        add(topPanel, BorderLayout.NORTH); // Top section with photo and name
+        add(buttonPanel, BorderLayout.CENTER); // Center section with buttons
+    }
+
+    private void searchResultProfile() {
+        System.out.println("Hello World");
+    }
+
+    // This method is called when the "View Profile" button is clicked
+    private void viewProfile() {
+        System.out.println("Viewing Profile...");
     }
 
     public static ImageIcon getCircularImageIcon(ImageIcon icon, int diameter) {
