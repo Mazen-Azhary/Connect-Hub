@@ -26,8 +26,7 @@ public class GroupPage extends javax.swing.JFrame {
         //setResizable(false);
         setTitle("GroupPage");
         initComponents();
-        setupPosts();
-
+        loadPosts();
     }
 
     /**
@@ -37,36 +36,38 @@ public class GroupPage extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    void setupPosts() {
-        // Create a container panel for posts
-        JPanel postContainer = new JPanel();
-        postContainer.setLayout(new BoxLayout(postContainer, BoxLayout.Y_AXIS)); // Vertical layout
-        postContainer.setBackground(Color.WHITE);
-        PostsScrollPane.add(postContainer);
-        // Add mock posts dynamically
-        for (int i = 0; i < 100; i++) { // Replace '100' with your desired number of posts
-            GroupPostPanel post = new GroupPostPanel(
-                    "User " + (i + 1),
-                    "src/database/defaultIcon.jpg", // Profile picture
-                    "This is post #" + (i + 1),
-                    "src/database/ACM-LEVEL-UP-COVER.jpg" // Post image
+    // Example method to add GroupPostPanels dynamically to the PostsScrollPane
+    private void loadPosts() {
+        // Create a container panel to hold the posts
+        JPanel postsContainer = new JPanel();
+        postsContainer.setLayout(new BoxLayout(postsContainer, BoxLayout.Y_AXIS));
+        PostsScrollPane.add(postsContainer);
+        // Example data: Replace this with your dynamic data
+        String[] usernames = {"Alice", "Bob", "Charlie"};
+        String[] profilePictures = {"path/to/alice.jpg", "path/to/bob.jpg", "path/to/charlie.jpg"};
+        String[] postContents = {"Hello, world!", "Loving this group!", "Great to be here!"};
+        String[] postImages = {"path/to/post1.jpg", "path/to/post2.jpg", "path/to/post3.jpg"};
+
+        // Loop through the posts data
+        for (int i = 0; i < usernames.length; i++) {
+            // Create a new GroupPostPanel for each post
+            GroupPostPanel postPanel = new GroupPostPanel(
+                    usernames[i],
+                    profilePictures[i],
+                    postContents[i],
+                    postImages[i]
             );
 
-            post.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150)); // Stretch horizontally
-            post.setAlignmentX(Component.LEFT_ALIGNMENT); // Align posts to the left
-            postContainer.add(post);
+            // Add the post panel to the container
+            postsContainer.add(postPanel);
         }
 
-        // Set the container as the viewport of the scroll pane
-        PostsScrollPane.setViewportView(postContainer);
+        // Add the container panel to the scroll pane
+        PostsScrollPane.setViewportView(postsContainer);
 
-        // Ensure smooth scrolling
-        JScrollBar verticalScrollBar = PostsScrollPane.getVerticalScrollBar();
-        verticalScrollBar.setUnitIncrement(16); // Adjust for scrolling speed
-
-        // Refresh the UI
-        postContainer.revalidate();
-        postContainer.repaint();
+        // Refresh the scroll pane
+        postsContainer.revalidate();
+        postsContainer.repaint();
     }
 
     private void initComponents() {
@@ -156,8 +157,7 @@ public class GroupPage extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PostsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(MembersScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -169,8 +169,9 @@ public class GroupPage extends javax.swing.JFrame {
                             .addComponent(jButton3)
                             .addComponent(jButton4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                        .addComponent(jButton5))
+                    .addComponent(PostsScrollPane))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
