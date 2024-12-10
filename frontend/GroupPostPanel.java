@@ -40,21 +40,11 @@ public class GroupPostPanel extends javax.swing.JPanel {
     void setupLabels()
     {
         usernameLabel.setText(username);
-
-        // Check if the image paths are valid
-        if (profilePicture != null && new File(profilePicture).exists()) {
-            profilePictureLabel.setIcon(new ImageIcon(profilePicture));
-        } else {
-            profilePictureLabel.setText("No Image"); // Fallback text
+        if(profilePicture != null){
+             profilePictureLabel.setIcon(new ImageIcon(profilePicture));
         }
-
         postContentLabel.setText(postContent);
-
-        if (postImage != null && new File(postImage).exists()) {
-            postImageLabel.setIcon(new ImageIcon(postImage));
-        } else {
-            postImageLabel.setText("No Image"); // Fallback text
-        }
+        postImageLabel.setIcon(new ImageIcon(postImage));
     }
     private void initComponents() {
 
@@ -76,17 +66,17 @@ public class GroupPostPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(postContentLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(postContentLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(profilePictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(EditPostButton)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(DeletePostButton))
                     .addComponent(postImageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +88,7 @@ public class GroupPostPanel extends javax.swing.JPanel {
                             .addComponent(profilePictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(EditPostButton)
                             .addComponent(DeletePostButton))))
