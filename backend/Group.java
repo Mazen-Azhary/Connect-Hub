@@ -24,6 +24,8 @@ public class Group {
     }
     public Group()
     {
+        this.members = new HashMap<>();
+        this.posts = new ArrayList<>();
 
     }
     public Group(String groupId, String name, String description,String primaryAdmin) {

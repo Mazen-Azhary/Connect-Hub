@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -146,6 +148,25 @@ public class GroupsDatabase extends Database {
             }
         }
         return max;
+    }
+
+    public static void main(String[] args) {
+        GroupsDatabase groupsDatabase=new GroupsDatabase("src/database/Groups.json");
+        Group group=new Group();
+        group.setGroupId("2");
+        Content content=new Content();
+        content.setContent("ana mesh gamed");
+        content.setAuthorId(1);
+        content.setTimestamp(LocalDateTime.now());
+        group.getPosts().add(content);
+        group.addMember("2");
+        group.promoteMember("3");
+        group.setName("not my group");
+        try {
+            groupsDatabase.addGroup(group);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
