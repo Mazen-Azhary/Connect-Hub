@@ -1,105 +1,169 @@
 package frontend;
 
-import backend.FriendManager;
-import backend.User;
+import backend.SearchManager;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class SearchPage extends JFrame {
-    private String id;
-    private JPanel usersPanel;
-    private FriendManager friendManager = FriendManager.getInstance();
+public class SearchPage extends javax.swing.JFrame {
+    static String id;
+    private String searchPeopleSubstring = ""; // Current search term for people
+    private ArrayList<String> oldExecutedQueryToAvoidResearchingForSamePeopleQuery = new ArrayList<>();
 
-    public SearchPage(ArrayList<User> users, String id) throws IOException {
+    /**
+     * Creates new form SearchPage
+     */
+    public SearchPage(String id) {
         this.id = id;
-        setTitle("Search Users");
-        setSize(600, 400);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        initComponents();
+        setTitle("Search Page");
         setLocationRelativeTo(null);
+        setResizable(false);
+    }
 
-        // Create a scroll pane for the user list
-        usersPanel = new JPanel();
-        usersPanel.setLayout(new BoxLayout(usersPanel, BoxLayout.Y_AXIS)); // Vertical layout
+    @SuppressWarnings("unchecked")
+    private void initComponents() {
 
-        // Populate the panel with user details
-        for (User user : users) {
-            usersPanel.add(createUserPanel(user));
+        jPanel1 = new javax.swing.JPanel();
+        searchBar = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        searchPeopleButton = new javax.swing.JButton();
+        searchGroupsButton = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        searchBar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBarActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Clear");
+        jButton1.addActionListener(evt -> clearSearchResults());
+
+        searchPeopleButton.setText("Search People");
+        searchPeopleButton.addActionListener(evt -> {
+            try {
+                searchPeopleButtonActionPerformed(evt);
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        searchGroupsButton.setText("Search Groups");
+        searchGroupsButton.addActionListener(evt -> searchGroupsButtonActionPerformed(evt));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(161, 161, 161)
+                                .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButton1))
+                                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(166, 166, 166)
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(searchPeopleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50)
+                                .addComponent(searchGroupsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(166, 166, 166))
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(searchPeopleButton)
+                                        .addComponent(searchGroupsButton))
+                                .addGap(4, 4, 4)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(53, Short.MAX_VALUE))
+        );
+
+        pack();
+    }
+
+    private void searchBarActionPerformed(java.awt.event.ActionEvent evt) {
+        String input = searchBar.getText().trim();
+        if (!input.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter to confirm search!", "Hint", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    private void clearSearchResults() {
+        if (jScrollPane1.getViewport().getView() != null) {
+            jScrollPane1.setViewportView(null);
+            searchBar.setText("");
+        } else {
+        }
+    }
+
+    private void searchPeopleButtonActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
+        String query = searchBar.getText().toLowerCase().trim();
+        if (query.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a search term", "Empty Search", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
-        JScrollPane scrollPane = new JScrollPane(usersPanel);
-        add(scrollPane);
-    }
+        if (searchPeopleSubstring.equalsIgnoreCase(query)) {
 
-    private JPanel createUserPanel(User user) {
-        // Panel to display each user with image, username and action buttons
-        JPanel userPanel = new JPanel();
-        userPanel.setLayout(new FlowLayout());
-
-        // Load user picture (you can replace this with an ImageIcon or a label)
-        ImageIcon userImage = new ImageIcon(user.getProfile().getProfilePhoto());
-        JLabel imageLabel = new JLabel(userImage);
-
-        // Display username
-        JLabel usernameLabel = new JLabel(user.getUsername());
-
-        // Create action buttons
-        JButton addFriendButton = new JButton("Add Friend");
-        JButton removeFriendButton = new JButton("Remove Friend");
-        JButton blockUserButton = new JButton("Block User");
-        JButton viewProfileButton = new JButton("View Profile");
-
-        // Set actions for buttons
-        addFriendButton.addActionListener(e -> sendFriendRequest(user));
-        removeFriendButton.addActionListener(e -> removeFriend(user));
-        blockUserButton.addActionListener(e -> blockUser(user));
-        viewProfileButton.addActionListener(e -> viewUserProfile(user));
-
-        // Add components to user panel
-        userPanel.add(imageLabel);
-        userPanel.add(usernameLabel);
-        userPanel.add(addFriendButton);
-        userPanel.add(removeFriendButton);
-        userPanel.add(blockUserButton);
-        userPanel.add(viewProfileButton);
-
-        return userPanel;
-    }
-
-    private void sendFriendRequest(User user) {
-
-        try {
-            friendManager.requestFriend(id, user.getUserID());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            return;
         }
-        JOptionPane.showMessageDialog(this, "Friend request sent to " + user.getUsername());
-    }
 
-    private void removeFriend(User user) {
-        try {
-            friendManager.removeFriend(id, user.getUserID());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        searchPeopleSubstring = query;
+
+        ArrayList<String> userIds = SearchManager.getInstance().searchUserQuery(id, searchPeopleSubstring);
+        if (userIds.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No users found for the search query.", "No Results", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            oldExecutedQueryToAvoidResearchingForSamePeopleQuery = userIds;
+            UserSearchResultPanel userSearchResultPanel = new UserSearchResultPanel(id, userIds);
+            jScrollPane1.setViewportView(userSearchResultPanel);
         }
-        JOptionPane.showMessageDialog(this, "Removed " + user.getUsername() + " from friends.");
     }
 
-    private void blockUser(User user) {
-        try {
-            friendManager.blockUser(id, user.getUserID());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        JOptionPane.showMessageDialog(this, user.getUsername() + " has been blocked.");
-    }
-
-    private void viewUserProfile(User user) {
-        //
+    private void searchGroupsButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
     }
 
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(() -> new SearchPage(id).setVisible(true));
+    }
 
+    // Variables declaration
+    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField searchBar;
+    private javax.swing.JButton searchGroupsButton;
+    private javax.swing.JButton searchPeopleButton;
 }

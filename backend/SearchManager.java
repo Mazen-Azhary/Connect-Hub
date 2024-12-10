@@ -8,6 +8,7 @@ public class SearchManager {
     private ProfileDataBase profileDataBase = new ProfileDataBase("src/database/Profile.json");
     private LoginDatabase loginDataBase = new LoginDatabase("src/database/Login.json");
 
+
     private SearchManager() {
     }
 
@@ -30,5 +31,23 @@ public class SearchManager {
         }
         return searchedUsers;
     }
+
+    public ArrayList<String> searchUserQuery(String searcherID,String query)  {
+        ArrayList<String> searchedUsers = new ArrayList<>();
+
+        for(int i=0;i<profileDataBase.getData().size();i++){
+            if(profileDataBase.getData().get(i).getUserID().equalsIgnoreCase(searcherID)){
+                continue;
+            }
+            if(query.equalsIgnoreCase(profileDataBase.getData().get(i).getUsername())){
+                searchedUsers.add(profileDataBase.getData().get(i).getUserID());
+            }
+
+        }
+
+
+        return searchedUsers;
+    }
+
 
 }

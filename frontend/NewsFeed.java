@@ -251,7 +251,9 @@ public class NewsFeed extends javax.swing.JFrame {
         search.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                //new instance of search page(id)
+                SearchPage searchPage = new SearchPage(id);
+                searchPage.setVisible(true);
+
             }
 
         });
