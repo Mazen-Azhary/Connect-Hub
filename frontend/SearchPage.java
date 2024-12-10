@@ -2,6 +2,7 @@ package frontend;
 
 import backend.FriendManager;
 import backend.SearchManager;
+import backend.User;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -10,6 +11,8 @@ import java.util.HashMap;
 
 public class SearchPage extends javax.swing.JFrame {
     static String id;
+    private SearchManager searchManager = SearchManager.getInstance();
+    private ArrayList<User> searchedUsers;
     private HashMap<String, ArrayList<String>> peopleSearchResults = new HashMap<>();
     private HashMap<String, ArrayList<String>> groupSearchResults = new HashMap<>();
 
@@ -112,25 +115,29 @@ public class SearchPage extends javax.swing.JFrame {
     }
 
     private void searchPeopleButtonActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
+
         String query = searchBar.getText().toLowerCase().trim();
         if (query.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a search term in search bar", "Empty Search", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Check if the query was already searched
-        if (peopleSearchResults.containsKey(query)) {
-            ArrayList<String> userIds = peopleSearchResults.get(query);
-            UserSearchResultPanel userSearchResultPanel = new UserSearchResultPanel(id, userIds);
-            updateScrollPane(userSearchResultPanel);
+        searchedUsers = searchManager.search(query);
+
+        if (searchedUsers.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "User doesn't exist", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // If not found, perform a new search
-        ArrayList<String> userIds = SearchManager.getInstance().searchUserQuery(id, query);
-        peopleSearchResults.put(query, userIds);
-        UserSearchResultPanel userSearchResultPanel = new UserSearchResultPanel(id, userIds);
+        ArrayList<String> searchedUsersID = new ArrayList<>();
+        for (User user : searchedUsers) {
+            searchedUsersID.add(user.getUserID());
+
+        }
+
+        UserSearchResultPanel userSearchResultPanel = new UserSearchResultPanel(id, searchedUsersID);
         updateScrollPane(userSearchResultPanel);
+
     }
 
     private void searchGroupsButtonActionPerformed(java.awt.event.ActionEvent evt) {

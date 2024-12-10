@@ -22,8 +22,9 @@ public class UserSearchResultFrontend extends JPanel {
     private JButton viewProfileButton;
     private JButton actionButton;
     private JButton blockButton;
+    private FriendManager friendManager = FriendManager.getInstance();
 
-    public UserSearchResultFrontend(String userID, boolean isFriend) throws IOException {
+    public UserSearchResultFrontend(String id, String userID, boolean isFriend) throws IOException {
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(10, 10, 10, 10)); // Add padding
 
@@ -82,7 +83,7 @@ public class UserSearchResultFrontend extends JPanel {
                 if (solution[0]) {
                     // Remove friend logic
                     try {
-                        throw new IOException("implement this part");
+                        friendManager.removeFriend(id, userID);
                     } catch (IOException ex) {
                         // Handle exception
                     }
@@ -91,7 +92,7 @@ public class UserSearchResultFrontend extends JPanel {
                 } else {
                     // Add friend logic
                     try {
-                        throw new IOException("implement this part");
+                        friendManager.requestFriend(id, userID);
                     } catch (IOException ex) {
                         // Handle exception
                     }

@@ -7,6 +7,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UserSearchResultPanel extends JPanel {
     private String currentUserID;
@@ -15,29 +16,27 @@ public class UserSearchResultPanel extends JPanel {
     public UserSearchResultPanel(String currentUserID, List<String> searchResultIDs) throws IOException {
         this.currentUserID = currentUserID;
 
+
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
 
-        // Testing frontend
-        searchResultIDs = new ArrayList<>();
-        searchResultIDs.add("1");
-        searchResultIDs.add("2");
-        searchResultIDs.add("3");
-        searchResultIDs.add("5");
-     for (int i = 0; i < searchResultIDs.size(); i++) {
+
+        for (int i = 0; i < searchResultIDs.size(); i++) {
             String userID = searchResultIDs.get(i);
-         boolean isFriend;
-            if(FriendManager.getInstance().isFriend(userID,searchResultIDs.get(i))) {
+            boolean isFriend;
+            if (FriendManager.getInstance().isFriend(currentUserID, searchResultIDs.get(i))) {
                 isFriend = true; // Get the friend status for the current user
-            }else{
+            } else {
                 isFriend = false;
             }
-            System.out.println("haha");
+
+
             // Create the frontend component for each user, passing the friend status
-         if(i==3){
-             isFriend=true;
-         }
-            UserSearchResultFrontend searchResult = new UserSearchResultFrontend(userID, isFriend);
+            if (FriendManager.getInstance().isBlocked(currentUserID, searchResultIDs.get(i)) || Objects.equals(userID, currentUserID)) {
+                continue;
+            }
+
+            UserSearchResultFrontend searchResult = new UserSearchResultFrontend(currentUserID,userID, isFriend);
             add(searchResult);
             add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between components
         }
