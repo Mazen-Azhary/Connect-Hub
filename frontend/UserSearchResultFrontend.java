@@ -1,5 +1,6 @@
 package frontend;
 
+import backend.FriendManager;
 import backend.ProfileManager;
 import backend.User;
 
@@ -17,8 +18,11 @@ public class UserSearchResultFrontend extends JPanel {
     private JLabel userPhoto;
     private JLabel userName;
     private JButton viewProfileButton;
+    private JButton actionButton;
+    private JButton blockButton;
 
-    public UserSearchResultFrontend(String userID) throws IOException {
+
+    public UserSearchResultFrontend(String userID, boolean isFriend) throws IOException {
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(10, 10, 10, 10)); // Add padding
 
@@ -29,7 +33,7 @@ public class UserSearchResultFrontend extends JPanel {
         if (photo.getIconWidth() <= 0 || photo.getIconHeight() <= 0) {
             photo = new ImageIcon("src/database/defaultIcon.jpg");
         }
-
+        final boolean[] solution = {isFriend};
         // Resize the image and create a circular version
         int diameter = 50;
         ImageIcon circularPhoto = getCircularImageIcon(photo, diameter);
@@ -48,22 +52,56 @@ public class UserSearchResultFrontend extends JPanel {
         viewProfileButton.setForeground(Color.WHITE);
         viewProfileButton.setFocusPainted(false);
 
-        viewProfileButton.addActionListener(new ActionListener() {
+        // Action button to add/remove friend
+        actionButton = new JButton(isFriend ? "Remove" : "Add");
+        actionButton.setBackground(new Color(34, 139, 34)); // Green color for add/remove friend
+        actionButton.setForeground(Color.WHITE);
+        actionButton.setPreferredSize(new Dimension(100, 40)); // Make the button smaller
+
+        actionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Action to view profile
-                System.out.println("View Profile clicked for user: " + user.getUsername());
-                // Logic to navigate to the user's profile page
-                // e.g., new ProfilePage(userID).setVisible(true);
+                if (solution[0]) {
+                    // Remove friend logic
+                    try {
+                        throw new IOException("implement this part");
+                    } catch (IOException ex) {
+                        //throw new RuntimeException(ex);
+                    }
+                    actionButton.setText("Add Friend");
+                    solution[0] = false;
+                } else {
+                    // Add friend logic
+                    try {
+                        throw new IOException("implement this part");
+                    } catch (IOException ex) {
+                       // throw new RuntimeException(ex);
+                    }
+                    actionButton.setText("Remove Friend");
+                    solution[0] = true;
+                }
             }
         });
 
+        // Block button (same for both friend and non-friend)
+        blockButton = new JButton("Block");
+        blockButton.setBackground(new Color(255, 69, 0)); // Red color for block
+        blockButton.setForeground(Color.WHITE);
+        blockButton.setPreferredSize(new Dimension(100, 40)); // Make the button smaller
+
+        // Layout setup
         JPanel centerPanel = new JPanel(new BorderLayout());
         centerPanel.add(userPhoto, BorderLayout.NORTH);
         centerPanel.add(userName, BorderLayout.CENTER);
 
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER)); // Center the buttons
+        buttonPanel.add(actionButton);
+        buttonPanel.add(blockButton);
+
         add(centerPanel, BorderLayout.CENTER);
         add(viewProfileButton, BorderLayout.SOUTH);
+        add(buttonPanel, BorderLayout.SOUTH); // Add buttons below profile info
     }
 
     public static ImageIcon getCircularImageIcon(ImageIcon icon, int diameter) {

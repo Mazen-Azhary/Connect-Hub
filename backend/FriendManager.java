@@ -32,6 +32,14 @@ public class FriendManager {
         return true;
     }
 
+    public boolean isFriend(String userID, String friendID) throws IOException {
+        User user1=friendsDataBase.getUser(userID);
+        if(user1.getProfile().getFriends().contains(friendsDataBase.getUser(friendID))){
+            return true;
+        }
+        return false;
+    }
+
     public boolean blockUser(String blockerID, String blockedID) throws IOException {
         //if the id positive then you are the blocker, if negative you are the blocked
         User user1=friendsDataBase.getUser(blockerID);

@@ -36,8 +36,11 @@ public class SearchManager {
         ArrayList<String> searchedUsers = new ArrayList<>();
 
         for(int i=0;i<profileDataBase.getData().size();i++){
+            System.out.println("index:"+i);
             if(profileDataBase.getData().get(i).getUserID().equalsIgnoreCase(searcherID)){
+                //of if user is blocked my searcher , do it ya regala
                 continue;
+
             }
             if(query.equalsIgnoreCase(profileDataBase.getData().get(i).getUsername())){
                 searchedUsers.add(profileDataBase.getData().get(i).getUserID());
