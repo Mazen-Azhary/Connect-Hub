@@ -23,7 +23,7 @@ public class UserSearchResultPanel extends JPanel {
 
         for (String userID : searchResultIDs) {
 
-
+            System.out.println("haha");
             // Create the frontend component for each user
             UserSearchResultFrontend searchResult = new UserSearchResultFrontend(userID);
             add(searchResult);
