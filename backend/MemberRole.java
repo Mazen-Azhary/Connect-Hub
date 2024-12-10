@@ -5,7 +5,7 @@ import java.io.IOException;
 public class MemberRole extends User{
     private static MemberRole instance;
     private GroupContentManager groupContentManager=GroupContentManager.getInstance();
-    //private GroupManager grouptManager=GroupManager.getInstance();
+    private GroupManager groupManager=GroupManager.getInstance();
     protected MemberRole()
     {
 
@@ -22,9 +22,9 @@ public class MemberRole extends User{
             throw new RuntimeException(e);
         }
     }
-    void leaveGroup(String UserID,String GroupId)
+    void leaveGroup(String groupId,String userId)
     {
-        // groupManager.leaveGroup(UserId,GroupId);
+        groupManager.leave(groupId,userId);
     }
 
 

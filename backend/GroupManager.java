@@ -176,4 +176,57 @@ public class GroupManager {
             e.printStackTrace();
         }
     }
+    public void promote(String groupId,String userId)
+    {
+        try
+        {
+            User user=userGroupsDatabase.getUser(userId);
+            Group group=groupsDatabase.getGroup(groupId);
+            group.promoteMember(userId);
+            user.getProfile().getGroups().put(groupId,GroupRole.ADMIN);
+            userGroupsDatabase.modifyUserGroupsById(user);
+            groupsDatabase.modifyGroupById(group);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    public void demote(String groupId,String userId)
+    {
+        try
+        {
+            User user=userGroupsDatabase.getUser(userId);
+            Group group=groupsDatabase.getGroup(groupId);
+            group.demoteMember(userId);
+            user.getProfile().getGroups().put(groupId,GroupRole.MEMBER);
+            userGroupsDatabase.modifyUserGroupsById(user);
+            groupsDatabase.modifyGroupById(group);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    public void leave (String groupId,String userId)
+    {
+        try
+        {
+            User user=userGroupsDatabase.getUser(userId);
+            Group group=groupsDatabase.getGroup(groupId);
+            if(group.getMembers().get(userId).equals(GroupRole.PRIMARYADMIN))
+            {
+                //shuffle the admins to get the primary
+                //handle law mafeesh admins eshta
+            }
+            group.deleteMember(userId);
+            user.getProfile().getGroups().remove(groupId);
+            userGroupsDatabase.modifyUserGroupsById(user);
+            groupsDatabase.modifyGroupById(group);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 }
