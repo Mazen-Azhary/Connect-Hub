@@ -3,7 +3,8 @@
     "groups" : {
       "group2" : "MEMBER",
       "group1" : "ADMIN"
-    }
+    },
+    "profilePhoto" : null
   },
   "userID" : "1",
   "username" : "admin",

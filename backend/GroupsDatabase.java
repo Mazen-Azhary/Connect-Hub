@@ -154,11 +154,13 @@ public class GroupsDatabase extends Database {
         GroupsDatabase groupsDatabase=new GroupsDatabase("src/database/Groups.json");
         Group group=new Group();
         group.setGroupId("2");
+        group.setDescription("visca barca");
         Content content=new Content();
         content.setContent("ana mesh gamed");
         content.setAuthorId(1);
         content.setTimestamp(LocalDateTime.now());
         group.getPosts().add(content);
+        group.addMember("1");
         group.addMember("2");
         group.promoteMember("3");
         group.setName("not my group");

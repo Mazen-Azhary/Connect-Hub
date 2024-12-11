@@ -2,6 +2,7 @@ package backend;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Group {
@@ -104,9 +105,17 @@ public class Group {
     {
         posts.add(post);
     }
-    public void deletePost(Content post)
+    public void deletePost(String contentId)
     {
-        posts.remove(post);
+        Iterator<Content> iterator=posts.iterator();
+        while (iterator.hasNext())
+        {
+            if(iterator.next().getContentId()==Integer.parseInt(contentId))
+            {
+                iterator.remove();
+            }
+
+        }
     }
     public void deleteGroup()
     {

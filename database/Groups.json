@@ -1,36 +1,20 @@
 [ {
   "deleted" : false,
-  "groupId" : "1",
-  "members" : { },
-  "name" : "my group",
-  "description" : null,
-  "photo" : null,
-  "posts" : [ {
-    "image" : null,
-    "deleted" : false,
-    "contentId" : 0,
-    "authorId" : 1,
-    "content" : "ana gamed",
-    "timestamp" : [ 2024, 12, 10, 23, 8, 53, 26793200 ]
-  } ]
-}, {
-  "deleted" : false,
   "groupId" : "2",
   "members" : {
+    "1" : "MEMBER",
     "2" : "MEMBER",
-    "3" : "ADMIN",
-    "1" : "PRIMARYADMIN"
+    "3" : "ADMIN"
   },
   "name" : "not my group",
-  "description" : null,
+  "description" : "visca barca",
   "photo" : null,
   "posts" : [ {
     "image" : null,
     "deleted" : false,
     "contentId" : 0,
     "authorId" : 1,
-    "content" : "ana mesh gamed",
-    "timestamp" : [ 2024, 12, 11, 0, 1, 53, 846102800 ]
+    "content" : "dasdsad",
+    "timestamp" : [ 2024, 12, 11, 14, 13, 40, 767777100 ]
   } ]
-}
- ]
+} ]

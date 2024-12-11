@@ -58,6 +58,8 @@ public class MembersFrontend extends JPanel {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         primaryAdminRole.demote(memberId,groupId);
+                        groupPage.dispose();
+                        new GroupPage(userID,groupId);
                     }
                 });
                 buttonPanel.add(demoteButton);
@@ -66,6 +68,8 @@ public class MembersFrontend extends JPanel {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         primaryAdminRole.removeMember(memberId,groupId);
+                        groupPage.dispose();
+                        new GroupPage(userID,groupId);
                     }
                 });
                 buttonPanel.add(removeButton);
@@ -76,6 +80,8 @@ public class MembersFrontend extends JPanel {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         primaryAdminRole.promote(memberId,groupId);
+                        groupPage.dispose();
+                        new GroupPage(userID,groupId);
                     }
                 });
                 buttonPanel.add(promoteButton);
@@ -84,6 +90,8 @@ public class MembersFrontend extends JPanel {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         primaryAdminRole.removeMember(memberId,groupId);
+                        groupPage.dispose();
+                        new GroupPage(userID,groupId);
                     }
                 });
                 buttonPanel.add(removeButton);
@@ -99,6 +107,8 @@ public class MembersFrontend extends JPanel {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         adminRole.removeMember(memberId,groupId);
+                        groupPage.dispose();
+                        new GroupPage(userID,groupId);
                     }
                 });
                 buttonPanel.add(removeButton);

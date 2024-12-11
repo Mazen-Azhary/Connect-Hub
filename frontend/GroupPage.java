@@ -9,6 +9,8 @@ import backend.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -87,24 +89,69 @@ public class GroupPage extends javax.swing.JFrame {
             headerPanel.add(friendName);
 
             // Create a vertical panel for the entire post
+            // Create a vertical panel for the entire post
             JPanel singlePostPanel = new JPanel();
-            singlePostPanel.setLayout(new BoxLayout(singlePostPanel, BoxLayout.Y_AXIS));
+            singlePostPanel.setLayout(new BorderLayout()); // Use BorderLayout for better control
             singlePostPanel.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
                     BorderFactory.createEmptyBorder(10, 10, 10, 10)
             ));
             singlePostPanel.setBackground(Color.WHITE);
-            singlePostPanel.add(headerPanel);
-            singlePostPanel.add(contentLabel);
-            if (imageLabel != null) {
-                singlePostPanel.add(imageLabel);
-            }
-            singlePostPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Space between posts
 
-            // Add the single post to the main postPanel
+// Create a panel for post content
+            JPanel contentPanel = new JPanel();
+            contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
+            contentPanel.setBackground(Color.WHITE);
+            contentPanel.add(headerPanel);
+            contentPanel.add(contentLabel);
+            if (imageLabel != null) {
+                contentPanel.add(imageLabel);
+            }
+            singlePostPanel.add(contentPanel, BorderLayout.CENTER); // Add content to the center
+
+// Check user role and add buttons if applicable
+            if (GroupManager.getInstance().getRole(userId, groupId).equals(GroupRole.PRIMARYADMIN) ||
+                    GroupManager.getInstance().getRole(userId, groupId).equals(GroupRole.ADMIN)) {
+
+                // Create a panel for the buttons
+                JPanel buttonPanel = new JPanel();
+                buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS)); // Stack buttons vertically
+                buttonPanel.setBackground(Color.WHITE);
+
+                // Edit button
+                JButton editButton = new JButton("Edit Post");
+                editButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        new CreatePostGroup(userId, groupId, false, post);
+                    }
+                });
+                buttonPanel.add(editButton);
+
+                // Add spacing between buttons
+                buttonPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+
+                // Delete button
+                JButton deleteButton = new JButton("Delete Post");
+                deleteButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        GroupContentManager.getInstance().deletePost(groupId, post.getContentId()+"");
+                    }
+                });
+                buttonPanel.add(deleteButton);
+
+                // Add button panel to the right of the post
+                singlePostPanel.add(buttonPanel, BorderLayout.EAST);
+            }
+
+// Add space between posts
+            singlePostPanel.add(Box.createRigidArea(new Dimension(0, 10)), BorderLayout.SOUTH);
+
+// Add the single post to the main postPanel
             postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
             postPanel.add(singlePostPanel);
-            postPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Space between posts in the main panel
+            postPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Space between posts in the main panelreateRigidArea(new Dimension(0, 10))); // Space between posts in the main panel
         }
         PostScrollPane.setViewportView(postPanel);
         PostScrollPane.getVerticalScrollBar().setUnitIncrement(20);
@@ -116,11 +163,11 @@ public class GroupPage extends javax.swing.JFrame {
     }
     private GroupContentManager groupContentManager=GroupContentManager.getInstance();
     public GroupPage(String userId,String groupId) {
-        initComponents();
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Prevent default behavior
         setVisible(true);
         this.userId = userId;
         this.groupId=groupId;
+        initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("GroupPage");
@@ -152,21 +199,43 @@ public class GroupPage extends javax.swing.JFrame {
         BackButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        descLabel=new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         MembersScrollPane = new javax.swing.JScrollPane();
         PostScrollPane = new javax.swing.JScrollPane();
         jLabel5 = new javax.swing.JLabel();
         MembersScrollPane1 = new javax.swing.JScrollPane();
+        leaveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         BackButton.setText("Back");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dispose();
+                try {
+                    new NewsFeed(userId);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/database/Welcome.jpg"))); // NOI18N
+        ImageIcon imageIcon;
+        if(GroupManager.getInstance().getGroup(groupId).getPhoto()==null)
+        {
+            imageIcon=new ImageIcon("src/database/CoverDefault.jpg");
+        }
+        else imageIcon= new ImageIcon(GroupManager.getInstance().getGroup(groupId).getPhoto());
+
+        jLabel1.setIcon(imageIcon); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel2.setText("Group Name");
+        Group group=GroupManager.getInstance().getGroup(groupId);
+        jLabel2.setText(group.getName());
+        descLabel.setFont(new java.awt.Font("Segoe UI", 2, 20));
+        descLabel.setText(group.getDescription());
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Posts");
@@ -176,6 +245,24 @@ public class GroupPage extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Admins");
+        leaveButton.setText("Leave Group");
+        leaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                if(GroupManager.getInstance().getRole(userId,groupId).equals(GroupRole.PRIMARYADMIN))
+                {
+                    PrimaryAdminRole.getInstance().leaveGroup(groupId,userId);
+                }
+                else {
+                    MemberRole.getInstance().leaveGroup(groupId,userId);
+                }
+                dispose();
+                try {
+                    new NewsFeed(userId);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -186,7 +273,8 @@ public class GroupPage extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(descLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(BackButton))
                                                 .addContainerGap(316, Short.MAX_VALUE))
@@ -196,25 +284,31 @@ public class GroupPage extends javax.swing.JFrame {
                                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(MembersScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(MembersScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(MembersScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(MembersScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(50, 50, 50)
+                                                        .addComponent(leaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(69, 69, 69))))
+                                                .addGap(46, 46, 46))))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
+                        .addGroup((layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
                                 .addComponent(BackButton)
                                 .addGap(18, 18, 18)
+                                .addComponent(leaveButton))
+                        .addGap(18, 18, 18)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(descLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jLabel3)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -228,7 +322,7 @@ public class GroupPage extends javax.swing.JFrame {
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addComponent(MembersScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addGap(0, 0, Short.MAX_VALUE))
-                                                        .addComponent(MembersScrollPane1))
+                                                        .addComponent(MembersScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addContainerGap())))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -237,7 +331,7 @@ public class GroupPage extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>
+    }
 
     /**
      * @param args the command line arguments
@@ -269,7 +363,7 @@ public class GroupPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GroupPage("1","2").setVisible(true);
+                new GroupPage("3","2").setVisible(true);
             }
         });
     }
@@ -284,5 +378,8 @@ public class GroupPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel descLabel;
+    private javax.swing.JButton leaveButton;
+
     // End of variables declaration
 }
