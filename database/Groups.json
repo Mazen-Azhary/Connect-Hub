@@ -1,8 +1,8 @@
 [ {
   "deleted" : false,
-  "groupId" : "2",
+  "groupId" : "1",
   "members" : {
-    "1" : "MEMBER",
+    "1" : "PENDING",
     "2" : "MEMBER",
     "3" : "ADMIN",
     "4" : "PRIMARYADMIN"
