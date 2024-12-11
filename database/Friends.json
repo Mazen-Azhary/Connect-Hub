@@ -2,8 +2,8 @@
   "profile" : {
     "friendRequests" : [ "7" ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ "-3", "-4", "2" ],
-    "friendReceivedRequests" : [ ],
+    "blockedUsers" : [ "-3", "2" ],
+    "friendReceivedRequests" : [ "4" ],
     "friends" : [ "5", "6", "8" ]
   },
   "userID" : "1",
@@ -30,9 +30,9 @@
   "username" : "Freinke"
 }, {
   "profile" : {
-    "friendRequests" : [ ],
+    "friendRequests" : [ "1" ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ "1", "-8" ],
+    "blockedUsers" : [ "-8" ],
     "friendReceivedRequests" : [ "3", "6", "2" ],
     "friends" : [ "5" ]
   },

@@ -15,7 +15,7 @@
     },
     "profilePhoto" : null
   },
-  "userID" : "3",
+  "userID" : "2",
   "username" : "admin",
   "status" : "active"
 }, {
@@ -25,13 +25,26 @@
     },
     "profilePhoto" : null
   },
+  "userID" : "3",
+  "username" : "admin",
+  "status" : "active"
+}, {
+  "profile" : {
+    "groups" : {
+      "1" : "MEMBER",
+      "2" : "PRIMARYADMIN",
+      "3" : "PRIMARYADMIN"
+    },
+    "profilePhoto" : null
+  },
   "userID" : "4",
   "username" : "admin",
   "status" : "active"
 }, {
   "profile" : {
     "groups" : {
-      "1" : "MEMBER"
+      "1" : "MEMBER",
+      "3" : "PENDING"
     },
     "profilePhoto" : null
   },

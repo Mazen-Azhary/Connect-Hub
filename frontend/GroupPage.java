@@ -233,9 +233,6 @@ public class GroupPage extends javax.swing.JFrame {
         leaveButton = new javax.swing.JButton();
         createPostButton= new javax.swing.JButton();
         requestsButton=new JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         BackButton.setText("Back");
         BackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

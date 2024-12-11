@@ -32,4 +32,25 @@
     "content" : "ana mesh mbappe",
     "timestamp" : [ 2024, 12, 11, 16, 3, 6, 844345600 ]
   } ]
+}, {
+  "deleted" : true,
+  "groupId" : "2",
+  "members" : {
+    "4" : "PRIMARYADMIN"
+  },
+  "name" : "fcb",
+  "description" : "best club in the world",
+  "photo" : "C:\\Users\\etijah\\Downloads\\fcb.jpg",
+  "posts" : [ ]
+}, {
+  "deleted" : false,
+  "groupId" : "3",
+  "members" : {
+    "4" : "PRIMARYADMIN",
+    "5" : "PENDING"
+  },
+  "name" : "عشاق ليونيل ميسي",
+  "description" : "للعبابسة فقط",
+  "photo" : "C:\\Users\\etijah\\Downloads\\messi.jpg",
+  "posts" : [ ]
 } ]

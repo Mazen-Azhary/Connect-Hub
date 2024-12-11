@@ -14,16 +14,18 @@ public class UserGroupsPage extends JFrame {
     private JScrollPane scrollPane;
     private ArrayList<Group> groups;
     private boolean sug;
+    private NewsFeed newsFeed;
 
-    public UserGroupsPage(String id,boolean sug) throws IOException {
+    public UserGroupsPage(String id,boolean sug,NewsFeed newsFeed) throws IOException {
         this.id = id;
         this.sug = sug;
+        this.newsFeed = newsFeed;
         // Set JFrame properties
         setTitle("Groups");
         setSize(500, 600);
         setLocationRelativeTo(null); // Center the window on the screen
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only this JFrame on exit
-        // Initialize components
+        setVisible(true);
         initComponents();
         if(sug)
         {
@@ -33,7 +35,6 @@ public class UserGroupsPage extends JFrame {
         displayFriendRequests();
         setResizable(false);
         // Make the frame visible
-        setVisible(true);
     }
 
 
@@ -91,6 +92,7 @@ public class UserGroupsPage extends JFrame {
                     GroupManager.getInstance().request(id,group.getGroupId());
                     groupsPannel.revalidate();
                     groupsPannel.repaint();
+                    dispose();
                 });
                 requestPanel.add(Box.createHorizontalStrut(10)); // Add space between components
                 requestPanel.add(viewButton);
@@ -106,6 +108,7 @@ public class UserGroupsPage extends JFrame {
             viewButton.addActionListener(e -> {
                 new GroupPage(id,group.getGroupId());
                 dispose();
+                newsFeed.dispose();
                 groupsPannel.revalidate();
                 groupsPannel.repaint();
             });
@@ -140,11 +143,5 @@ public class UserGroupsPage extends JFrame {
         this.add(scrollPane, BorderLayout.CENTER);
     }
 
-    public static void main(String[] args) {
-        try {
-            new UserGroupsPage("1",true);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
 }

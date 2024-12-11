@@ -27,6 +27,7 @@ public class NewsFeed extends javax.swing.JFrame {
     private ArrayList<Content> contents = new ArrayList<>(); //posts
     private String id;
     private FriendsViewer friendViewer=FriendsViewer.getInstance();
+    private NewsFeed newsFeed=this;
     /**
      * Creates new form NewsFeed
      */
@@ -246,13 +247,66 @@ public class NewsFeed extends javax.swing.JFrame {
                 }
             }
         });
-        om.add(view);
-        om.add(sentRequests);
+
+        JMenuItem search =new JMenuItem("Search");
+        search.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                SearchPage searchPage = new SearchPage(id);
+                searchPage.setVisible(true);
+
+            }
+
+        });
+        JMenuItem groups =new JMenuItem("View Groups");
+       groups.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new UserGroupsPage(id,false,newsFeed);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+            }
+
+        });
+       JMenuItem suggestions =new JMenuItem("Group Suggestions");
+       suggestions.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new UserGroupsPage(id,true,newsFeed);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+            }
+
+        });
+       JMenuItem create=new JMenuItem("Create Group");
+       create.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                new CreateGroup(id);
+            }
+
+        });
+
+
+        om.add(groups);
         om.add(ref);
-        om.add(logoutItem);
-        om.add(blocks);
+        om.add(view);
+        om.add(search);
         om.add(friendRequests);
+        om.add(sentRequests);
+        om.add(blocks);
+        om.add(logoutItem);
+        om.add(suggestions);
+        om.add(create);
+
         mb.add(om);
+
         OptionsMenu.setJMenuBar(mb);
         User p = manager.getUser(id);
         if(p.getProfile().getProfilePhoto() == null) {
