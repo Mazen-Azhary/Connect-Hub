@@ -1,8 +1,8 @@
 [ {
   "profile" : {
-    "friendRequests" : [ "7" ],
-    "friendSuggestions" : [ ],
-    "blockedUsers" : [ "-3", "2" ],
+    "friendRequests" : [ "7", "7", "7", "7" ],
+    "friendSuggestions" : [ "2", "2" ],
+    "blockedUsers" : [ "-3" ],
     "friendReceivedRequests" : [ "4" ],
     "friends" : [ "5", "6", "8" ]
   },
@@ -12,7 +12,7 @@
   "profile" : {
     "friendRequests" : [ "4", "7" ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ "-1" ],
+    "blockedUsers" : [ ],
     "friendReceivedRequests" : [ "8" ],
     "friends" : [ "3", "5", "6" ]
   },
@@ -63,7 +63,7 @@
     "friendRequests" : [ ],
     "friendSuggestions" : [ ],
     "blockedUsers" : [ ],
-    "friendReceivedRequests" : [ "5", "1", "6", "2", "8" ],
+    "friendReceivedRequests" : [ "5", "1", "6", "2", "8", "1", "1", "1" ],
     "friends" : [ ]
   },
   "userID" : "7",

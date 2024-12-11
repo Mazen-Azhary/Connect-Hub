@@ -1,7 +1,8 @@
 [ {
   "profile" : {
     "groups" : {
-      "1" : "MEMBER"
+      "1" : "MEMBER",
+      "3" : "MEMBER"
     },
     "profilePhoto" : null
   },

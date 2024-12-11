@@ -48,7 +48,7 @@ public class GroupManager {
                 continue;
             }
             try {
-                System.out.println(entry.getKey());
+              //  System.out.println(entry.getKey());
                 Group group=groupsDatabase.getGroup(entry.getKey());
                 if(!group.isDeleted())
                 {
@@ -60,6 +60,21 @@ public class GroupManager {
         }
         return groups;
     }
+
+    public boolean isMember(String userId,String groupId){
+       Group group;
+        try {
+            group=groupsDatabase.getGroup(groupId);
+            if(!group.isDeleted() && group.getMembers().containsKey(userId)){
+                return true;
+            }
+        } catch (IOException e) {
+
+        }
+
+return false;
+    }
+
     public Group getGroup(String groupId) {
         Group group=null;
         try {
@@ -142,7 +157,7 @@ public class GroupManager {
     {
             ArrayList<String> admins=new ArrayList<>();
         try {
-            System.out.println(groupId);
+          //  System.out.println(groupId);
             Map <String,GroupRole> members=groupsDatabase.getGroup(groupId).getMembers();
             for(Map.Entry<String,GroupRole> entry:members.entrySet())
             {
@@ -269,4 +284,43 @@ public class GroupManager {
             e.printStackTrace();
         }
     }
+
+    public ArrayList<Group> getAllGroups()
+    {
+        int num= 0;
+        try {
+            num = groupsDatabase.getMax();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ArrayList<Group> groups=new ArrayList<>();
+        for(int i=1;i<=num;i++)
+        {
+            Group group= null;
+            try {
+                group = groupsDatabase.getGroup(i+"");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            if(!group.isDeleted())
+            {
+                groups.add(group);
+            }
+        }
+        return groups;
+    }
+
+
+    public ArrayList<String> searchGroupsBySubstringOfTheirNames(String query) throws IOException {
+        ArrayList<Group> Groups = getAllGroups();
+        ArrayList<String> searchResults = new ArrayList<>();
+        for (Group g : Groups) {
+            if (g.getName().toLowerCase().contains(query)) {
+                searchResults.add(g.getGroupId());
+            }
+        }
+        return searchResults;//returns id's of groups with matching substring
+    }
+
+
 }
