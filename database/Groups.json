@@ -2,7 +2,7 @@
   "deleted" : false,
   "groupId" : "1",
   "members" : {
-    "1" : "PENDING",
+    "1" : "MEMBER",
     "2" : "MEMBER",
     "3" : "ADMIN",
     "4" : "PRIMARYADMIN"

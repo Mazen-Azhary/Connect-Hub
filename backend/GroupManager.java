@@ -142,6 +142,7 @@ public class GroupManager {
     {
             ArrayList<String> admins=new ArrayList<>();
         try {
+            System.out.println(groupId);
             Map <String,GroupRole> members=groupsDatabase.getGroup(groupId).getMembers();
             for(Map.Entry<String,GroupRole> entry:members.entrySet())
             {
