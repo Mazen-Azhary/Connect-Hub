@@ -165,7 +165,7 @@ public class GroupPage extends javax.swing.JFrame {
 
         // Add the post panel to the container
     }
-    void viewRequests()
+    private void viewRequests()
     {
         JFrame requestsFrame = new JFrame("View Requests");
         requestsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -174,7 +174,7 @@ public class GroupPage extends javax.swing.JFrame {
 
         // Panel or content to display the requests
         try {
-            JoinRequestsPanel joinRequestsPanel=new JoinRequestsPanel(this,"1","2");
+            JoinRequestsPanel joinRequestsPanel=new JoinRequestsPanel(this,userId,groupId);
             joinRequestsPanel.setLayout(new BoxLayout(joinRequestsPanel, BoxLayout.Y_AXIS));
 
             // Add the panel to the JFrame
@@ -432,7 +432,7 @@ public class GroupPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GroupPage("1","2").setVisible(true);
+                new GroupPage("4","1").setVisible(true);
             }
         });
     }

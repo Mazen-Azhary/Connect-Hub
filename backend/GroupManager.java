@@ -19,6 +19,21 @@ public class GroupManager {
         }
         return instance;
     }
+    public void request(String userId,String groupId)
+    {
+        User user=null;
+        try {
+            user = userGroupsDatabase.getUser(userId);
+            Group group=groupsDatabase.getGroup(groupId);
+            group.getMembers().put(userId,GroupRole.PENDING);
+            user.getProfile().getGroups().put(groupId,GroupRole.PENDING);
+            groupsDatabase.modifyGroupById(group);
+            userGroupsDatabase.modifyUserGroupsById(user);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
     public ArrayList<Group> getGroups(String userId) {
         User user=null;
         try {
@@ -33,10 +48,10 @@ public class GroupManager {
                 continue;
             }
             try {
+                System.out.println(entry.getKey());
                 Group group=groupsDatabase.getGroup(entry.getKey());
                 if(!group.isDeleted())
                 {
-
                 groups.add(group);
                 }
             } catch (IOException e) {
@@ -127,6 +142,7 @@ public class GroupManager {
     {
             ArrayList<String> admins=new ArrayList<>();
         try {
+            System.out.println(groupId);
             Map <String,GroupRole> members=groupsDatabase.getGroup(groupId).getMembers();
             for(Map.Entry<String,GroupRole> entry:members.entrySet())
             {

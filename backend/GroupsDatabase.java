@@ -143,8 +143,8 @@ public class GroupsDatabase extends Database {
         if (groups == null) return 0;
         int max = 0;
         for (Map<String, Object> contentNode : groups) {
-            if ((int) contentNode.get("groupId")>max) {
-                max = (int)contentNode.get("groupId");
+            if (Integer.parseInt((String)contentNode.get("groupId"))>max) {
+                max = Integer.parseInt((String)contentNode.get("groupId"));
             }
         }
         return max;

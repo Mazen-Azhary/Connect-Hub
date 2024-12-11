@@ -17,9 +17,10 @@ public class SuggestionsGeneratorGroups {
         if(instance==null) instance=new SuggestionsGeneratorGroups();
         return instance;
     }
-    public HashSet<Group> generateSuggestions(String id)
+    public ArrayList<Group> generateSuggestions(String id)
     {
-        HashSet<Group> suggestions= new HashSet<>();
+        ArrayList<Group> suggestions= new ArrayList<>();
+        HashSet<String> sug=new HashSet<>();
         try {
             ArrayList<String> friends = friendDatabase.getUser(id).getProfile().getFriends();
             for(String friend: friends)
@@ -28,19 +29,23 @@ public class SuggestionsGeneratorGroups {
                 for(Map.Entry<String,GroupRole> entry: friendGroups.entrySet())
                 {
                     Group group=groupsDatabase.getGroup(entry.getKey());
-                    if(!group.isDeleted())
+                    if(!group.isDeleted()&&!userGroupsDatabase.getUser(id).getProfile().getGroups().containsKey(entry.getKey()))
                     {
-                        suggestions.add(group);
+                        sug.add(group.getGroupId());
                     }
                 }
+            }
+            for (String grp:sug)
+            {
+                suggestions.add(groupsDatabase.getGroup(grp));
             }
             if(suggestions.isEmpty())
             {
                 int num= groupsDatabase.getMax();
-                for(int i=0;i<num;i++)
+                for(int i=1;i<=num;i++)
                 {
                     Group group=groupsDatabase.getGroup(i+"");
-                    if(!group.isDeleted())
+                    if(!group.isDeleted()&&!userGroupsDatabase.getUser(id).getProfile().getGroups().containsKey(i+""))
                     {
                         suggestions.add(group);
                     }

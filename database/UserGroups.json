@@ -1,8 +1,7 @@
 [ {
   "profile" : {
     "groups" : {
-      "group2" : "MEMBER",
-      "group1" : "ADMIN"
+      "1" : "MEMBER"
     },
     "profilePhoto" : null
   },
@@ -11,12 +10,62 @@
   "status" : "active"
 }, {
   "profile" : {
-    "profilePhoto" : "image",
     "groups" : {
-      "group2" : "MEMBER",
-      "group1" : "ADMIN"
-    }
+      "1" : "MEMBER"
+    },
+    "profilePhoto" : null
   },
-  "userID" : "1",
-  "username" : "admin"
+  "userID" : "3",
+  "username" : "admin",
+  "status" : "active"
+}, {
+  "profile" : {
+    "groups" : {
+      "1" : "MEMBER"
+    },
+    "profilePhoto" : null
+  },
+  "userID" : "4",
+  "username" : "admin",
+  "status" : "active"
+}, {
+  "profile" : {
+    "groups" : {
+      "1" : "MEMBER"
+    },
+    "profilePhoto" : null
+  },
+  "userID" : "5",
+  "username" : "admin",
+  "status" : "active"
+}, {
+  "profile" : {
+    "groups" : {
+      "1" : "MEMBER"
+    },
+    "profilePhoto" : null
+  },
+  "userID" : "6",
+  "username" : "admin",
+  "status" : "active"
+}, {
+  "profile" : {
+    "groups" : {
+      "1" : "MEMBER"
+    },
+    "profilePhoto" : null
+  },
+  "userID" : "7",
+  "username" : "admin",
+  "status" : "active"
+}, {
+  "profile" : {
+    "groups" : {
+      "1" : "MEMBER"
+    },
+    "profilePhoto" : null
+  },
+  "userID" : "8",
+  "username" : "admin",
+  "status" : "active"
 } ]
