@@ -35,7 +35,10 @@ public class GroupManager {
             try {
                 Group group=groupsDatabase.getGroup(entry.getKey());
                 if(!group.isDeleted())
-                groups.add(groupsDatabase.getGroup(entry.getKey()));
+                {
+
+                groups.add(group);
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

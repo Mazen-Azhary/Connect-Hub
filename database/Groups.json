@@ -12,10 +12,24 @@
   "photo" : null,
   "posts" : [ {
     "image" : null,
-    "deleted" : false,
+    "deleted" : true,
     "contentId" : 0,
     "authorId" : 1,
     "content" : "ana mesh gamed",
     "timestamp" : [ 2024, 12, 11, 15, 29, 22, 526281300 ]
+  }, {
+    "image" : "C:\\Users\\etijah\\Downloads\\Lamine.jpg",
+    "deleted" : true,
+    "contentId" : 18,
+    "authorId" : 4,
+    "content" : "a7san la3eb fel 3alam <3",
+    "timestamp" : [ 2024, 12, 11, 15, 54, 42, 864389400 ]
+  }, {
+    "image" : null,
+    "deleted" : true,
+    "contentId" : 19,
+    "authorId" : 4,
+    "content" : "ana mesh mbappe",
+    "timestamp" : [ 2024, 12, 11, 16, 3, 6, 844345600 ]
   } ]
 } ]

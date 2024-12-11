@@ -23,6 +23,7 @@ import java.util.ArrayList;
 public class GroupPage extends javax.swing.JFrame {
     private String userId;
     private String groupId;
+    private  GroupPage groupPage=this;
 
     /**
      * Creates new form GroupPage
@@ -124,7 +125,7 @@ public class GroupPage extends javax.swing.JFrame {
                 editButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        new CreatePostGroup(userId, groupId, false, post);
+                        new CreatePostGroup(userId, groupId, false, post,groupPage);
                     }
                 });
                 buttonPanel.add(editButton);
@@ -137,7 +138,9 @@ public class GroupPage extends javax.swing.JFrame {
                 deleteButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        GroupContentManager.getInstance().deletePost(groupId, post.getContentId()+"");
+                        AdminRole.getInstance().deletePost(groupId, post.getContentId()+"");
+                        dispose();
+                        new GroupPage(userId,groupId);
                     }
                 });
                 buttonPanel.add(deleteButton);
@@ -269,7 +272,7 @@ public class GroupPage extends javax.swing.JFrame {
         createPostButton.setText("Add post");
         createPostButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                new CreatePostGroup(userId,groupId,true,null);
+                new CreatePostGroup(userId,groupId,true,null,groupPage);
             }
         });
         requestsButton.setText("View Requests");

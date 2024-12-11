@@ -107,14 +107,12 @@ public class Group {
     }
     public void deletePost(String contentId)
     {
-        Iterator<Content> iterator=posts.iterator();
-        while (iterator.hasNext())
+        for(Content content:posts)
         {
-            if(iterator.next().getContentId()==Integer.parseInt(contentId))
+            if((content.getContentId()+"").equals(contentId))
             {
-                iterator.remove();
+                content.deleteContent();
             }
-
         }
     }
     public void deleteGroup()

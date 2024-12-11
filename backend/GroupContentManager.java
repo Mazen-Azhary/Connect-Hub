@@ -8,7 +8,6 @@ public class GroupContentManager {
     private static GroupContentManager instance ;
     private ContentDatabase contentDatabase = new ContentDatabase("src/database/Contents.json");
     private GroupsDatabase groupsDatabase = new GroupsDatabase("src/database/Groups.json");
-    private FriendDatabase friendDatabase = new FriendDatabase("src/database/Friends.json");
     private GroupContentManager()
     {
 
@@ -40,23 +39,16 @@ public class GroupContentManager {
             throw new RuntimeException(e);
         }
         ArrayList<Content> contents=group.getPosts();
-        //checking the blocked users
-        User user=null;
-        try {
-            user=friendDatabase.getUser(userId);
-        }
-        catch (IOException e)
+        ArrayList<Content> returned=new ArrayList<>();
+        for(Content c:contents)
         {
-            e.printStackTrace();
+            if(c.isDeleted())
+            {
+                continue;
+            }
+            returned.add(c);
         }
-//        for(Content c:contents)
-//        {
-//            if(user.getProfile().getBlockedUsers().contains(c.getAuthorId()+"")||c.isDeleted())
-//            {
-//                contents.remove(c);
-//            }
-//        }
-        return contents;
+        return returned;
     }
     public void deletePost(String groupId,String contentId) {
 
