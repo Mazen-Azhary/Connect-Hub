@@ -165,6 +165,25 @@ public class GroupPage extends javax.swing.JFrame {
 
         // Add the post panel to the container
     }
+    void viewRequests()
+    {
+        JFrame requestsFrame = new JFrame("View Requests");
+        requestsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        requestsFrame.setSize(600, 400);
+        requestsFrame.setLocationRelativeTo(null);
+
+        // Panel or content to display the requests
+        try {
+            JoinRequestsPanel joinRequestsPanel=new JoinRequestsPanel(this,"1","2");
+            joinRequestsPanel.setLayout(new BoxLayout(joinRequestsPanel, BoxLayout.Y_AXIS));
+
+            // Add the panel to the JFrame
+            requestsFrame.add(new JScrollPane(joinRequestsPanel));
+            requestsFrame.setVisible(true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     private GroupContentManager groupContentManager=GroupContentManager.getInstance();
     public GroupPage(String userId,String groupId) {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Prevent default behavior
@@ -174,6 +193,7 @@ public class GroupPage extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+
         setTitle("GroupPage");
         loadPosts();
         GroupMembersPannel groupMembersPannel=null;
@@ -276,9 +296,10 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
         requestsButton.setText("View Requests");
-        createPostButton.addActionListener(new java.awt.event.ActionListener() {
+        requestsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 //handle the request code here
+                viewRequests();
             }
         });
         if(GroupManager.getInstance().getRole(userId,groupId).equals(GroupRole.ADMIN)||GroupManager.getInstance().getRole(userId,groupId).equals(GroupRole.PRIMARYADMIN))
@@ -411,7 +432,7 @@ public class GroupPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GroupPage("4","2").setVisible(true);
+                new GroupPage("4","1").setVisible(true);
             }
         });
     }
