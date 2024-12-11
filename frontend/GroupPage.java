@@ -171,7 +171,7 @@ public class GroupPage extends javax.swing.JFrame {
 
         // Panel or content to display the requests
         try {
-            JoinRequestsPanel joinRequestsPanel=new JoinRequestsPanel(this,userId,groupId);
+            JoinRequestsPanel joinRequestsPanel=new JoinRequestsPanel(this,"1","2");
             joinRequestsPanel.setLayout(new BoxLayout(joinRequestsPanel, BoxLayout.Y_AXIS));
 
             // Add the panel to the JFrame
@@ -413,7 +413,7 @@ public class GroupPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GroupPage("3","2").setVisible(true);
+                new GroupPage("1","2").setVisible(true);
             }
         });
     }
