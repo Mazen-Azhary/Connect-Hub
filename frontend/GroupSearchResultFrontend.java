@@ -24,8 +24,8 @@ public class GroupSearchResultFrontend extends JPanel {
     public GroupSearchResultFrontend(String currentUserID, String groupID, ArrayList<String> groupIDs, GroupSearchResultPanel groupSearchResultPanel) throws IOException {
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(10, 10, 10, 10)); // Add padding
-
-        Group group = GroupManager.getInstance().getGroup(groupID);
+        GroupManager groupManager = GroupManager.getInstance();
+        Group group = groupManager.getGroup(groupID);
 
         ImageIcon photo = new ImageIcon(group.getPhoto());
         if (photo.getIconWidth() <= 0 || photo.getIconHeight() <= 0) {
@@ -47,12 +47,15 @@ public class GroupSearchResultFrontend extends JPanel {
             }
         });
 
+
+
         groupName = new JLabel(group.getName());
         groupName.setHorizontalAlignment(JLabel.CENTER);
         groupName.setFont(new Font("Arial", Font.BOLD, 16));
         groupName.setBorder(new EmptyBorder(0, 10, 0, 10)); // Add padding
 
-        button1 = new JButton("Button 1"); // Placeholder name
+        boolean isMember = groupManager.isMember(currentUserID, groupID);
+        button1 = new JButton(isMember ? "Leave" : "Join");
         button1.setBackground(new Color(70, 130, 180)); // Steel blue color
         button1.setForeground(Color.WHITE);
         button1.setPreferredSize(new Dimension(100, 40)); // Button size
@@ -65,15 +68,17 @@ public class GroupSearchResultFrontend extends JPanel {
             }
         });
 
-        button2 = new JButton("Button 2"); // Placeholder name
+        button2 = new JButton("View Group");
         button2.setBackground(new Color(34, 139, 34)); // Green color
         button2.setForeground(Color.WHITE);
         button2.setPreferredSize(new Dimension(100, 40));
 
-        button2.addActionListener(new ActionListener() {
+        button2.addActionListener(new ActionListener() {//view group button
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"unimplemented yet");
+                    GroupPage groupView = new GroupPage(currentUserID, groupID);
+                    groupView.setVisible(true);
+
             }
         });
 

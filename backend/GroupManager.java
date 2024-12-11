@@ -60,6 +60,21 @@ public class GroupManager {
         }
         return groups;
     }
+
+    public boolean isMember(String userId,String groupId){
+       Group group;
+        try {
+            group=groupsDatabase.getGroup(groupId);
+            if(!group.isDeleted() && group.getMembers().containsKey(userId)){
+                return true;
+            }
+        } catch (IOException e) {
+
+        }
+
+return false;
+    }
+
     public Group getGroup(String groupId) {
         Group group=null;
         try {
