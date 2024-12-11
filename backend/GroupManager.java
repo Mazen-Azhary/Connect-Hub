@@ -48,7 +48,7 @@ public class GroupManager {
                 continue;
             }
             try {
-                System.out.println(entry.getKey());
+              //  System.out.println(entry.getKey());
                 Group group=groupsDatabase.getGroup(entry.getKey());
                 if(!group.isDeleted())
                 {
@@ -157,7 +157,7 @@ return false;
     {
             ArrayList<String> admins=new ArrayList<>();
         try {
-            System.out.println(groupId);
+          //  System.out.println(groupId);
             Map <String,GroupRole> members=groupsDatabase.getGroup(groupId).getMembers();
             for(Map.Entry<String,GroupRole> entry:members.entrySet())
             {

@@ -46,6 +46,7 @@
   "deleted" : false,
   "groupId" : "3",
   "members" : {
+    "1" : "MEMBER",
     "4" : "PRIMARYADMIN",
     "5" : "PENDING"
   },

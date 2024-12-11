@@ -43,7 +43,12 @@ public class GroupSearchResultFrontend extends JPanel {
         groupPhoto.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Placeholder for view group
+                if(groupManager.getRole(currentUserID,groupID)!=null) {
+                    GroupPage groupView = new GroupPage(currentUserID, groupID);
+                    groupView.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(null,"Please request joining group first and wait for acceptance");
+                }
             }
         });
 
@@ -55,30 +60,47 @@ public class GroupSearchResultFrontend extends JPanel {
         groupName.setBorder(new EmptyBorder(0, 10, 0, 10)); // Add padding
 
         boolean isMember = groupManager.isMember(currentUserID, groupID);
-        button1 = new JButton(isMember ? "Leave" : "Join");
+        button1 = new JButton(isMember ? "Leave" : "Request to Join");
         button1.setBackground(new Color(70, 130, 180)); // Steel blue color
         button1.setForeground(Color.WHITE);
-        button1.setPreferredSize(new Dimension(100, 40)); // Button size
+        button1.setPreferredSize(new Dimension(150, 40)); // Button size
 
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"unimplemented yet");
+                if(groupManager.getRequests(groupID).contains(currentUserID)){//request already sent to acoid duplicate reuqest
+                    JOptionPane.showMessageDialog(null,"Request already sent");
+                    return;
+                }else if(groupManager.getRole(currentUserID,groupID)!=null){//leave group if member
+                        groupManager.leave(currentUserID, groupID);
+                        JOptionPane.showMessageDialog(null,"left group");
 
+                }
+                else{//send request
+                    JOptionPane.showMessageDialog(null,"Sent request for group");
+                    groupManager.request(currentUserID, groupID);
+
+                }
+
+                revalidate();
+                repaint();
             }
         });
 
         button2 = new JButton("View Group");
         button2.setBackground(new Color(34, 139, 34)); // Green color
         button2.setForeground(Color.WHITE);
-        button2.setPreferredSize(new Dimension(100, 40));
+        button2.setPreferredSize(new Dimension(150, 40));
 
         button2.addActionListener(new ActionListener() {//view group button
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(groupManager.getRole(currentUserID,groupID)!=null) {
                     GroupPage groupView = new GroupPage(currentUserID, groupID);
                     groupView.setVisible(true);
-
+                }else{
+                    JOptionPane.showMessageDialog(null,"Please request joining group first and wait for acceptance");
+                }
             }
         });
 
