@@ -1,0 +1,20 @@
+[ {
+  "deleted" : false,
+  "groupId" : "2",
+  "members" : {
+    "1" : "PRIMARYADMIN",
+    "2" : "PENDING",
+    "3" : "PENDING"
+  },
+  "name" : "not my group",
+  "description" : "visca barca",
+  "photo" : null,
+  "posts" : [ {
+    "image" : null,
+    "deleted" : false,
+    "contentId" : 17,
+    "authorId" : 3,
+    "content" : "ana Frenkie ",
+    "timestamp" : [ 2024, 12, 11, 14, 28, 9, 338629900 ]
+  } ]
+} ]

@@ -122,23 +122,4 @@ public class UserContentDatabase extends Database {
         writer.write(jsonString);  // Write the updated string back to the file
         writer.close();
     }
-
-    public static void main(String[] args) throws IOException {
-        UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
-//        User user =new User();
-//        user.setUsername("admin");
-//        user.setStatus("active");
-//        user.setUserID("1");
-//        user.setProfile(new Profile());
-//        user.getProfile().setContents(new ArrayList<>());
-//        Content content=ContentFactory.createContent("post",Integer.parseInt(user.getUserID()), LocalDate.now());
-//        ContentBuilder contentBuilder=new ContentBuilder(content);
-//        contentBuilder.setContent("mohamed is here");
-//        user.getProfile().getContents().add(contentBuilder.build());
-//        userContentDatabase.addUser(user);
-        User us=userContentDatabase.getUser("1");
-        us.getProfile().getContents().get(0).setContent("abotrika");
-        userContentDatabase.modifyUserById(us);
-
-    }
 }

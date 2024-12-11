@@ -1,6 +1,8 @@
 package backend;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Profile {
     private ArrayList<String> friends;
@@ -12,6 +14,8 @@ public class Profile {
     private ArrayList<String> friendSuggestions;
    private ArrayList<Content> contents;
     private ArrayList<String> blockedUsers;
+    private Map<String,GroupRole> groups;
+
 
     public Profile() {
         this.friends = new ArrayList<>();
@@ -20,6 +24,7 @@ public class Profile {
         this.blockedUsers=new ArrayList<>();
         this.friendReceivedRequests=new ArrayList<>();
         this.friendSuggestions=new ArrayList<>();
+        this.groups=new HashMap<>();
     }
 
     public ArrayList<String> getFriendReceivedRequests() {
@@ -30,7 +35,7 @@ public class Profile {
         this.friendReceivedRequests = friendReceivedRequests;
     }
 
-    public Profile(ArrayList<String> friends, String profilePhoto, String bio, String coverPhoto, ArrayList<Content> contents, ArrayList<String> friendRequests, ArrayList<String> friendReceivedRequests, ArrayList<String> friendSuggestions, ArrayList<String> blockedUsers) {
+    public Profile(ArrayList<String> friends, String profilePhoto, String bio, String coverPhoto, ArrayList<Content> contents, ArrayList<String> friendRequests, ArrayList<String> friendReceivedRequests, ArrayList<String> friendSuggestions, ArrayList<String> blockedUsers, Map<String,GroupRole> groups) {
         this.friends = friends;
         this.profilePhoto = profilePhoto;
         this.bio = bio;
@@ -40,6 +45,24 @@ public class Profile {
         this.blockedUsers = blockedUsers;
         this.friendReceivedRequests = friendReceivedRequests;
         this.friendSuggestions = friendSuggestions;
+        this.groups = groups;
+    }
+
+    public Map<String, GroupRole> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Map<String, GroupRole> groups) {
+        this.groups = groups;
+    }
+    public void addGroup(String groupId, GroupRole groupRole) {
+        this.groups.put(groupId, groupRole);
+    }
+    public void leaveGroup(String groupId) {
+        this.groups.remove(groupId);
+    }
+    public void requestJoin(String groupId) {
+        groups.put(groupId,GroupRole.PENDING);
     }
 
     public ArrayList<String> getFriendRecievedRequests() {

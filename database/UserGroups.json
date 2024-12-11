@@ -1,0 +1,22 @@
+[ {
+  "profile" : {
+    "groups" : {
+      "group2" : "MEMBER",
+      "group1" : "ADMIN"
+    },
+    "profilePhoto" : null
+  },
+  "userID" : "1",
+  "username" : "admin",
+  "status" : "active"
+}, {
+  "profile" : {
+    "profilePhoto" : "image",
+    "groups" : {
+      "group2" : "MEMBER",
+      "group1" : "ADMIN"
+    }
+  },
+  "userID" : "1",
+  "username" : "admin"
+} ]
