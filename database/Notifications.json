@@ -1,0 +1,8 @@
+[ {
+  "relativeId" : "1234",
+  "notificationId" : "1",
+  "time" : [ 2024, 12, 12, 0, 56, 23, 583638500 ],
+  "message" : "This is a test notification",
+  "authorId" : "5678",
+  "type" : "POST"
+} ]
