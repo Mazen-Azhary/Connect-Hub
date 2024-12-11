@@ -2,7 +2,6 @@
   "deleted" : false,
   "groupId" : "2",
   "members" : {
-    "1" : "MEMBER",
     "2" : "MEMBER",
     "3" : "ADMIN"
   },
@@ -16,5 +15,12 @@
     "authorId" : 1,
     "content" : "dasdsad",
     "timestamp" : [ 2024, 12, 11, 14, 13, 40, 767777100 ]
+  }, {
+    "image" : null,
+    "deleted" : false,
+    "contentId" : 17,
+    "authorId" : 3,
+    "content" : "ana  lamine yamal",
+    "timestamp" : [ 2024, 12, 11, 14, 28, 9, 338629900 ]
   } ]
 } ]

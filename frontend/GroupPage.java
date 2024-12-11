@@ -33,7 +33,8 @@ public class GroupPage extends javax.swing.JFrame {
             posts = GroupContentManager.getInstance().contents(userId,groupId);
         JPanel postPanel = new JPanel();
         postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
-        for (Content post : posts) {
+        for (int i=posts.size()-1; i>=0; i--) {
+            Content post=posts.get(i);
             // Retrieve user details
             User user = ProfileManager.getInstance().getUser("" + post.getAuthorId());
             ImageIcon photo = new ImageIcon(user.getProfile().getProfilePhoto());
@@ -207,6 +208,8 @@ public class GroupPage extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         MembersScrollPane1 = new javax.swing.JScrollPane();
         leaveButton = new javax.swing.JButton();
+        createPostButton= new javax.swing.JButton();
+        requestsButton=new JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -263,6 +266,29 @@ public class GroupPage extends javax.swing.JFrame {
                 }
             }
         });
+        createPostButton.setText("Add post");
+        createPostButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                new CreatePostGroup(userId,groupId,true,null);
+            }
+        });
+        requestsButton.setText("View Requests");
+        createPostButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                //handle the request code here
+            }
+        });
+        if(GroupManager.getInstance().getRole(userId,groupId).equals(GroupRole.ADMIN)||GroupManager.getInstance().getRole(userId,groupId).equals(GroupRole.PRIMARYADMIN))
+        {
+
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+            buttonPanel.add(requestsButton);
+            add(buttonPanel, BorderLayout.PAGE_START);
+            revalidate();
+            repaint();
+        }
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -285,6 +311,7 @@ public class GroupPage extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(MembersScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(createPostButton)
                                                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,7 +324,7 @@ public class GroupPage extends javax.swing.JFrame {
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup((layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
+                                .addGap(16, 30, 35)
                                 .addComponent(BackButton)
                                 .addGap(18, 18, 18)
                                 .addComponent(leaveButton))
@@ -306,7 +333,9 @@ public class GroupPage extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(createPostButton))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(descLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -317,6 +346,7 @@ public class GroupPage extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(83, 83, 83)
                                                 .addComponent(jLabel4)
+                                                .addComponent(jLabel5)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(layout.createSequentialGroup()
@@ -326,7 +356,6 @@ public class GroupPage extends javax.swing.JFrame {
                                                 .addContainerGap())))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel5)
                                 .addGap(355, 355, 355))
         );
 
@@ -380,6 +409,8 @@ public class GroupPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel descLabel;
     private javax.swing.JButton leaveButton;
+    private javax.swing.JButton createPostButton;
+    private javax.swing.JButton requestsButton;
 
     // End of variables declaration
 }
