@@ -2,7 +2,7 @@
   "profile" : {
     "friendRequests" : [ "7" ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ "-3", "-4", "2" ],
+    "blockedUsers" : [ "-3", "2" ],
     "friendReceivedRequests" : [ ],
     "friends" : [ "5", "6", "8" ]
   },
@@ -32,7 +32,7 @@
   "profile" : {
     "friendRequests" : [ ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ "1", "-8" ],
+    "blockedUsers" : [ "-8" ],
     "friendReceivedRequests" : [ "3", "6", "2" ],
     "friends" : [ "5" ]
   },

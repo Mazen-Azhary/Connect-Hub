@@ -246,13 +246,30 @@ public class NewsFeed extends javax.swing.JFrame {
                 }
             }
         });
-        om.add(view);
-        om.add(sentRequests);
+
+        JMenuItem search =new JMenuItem("Search");
+        search.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                SearchPage searchPage = new SearchPage(id);
+                searchPage.setVisible(true);
+
+            }
+
+        });
+
+
+
         om.add(ref);
-        om.add(logoutItem);
-        om.add(blocks);
+        om.add(view);
+        om.add(search);
         om.add(friendRequests);
+        om.add(sentRequests);
+        om.add(blocks);
+        om.add(logoutItem);
+
         mb.add(om);
+
         OptionsMenu.setJMenuBar(mb);
         User p = manager.getUser(id);
         if(p.getProfile().getProfilePhoto() == null) {

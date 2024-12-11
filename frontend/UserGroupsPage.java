@@ -142,7 +142,7 @@ public class UserGroupsPage extends JFrame {
 
     public static void main(String[] args) {
         try {
-            new UserGroupsPage("1",true);
+            new UserGroupsPage("1",false);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
