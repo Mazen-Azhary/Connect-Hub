@@ -17,9 +17,9 @@
   "deleted" : false,
   "groupId" : "2",
   "members" : {
+    "1" : "PRIMARYADMIN",
     "2" : "MEMBER",
-    "3" : "ADMIN",
-    "1" : "PRIMARYADMIN"
+    "3" : "ADMIN"
   },
   "name" : "not my group",
   "description" : null,
@@ -32,5 +32,4 @@
     "content" : "ana mesh gamed",
     "timestamp" : [ 2024, 12, 11, 0, 1, 53, 846102800 ]
   } ]
-}
- ]
+} ]

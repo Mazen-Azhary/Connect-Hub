@@ -9,6 +9,8 @@ import backend.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -82,6 +84,28 @@ public class GroupPage extends javax.swing.JFrame {
             headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.X_AXIS));
             headerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
             headerPanel.setOpaque(false); // Ensure it blends with background
+            if(GroupManager.getInstance().getRole(userId,groupId).equals(GroupRole.PRIMARYADMIN))
+            {
+                PrimaryAdminRole primaryAdminRole=PrimaryAdminRole.getInstance();
+                {
+                    JButton editButton = new JButton("Edit");
+                    editButton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            new EditPostPage(user.getUserID(),post);
+                        }
+                    });
+                    headerPanel.add(editButton);
+                    JButton deleteButton = new JButton("Delete");
+                    deleteButton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            primaryAdminRole.deletePost(groupId,post);
+                        }
+                    });
+                    headerPanel.add(deleteButton);
+                }
+            }
             headerPanel.add(friendPhoto);
             headerPanel.add(Box.createRigidArea(new Dimension(10, 0))); // Space between photo and name
             headerPanel.add(friendName);
@@ -123,6 +147,7 @@ public class GroupPage extends javax.swing.JFrame {
         this.groupId=groupId;
         setLocationRelativeTo(null);
         setResizable(false);
+
         setTitle("GroupPage");
         loadPosts();
         GroupMembersPannel groupMembersPannel=null;
