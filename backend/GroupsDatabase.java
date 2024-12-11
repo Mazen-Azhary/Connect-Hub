@@ -160,6 +160,7 @@ public class GroupsDatabase extends Database {
         content.setAuthorId(1);
         content.setTimestamp(LocalDateTime.now());
         group.getPosts().add(content);
+        group.getMembers().put("4",GroupRole.PRIMARYADMIN);
         group.addMember("1");
         group.addMember("2");
         group.promoteMember("3");

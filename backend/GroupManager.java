@@ -33,7 +33,12 @@ public class GroupManager {
                 continue;
             }
             try {
-                groups.add(groupsDatabase.getGroup(entry.getKey()));
+                Group group=groupsDatabase.getGroup(entry.getKey());
+                if(!group.isDeleted())
+                {
+
+                groups.add(group);
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

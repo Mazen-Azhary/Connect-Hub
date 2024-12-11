@@ -21,8 +21,8 @@ public class AdminRole extends MemberRole{
     {
         groupContentManager.editPost(groupId,content,desc,imagePath);
     }
-    public void deletePost(String groupId,Content content){
-         groupContentManager.deletePost(groupId,content.getContentId()+"");
+    public void deletePost(String groupId,String contentId){
+         groupContentManager.deletePost(groupId,contentId);
     }
     public void respondRequest(String userId,String groupId,boolean accept){
          groupManager.respondRequest(userId,groupId,accept);

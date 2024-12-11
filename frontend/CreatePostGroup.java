@@ -21,14 +21,16 @@ public class CreatePostGroup extends javax.swing.JFrame {
     private String groupID;
     private boolean create;
     private Content content;
+    private GroupPage groupPage;
     /**
      * Creates new form CreatePostGroup
      */
 
-    public CreatePostGroup(String userID,String groupID,boolean create,Content content) {
+    public CreatePostGroup(String userID,String groupID,boolean create,Content content,GroupPage groupPage) {
         this.userID=userID;
         this.groupID=groupID;
         this.content=content;
+        this.groupPage=groupPage;
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
@@ -125,7 +127,7 @@ public class CreatePostGroup extends javax.swing.JFrame {
     private void PostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostButtonActionPerformed
         if(PostContentTextField.getText().isEmpty() && imagePath.isEmpty()){
             JOptionPane.showMessageDialog(null,"You must input data","Error",JOptionPane.ERROR_MESSAGE);
-            this.dispose();
+            dispose();
             return;
         }
         if(create)
@@ -134,6 +136,8 @@ public class CreatePostGroup extends javax.swing.JFrame {
         try {
             GroupContentManager.getInstance().addPost(userID,groupID,PostContentTextField.getText(),imagePath);
             dispose();
+            groupPage.dispose();
+            new GroupPage(userID,groupID);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -143,6 +147,8 @@ public class CreatePostGroup extends javax.swing.JFrame {
         {
             GroupContentManager.getInstance().editPost(groupID,content,PostContentTextField.getText(),imagePath);
             dispose();
+            groupPage.dispose();
+            new GroupPage(userID,groupID);
         }
 
 

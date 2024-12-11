@@ -23,6 +23,7 @@ import java.util.ArrayList;
 public class GroupPage extends javax.swing.JFrame {
     private String userId;
     private String groupId;
+    private  GroupPage groupPage=this;
 
     /**
      * Creates new form GroupPage
@@ -124,7 +125,7 @@ public class GroupPage extends javax.swing.JFrame {
                 editButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        new CreatePostGroup(userId, groupId, false, post);
+                        new CreatePostGroup(userId, groupId, false, post,groupPage);
                     }
                 });
                 buttonPanel.add(editButton);
@@ -137,7 +138,9 @@ public class GroupPage extends javax.swing.JFrame {
                 deleteButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        GroupContentManager.getInstance().deletePost(groupId, post.getContentId()+"");
+                        AdminRole.getInstance().deletePost(groupId, post.getContentId()+"");
+                        dispose();
+                        new GroupPage(userId,groupId);
                     }
                 });
                 buttonPanel.add(deleteButton);
@@ -289,7 +292,7 @@ public class GroupPage extends javax.swing.JFrame {
         createPostButton.setText("Add post");
         createPostButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                new CreatePostGroup(userId,groupId,true,null);
+                new CreatePostGroup(userId,groupId,true,null,groupPage);
             }
         });
         requestsButton.setText("View Requests");
@@ -303,13 +306,29 @@ public class GroupPage extends javax.swing.JFrame {
         {
 
             JPanel buttonPanel = new JPanel();
-            buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+            buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
             buttonPanel.add(requestsButton);
-            add(buttonPanel, BorderLayout.PAGE_START);
+            if (GroupManager.getInstance().getRole(userId,groupId).equals(GroupRole.PRIMARYADMIN))
+            {
+                JButton deleteButton = new JButton("Delete Group");
+                deleteButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        PrimaryAdminRole.getInstance().deleteGroup(groupId);
+                        dispose();
+                        try {
+                            new NewsFeed(userId);
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });
+                buttonPanel.add(deleteButton);
+            }
+            add(buttonPanel, BorderLayout.NORTH);
             revalidate();
             repaint();
         }
-
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -345,7 +364,7 @@ public class GroupPage extends javax.swing.JFrame {
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup((layout.createSequentialGroup()
-                                .addGap(16, 30, 35)
+                                .addGap(16, 60, 60)
                                 .addComponent(BackButton)
                                 .addGap(18, 18, 18)
                                 .addComponent(leaveButton))
