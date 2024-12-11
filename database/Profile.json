@@ -11,8 +11,8 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : "C:\\Users\\etijah\\Downloads\\Lamine.jpg",
-    "coverPhoto" : null,
+    "profilePhoto" : "C:\\Users\\Etijah\\Desktop\\images.jpg",
+    "coverPhoto" : "src/database/CoverDefault.jpg",
     "bio" : null
   },
   "dateOfBirth" : [ 2024, 12, 5 ],

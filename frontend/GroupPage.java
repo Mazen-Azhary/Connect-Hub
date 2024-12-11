@@ -85,28 +85,6 @@ public class GroupPage extends javax.swing.JFrame {
             headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.X_AXIS));
             headerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
             headerPanel.setOpaque(false); // Ensure it blends with background
-            if(GroupManager.getInstance().getRole(userId,groupId).equals(GroupRole.PRIMARYADMIN))
-            {
-                PrimaryAdminRole primaryAdminRole=PrimaryAdminRole.getInstance();
-                {
-                    JButton editButton = new JButton("Edit");
-                    editButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            new EditPostPage(user.getUserID(),post);
-                        }
-                    });
-                    headerPanel.add(editButton);
-                    JButton deleteButton = new JButton("Delete");
-                    deleteButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            primaryAdminRole.deletePost(groupId,post);
-                        }
-                    });
-                    headerPanel.add(deleteButton);
-                }
-            }
             headerPanel.add(friendPhoto);
             headerPanel.add(Box.createRigidArea(new Dimension(10, 0))); // Space between photo and name
             headerPanel.add(friendName);
@@ -183,6 +161,25 @@ public class GroupPage extends javax.swing.JFrame {
         repaint();
 
         // Add the post panel to the container
+    }
+    void viewRequests()
+    {
+        JFrame requestsFrame = new JFrame("View Requests");
+        requestsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        requestsFrame.setSize(600, 400);
+        requestsFrame.setLocationRelativeTo(null);
+
+        // Panel or content to display the requests
+        try {
+            JoinRequestsPanel joinRequestsPanel=new JoinRequestsPanel(this,userId,groupId);
+            joinRequestsPanel.setLayout(new BoxLayout(joinRequestsPanel, BoxLayout.Y_AXIS));
+
+            // Add the panel to the JFrame
+            requestsFrame.add(new JScrollPane(joinRequestsPanel));
+            requestsFrame.setVisible(true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     private GroupContentManager groupContentManager=GroupContentManager.getInstance();
     public GroupPage(String userId,String groupId) {
@@ -296,9 +293,10 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
         requestsButton.setText("View Requests");
-        createPostButton.addActionListener(new java.awt.event.ActionListener() {
+        requestsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 //handle the request code here
+                viewRequests();
             }
         });
         if(GroupManager.getInstance().getRole(userId,groupId).equals(GroupRole.ADMIN)||GroupManager.getInstance().getRole(userId,groupId).equals(GroupRole.PRIMARYADMIN))

@@ -12,16 +12,9 @@
   "posts" : [ {
     "image" : null,
     "deleted" : false,
-    "contentId" : 0,
-    "authorId" : 1,
-    "content" : "dasdsad",
-    "timestamp" : [ 2024, 12, 11, 14, 13, 40, 767777100 ]
-  }, {
-    "image" : null,
-    "deleted" : false,
     "contentId" : 17,
     "authorId" : 3,
-    "content" : "ana  lamine yamal",
+    "content" : "ana Frenkie ",
     "timestamp" : [ 2024, 12, 11, 14, 28, 9, 338629900 ]
   } ]
 } ]
