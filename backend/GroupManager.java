@@ -80,11 +80,11 @@ public class GroupManager {
         }
         return group.getMembers().get(userId);
     }
-    public void createGroup(String userId,String groupName,String description) {
+    public void createGroup(String userId,String groupName,String description,String imagepath) {
         Group group=null;
         try {
             int groupId =groupsDatabase.getMax()+1;
-             group=new Group(groupId+"",groupName,description,userId);
+             group=new Group(groupId+"",groupName,description,imagepath,userId);
              groupsDatabase.addGroup(group);
              User user=userGroupsDatabase.getUser(userId);
              user.getProfile().addGroup(groupId+"",GroupRole.PRIMARYADMIN);

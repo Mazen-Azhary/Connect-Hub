@@ -29,10 +29,11 @@ public class Group {
         this.posts = new ArrayList<>();
 
     }
-    public Group(String groupId, String name, String description,String primaryAdmin) {
+    public Group(String groupId, String name, String description,String photo,String primaryAdmin) {
         this.groupId = groupId;
         this.name = name;
         this.description = description;
+        this.photo = photo;
         this.members = new HashMap<>();
         members.put(primaryAdmin,GroupRole.PRIMARYADMIN);
         this.posts = new ArrayList<>();
