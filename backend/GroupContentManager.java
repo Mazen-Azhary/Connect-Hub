@@ -58,24 +58,31 @@ public class GroupContentManager {
 //        }
         return contents;
     }
-    public void deletePost(String groupId,Content content) {
-        content.deleteContent();
+    public void deletePost(String groupId,String contentId) {
+
         Group group=null;
         try {
             group=groupsDatabase.getGroup(groupId);
-        groupsDatabase.modifyGroupById(group);
+            group.deletePost(contentId);
+            groupsDatabase.modifyGroupById(group);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
     public void editPost(String groupId,Content content,String desc,String imagePath)
     {
-        ContentBuilder builder = new ContentBuilder(content);
-        builder.setContent(desc);
-        builder.setImage(imagePath);
         Group group;
         try {
             group=groupsDatabase.getGroup(groupId);
+            for(Content c:group.getPosts())
+            {
+                if(c.getContentId()==content.getContentId())
+                {
+                    ContentBuilder builder = new ContentBuilder(c);
+                    builder.setContent(desc);
+                    builder.setImage(imagePath);
+                }
+            }
             groupsDatabase.modifyGroupById(group);
         } catch (IOException e) {
             throw new RuntimeException(e);

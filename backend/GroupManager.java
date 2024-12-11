@@ -40,6 +40,16 @@ public class GroupManager {
         }
         return groups;
     }
+    public Group getGroup(String groupId) {
+        Group group=null;
+        try {
+            group=groupsDatabase.getGroup(groupId);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return group;
+    }
     public GroupRole getRole(String userId, String groupId)
     {
         Group group= null;
