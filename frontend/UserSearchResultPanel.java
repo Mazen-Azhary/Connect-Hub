@@ -11,34 +11,39 @@ import java.util.Objects;
 
 public class UserSearchResultPanel extends JPanel {
     private String currentUserID;
-    private SearchManager searchManager;
+    private List<String> searchResultIDs; // Store the search result IDs
 
     public UserSearchResultPanel(String currentUserID, List<String> searchResultIDs) throws IOException {
         this.currentUserID = currentUserID;
+        this.searchResultIDs = new ArrayList<>(searchResultIDs); // Copy the list to allow modification
+        initializeUI();
+    }
 
-
+    private void initializeUI() throws IOException {
+        removeAll(); // Clear the panel's content
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
 
+        for (String userID : searchResultIDs) {
+            boolean isFriend = FriendManager.getInstance().isFriend(currentUserID, userID);
 
-        for (int i = 0; i < searchResultIDs.size(); i++) {
-            String userID = searchResultIDs.get(i);
-            boolean isFriend;
-            if (FriendManager.getInstance().isFriend(currentUserID, searchResultIDs.get(i))) {
-                isFriend = true; // Get the friend status for the current user
-            } else {
-                isFriend = false;
-            }
-
-
-            // Create the frontend component for each user, passing the friend status
-            if (FriendManager.getInstance().isBlocked(currentUserID, searchResultIDs.get(i)) || Objects.equals(userID, currentUserID)) {
+            // Skip blocked users or the current user
+            if (FriendManager.getInstance().isBlocked(currentUserID, userID) || Objects.equals(userID, currentUserID)) {
                 continue;
             }
 
-            UserSearchResultFrontend searchResult = new UserSearchResultFrontend(currentUserID,userID, isFriend);
+            // Create the frontend component for each user
+            UserSearchResultFrontend searchResult = new UserSearchResultFrontend(currentUserID, userID, isFriend, (ArrayList<String>) searchResultIDs, this);
             add(searchResult);
             add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between components
         }
+
+        revalidate(); // Refresh the layout
+        repaint(); // Redraw the panel
+    }
+
+    public void reloadSearchResults(List<String> updatedSearchResultIDs) throws IOException {
+        this.searchResultIDs = new ArrayList<>(updatedSearchResultIDs); // Update the search result IDs
+        initializeUI(); // Reinitialize the UI with updated data
     }
 }

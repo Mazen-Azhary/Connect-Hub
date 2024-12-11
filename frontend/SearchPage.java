@@ -5,6 +5,8 @@ import backend.SearchManager;
 import backend.User;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +27,7 @@ public class SearchPage extends javax.swing.JFrame {
         setTitle("Search Page");
         setLocationRelativeTo(null);
         setResizable(false);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -47,6 +50,25 @@ public class SearchPage extends javax.swing.JFrame {
         searchBar.addActionListener(evt -> searchBarActionPerformed(evt));
 
         jButton1.setText("Clear");
+        jButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                searchBar.setText("");
+
+
+                jScrollPane1.setViewportView(null);
+
+
+                searchedUsers = null;
+                peopleSearchResults.clear();
+                groupSearchResults.clear();
+
+
+                jScrollPane1.revalidate();
+                jScrollPane1.repaint();
+            }
+        });
 
         searchPeopleButton.setText("Search People");
         searchPeopleButton.addActionListener(evt -> {

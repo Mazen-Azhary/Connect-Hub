@@ -14,6 +14,8 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+
 
 public class UserSearchResultFrontend extends JPanel {
 
@@ -24,7 +26,8 @@ public class UserSearchResultFrontend extends JPanel {
     private JButton blockButton;
     private FriendManager friendManager = FriendManager.getInstance();
 
-    public UserSearchResultFrontend(String id, String userID, boolean isFriend) throws IOException {
+
+    public UserSearchResultFrontend(String id, String userID, boolean isFriend, ArrayList<String> ids, UserSearchResultPanel userSearchResultPanel) throws IOException {
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(10, 10, 10, 10)); // Add padding
 
@@ -48,7 +51,7 @@ public class UserSearchResultFrontend extends JPanel {
         userPhoto.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                searchResultProfile();
+
             }
         });
 
@@ -67,7 +70,12 @@ public class UserSearchResultFrontend extends JPanel {
         viewProfileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                viewProfile();
+                try {
+                    UserProfileFrame userProfileFrame = new UserProfileFrame(userID);
+                    userProfileFrame.setVisible(true);
+                } catch (IOException ex) {
+                    ex.printStackTrace(); // Handle the exception properly
+                }
             }
         });
 
@@ -107,7 +115,19 @@ public class UserSearchResultFrontend extends JPanel {
         blockButton.setBackground(new Color(255, 69, 0)); // Red color for block
         blockButton.setForeground(Color.WHITE);
         blockButton.setPreferredSize(new Dimension(100, 40)); // Make the button smaller
-
+        blockButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    friendManager.blockUser(id, userID);
+                    ArrayList<String> updatedSearchResultIDs = new ArrayList<>(ids);
+                    updatedSearchResultIDs.remove(userID); // Remove the blocked user
+                    userSearchResultPanel.reloadSearchResults(updatedSearchResultIDs); // Refresh the panel
+                } catch (IOException ex) {
+                    ex.printStackTrace(); // Handle the exception properly
+                }
+            }
+        });
         // Layout setup
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new BorderLayout());
@@ -125,14 +145,9 @@ public class UserSearchResultFrontend extends JPanel {
         add(buttonPanel, BorderLayout.CENTER); // Center section with buttons
     }
 
-    private void searchResultProfile() {
-        System.out.println("Hello World");
-    }
 
-    // This method is called when the "View Profile" button is clicked
-    private void viewProfile() {
-        System.out.println("Viewing Profile...");
-    }
+
+
 
     public static ImageIcon getCircularImageIcon(ImageIcon icon, int diameter) {
         // Create a new buffered image with transparency
@@ -151,4 +166,6 @@ public class UserSearchResultFrontend extends JPanel {
 
         return new ImageIcon(circularImage);
     }
+
+
 }
