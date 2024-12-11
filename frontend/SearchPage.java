@@ -1,8 +1,6 @@
 package frontend;
 
-import backend.FriendManager;
-import backend.SearchManager;
-import backend.User;
+import backend.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -80,7 +78,13 @@ public class SearchPage extends javax.swing.JFrame {
         });
 
         searchGroupsButton.setText("Search Groups");
-        searchGroupsButton.addActionListener(evt -> searchGroupsButtonActionPerformed(evt));
+        searchGroupsButton.addActionListener(evt -> {
+            try {
+                searchGroupsButtonActionPerformed(evt);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -144,45 +148,55 @@ public class SearchPage extends javax.swing.JFrame {
             return;
         }
 
-        searchedUsers = searchManager.search(query);
+        searchedUsers = searchManager.searchUsersBySubstringOfTheirNames(query);
 
         if (searchedUsers.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "User doesn't exist", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No results found", "no users found", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        ArrayList<String> searchedUsersID;
+        if(peopleSearchResults.get(query)!=null){
+        //JOptionPane.showMessageDialog(null,"loaded from hasmap");
+        searchedUsersID = peopleSearchResults.get(query);
+        }else {
 
-        ArrayList<String> searchedUsersID = new ArrayList<>();
-        for (User user : searchedUsers) {
-            searchedUsersID.add(user.getUserID());
+            searchedUsersID = new ArrayList<>();
+            for (User user : searchedUsers) {
+                searchedUsersID.add(user.getUserID());
 
+            }
+            peopleSearchResults.put(query, searchedUsersID);
         }
-
         UserSearchResultPanel userSearchResultPanel = new UserSearchResultPanel(id, searchedUsersID);
         updateScrollPane(userSearchResultPanel);
 
     }
 
-    private void searchGroupsButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    private void searchGroupsButtonActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         String query = searchBar.getText().toLowerCase().trim();
         if (query.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter a search term", "Empty Search", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please enter a search term in search bar", "Empty Search", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        /*
-        if (groupSearchResults.containsKey(query)) {
-            ArrayList<String> groupIds = groupSearchResults.get(query);
-            GroupSearchResultPanel groupSearchResultPanel = new GroupSearchResultPanel(id, groupIds);
-            updateScrollPane(groupSearchResultPanel);
-            return;
+        GroupManager groupManager = GroupManager.getInstance();
+
+        ArrayList<String> searchedGroupIDs;
+        if(groupSearchResults.get(query)!=null){
+            //JOptionPane.showMessageDialog(null,"loaded from hasmap");
+            searchedGroupIDs = groupSearchResults.get(query);
+        }else {
+            searchedGroupIDs = groupManager.searchGroupsBySubstringOfTheirNames(query);
+            if (searchedGroupIDs.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No results found", "no users found", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            groupSearchResults.put(query, searchedGroupIDs);
         }
 
-        ArrayList<String> groupIds = SearchManager.getInstance().searchGroupQuery(id, query);
-        groupSearchResults.put(query, groupIds);
-
-        GroupSearchResultPanel groupSearchResultPanel = new GroupSearchResultPanel(id, groupIds);
+        GroupSearchResultPanel groupSearchResultPanel = new GroupSearchResultPanel(id, searchedGroupIDs);
         updateScrollPane(groupSearchResultPanel);
-        */
+
     }
 
     private void updateScrollPane(JPanel panel) {

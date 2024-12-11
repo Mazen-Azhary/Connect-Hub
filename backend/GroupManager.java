@@ -269,4 +269,43 @@ public class GroupManager {
             e.printStackTrace();
         }
     }
+
+    public ArrayList<Group> getAllGroups()
+    {
+        int num= 0;
+        try {
+            num = groupsDatabase.getMax();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ArrayList<Group> groups=new ArrayList<>();
+        for(int i=1;i<=num;i++)
+        {
+            Group group= null;
+            try {
+                group = groupsDatabase.getGroup(i+"");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            if(!group.isDeleted())
+            {
+                groups.add(group);
+            }
+        }
+        return groups;
+    }
+
+
+    public ArrayList<String> searchGroupsBySubstringOfTheirNames(String query) throws IOException {
+        ArrayList<Group> Groups = getAllGroups();
+        ArrayList<String> searchResults = new ArrayList<>();
+        for (Group g : Groups) {
+            if (g.getName().toLowerCase().contains(query)) {
+                searchResults.add(g.getGroupId());
+            }
+        }
+        return searchResults;//returns id's of groups with matching substring
+    }
+
+
 }

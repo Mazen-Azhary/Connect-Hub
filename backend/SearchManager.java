@@ -17,7 +17,7 @@ public class SearchManager {
         return instance;
     }
 
-    public ArrayList<User> search(String userID) throws IOException {
+    public ArrayList<User> searchUsersBySubstringOfTheirNames(String query) throws IOException {
         ArrayList<User> users = new ArrayList<>();
         ArrayList<User> searchedUsers = new ArrayList<>();
         int size = loginDataBase.getMap().size() + 1;
@@ -25,7 +25,7 @@ public class SearchManager {
             users.add(profileDataBase.getUser(Integer.toString(i)));
         }
         for (User user : users) {
-            if (user.getUsername().toLowerCase().contains(userID)) {
+            if (user.getUsername().toLowerCase().contains(query)) {
                 searchedUsers.add(user);
             }
         }
