@@ -282,13 +282,29 @@ public class GroupPage extends javax.swing.JFrame {
         {
 
             JPanel buttonPanel = new JPanel();
-            buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+            buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
             buttonPanel.add(requestsButton);
-            add(buttonPanel, BorderLayout.PAGE_START);
+            if (GroupManager.getInstance().getRole(userId,groupId).equals(GroupRole.PRIMARYADMIN))
+            {
+                JButton deleteButton = new JButton("Delete Group");
+                deleteButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        PrimaryAdminRole.getInstance().deleteGroup(groupId);
+                        dispose();
+                        try {
+                            new NewsFeed(userId);
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });
+                buttonPanel.add(deleteButton);
+            }
+            add(buttonPanel, BorderLayout.NORTH);
             revalidate();
             repaint();
         }
-
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -324,7 +340,7 @@ public class GroupPage extends javax.swing.JFrame {
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup((layout.createSequentialGroup()
-                                .addGap(16, 30, 35)
+                                .addGap(16, 60, 60)
                                 .addComponent(BackButton)
                                 .addGap(18, 18, 18)
                                 .addComponent(leaveButton))
@@ -392,7 +408,7 @@ public class GroupPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GroupPage("3","2").setVisible(true);
+                new GroupPage("4","2").setVisible(true);
             }
         });
     }
