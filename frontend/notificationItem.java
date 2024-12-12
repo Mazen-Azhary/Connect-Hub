@@ -8,26 +8,60 @@ package frontend;
  *
  * @author Etijah
  */
-import javax.swing.*;
-import java.awt.event.ActionEvent;
+import backend.*;
+import frontend.notificationsUI.Button;
+import frontend.notificationsUI.ImageAvatar;
 
-public class notificationItem extends javax.swing.JPanel {
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class notificationItem extends JPanel {
 
     /**
      * Creates new form notificationItem
      */
+    private Notification notification;
+    private String userId;
+    private NotificationType type = null;
     private String photo;
     private String username;
     private String desc;
-    private String time;
-    private int type;
-    public notificationItem(String photo,String username,String desc,String time,int type) {
-        this.photo = photo;
-        this.username = username;
-        this.desc = desc;
-        this.time = time;
-        this.type = type;
+    private LocalDateTime time;
+    private ProfileManager profileManager=ProfileManager.getInstance();
+    private GroupManager groupManager=GroupManager.getInstance();
+    private FriendManager friendManager;
+    {
+        try {
+            friendManager = FriendManager.getInstance();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public notificationItem(String userId,Notification notification) {
+        if(notification.getType().equals(NotificationType.POST)){
+            this.photo = profileManager.getUser(notification.getAuthorId()).getProfile().getProfilePhoto();
+            this.username = profileManager.getUser(notification.getAuthorId()).getUsername();
+        }
+        else if(notification.getType().equals(NotificationType.ACCEPTED)||notification.getType().equals(NotificationType.REQUEST)) {
+            this.photo = profileManager.getUser(notification.getRelativeId()).getProfile().getProfilePhoto();
+            this.username = profileManager.getUser(notification.getRelativeId()).getUsername();
+        }
+        else
+        {
+            this.photo=groupManager.getGroup(notification.getRelativeId()).getPhoto();
+            this.username=groupManager.getGroup(notification.getRelativeId()).getName();
+        }
+        this.desc = notification.getMessage();
+        this.time = notification.getTime();
+        this.type = notification.getType();
         initComponents();
+        loadNotificationItem();
     }
 
     /**
@@ -39,94 +73,157 @@ public class notificationItem extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        usernameLabel = new javax.swing.JLabel();
-        descriptionLabel = new javax.swing.JLabel();
-        TimeLabel = new javax.swing.JLabel();
-        VIewOrAcceptButton = new javax.swing.JButton();
-        RejectButton = new javax.swing.JButton();
-        imageAvatar1 = new frontend.notificationsUI.ImageAvatar();
+        usernameLabel = new JLabel();
+        descriptionLabel = new JLabel();
+        TimeLabel = new JLabel();
+        imageAvatar1 = new ImageAvatar();
+        VIewOrAcceptButton = new Button();
+        RejectButton = new Button();
 
-        usernameLabel.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        usernameLabel.setForeground(new java.awt.Color(90, 90, 90));
+        setBackground(new Color(255, 255, 255));
+
+        usernameLabel.setFont(new Font("SansSerif", 1, 13)); // NOI18N
+        usernameLabel.setForeground(new Color(90, 90, 90));
         usernameLabel.setText("username");
 
-        descriptionLabel.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        descriptionLabel.setForeground(new java.awt.Color(153, 153, 153));
+        descriptionLabel.setFont(new Font("SansSerif", 1, 13)); // NOI18N
+        descriptionLabel.setForeground(new Color(153, 153, 153));
         descriptionLabel.setText("description");
 
-        TimeLabel.setForeground(new java.awt.Color(50, 50, 50));
+        TimeLabel.setForeground(new Color(50, 50, 50));
         TimeLabel.setText("Time");
 
+        imageAvatar1.setIcon(new ImageIcon(getClass().getResource("/database/behance-profile.png"))); // NOI18N
+
+        VIewOrAcceptButton.setBackground(new Color(51, 153, 0));
+        VIewOrAcceptButton.setForeground(new Color(255, 255, 255));
         VIewOrAcceptButton.setText("View Group");
+        VIewOrAcceptButton.setFont(new Font("SansSerif", 1, 12)); // NOI18N
 
+        RejectButton.setForeground(new Color(255, 255, 255));
         RejectButton.setText("Reject");
+        RejectButton.setFont(new Font("SansSerif", 1, 12)); // NOI18N
 
-        imageAvatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/database/behance-profile.png"))); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(imageAvatar1, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(descriptionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(VIewOrAcceptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RejectButton))
-                    .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(TimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(usernameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(descriptionLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(65, 65, 65))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(TimeLabel, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)))
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                    .addComponent(RejectButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(VIewOrAcceptButton, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(imageAvatar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(usernameLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(VIewOrAcceptButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(RejectButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(imageAvatar1, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(usernameLabel)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(descriptionLabel)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(VIewOrAcceptButton)
-                                .addComponent(RejectButton)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TimeLabel)))
-                .addGap(28, 28, 28))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(TimeLabel))))
+                .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    void loadNotification()
+    void loadNotificationItem()
     {
-        imageAvatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/database/behance-profile.png")));
+        imageAvatar1.setIcon(new ImageIcon(photo));
         usernameLabel.setText(username);
         descriptionLabel.setText(desc);
-        TimeLabel.setText(time);
-        if(type == 1)
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime localDateTime=time;
+        String formattedDate = localDateTime.format(formatter);
+        TimeLabel.setText(formattedDate);
+        if(type.equals(NotificationType.REQUEST))
         {
             VIewOrAcceptButton.setText("Accept");
-            VIewOrAcceptButton.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
+            VIewOrAcceptButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
                     VIewOrAcceptButtonActionPerformed(evt);
                 }
                 private void VIewOrAcceptButtonActionPerformed(ActionEvent evt) {
-
+                    try {
+                        friendManager.respond(userId,notification.getRelativeId(),true);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             });
+            RejectButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    RejectButtonActionPerformed(evt);
+                }
+                private void RejectButtonActionPerformed(ActionEvent evt) {
+                    try {
+                        friendManager.respond(userId,notification.getRelativeId(),false);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+        } else if (type.equals(NotificationType.ACCEPTED)) {
+            try {
+                friendManager.respond(notification.getRelativeId(),userId,true);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            RejectButton.setVisible(false);
+            VIewOrAcceptButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    VIewOrAcceptButtonActionPerformed(evt);
+                }
+                private void VIewOrAcceptButtonActionPerformed(ActionEvent evt) {
+                    try {
+                        new UserProfileFrame(notification.getRelativeId());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+        } else if (type.equals(NotificationType.ADDING)) {
+            RejectButton.setVisible(false);
+            VIewOrAcceptButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    VIewOrAcceptButtonActionPerformed(evt);
+                }
+                private void VIewOrAcceptButtonActionPerformed(ActionEvent evt) {
+                    try {
+                        new UserProfileFrame(notification.getRelativeId());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton RejectButton;
-    private javax.swing.JLabel TimeLabel;
-    private javax.swing.JButton VIewOrAcceptButton;
-    private javax.swing.JLabel descriptionLabel;
-    private frontend.notificationsUI.ImageAvatar imageAvatar1;
-    private javax.swing.JLabel usernameLabel;
+    private Button RejectButton;
+    private JLabel TimeLabel;
+    private Button VIewOrAcceptButton;
+    private JLabel descriptionLabel;
+    private ImageAvatar imageAvatar1;
+    private JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }

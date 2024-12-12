@@ -349,7 +349,7 @@ public class NewsFeed extends javax.swing.JFrame {
                 notificationButtonActionPerformed(evt);
             }
             private void notificationButtonActionPerformed(ActionEvent evt) {
-                GlassPanePopup.showPopup(new NotificationPanel(), new DefaultOption(){
+                GlassPanePopup.showPopup(new NotificationPanel(id), new DefaultOption(){
                     @Override
                     public float opacity()
                     {

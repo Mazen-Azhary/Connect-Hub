@@ -4,7 +4,9 @@
  */
 package frontend;
 
+import backend.*;
 import frontend.notificationsUI.CustomScrollBarUI;
+import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +14,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.geom.Path2D;
 import java.awt.geom.RoundRectangle2D;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,18 +25,27 @@ public class NotificationPanel extends javax.swing.JPanel {
     /**
      * Creates new form NotificationPanel
      */
-    public NotificationPanel() {
+    private ArrayList<Notification> notifications;
+    private ProfileManager profileManager=ProfileManager.getInstance();
+    public NotificationPanel(String userId) {
+        User user=profileManager.getUser(userId);
+        notifications=user.getProfile().getNotifications();
         initComponents();
         setOpaque(false);
         JScrollBar sb=scroll.getVerticalScrollBar();
         sb.setOpaque(false);
         sb.setForeground(Color.black);
+        sb.setUnitIncrement(20);
         sb.setPreferredSize(new Dimension(8,8));
         sb.setUI(new CustomScrollBarUI());
         scroll.getViewport().setOpaque(false);
         scroll.setViewportBorder(null);
+        panel.setLayout(new MigLayout("inset 0,fillx, wrap","[fill]"));
+        loadNotifications();
     }
+    private void loadNotifications() {
 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,6 +66,7 @@ public class NotificationPanel extends javax.swing.JPanel {
         jLabel1.setText("Notifications");
 
         scroll.setBorder(null);
+        scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         panel.setOpaque(false);
 
@@ -61,7 +74,7 @@ public class NotificationPanel extends javax.swing.JPanel {
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
+            .addGap(0, 339, Short.MAX_VALUE)
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,8 +91,8 @@ public class NotificationPanel extends javax.swing.JPanel {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
