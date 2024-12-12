@@ -4,6 +4,13 @@
  */
 package frontend;
 
+import frontend.notificationsUI.CustomScrollBarUI;
+import frontend.notificationsUI.ScrollBar;
+
+import javax.swing.*;
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.ScrollBarUI;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
@@ -22,6 +29,13 @@ public class NotificationPanel extends javax.swing.JPanel {
     public NotificationPanel() {
         initComponents();
         setOpaque(false);
+        JScrollBar sb=scroll.getVerticalScrollBar();
+        sb.setOpaque(false);
+        sb.setForeground(Color.black);
+        sb.setPreferredSize(new Dimension(8,8));
+        sb.setUI(new CustomScrollBarUI());
+        scroll.getViewport().setOpaque(false);
+        scroll.setViewportBorder(null);
     }
 
     /**
@@ -34,6 +48,8 @@ public class NotificationPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        scroll = new javax.swing.JScrollPane();
+        panel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -41,21 +57,42 @@ public class NotificationPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(140, 140, 140));
         jLabel1.setText("Notifications");
 
+        scroll.setBorder(null);
+
+        panel.setOpaque(false);
+
+        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(panelLayout);
+        panelLayout.setHorizontalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 290, Short.MAX_VALUE)
+        );
+        panelLayout.setVerticalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 674, Short.MAX_VALUE)
+        );
+
+        scroll.setViewportView(panel);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addContainerGap(491, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     @Override
@@ -76,5 +113,7 @@ public class NotificationPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel panel;
+    private javax.swing.JScrollPane scroll;
     // End of variables declaration//GEN-END:variables
 }

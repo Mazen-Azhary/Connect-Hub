@@ -5,6 +5,9 @@
 package frontend;
 
 import backend.*;
+import net.miginfocom.layout.ComponentWrapper;
+import net.miginfocom.layout.LayoutCallback;
+import raven.glasspanepopup.DefaultLayoutCallBack;
 import raven.glasspanepopup.DefaultOption;
 import raven.glasspanepopup.GlassPanePopup;
 
@@ -347,11 +350,7 @@ public class NewsFeed extends javax.swing.JFrame {
             }
             private void notificationButtonActionPerformed(ActionEvent evt) {
                 GlassPanePopup.showPopup(new NotificationPanel(), new DefaultOption(){
-                    @Override
-                    public float opacity()
-                    {
-                        return 0;
-                    }
+                    
                 });
             }
         });
