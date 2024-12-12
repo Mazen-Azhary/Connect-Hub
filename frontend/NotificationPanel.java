@@ -5,12 +5,8 @@
 package frontend;
 
 import frontend.notificationsUI.CustomScrollBarUI;
-import frontend.notificationsUI.ScrollBar;
 
 import javax.swing.*;
-import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.ScrollBarUI;
-import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;

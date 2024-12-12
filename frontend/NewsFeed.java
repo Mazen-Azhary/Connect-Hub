@@ -350,7 +350,31 @@ public class NewsFeed extends javax.swing.JFrame {
             }
             private void notificationButtonActionPerformed(ActionEvent evt) {
                 GlassPanePopup.showPopup(new NotificationPanel(), new DefaultOption(){
-                    
+                    @Override
+                    public float opacity()
+                    {
+                        return 0;
+                    }
+                    public LayoutCallback getLayoutCallBack(Component parent)
+                    {
+                        return new DefaultLayoutCallBack(parent){
+                            @Override
+                            public void correctBounds(ComponentWrapper cw) {
+                                if(parent.isVisible())
+                                {
+                                    Point p1=parent.getLocationOnScreen();
+                                    Point b1=notificationButton.getLocationOnScreen();
+                                    int x=b1.x-p1.x;
+                                    int y=b1.y-p1.y;
+                                    cw.setBounds(x-cw.getWidth()+notificationButton.getWidth(),y+notificationButton.getHeight(),cw.getWidth(),cw.getHeight());
+                                }
+                                else
+                                {
+                                    super.correctBounds(cw);
+                                }
+                            }
+                        };
+                    }
                 });
             }
         });
