@@ -1,7 +1,7 @@
 [ {
   "profile" : {
     "friendRequests" : [ ],
-    "friendSuggestions" : [ "2", "2", "2" ],
+    "friendSuggestions" : [ "2", "2", "2", "2" ],
     "blockedUsers" : [ "-3" ],
     "friendReceivedRequests" : [ ],
     "friends" : [ "5", "6", "8", "9", "4", "7" ]
@@ -13,7 +13,7 @@
     "friendRequests" : [ "7" ],
     "friendSuggestions" : [ "1", "1", "1", "9" ],
     "blockedUsers" : [ ],
-    "friendReceivedRequests" : [ ],
+    "friendReceivedRequests" : [ "9" ],
     "friends" : [ "3", "5", "6", "4", "8" ]
   },
   "userID" : "2",
@@ -23,7 +23,7 @@
     "friendRequests" : [ ],
     "friendSuggestions" : [ "9" ],
     "blockedUsers" : [ "1" ],
-    "friendReceivedRequests" : [ "5", "6", "8" ],
+    "friendReceivedRequests" : [ "5", "6", "8", "9" ],
     "friends" : [ "2", "4" ]
   },
   "userID" : "3",
@@ -32,9 +32,9 @@
   "profile" : {
     "friendRequests" : [ ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ "-8" ],
+    "blockedUsers" : [ "-8", "-9" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "5", "1", "3", "6", "2", "9" ]
+    "friends" : [ "5", "1", "3", "6", "2" ]
   },
   "userID" : "4",
   "username" : "Mbappe"
@@ -43,7 +43,7 @@
     "friendRequests" : [ "3", "7" ],
     "friendSuggestions" : [ ],
     "blockedUsers" : [ "-8" ],
-    "friendReceivedRequests" : [ ],
+    "friendReceivedRequests" : [ "9" ],
     "friends" : [ "4", "1", "6", "2" ]
   },
   "userID" : "5",
@@ -51,10 +51,10 @@
 }, {
   "profile" : {
     "friendRequests" : [ "7", "3" ],
-    "friendSuggestions" : [ "9", "9", "9" ],
+    "friendSuggestions" : [ ],
     "blockedUsers" : [ ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "5", "1", "2", "4", "8" ]
+    "friends" : [ "5", "1", "2", "4", "8", "9" ]
   },
   "userID" : "6",
   "username" : "Bellingham"
@@ -63,7 +63,7 @@
     "friendRequests" : [ ],
     "friendSuggestions" : [ "9", "4" ],
     "blockedUsers" : [ ],
-    "friendReceivedRequests" : [ "5", "6", "2", "8" ],
+    "friendReceivedRequests" : [ "5", "6", "2", "8", "9" ],
     "friends" : [ "1" ]
   },
   "userID" : "7",
@@ -90,11 +90,11 @@
   "username" : "Mohamed Moeen"
 }, {
   "profile" : {
-    "friendRequests" : [ ],
-    "friendSuggestions" : [ "5", "6", "7", "5", "3", "6", "2" ],
-    "blockedUsers" : [ ],
+    "friendRequests" : [ "2", "3", "5", "7" ],
+    "friendSuggestions" : [ ],
+    "blockedUsers" : [ "4" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "1", "4", "8" ]
+    "friends" : [ "1", "8", "6" ]
   },
   "userID" : "9",
   "username" : "Lionel Messi"

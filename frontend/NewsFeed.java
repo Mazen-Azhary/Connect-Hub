@@ -539,7 +539,7 @@ public class NewsFeed extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new NewsFeed("6").setVisible(true);
+                    new NewsFeed("1").setVisible(true);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

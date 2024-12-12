@@ -162,7 +162,6 @@ public class notificationItem extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
     void loadNotificationItem()
     {
-        System.out.println(photo);
         imageAvatar1.setIcon(new ImageIcon(photo));
         usernameLabel.setText(username);
         descriptionLabel.setText(desc);
