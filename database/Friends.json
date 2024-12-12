@@ -1,6 +1,6 @@
 [ {
   "profile" : {
-    "friendRequests" : [ "7", "7", "7", "7" ],
+    "friendRequests" : [ ],
     "friendSuggestions" : [ "2", "2", "2" ],
     "blockedUsers" : [ "-3" ],
     "friendReceivedRequests" : [ ],
@@ -10,10 +10,10 @@
   "username" : "Lamine"
 }, {
   "profile" : {
-    "friendRequests" : [ "7" ],
-    "friendSuggestions" : [ ],
+    "friendRequests" : [ "7", "8" ],
+    "friendSuggestions" : [ "1", "1", "1", "9" ],
     "blockedUsers" : [ ],
-    "friendReceivedRequests" : [ "8" ],
+    "friendReceivedRequests" : [ ],
     "friends" : [ "3", "5", "6", "4" ]
   },
   "userID" : "2",
@@ -63,17 +63,17 @@
     "friendRequests" : [ ],
     "friendSuggestions" : [ ],
     "blockedUsers" : [ ],
-    "friendReceivedRequests" : [ "5", "1", "6", "2", "8", "1", "1", "1" ],
+    "friendReceivedRequests" : [ "5", "6", "2", "8" ],
     "friends" : [ ]
   },
   "userID" : "7",
   "username" : "mazen azhary"
 }, {
   "profile" : {
-    "friendRequests" : [ "2", "3", "7" ],
+    "friendRequests" : [ "3", "7" ],
     "friendSuggestions" : [ ],
     "blockedUsers" : [ "4", "5" ],
-    "friendReceivedRequests" : [ ],
+    "friendReceivedRequests" : [ "2" ],
     "friends" : [ "1" ]
   },
   "userID" : "8",

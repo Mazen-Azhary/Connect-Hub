@@ -39,6 +39,19 @@ public class FriendManager {
         }
         return false;
     }
+    public boolean isRequested(String userID, String friendID) throws IOException {
+        User user1 = friendsDataBase.getUser(userID);
+        if (user1.getProfile().getFriendRequests().contains(friendID)) {
+            return true;
+        }
+        return false;
+    }public boolean isReceived(String userID, String friendID) throws IOException {
+        User user1 = friendsDataBase.getUser(userID);
+        if (user1.getProfile().getFriendReceivedRequests().contains(friendID)) {
+            return true;
+        }
+        return false;
+    }
 
     public boolean isBlocked(String userID, String friendID) throws IOException {
         User user1 = friendsDataBase.getUser(userID);
