@@ -153,6 +153,23 @@ return false;
         }
         return admins;
     }
+    public ArrayList<String> getAllMembers(String groupId)
+    {
+            ArrayList<String> memb=new ArrayList<>();
+        try {
+            Map <String,GroupRole> members=groupsDatabase.getGroup(groupId).getMembers();
+            for(Map.Entry<String,GroupRole> entry:members.entrySet())
+            {
+                if(!entry.getValue().equals(GroupRole.PENDING))
+                {
+                    memb.add(entry.getKey());
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return memb;
+    }
     public ArrayList<String> getRequests(String groupId)
     {
             ArrayList<String> admins=new ArrayList<>();

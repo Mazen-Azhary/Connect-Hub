@@ -5,7 +5,8 @@ public enum NotificationType {
         PROMOTION(2),
         DEMOTION(3),
         ADDING(4),
-        POST(5);
+        POST(5),
+        ACCEPTED(6);
     private final int value;
     NotificationType(int value) {
         this.value = value;

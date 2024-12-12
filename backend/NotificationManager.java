@@ -2,12 +2,14 @@ package backend;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class NotificationManager {
     private NotificationsDatabase notificationsDatabase = new NotificationsDatabase("src/database/Notifications.json");
     private UserNotificationsDatabase userNotificationsDatabase = new UserNotificationsDatabase("src/database/UserNotifications.json");
     private GroupsDatabase groupsDatabase = new GroupsDatabase("src/database/Groups.json");
     private UserGroupsDatabase userGroupsDatabase = new UserGroupsDatabase("src/database/UserGroups.json");
+    private ContentDatabase contentDatabase = new ContentDatabase("src/database/Contents.json");
     public static NotificationManager instance;
 
     private NotificationManager() {
@@ -28,7 +30,7 @@ public class NotificationManager {
             int notificationId = notificationsDatabase.getMax() + 1;
             notification = new Notification(message, Integer.toString(notificationId), LocalDateTime.now(), relativeId, authorId, type);
             notificationsDatabase.addNotification(notification);
-            User user = userGroupsDatabase.getUser(userId);
+            User user = userNotificationsDatabase.getUser(userId);
             user.getProfile().addNotification(notification);
             userNotificationsDatabase.modifyUserNotificationsById(user);
         } catch (IOException e) {
@@ -36,7 +38,20 @@ public class NotificationManager {
         }
     }
 
-    public void addRequest(String sender, String receiver) {
+    public void addRequest(String sender, String receiver) throws IOException {
+        String message = userGroupsDatabase.getUser(sender).getUsername()+" sent you a friend request";
+        createNotification(message,sender,null,NotificationType.REQUEST,receiver);
+    }
+    public void acceptRequest(String sender, String receiver) throws IOException {
+        String message = userGroupsDatabase.getUser(sender).getUsername()+" Accepted your friend request";
+        createNotification(message,sender,null,NotificationType.ACCEPTED,receiver);
+    }
+    public void addPost(String userId,String groupId,String contentId) throws IOException {
+        String message=userGroupsDatabase.getUser(userId).getUsername()+" added a post to "+ groupsDatabase.getGroup(groupId).getName();
+        ArrayList<String> members=GroupManager.getInstance().getAllMembers(groupId);
+        for (String member:members) {
+            createNotification(message,contentId,userId,NotificationType.POST,member);
+        }
     }
 
     public void promotion(String groupId, String userId) throws IOException {
