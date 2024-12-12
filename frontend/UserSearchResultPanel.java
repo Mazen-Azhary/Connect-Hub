@@ -25,7 +25,22 @@ public class UserSearchResultPanel extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
 
         for (String userID : searchResultIDs) {
-            boolean isFriend = FriendManager.getInstance().isFriend(currentUserID, userID);
+            int state ;
+            if(FriendManager.getInstance().isFriend(currentUserID, userID))
+            {
+                state = 1;
+            }
+            else if(FriendManager.getInstance().isReceived(currentUserID, userID))
+            {
+                state = 2;
+            }
+            else if (FriendManager.getInstance().isRequested(currentUserID, userID))
+            {
+                state = 3;
+            }
+            else {
+                state = 0;
+            }
 
             // Skip blocked users or the current user
             if (FriendManager.getInstance().isBlocked(currentUserID, userID) || Objects.equals(userID, currentUserID)) {
@@ -33,7 +48,7 @@ public class UserSearchResultPanel extends JPanel {
             }
 
             // Create the frontend component for each user
-            UserSearchResultFrontend searchResult = new UserSearchResultFrontend(currentUserID, userID, isFriend, (ArrayList<String>) searchResultIDs, this);
+            UserSearchResultFrontend searchResult = new UserSearchResultFrontend(currentUserID, userID, state, (ArrayList<String>) searchResultIDs, this);
             add(searchResult);
             add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between components
         }

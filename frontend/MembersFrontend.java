@@ -57,7 +57,7 @@ public class MembersFrontend extends JPanel {
                 demoteButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        primaryAdminRole.demote(memberId,groupId);
+                        primaryAdminRole.demote(groupId,memberId);
                         groupPage.dispose();
                         new GroupPage(userID,groupId);
                     }
@@ -79,7 +79,7 @@ public class MembersFrontend extends JPanel {
                 promoteButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        primaryAdminRole.promote(memberId,groupId);
+                        primaryAdminRole.promote(groupId,memberId);
                         groupPage.dispose();
                         new GroupPage(userID,groupId);
                     }

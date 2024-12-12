@@ -38,4 +38,9 @@
   "hashedPassword" : "3qiYvca8a1VoY7q3xdVeQgJKqOw2mKcEgWN+AF1Nyas=",
   "userId" : "8",
   "email" : "mohamed@gmail.com"
+}, {
+  "salt" : "qg9Is2p4fvekHGMsjhRltA==",
+  "hashedPassword" : "VQ3ue4KhOSsbKm4EIYMy3iJ2KGrl1jP7YCXEvhZEOpI=",
+  "userId" : "9",
+  "email" : "messi@gmail.com"
 } ]
