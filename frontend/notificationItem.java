@@ -44,6 +44,8 @@ public class notificationItem extends JPanel {
     }
 
     public notificationItem(String userId,Notification notification) {
+        this.userId = userId;
+        this.notification = notification;
         if(notification.getType().equals(NotificationType.POST)){
             this.photo = profileManager.getUser(notification.getAuthorId()).getProfile().getProfilePhoto();
             this.username = profileManager.getUser(notification.getAuthorId()).getUsername();
@@ -203,19 +205,50 @@ public class notificationItem extends JPanel {
             });
         } else if (type.equals(NotificationType.ADDING)) {
             RejectButton.setVisible(false);
+            VIewOrAcceptButton.setText("View Group");
             VIewOrAcceptButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     VIewOrAcceptButtonActionPerformed(evt);
                 }
                 private void VIewOrAcceptButtonActionPerformed(ActionEvent evt) {
-                    try {
-                        new UserProfileFrame(notification.getRelativeId());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    groupManager.respondRequest(userId,notification.getRelativeId(),true);
                 }
             });
-
+        }
+        else if(type.equals(NotificationType.PROMOTION)) {
+            RejectButton.setVisible(false);
+            VIewOrAcceptButton.setText("View Group");
+            VIewOrAcceptButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    VIewOrAcceptButtonActionPerformed(evt);
+                }
+                private void VIewOrAcceptButtonActionPerformed(ActionEvent evt) {
+                    groupManager.promote(notification.getRelativeId(),userId);
+                }
+            });
+        }
+        else if(type.equals(NotificationType.DEMOTION)) {
+            RejectButton.setVisible(false);
+            VIewOrAcceptButton.setText("View Group");
+            VIewOrAcceptButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    VIewOrAcceptButtonActionPerformed(evt);
+                }
+                private void VIewOrAcceptButtonActionPerformed(ActionEvent evt) {
+                    groupManager.demote(notification.getRelativeId(),userId);
+                }
+            });
+        }
+        else if(type.equals(NotificationType.POST)) {
+            RejectButton.setVisible(false);
+            VIewOrAcceptButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    VIewOrAcceptButtonActionPerformed(evt);
+                }
+                private void VIewOrAcceptButtonActionPerformed(ActionEvent evt) {
+                    new GroupPage(userId,notification.getRelativeId());
+                }
+            });
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

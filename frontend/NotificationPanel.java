@@ -25,9 +25,11 @@ public class NotificationPanel extends javax.swing.JPanel {
     /**
      * Creates new form NotificationPanel
      */
+    private String userId;
     private ArrayList<Notification> notifications;
     private ProfileManager profileManager=ProfileManager.getInstance();
     public NotificationPanel(String userId) {
+        this.userId = userId;
         User user=profileManager.getUser(userId);
         notifications=user.getProfile().getNotifications();
         initComponents();
@@ -44,7 +46,13 @@ public class NotificationPanel extends javax.swing.JPanel {
         loadNotifications();
     }
     private void loadNotifications() {
-
+        System.out.println(notifications.size());
+        for (Notification notification : notifications) {
+            notificationItem item=new notificationItem(userId,notification);
+            panel.add(item);
+        }
+        panel.revalidate();
+        panel.repaint();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,7 +86,7 @@ public class NotificationPanel extends javax.swing.JPanel {
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 674, Short.MAX_VALUE)
+            .addGap(0, 699, Short.MAX_VALUE)
         );
 
         scroll.setViewportView(panel);
