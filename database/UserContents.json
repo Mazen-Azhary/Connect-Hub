@@ -121,7 +121,7 @@
   },
   "userID" : "4",
   "username" : "Mbappe",
-  "status" : "offline"
+  "status" : "online"
 }, {
   "profile" : {
     "contents" : [ {
@@ -175,22 +175,16 @@
   "status" : "offline"
 }, {
   "profile" : {
-    "contents" : [ {
-      "image" : null,
-      "contentId" : 16,
-      "authorId" : 8,
-      "content" : "انا حزين",
-      "timestamp" : [ 2024, 12, 8, 21, 57, 43, 26660500 ]
-    } ]
+    "contents" : [ ]
   },
   "userID" : "8",
-  "username" : "mohamed",
+  "username" : "Mohamed Moeen",
   "status" : "offline"
 }, {
   "profile" : {
     "contents" : [ ]
   },
-  "userID" : "8",
-  "username" : "Mohamed Moeen",
+  "userID" : "9",
+  "username" : "Lionel Messi",
   "status" : "offline"
 } ]

@@ -15,11 +15,13 @@ public class Signup {
     private final String FriendsPath = "src/database/Friends.json";
     private final String UserContentsPath = "src/database/UserContents.json";
     private final String UserGroupsPath = "src/database/UserGroups.json";
+    private final String userNotification="src/database/UserNotifications.json";
     private  LoginDatabase loginDatabase;
     private  ProfileDataBase profileDataBase;
     private FriendDatabase friendDatabase;
     private UserContentDatabase userContentDatabase;
     private UserGroupsDatabase userGroupsDatabase;
+    private UserNotificationsDatabase userNotificationsDatabase;
     private Signup() {
 
             loginDatabase=new LoginDatabase(filePath);
@@ -27,6 +29,7 @@ public class Signup {
             friendDatabase=new FriendDatabase(FriendsPath);
             userContentDatabase=new UserContentDatabase(UserContentsPath);
             userGroupsDatabase=new UserGroupsDatabase(UserGroupsPath);
+            userNotificationsDatabase=new UserNotificationsDatabase(userNotification);
             try {
             IDcounter=loginDatabase.getMap().size()+1;
         }
@@ -54,6 +57,7 @@ public class Signup {
             userContentDatabase.addUser(user);
             friendDatabase.addUser(user);
             userGroupsDatabase.addUser(user);
+            userNotificationsDatabase.addUser(user);
             IDcounter++;
             return true;
         }

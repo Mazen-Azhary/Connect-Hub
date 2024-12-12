@@ -1,13 +1,13 @@
 [ {
   "profile" : {
     "groups" : {
-      "1" : "MEMBER",
-      "3" : "MEMBER"
+      "1" : "ADMIN",
+      "2" : "MEMBER"
     },
     "profilePhoto" : null
   },
   "userID" : "1",
-  "username" : "admin",
+  "username" : "Lamine",
   "status" : "active"
 }, {
   "profile" : {
@@ -17,69 +17,72 @@
     "profilePhoto" : null
   },
   "userID" : "2",
-  "username" : "admin",
+  "username" : "Pedri",
   "status" : "active"
 }, {
   "profile" : {
     "groups" : {
-      "1" : "MEMBER"
+      "1" : "ADMIN",
+      "2" : "ADMIN"
     },
     "profilePhoto" : null
   },
   "userID" : "3",
-  "username" : "admin",
+  "username" : "Freinke",
   "status" : "active"
 }, {
   "profile" : {
     "groups" : {
-      "1" : "MEMBER",
-      "2" : "PRIMARYADMIN",
-      "3" : "PRIMARYADMIN"
+      "1" : "PRIMARYADMIN",
+      "2" : "PRIMARYADMIN"
     },
     "profilePhoto" : null
   },
   "userID" : "4",
-  "username" : "admin",
+  "username" : "Mbappe",
   "status" : "active"
 }, {
   "profile" : {
     "groups" : {
-      "1" : "MEMBER",
-      "3" : "PENDING"
+      "2" : "MEMBER"
     },
     "profilePhoto" : null
   },
   "userID" : "5",
-  "username" : "admin",
+  "username" : "Vinicius",
   "status" : "active"
 }, {
   "profile" : {
-    "groups" : {
-      "1" : "MEMBER"
-    },
+    "groups" : { },
     "profilePhoto" : null
   },
   "userID" : "6",
-  "username" : "admin",
+  "username" : "Bellingham",
   "status" : "active"
 }, {
   "profile" : {
-    "groups" : {
-      "1" : "MEMBER"
-    },
+    "groups" : { },
     "profilePhoto" : null
   },
   "userID" : "7",
-  "username" : "admin",
+  "username" : "mazen azhary",
   "status" : "active"
 }, {
   "profile" : {
-    "groups" : {
-      "1" : "MEMBER"
-    },
+    "groups" : { },
     "profilePhoto" : null
   },
   "userID" : "8",
-  "username" : "admin",
+  "username" : "Mohamed Moeen",
   "status" : "active"
+}, {
+  "profile" : {
+    "profilePhoto" : null,
+    "groups" : {
+      "1" : "PENDING",
+      "2" : "ADMIN"
+    }
+  },
+  "userID" : "9",
+  "username" : "Lionel Messi"
 } ]

@@ -21,18 +21,19 @@ public class GroupManager {
     }
     public void request(String userId,String groupId)
     {
-        User user=null;
-        try {
-            user = userGroupsDatabase.getUser(userId);
+        try
+        {
+            User user=userGroupsDatabase.getUser(userId);
             Group group=groupsDatabase.getGroup(groupId);
+            user.getProfile().requestJoin(groupId);
             group.getMembers().put(userId,GroupRole.PENDING);
-            user.getProfile().getGroups().put(groupId,GroupRole.PENDING);
-            groupsDatabase.modifyGroupById(group);
             userGroupsDatabase.modifyUserGroupsById(user);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            groupsDatabase.modifyGroupById(group);
         }
-
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
     public ArrayList<Group> getGroups(String userId) {
         User user=null;
@@ -153,6 +154,23 @@ return false;
         }
         return admins;
     }
+    public ArrayList<String> getAllMembers(String groupId)
+    {
+            ArrayList<String> memb=new ArrayList<>();
+        try {
+            Map <String,GroupRole> members=groupsDatabase.getGroup(groupId).getMembers();
+            for(Map.Entry<String,GroupRole> entry:members.entrySet())
+            {
+                if(!entry.getValue().equals(GroupRole.PENDING))
+                {
+                    memb.add(entry.getKey());
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return memb;
+    }
     public ArrayList<String> getRequests(String groupId)
     {
             ArrayList<String> admins=new ArrayList<>();
@@ -184,23 +202,8 @@ return false;
             throw new RuntimeException(e);
         }
     }
-    void requestJoin(String userId,String groupId)
-    {
-        try
-        {
-            User user=userGroupsDatabase.getUser(userId);
-            Group group=groupsDatabase.getGroup(groupId);
-            user.getProfile().requestJoin(groupId);
-            group.getMembers().put(userId,GroupRole.PENDING);
-            userGroupsDatabase.modifyUserGroupsById(user);
-            groupsDatabase.modifyGroupById(group);
-        }
-        catch (IOException e)
-        {
-           e.printStackTrace();
-        }
-    }
-    void respondRequest(String userId,String groupId,boolean accept){
+
+    public void respondRequest(String userId,String groupId,boolean accept){
         try
         {
             User user=userGroupsDatabase.getUser(userId);
@@ -209,6 +212,7 @@ return false;
             {
                 group.getMembers().put(userId,GroupRole.MEMBER);
                 user.getProfile().getGroups().put(groupId,GroupRole.MEMBER);
+                NotificationManager.getInstance().additionToGroup(groupId,userId);
             }
             else
             {
@@ -231,8 +235,10 @@ return false;
             Group group=groupsDatabase.getGroup(groupId);
             group.promoteMember(userId);
             user.getProfile().getGroups().put(groupId,GroupRole.ADMIN);
+            System.out.println(user.getProfile().getGroups().get(groupId));
             userGroupsDatabase.modifyUserGroupsById(user);
             groupsDatabase.modifyGroupById(group);
+            NotificationManager.getInstance().promotion(groupId,userId);
         }
         catch (IOException e)
         {
@@ -249,6 +255,7 @@ return false;
             user.getProfile().getGroups().put(groupId,GroupRole.MEMBER);
             userGroupsDatabase.modifyUserGroupsById(user);
             groupsDatabase.modifyGroupById(group);
+            NotificationManager.getInstance().demotion(groupId,userId);
         }
         catch (IOException e)
         {
@@ -319,7 +326,7 @@ return false;
                 searchResults.add(g.getGroupId());
             }
         }
-        return searchResults;//returns id's of groups with matching substring
+        return searchResults;
     }
 
 

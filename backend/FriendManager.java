@@ -83,6 +83,7 @@ public class FriendManager {
         user2.getProfile().getFriendReceivedRequests().add(user1.getUserID());
         friendsDataBase.modifyUserById(user1);
         friendsDataBase.modifyUserById(user2);
+        NotificationManager.getInstance().addRequest(sender,receiver);
         return true;
     }
 
@@ -97,6 +98,7 @@ public class FriendManager {
         if (accepted) {
             user1.getProfile().addFriend(receiver);
             user2.getProfile().addFriend(sender);
+            NotificationManager.getInstance().acceptRequest(sender,receiver);
         }
         friendsDataBase.modifyUserById(user1);
         friendsDataBase.modifyUserById(user2);

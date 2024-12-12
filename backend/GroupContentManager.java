@@ -29,6 +29,7 @@ public class GroupContentManager {
         Group group=groupsDatabase.getGroup(GroupId);
         group.addPost(n);
         groupsDatabase.modifyGroupById(group);
+        NotificationManager.getInstance().addPost(userID,GroupId,n.getContentId()+"");
     }
     public ArrayList<Content> contents(String userId,String groupId)
     {
