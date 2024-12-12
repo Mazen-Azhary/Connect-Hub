@@ -25,12 +25,13 @@ public class UserSearchResultFrontend extends JPanel {
     private JButton actionButton;
     private JButton blockButton;
     private FriendManager friendManager = FriendManager.getInstance();
+    private static int state;
 
 
-    public UserSearchResultFrontend(String id, String userID, boolean isFriend, ArrayList<String> ids, UserSearchResultPanel userSearchResultPanel) throws IOException {
+    public UserSearchResultFrontend(String id, String userID, int state, ArrayList<String> ids, UserSearchResultPanel userSearchResultPanel) throws IOException {
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(10, 10, 10, 10)); // Add padding
-
+        UserSearchResultFrontend.state = state;
         User user = ProfileManager.getInstance().getUser(userID);
 
         ImageIcon photo = new ImageIcon(user.getProfile().getProfilePhoto());
@@ -38,7 +39,6 @@ public class UserSearchResultFrontend extends JPanel {
         if (photo.getIconWidth() <= 0 || photo.getIconHeight() <= 0) {
             photo = new ImageIcon("src/database/defaultIcon.jpg");
         }
-        final boolean[] solution = {isFriend};
         // Resize the image and create a circular version
         int diameter = 50;
         ImageIcon circularPhoto = getCircularImageIcon(photo, diameter);
@@ -80,7 +80,28 @@ public class UserSearchResultFrontend extends JPanel {
         });
 
         // Action button to add/remove friend
-        actionButton = new JButton(isFriend ? "Remove" : "Add");
+        actionButton = new JButton();
+        switch (state)
+        {
+            case 0:{
+                actionButton.setText("Add");
+                break;
+            }
+            case 1:{
+                actionButton.setText("Remove");
+                break;
+            }
+            case 2:{
+                actionButton.setText("Accept Request");
+                break;
+            }
+            case 3:
+            {
+                actionButton.setText("Cancel Request");
+                break;
+            }
+
+        }
         actionButton.setBackground(new Color(34, 139, 34)); // Green color for add/remove friend
         actionButton.setForeground(Color.WHITE);
         actionButton.setPreferredSize(new Dimension(100, 40)); // Make the button smaller
@@ -88,7 +109,8 @@ public class UserSearchResultFrontend extends JPanel {
         actionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (solution[0]) {
+                int st=UserSearchResultFrontend.state;
+                if (st==1) {
                     // Remove friend logic
                     try {
                         friendManager.removeFriend(id, userID);
@@ -96,16 +118,34 @@ public class UserSearchResultFrontend extends JPanel {
                         // Handle exception
                     }
                     actionButton.setText("Add Friend");
-                    solution[0] = false;
-                } else {
+                    UserSearchResultFrontend.state=0;
+                } else if(st==0) {
                     // Add friend logic
                     try {
                         friendManager.requestFriend(id, userID);
                     } catch (IOException ex) {
                         // Handle exception
                     }
-                    actionButton.setText("Remove Friend");
-                    solution[0] = true;
+                    actionButton.setText("Cancel Request");
+                    UserSearchResultFrontend.state=3;
+                }
+                else if (st==2) {
+                    try {
+                        friendManager.respond(id, userID,true);
+                    } catch (IOException ex) {
+                        // Handle exception
+                    }
+                    actionButton.setText("Remove");
+                    UserSearchResultFrontend.state=1;
+                }
+                else {
+                    try {
+                        friendManager.removeRequest(id, userID);
+                    } catch (IOException ex) {
+                        // Handle exception
+                    }
+                    actionButton.setText("Add Friend");
+                    UserSearchResultFrontend.state=0;
                 }
             }
         });
