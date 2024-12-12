@@ -5,6 +5,7 @@
 package frontend;
 import frontend.*;
 import backend.*;
+import frontend.notificationsUI.CustomScrollBarUI;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -193,7 +194,9 @@ public class GroupPage extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-
+        PostScrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+        PostScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        PostScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         setTitle("GroupPage");
         loadPosts();
         GroupMembersPannel groupMembersPannel=null;

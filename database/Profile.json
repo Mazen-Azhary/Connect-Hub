@@ -71,7 +71,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : null,
+    "profilePhoto" : "C:\\Users\\Etijah\\Documents\\NetBeansProjects\\ConnectHub\\src\\database\\MohamedMoeen.jpg",
     "coverPhoto" : null,
     "bio" : null
   },

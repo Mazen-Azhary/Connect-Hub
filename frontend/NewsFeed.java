@@ -5,6 +5,7 @@
 package frontend;
 
 import backend.*;
+import frontend.notificationsUI.CustomScrollBarUI;
 import net.miginfocom.layout.ComponentWrapper;
 import net.miginfocom.layout.LayoutCallback;
 import raven.glasspanepopup.DefaultLayoutCallBack;
@@ -58,6 +59,12 @@ public class NewsFeed extends javax.swing.JFrame {
         setVisible(true);
         FriendListPannel friendPanel = new FriendListPannel(this,null,id);
         friendsScroll.setViewportView(friendPanel);
+        friendsScroll.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+        suggestionsScroll.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+        postsScroll.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+        postsScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        storiesScrollable.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
+        storiesScrollable.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
         FriendSuggestionPannel friendSuggestionPanel = new FriendSuggestionPannel(this,id);
         suggestionsScroll.setViewportView(friendSuggestionPanel);
         ContentViewer contentViewer = ContentViewer.getInstance();
@@ -384,7 +391,6 @@ public class NewsFeed extends javax.swing.JFrame {
                 createPostButtonActionPerformed(evt);
             }
         });
-
         for (backend.Content content : contents) {
             Post post = new Post(content.getContentId(), content.getContent(), "Author" + content.getContent(),content.getImage());
             postsScroll.add(post);
@@ -533,7 +539,7 @@ public class NewsFeed extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new NewsFeed("1").setVisible(true);
+                    new NewsFeed("6").setVisible(true);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

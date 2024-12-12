@@ -4,28 +4,24 @@
     "friendSuggestions" : [ "2", "2", "2" ],
     "blockedUsers" : [ "-3" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "5", "6", "8", "9", "4" ]
+    "friends" : [ "5", "6", "8", "9", "4", "7" ]
   },
   "userID" : "1",
   "username" : "Lamine"
 }, {
   "profile" : {
-<<<<<<< HEAD
     "friendRequests" : [ "7" ],
-=======
-    "friendRequests" : [ "7", "8" ],
->>>>>>> 2df58d1142b1dc6b0d4817b2035aac2f863dccb3
     "friendSuggestions" : [ "1", "1", "1", "9" ],
     "blockedUsers" : [ ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "3", "5", "6", "4" ]
+    "friends" : [ "3", "5", "6", "4", "8" ]
   },
   "userID" : "2",
   "username" : "Pedri"
 }, {
   "profile" : {
     "friendRequests" : [ ],
-    "friendSuggestions" : [ ],
+    "friendSuggestions" : [ "9" ],
     "blockedUsers" : [ "1" ],
     "friendReceivedRequests" : [ "5", "6", "8" ],
     "friends" : [ "2", "4" ]
@@ -55,20 +51,20 @@
 }, {
   "profile" : {
     "friendRequests" : [ "7", "3" ],
-    "friendSuggestions" : [ ],
+    "friendSuggestions" : [ "9", "9", "9" ],
     "blockedUsers" : [ ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "5", "1", "2", "4" ]
+    "friends" : [ "5", "1", "2", "4", "8" ]
   },
   "userID" : "6",
   "username" : "Bellingham"
 }, {
   "profile" : {
     "friendRequests" : [ ],
-    "friendSuggestions" : [ ],
+    "friendSuggestions" : [ "9", "4" ],
     "blockedUsers" : [ ],
     "friendReceivedRequests" : [ "5", "6", "2", "8" ],
-    "friends" : [ ]
+    "friends" : [ "1" ]
   },
   "userID" : "7",
   "username" : "mazen azhary"
@@ -77,8 +73,8 @@
     "friendRequests" : [ "3", "7" ],
     "friendSuggestions" : [ ],
     "blockedUsers" : [ "4", "5" ],
-    "friendReceivedRequests" : [ "2" ],
-    "friends" : [ "1" ]
+    "friendReceivedRequests" : [ ],
+    "friends" : [ "1", "2", "9", "6" ]
   },
   "userID" : "8",
   "username" : "mohamed"
@@ -95,10 +91,10 @@
 }, {
   "profile" : {
     "friendRequests" : [ ],
-    "friendSuggestions" : [ "5", "6", "8", "5", "3", "6", "2" ],
+    "friendSuggestions" : [ "5", "6", "7", "5", "3", "6", "2" ],
     "blockedUsers" : [ ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "1", "4" ]
+    "friends" : [ "1", "4", "8" ]
   },
   "userID" : "9",
   "username" : "Lionel Messi"

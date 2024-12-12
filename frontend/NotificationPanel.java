@@ -14,7 +14,9 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.geom.Path2D;
 import java.awt.geom.RoundRectangle2D;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -27,11 +29,14 @@ public class NotificationPanel extends javax.swing.JPanel {
      */
     private String userId;
     private ArrayList<Notification> notifications;
-    private ProfileManager profileManager=ProfileManager.getInstance();
+    private NotificationManager notificationManager=NotificationManager.getInstance();
     public NotificationPanel(String userId) {
         this.userId = userId;
-        User user=profileManager.getUser(userId);
-        notifications=user.getProfile().getNotifications();
+        try {
+            notifications=notificationManager.getNotifications(userId);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         initComponents();
         setOpaque(false);
         JScrollBar sb=scroll.getVerticalScrollBar();
@@ -46,7 +51,8 @@ public class NotificationPanel extends javax.swing.JPanel {
         loadNotifications();
     }
     private void loadNotifications() {
-        System.out.println(notifications.size());
+        panel.removeAll();
+        Collections.reverse(notifications);
         for (Notification notification : notifications) {
             notificationItem item=new notificationItem(userId,notification);
             panel.add(item);
@@ -82,7 +88,7 @@ public class NotificationPanel extends javax.swing.JPanel {
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 339, Short.MAX_VALUE)
+            .addGap(0, 429, Short.MAX_VALUE)
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,8 +105,8 @@ public class NotificationPanel extends javax.swing.JPanel {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -112,9 +112,11 @@ public class FriendManager {
             user1.getProfile().addFriend(receiver);
             user2.getProfile().addFriend(sender);
             NotificationManager.getInstance().acceptRequest(sender,receiver);
+            System.out.println("ana accepted");
         }
         friendsDataBase.modifyUserById(user1);
         friendsDataBase.modifyUserById(user2);
+        NotificationManager.getInstance().removeNotification(sender,receiver);
         return true;
     }
 

@@ -47,16 +47,27 @@ public class notificationItem extends JPanel {
         this.userId = userId;
         this.notification = notification;
         if(notification.getType().equals(NotificationType.POST)){
+            if(profileManager.getUser(notification.getAuthorId()).getProfile().getProfilePhoto()!=null){
             this.photo = profileManager.getUser(notification.getAuthorId()).getProfile().getProfilePhoto();
+            }
+            else photo="src/database/defaultIcon.jpg";
             this.username = profileManager.getUser(notification.getAuthorId()).getUsername();
         }
         else if(notification.getType().equals(NotificationType.ACCEPTED)||notification.getType().equals(NotificationType.REQUEST)) {
-            this.photo = profileManager.getUser(notification.getRelativeId()).getProfile().getProfilePhoto();
+
+            if(profileManager.getUser(notification.getRelativeId()).getProfile().getProfilePhoto()!=null){
+                this.photo = profileManager.getUser(notification.getRelativeId()).getProfile().getProfilePhoto();
+            }
+            else photo="src/database/defaultIcon.jpg";
             this.username = profileManager.getUser(notification.getRelativeId()).getUsername();
         }
         else
         {
-            this.photo=groupManager.getGroup(notification.getRelativeId()).getPhoto();
+
+            if(profileManager.getUser(notification.getRelativeId()).getProfile().getProfilePhoto()!=null){
+                this.photo = profileManager.getUser(notification.getRelativeId()).getProfile().getProfilePhoto();
+            }
+            else photo="src/database/CoverDefault.jpg";
             this.username=groupManager.getGroup(notification.getRelativeId()).getName();
         }
         this.desc = notification.getMessage();
@@ -75,81 +86,83 @@ public class notificationItem extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        usernameLabel = new JLabel();
-        descriptionLabel = new JLabel();
-        TimeLabel = new JLabel();
-        imageAvatar1 = new ImageAvatar();
-        VIewOrAcceptButton = new Button();
-        RejectButton = new Button();
+        usernameLabel = new javax.swing.JLabel();
+        descriptionLabel = new javax.swing.JLabel();
+        TimeLabel = new javax.swing.JLabel();
+        imageAvatar1 = new frontend.notificationsUI.ImageAvatar();
+        VIewOrAcceptButton = new frontend.notificationsUI.Button();
+        RejectButton = new frontend.notificationsUI.Button();
 
-        setBackground(new Color(255, 255, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        usernameLabel.setFont(new Font("SansSerif", 1, 13)); // NOI18N
-        usernameLabel.setForeground(new Color(90, 90, 90));
+        usernameLabel.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        usernameLabel.setForeground(new java.awt.Color(90, 90, 90));
         usernameLabel.setText("username");
 
-        descriptionLabel.setFont(new Font("SansSerif", 1, 13)); // NOI18N
-        descriptionLabel.setForeground(new Color(153, 153, 153));
+        descriptionLabel.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        descriptionLabel.setForeground(new java.awt.Color(153, 153, 153));
         descriptionLabel.setText("description");
 
-        TimeLabel.setForeground(new Color(50, 50, 50));
+        TimeLabel.setForeground(new java.awt.Color(50, 50, 50));
         TimeLabel.setText("Time");
 
-        imageAvatar1.setIcon(new ImageIcon(getClass().getResource("/database/behance-profile.png"))); // NOI18N
+        imageAvatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/database/behance-profile.png"))); // NOI18N
 
-        VIewOrAcceptButton.setBackground(new Color(51, 153, 0));
-        VIewOrAcceptButton.setForeground(new Color(255, 255, 255));
+        VIewOrAcceptButton.setBackground(new java.awt.Color(51, 153, 0));
+        VIewOrAcceptButton.setForeground(new java.awt.Color(255, 255, 255));
         VIewOrAcceptButton.setText("View Group");
-        VIewOrAcceptButton.setFont(new Font("SansSerif", 1, 12)); // NOI18N
+        VIewOrAcceptButton.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
 
-        RejectButton.setForeground(new Color(255, 255, 255));
+        RejectButton.setForeground(new java.awt.Color(255, 255, 255));
         RejectButton.setText("Reject");
-        RejectButton.setFont(new Font("SansSerif", 1, 12)); // NOI18N
+        RejectButton.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
 
-        GroupLayout layout = new GroupLayout(this);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(imageAvatar1, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGap(20, 20, 20)
+                .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(usernameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(descriptionLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(65, 65, 65))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(TimeLabel, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)))
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                    .addComponent(RejectButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(VIewOrAcceptButton, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
-                .addGap(35, 35, 35))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(descriptionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(RejectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(TimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(VIewOrAcceptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(VIewOrAcceptButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RejectButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(imageAvatar1, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(usernameLabel)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(descriptionLabel)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(TimeLabel))))
-                .addGap(21, 21, 21))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(usernameLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(descriptionLabel)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TimeLabel)
+                            .addComponent(VIewOrAcceptButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RejectButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
     }// </editor-fold>//GEN-END:initComponents
     void loadNotificationItem()
     {
+        System.out.println(photo);
         imageAvatar1.setIcon(new ImageIcon(photo));
         usernameLabel.setText(username);
         descriptionLabel.setText(desc);
@@ -167,6 +180,8 @@ public class notificationItem extends JPanel {
                 private void VIewOrAcceptButtonActionPerformed(ActionEvent evt) {
                     try {
                         friendManager.respond(userId,notification.getRelativeId(),true);
+                        VIewOrAcceptButton.setVisible(false);
+                        RejectButton.setVisible(false);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -179,18 +194,18 @@ public class notificationItem extends JPanel {
                 private void RejectButtonActionPerformed(ActionEvent evt) {
                     try {
                         friendManager.respond(userId,notification.getRelativeId(),false);
+                        VIewOrAcceptButton.setVisible(false);
+                        RejectButton.setVisible(false);
+                        revalidate();
+                        repaint();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                 }
             });
         } else if (type.equals(NotificationType.ACCEPTED)) {
-            try {
-                friendManager.respond(notification.getRelativeId(),userId,true);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
             RejectButton.setVisible(false);
+            VIewOrAcceptButton.setText("View Profile");
             VIewOrAcceptButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     VIewOrAcceptButtonActionPerformed(evt);
@@ -198,6 +213,8 @@ public class notificationItem extends JPanel {
                 private void VIewOrAcceptButtonActionPerformed(ActionEvent evt) {
                     try {
                         new UserProfileFrame(notification.getRelativeId());
+                        revalidate();
+                        repaint();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -211,7 +228,9 @@ public class notificationItem extends JPanel {
                     VIewOrAcceptButtonActionPerformed(evt);
                 }
                 private void VIewOrAcceptButtonActionPerformed(ActionEvent evt) {
-                    groupManager.respondRequest(userId,notification.getRelativeId(),true);
+                    new GroupPage(userId,notification.getRelativeId());
+                    revalidate();
+                    repaint();
                 }
             });
         }
@@ -223,7 +242,9 @@ public class notificationItem extends JPanel {
                     VIewOrAcceptButtonActionPerformed(evt);
                 }
                 private void VIewOrAcceptButtonActionPerformed(ActionEvent evt) {
-                    groupManager.promote(notification.getRelativeId(),userId);
+                    new GroupPage(userId,notification.getRelativeId());
+                    revalidate();
+                    repaint();
                 }
             });
         }
@@ -235,7 +256,9 @@ public class notificationItem extends JPanel {
                     VIewOrAcceptButtonActionPerformed(evt);
                 }
                 private void VIewOrAcceptButtonActionPerformed(ActionEvent evt) {
-                    groupManager.demote(notification.getRelativeId(),userId);
+                    new GroupPage(userId,notification.getRelativeId());
+                    revalidate();
+                    repaint();
                 }
             });
         }
@@ -247,16 +270,18 @@ public class notificationItem extends JPanel {
                 }
                 private void VIewOrAcceptButtonActionPerformed(ActionEvent evt) {
                     new GroupPage(userId,notification.getRelativeId());
+                    revalidate();
+                    repaint();
                 }
             });
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Button RejectButton;
-    private JLabel TimeLabel;
-    private Button VIewOrAcceptButton;
-    private JLabel descriptionLabel;
-    private ImageAvatar imageAvatar1;
-    private JLabel usernameLabel;
+    private frontend.notificationsUI.Button RejectButton;
+    private javax.swing.JLabel TimeLabel;
+    private frontend.notificationsUI.Button VIewOrAcceptButton;
+    private javax.swing.JLabel descriptionLabel;
+    private frontend.notificationsUI.ImageAvatar imageAvatar1;
+    private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }

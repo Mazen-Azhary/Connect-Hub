@@ -89,4 +89,102 @@
   "message" : "Pedri sent you a friend request",
   "authorId" : null,
   "type" : "REQUEST"
+}, {
+  "relativeId" : "1",
+  "notificationId" : "14",
+  "time" : [ 2024, 12, 12, 21, 52, 49, 212225600 ],
+  "message" : "not my group group: You have been promoted to ADMIN",
+  "authorId" : null,
+  "type" : "PROMOTION"
+}, {
+  "relativeId" : "1",
+  "notificationId" : "15",
+  "time" : [ 2024, 12, 12, 21, 52, 56, 986536400 ],
+  "message" : "not my group group: You have been promoted to ADMIN",
+  "authorId" : null,
+  "type" : "PROMOTION"
+}, {
+  "relativeId" : "1",
+  "notificationId" : "16",
+  "time" : [ 2024, 12, 12, 21, 52, 58, 384677600 ],
+  "message" : "not my group group: You have been promoted to ADMIN",
+  "authorId" : null,
+  "type" : "PROMOTION"
+}, {
+  "relativeId" : "1",
+  "notificationId" : "17",
+  "time" : [ 2024, 12, 12, 21, 54, 59, 534756700 ],
+  "message" : "not my group group: You have been promoted to ADMIN",
+  "authorId" : null,
+  "type" : "PROMOTION"
+}, {
+  "relativeId" : "1",
+  "notificationId" : "18",
+  "time" : [ 2024, 12, 12, 21, 55, 13, 134578500 ],
+  "message" : "not my group group: You have been promoted to ADMIN",
+  "authorId" : null,
+  "type" : "PROMOTION"
+}, {
+  "relativeId" : "1",
+  "notificationId" : "19",
+  "time" : [ 2024, 12, 12, 21, 56, 36, 724494400 ],
+  "message" : "not my group group: You have been promoted to ADMIN",
+  "authorId" : null,
+  "type" : "PROMOTION"
+}, {
+  "relativeId" : "1",
+  "notificationId" : "20",
+  "time" : [ 2024, 12, 12, 22, 0, 55, 635332600 ],
+  "message" : "not my group group: You have been promoted to ADMIN",
+  "authorId" : null,
+  "type" : "PROMOTION"
+}, {
+  "relativeId" : "1",
+  "notificationId" : "21",
+  "time" : [ 2024, 12, 12, 22, 2, 12, 263889700 ],
+  "message" : "not my group group: You have been promoted to ADMIN",
+  "authorId" : null,
+  "type" : "PROMOTION"
+}, {
+  "relativeId" : "7",
+  "notificationId" : "22",
+  "time" : [ 2024, 12, 12, 22, 38, 11, 690197000 ],
+  "message" : "mazen azhary Accepted your friend request",
+  "authorId" : null,
+  "type" : "ACCEPTED"
+}, {
+  "relativeId" : "8",
+  "notificationId" : "23",
+  "time" : [ 2024, 12, 12, 22, 46, 36, 301410500 ],
+  "message" : "Mohamed Moeen Accepted your friend request",
+  "authorId" : null,
+  "type" : "ACCEPTED"
+}, {
+  "relativeId" : "8",
+  "notificationId" : "24",
+  "time" : [ 2024, 12, 12, 22, 49, 3, 82039800 ],
+  "message" : "Mohamed Moeen sent you a friend request",
+  "authorId" : null,
+  "type" : "REQUEST"
+}, {
+  "relativeId" : "8",
+  "notificationId" : "25",
+  "time" : [ 2024, 12, 12, 22, 49, 6, 736089400 ],
+  "message" : "Mohamed Moeen sent you a friend request",
+  "authorId" : null,
+  "type" : "REQUEST"
+}, {
+  "relativeId" : "9",
+  "notificationId" : "26",
+  "time" : [ 2024, 12, 12, 22, 49, 55, 781077300 ],
+  "message" : "Lionel Messi Accepted your friend request",
+  "authorId" : null,
+  "type" : "ACCEPTED"
+}, {
+  "relativeId" : "6",
+  "notificationId" : "27",
+  "time" : [ 2024, 12, 12, 23, 3, 49, 179608600 ],
+  "message" : "Bellingham Accepted your friend request",
+  "authorId" : null,
+  "type" : "ACCEPTED"
 } ]

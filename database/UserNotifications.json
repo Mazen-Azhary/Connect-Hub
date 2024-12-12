@@ -8,6 +8,13 @@
       "message" : "not my group group: You have been promoted to ADMIN",
       "authorId" : null,
       "type" : "PROMOTION"
+    }, {
+      "relativeId" : "7",
+      "notificationId" : "22",
+      "time" : [ 2024, 12, 12, 22, 38, 11, 690197000 ],
+      "message" : "mazen azhary Accepted your friend request",
+      "authorId" : null,
+      "type" : "ACCEPTED"
     } ]
   },
   "userID" : "1",
@@ -22,6 +29,13 @@
       "message" : "not my group group: You have been demoted to MEMBER",
       "authorId" : null,
       "type" : "DEMOTION"
+    }, {
+      "relativeId" : "8",
+      "notificationId" : "23",
+      "time" : [ 2024, 12, 12, 22, 46, 36, 301410500 ],
+      "message" : "Mohamed Moeen Accepted your friend request",
+      "authorId" : null,
+      "type" : "ACCEPTED"
     } ]
   },
   "userID" : "2",
@@ -57,49 +71,7 @@
 }, {
   "profile" : {
     "profilePhoto" : null,
-    "notifications" : [ {
-      "relativeId" : "1",
-      "notificationId" : "4",
-      "time" : [ 2024, 12, 12, 20, 13, 50, 537883900 ],
-      "message" : "Lamine sent you a friend request",
-      "authorId" : null,
-      "type" : "REQUEST"
-    }, {
-      "relativeId" : "1",
-      "notificationId" : "5",
-      "time" : [ 2024, 12, 12, 20, 55, 45, 403028700 ],
-      "message" : "Lamine sent you a friend request",
-      "authorId" : null,
-      "type" : "REQUEST"
-    }, {
-      "relativeId" : "1",
-      "notificationId" : "6",
-      "time" : [ 2024, 12, 12, 20, 55, 46, 708248800 ],
-      "message" : "Lamine sent you a friend request",
-      "authorId" : null,
-      "type" : "REQUEST"
-    }, {
-      "relativeId" : "1",
-      "notificationId" : "7",
-      "time" : [ 2024, 12, 12, 20, 58, 41, 147258500 ],
-      "message" : "Lamine sent you a friend request",
-      "authorId" : null,
-      "type" : "REQUEST"
-    }, {
-      "relativeId" : "1",
-      "notificationId" : "8",
-      "time" : [ 2024, 12, 12, 20, 58, 41, 777285000 ],
-      "message" : "Lamine sent you a friend request",
-      "authorId" : null,
-      "type" : "REQUEST"
-    }, {
-      "relativeId" : "1",
-      "notificationId" : "9",
-      "time" : [ 2024, 12, 12, 20, 58, 42, 618503800 ],
-      "message" : "Lamine sent you a friend request",
-      "authorId" : null,
-      "type" : "REQUEST"
-    } ]
+    "notifications" : [ ]
   },
   "userID" : "7",
   "username" : "mazen azhary"
@@ -107,33 +79,19 @@
   "profile" : {
     "profilePhoto" : null,
     "notifications" : [ {
-      "relativeId" : "2",
-      "notificationId" : "10",
-      "time" : [ 2024, 12, 12, 21, 1, 16, 307222500 ],
-      "message" : "Pedri Accepted your friend request",
+      "relativeId" : "9",
+      "notificationId" : "26",
+      "time" : [ 2024, 12, 12, 22, 49, 55, 781077300 ],
+      "message" : "Lionel Messi Accepted your friend request",
       "authorId" : null,
       "type" : "ACCEPTED"
     }, {
-      "relativeId" : "2",
-      "notificationId" : "11",
-      "time" : [ 2024, 12, 12, 21, 1, 19, 890404500 ],
-      "message" : "Pedri sent you a friend request",
+      "relativeId" : "6",
+      "notificationId" : "27",
+      "time" : [ 2024, 12, 12, 23, 3, 49, 179608600 ],
+      "message" : "Bellingham Accepted your friend request",
       "authorId" : null,
-      "type" : "REQUEST"
-    }, {
-      "relativeId" : "2",
-      "notificationId" : "12",
-      "time" : [ 2024, 12, 12, 21, 1, 21, 512736700 ],
-      "message" : "Pedri sent you a friend request",
-      "authorId" : null,
-      "type" : "REQUEST"
-    }, {
-      "relativeId" : "2",
-      "notificationId" : "13",
-      "time" : [ 2024, 12, 12, 21, 1, 40, 890417900 ],
-      "message" : "Pedri sent you a friend request",
-      "authorId" : null,
-      "type" : "REQUEST"
+      "type" : "ACCEPTED"
     } ]
   },
   "userID" : "8",
