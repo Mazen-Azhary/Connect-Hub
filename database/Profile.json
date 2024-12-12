@@ -73,11 +73,11 @@
   "profile" : {
     "profilePhoto" : null,
     "coverPhoto" : null,
-    "bio" : "انا رقم واحد في كوكب الارض"
+    "bio" : null
   },
-  "dateOfBirth" : [ 2024, 12, 7 ],
+  "dateOfBirth" : [ 2004, 2, 5 ],
   "userID" : "8",
-  "username" : "mohamed"
+  "username" : "Mohamed Moeen"
 }, {
   "gender" : "Male",
   "profile" : {
@@ -85,7 +85,7 @@
     "coverPhoto" : null,
     "bio" : null
   },
-  "dateOfBirth" : [ 2004, 2, 5 ],
-  "userID" : "8",
-  "username" : "Mohamed Moeen"
+  "dateOfBirth" : [ 1987, 6, 24 ],
+  "userID" : "9",
+  "username" : "Lionel Messi"
 } ]

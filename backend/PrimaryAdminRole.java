@@ -17,13 +17,13 @@ public class PrimaryAdminRole extends AdminRole {
          groupManager.deleteGroup(GroupId);
     }
 
-    public void promote(String UserId,String GroupId)
+    public void promote(String groupId,String userId)
     {
-         groupManager.promote(UserId,GroupId);
+         groupManager.promote(groupId,userId);
     }
-    public void demote(String UserId,String GroupId)
+    public void demote(String groupId,String userId)
     {
-         groupManager.demote(UserId,GroupId);
+         groupManager.demote(groupId,userId);
     }
     //members,admins(remove, promote,demote)+admin Role
 }

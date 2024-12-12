@@ -15,6 +15,8 @@ public class Profile {
    private ArrayList<Content> contents;
     private ArrayList<String> blockedUsers;
     private Map<String,GroupRole> groups;
+    private ArrayList<Notification> notifications;
+
 
 
     public Profile() {
@@ -25,6 +27,7 @@ public class Profile {
         this.friendReceivedRequests=new ArrayList<>();
         this.friendSuggestions=new ArrayList<>();
         this.groups=new HashMap<>();
+        this.notifications=new ArrayList<>();
     }
 
     public ArrayList<String> getFriendReceivedRequests() {
@@ -35,7 +38,7 @@ public class Profile {
         this.friendReceivedRequests = friendReceivedRequests;
     }
 
-    public Profile(ArrayList<String> friends, String profilePhoto, String bio, String coverPhoto, ArrayList<Content> contents, ArrayList<String> friendRequests, ArrayList<String> friendReceivedRequests, ArrayList<String> friendSuggestions, ArrayList<String> blockedUsers, Map<String,GroupRole> groups) {
+    public Profile(ArrayList<String> friends, String profilePhoto, String bio, String coverPhoto, ArrayList<Content> contents, ArrayList<String> friendRequests, ArrayList<String> friendReceivedRequests, ArrayList<String> friendSuggestions, ArrayList<String> blockedUsers, Map<String,GroupRole> groups, ArrayList<Notification> notifications) {
         this.friends = friends;
         this.profilePhoto = profilePhoto;
         this.bio = bio;
@@ -46,6 +49,21 @@ public class Profile {
         this.friendReceivedRequests = friendReceivedRequests;
         this.friendSuggestions = friendSuggestions;
         this.groups = groups;
+        this.notifications = notifications;
+    }
+    public void addNotification(Notification notification) {
+        this.notifications.add(notification);
+    }
+    public void removeNotification(Notification notification) {
+        this.notifications.remove(notification);
+    }
+
+    public ArrayList<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(ArrayList<Notification> notifications) {
+        this.notifications = notifications;
     }
 
     public Map<String, GroupRole> getGroups() {

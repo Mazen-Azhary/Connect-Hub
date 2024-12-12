@@ -1,0 +1,22 @@
+[ {
+  "relativeId" : "1",
+  "notificationId" : "1",
+  "time" : [ 2024, 12, 12, 15, 36, 16, 887224100 ],
+  "message" : "not my group group: You have been promoted to ADMIN",
+  "authorId" : null,
+  "type" : "PROMOTION"
+}, {
+  "relativeId" : "1",
+  "notificationId" : "2",
+  "time" : [ 2024, 12, 12, 15, 36, 19, 546322600 ],
+  "message" : "not my group group: You have been demoted to MEMBER",
+  "authorId" : null,
+  "type" : "DEMOTION"
+}, {
+  "relativeId" : "2",
+  "notificationId" : "3",
+  "time" : [ 2024, 12, 12, 15, 36, 29, 762095400 ],
+  "message" : "عشاق ليونيل ميسي group: You have been promoted to ADMIN",
+  "authorId" : null,
+  "type" : "PROMOTION"
+} ]
