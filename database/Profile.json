@@ -11,7 +11,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : "C:\\Users\\Etijah\\Desktop\\images.jpg",
+    "profilePhoto" : "C:\\Users\\etijah\\Downloads\\Lamine.jpg",
     "coverPhoto" : "src/database/CoverDefault.jpg",
     "bio" : null
   },
@@ -71,7 +71,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : null,
+    "profilePhoto" : "C:\\Users\\Etijah\\Documents\\NetBeansProjects\\ConnectHub\\src\\database\\MohamedMoeen.jpg",
     "coverPhoto" : null,
     "bio" : null
   },

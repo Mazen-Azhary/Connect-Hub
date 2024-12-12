@@ -39,6 +39,19 @@ public class FriendManager {
         }
         return false;
     }
+    public boolean isRequested(String userID, String friendID) throws IOException {
+        User user1 = friendsDataBase.getUser(userID);
+        if (user1.getProfile().getFriendRequests().contains(friendID)) {
+            return true;
+        }
+        return false;
+    }public boolean isReceived(String userID, String friendID) throws IOException {
+        User user1 = friendsDataBase.getUser(userID);
+        if (user1.getProfile().getFriendReceivedRequests().contains(friendID)) {
+            return true;
+        }
+        return false;
+    }
 
     public boolean isBlocked(String userID, String friendID) throws IOException {
         User user1 = friendsDataBase.getUser(userID);
@@ -99,9 +112,11 @@ public class FriendManager {
             user1.getProfile().addFriend(receiver);
             user2.getProfile().addFriend(sender);
             NotificationManager.getInstance().acceptRequest(sender,receiver);
+            System.out.println("ana accepted");
         }
         friendsDataBase.modifyUserById(user1);
         friendsDataBase.modifyUserById(user2);
+        NotificationManager.getInstance().removeNotification(sender,receiver);
         return true;
     }
 

@@ -8,6 +8,8 @@ import backend.*;
 import backend.Content;
 import backend.ContentFactory;
 import backend.ProfileDataBase;
+import frontend.notificationsUI.CustomScrollBarUI;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -105,6 +107,9 @@ public class ProfilePage extends javax.swing.JFrame {
         setVisible(true);
         setResizable(false);
         setTitle("ProfilePage");
+        postScrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+        postScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        postScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         this.userId = UserId;
         edit();
         JButton button = new JButton("Back to News Feed");

@@ -50,6 +50,9 @@ public class NotificationManager {
         String message=userGroupsDatabase.getUser(userId).getUsername()+" added a post to "+ groupsDatabase.getGroup(groupId).getName();
         ArrayList<String> members=GroupManager.getInstance().getAllMembers(groupId);
         for (String member:members) {
+            if(userGroupsDatabase.getUser(member).getUserID().equals(userId)) {
+                continue;
+            }
             createNotification(message,contentId,userId,NotificationType.POST,member);
         }
     }
@@ -67,5 +70,22 @@ public class NotificationManager {
     public void additionToGroup(String groupId, String userId) throws IOException {
         String message = groupsDatabase.getGroup(groupId).getName() + " group: You have been added to the group";
         createNotification(message, groupId, null, NotificationType.ADDING, userId);
+    }
+    public ArrayList<Notification> getNotifications(String userId) throws IOException {
+        User user = userNotificationsDatabase.getUser(userId);
+        return user.getProfile().getNotifications();
+    }
+    public void removeNotification(String userId,String recieverId) throws IOException {
+        User user = userNotificationsDatabase.getUser(userId);
+        ArrayList<Notification> notifications = user.getProfile().getNotifications();
+        Notification notification=null;
+        for(Notification noti:notifications) {
+            if(noti.getRelativeId().equals(recieverId)&&noti.getType().equals(NotificationType.REQUEST)) {
+                notification=noti;
+                break;
+            }
+        }
+        notifications.remove(notification);
+        userNotificationsDatabase.modifyUserNotificationsById(user);
     }
 }
