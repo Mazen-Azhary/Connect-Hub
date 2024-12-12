@@ -1,0 +1,85 @@
+[ {
+  "profile" : {
+    "profilePhoto" : null,
+    "notifications" : [ {
+      "relativeId" : "1",
+      "notificationId" : "1",
+      "time" : [ 2024, 12, 12, 15, 36, 16, 887224100 ],
+      "message" : "not my group group: You have been promoted to ADMIN",
+      "authorId" : null,
+      "type" : "PROMOTION"
+    } ]
+  },
+  "userID" : "1",
+  "username" : "Lamine"
+}, {
+  "profile" : {
+    "profilePhoto" : null,
+    "notifications" : [ {
+      "relativeId" : "1",
+      "notificationId" : "2",
+      "time" : [ 2024, 12, 12, 15, 36, 19, 546322600 ],
+      "message" : "not my group group: You have been demoted to MEMBER",
+      "authorId" : null,
+      "type" : "DEMOTION"
+    } ]
+  },
+  "userID" : "2",
+  "username" : "Pedri"
+}, {
+  "profile" : {
+    "profilePhoto" : null,
+    "notifications" : [ ]
+  },
+  "userID" : "3",
+  "username" : "Freinke"
+}, {
+  "profile" : {
+    "profilePhoto" : null,
+    "notifications" : [ ]
+  },
+  "userID" : "4",
+  "username" : "Mbappe"
+}, {
+  "profile" : {
+    "profilePhoto" : null,
+    "notifications" : [ ]
+  },
+  "userID" : "5",
+  "username" : "Vinicius"
+}, {
+  "profile" : {
+    "profilePhoto" : null,
+    "notifications" : [ ]
+  },
+  "userID" : "6",
+  "username" : "Bellingham"
+}, {
+  "profile" : {
+    "profilePhoto" : null,
+    "notifications" : [ ]
+  },
+  "userID" : "7",
+  "username" : "mazen azhary"
+}, {
+  "profile" : {
+    "profilePhoto" : null,
+    "notifications" : [ ]
+  },
+  "userID" : "8",
+  "username" : "Mohamed Moeen"
+}, {
+  "profile" : {
+    "profilePhoto" : null,
+    "notifications" : [ {
+      "relativeId" : "2",
+      "notificationId" : "3",
+      "time" : [ 2024, 12, 12, 15, 36, 29, 762095400 ],
+      "message" : "عشاق ليونيل ميسي group: You have been promoted to ADMIN",
+      "authorId" : null,
+      "type" : "PROMOTION"
+    } ]
+  },
+  "userID" : "9",
+  "username" : "Lionel Messi"
+} ]

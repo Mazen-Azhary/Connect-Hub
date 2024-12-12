@@ -133,15 +133,10 @@ public class CreatePostGroup extends javax.swing.JFrame {
         if(create)
         {
 
-        try {
-            GroupContentManager.getInstance().addPost(userID,groupID,PostContentTextField.getText(),imagePath);
+            MemberRole.getInstance().addPost(userID,groupID,PostContentTextField.getText(),imagePath);
             dispose();
             groupPage.dispose();
             new GroupPage(userID,groupID);
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
         }
         else
         {

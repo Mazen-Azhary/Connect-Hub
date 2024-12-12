@@ -2,10 +2,11 @@
   "deleted" : false,
   "groupId" : "1",
   "members" : {
-    "1" : "MEMBER",
+    "1" : "ADMIN",
     "2" : "MEMBER",
     "3" : "ADMIN",
-    "4" : "PRIMARYADMIN"
+    "4" : "PRIMARYADMIN",
+    "9" : "PENDING"
   },
   "name" : "not my group",
   "description" : "visca barca",
@@ -33,22 +34,13 @@
     "timestamp" : [ 2024, 12, 11, 16, 3, 6, 844345600 ]
   } ]
 }, {
-  "deleted" : true,
-  "groupId" : "2",
-  "members" : {
-    "4" : "PRIMARYADMIN"
-  },
-  "name" : "fcb",
-  "description" : "best club in the world",
-  "photo" : "C:\\Users\\etijah\\Downloads\\fcb.jpg",
-  "posts" : [ ]
-}, {
   "deleted" : false,
-  "groupId" : "3",
+  "groupId" : "2",
   "members" : {
     "1" : "MEMBER",
     "4" : "PRIMARYADMIN",
-    "5" : "PENDING"
+    "5" : "MEMBER",
+    "9" : "ADMIN"
   },
   "name" : "عشاق ليونيل ميسي",
   "description" : "للعبابسة فقط",
