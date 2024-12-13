@@ -14,12 +14,16 @@ public class PostPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Layout for posts to be stacked vertically
 
         for (Content post : posts) {
-
-            Random random = new Random();
-            // For frontend testing: assuming posts are randomly from groups
-            boolean isFromGroup = random.nextBoolean();
-            String groupID = "1";
-
+            String groupID =post.getGroupId();
+            boolean isFromGroup;
+            if(groupID==null)
+            {
+                isFromGroup=false;
+            }
+            else
+            {
+                isFromGroup=true;
+            }
             PostFrontend postFrontend = new PostFrontend(post, isFromGroup, groupID);
 
             this.add(postFrontend);

@@ -25,6 +25,7 @@ public class GroupContentManager {
         if(imagePath!=null)
             builder.setImage(imagePath);
         n = builder.build();
+        n.setGroupId(GroupId);
         contentDatabase.addContent(n);
         Group group=groupsDatabase.getGroup(GroupId);
         group.addPost(n);

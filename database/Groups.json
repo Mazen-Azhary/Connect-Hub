@@ -11,28 +11,7 @@
   "name" : "not my group",
   "description" : "visca barca",
   "photo" : null,
-  "posts" : [ {
-    "image" : null,
-    "deleted" : true,
-    "contentId" : 0,
-    "authorId" : 1,
-    "content" : "ana mesh gamed",
-    "timestamp" : [ 2024, 12, 11, 15, 29, 22, 526281300 ]
-  }, {
-    "image" : "C:\\Users\\etijah\\Downloads\\Lamine.jpg",
-    "deleted" : true,
-    "contentId" : 18,
-    "authorId" : 4,
-    "content" : "a7san la3eb fel 3alam <3",
-    "timestamp" : [ 2024, 12, 11, 15, 54, 42, 864389400 ]
-  }, {
-    "image" : null,
-    "deleted" : true,
-    "contentId" : 19,
-    "authorId" : 4,
-    "content" : "ana mesh mbappe",
-    "timestamp" : [ 2024, 12, 11, 16, 3, 6, 844345600 ]
-  } ]
+  "posts" : [ ]
 }, {
   "deleted" : false,
   "groupId" : "2",
@@ -48,58 +27,10 @@
   "posts" : [ {
     "image" : null,
     "deleted" : false,
-    "contentId" : 19,
-    "authorId" : 9,
-    "content" : "ميسي الاعظم",
-    "timestamp" : [ 2024, 12, 12, 23, 13, 38, 138506100 ]
-  }, {
-    "image" : null,
-    "deleted" : true,
-    "contentId" : 20,
-    "authorId" : 9,
-    "content" : "انا بطل العالم",
-    "timestamp" : [ 2024, 12, 12, 23, 14, 1, 816135300 ]
-  }, {
-    "image" : null,
-    "deleted" : true,
-    "contentId" : 21,
-    "authorId" : 9,
-    "content" : "ana leo messi",
-    "timestamp" : [ 2024, 12, 12, 23, 14, 9, 498397000 ]
-  }, {
-    "image" : null,
-    "deleted" : false,
-    "contentId" : 22,
-    "authorId" : 9,
-    "content" : "I love Mohamed Moeen",
-    "timestamp" : [ 2024, 12, 12, 23, 14, 31, 440792000 ]
-  }, {
-    "image" : null,
-    "deleted" : false,
-    "contentId" : 23,
-    "authorId" : 9,
-    "content" : "fsdafdsfsa",
-    "timestamp" : [ 2024, 12, 12, 23, 14, 34, 804048300 ]
-  }, {
-    "image" : null,
-    "deleted" : false,
-    "contentId" : 24,
-    "authorId" : 9,
-    "content" : "fasfdsaf",
-    "timestamp" : [ 2024, 12, 12, 23, 14, 37, 808408300 ]
-  }, {
-    "image" : null,
-    "deleted" : false,
-    "contentId" : 25,
-    "authorId" : 9,
-    "content" : "hello",
-    "timestamp" : [ 2024, 12, 13, 10, 9, 39, 54697100 ]
-  }, {
-    "image" : null,
-    "deleted" : false,
-    "contentId" : 26,
+    "groupId" : "2",
+    "contentId" : 27,
     "authorId" : 4,
-    "content" : "Here We GO",
-    "timestamp" : [ 2024, 12, 13, 13, 29, 26, 825827300 ]
+    "content" : "Here We Go",
+    "timestamp" : [ 2024, 12, 13, 14, 6, 53, 138958000 ]
   } ]
 } ]

@@ -73,6 +73,7 @@ public class GroupsDatabase extends Database {
         contentMap.put("image", content.getImage());
         contentMap.put("content", content.getContent());
         contentMap.put("deleted", content.isDeleted());
+        contentMap.put("groupId", content.getGroupId());
         return contentMap;
     }
 

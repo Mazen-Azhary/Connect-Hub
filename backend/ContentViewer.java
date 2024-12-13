@@ -26,12 +26,11 @@ public class ContentViewer {
                     posts.add(content);
                 }
             }
-                for (Group group : groups) { //for every grp add all its posts
+        }
+
+                for (Group group : groups) {
                     posts.addAll(group.getPosts());
                 }
-
-
-        }
         User user=userContentDatabase.getUser(id);
         for(Content content:user.getProfile().getContents()) {
             if(content.getContentId()>0) {

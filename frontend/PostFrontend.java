@@ -77,7 +77,7 @@ public class PostFrontend extends JPanel {
         if (isFromGroup) {
             // Add a group name label
             JLabel groupNameLabel = new JLabel("Group: " + GroupManager.getInstance().getGroup(groupID).getName()); // Display the group name
-            groupNameLabel.setFont(new Font("Arial", Font.ITALIC, 12));
+            groupNameLabel.setFont(new Font("Arial", Font.PLAIN, 12));
             groupNameLabel.setForeground(new Color(50, 100, 200)); // Blue color for group name
             groupNameLabel.setBorder(new EmptyBorder(0, 0, 5, 0)); // Add spacing
 
