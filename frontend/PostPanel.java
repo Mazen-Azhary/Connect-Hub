@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class PostPanel extends JPanel {
-
-    private ProfileManager manager = ProfileManager.getInstance();
-
     public PostPanel(ArrayList<Content> posts) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Layout for posts to be stacked vertically
 

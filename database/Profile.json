@@ -1,7 +1,7 @@
 [ {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : "C:\\Users\\etijah\\Downloads\\Lamine.jpg",
+    "profilePhoto" : "D:\\CCE\\5th term\\Programming 2\\Connect Hub\\src\\database\\Lamine.jpg",
     "coverPhoto" : "C:\\Users\\etijah\\Downloads\\fcb.jpg",
     "bio" : "lamine yamal"
   },
@@ -11,7 +11,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : "C:\\Users\\etijah\\Downloads\\Lamine.jpg",
+    "profilePhoto" : "D:\\CCE\\5th term\\Programming 2\\Connect Hub\\src\\database\\pedri.jpg",
     "coverPhoto" : "src/database/CoverDefault.jpg",
     "bio" : null
   },
@@ -21,7 +21,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : null,
+    "profilePhoto" : "D:\\CCE\\5th term\\Programming 2\\Connect Hub\\src\\database\\frenkie.jpg",
     "coverPhoto" : null,
     "bio" : null
   },
@@ -31,7 +31,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : null,
+    "profilePhoto" : "D:\\CCE\\5th term\\Programming 2\\Connect Hub\\src\\database\\mbappe.jpg",
     "coverPhoto" : null,
     "bio" : null
   },
@@ -41,7 +41,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : "src/database/defaultIcon.jpg",
+    "profilePhoto" : "D:\\CCE\\5th term\\Programming 2\\Connect Hub\\src\\database\\vini.jpg",
     "coverPhoto" : "src/database/CoverDefault.jpg",
     "bio" : "vsdav"
   },
@@ -51,7 +51,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : null,
+    "profilePhoto" : "D:\\CCE\\5th term\\Programming 2\\Connect Hub\\src\\database\\beli.jpg",
     "coverPhoto" : null,
     "bio" : "ana jude"
   },
@@ -81,7 +81,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : null,
+    "profilePhoto" : "D:\\CCE\\5th term\\Programming 2\\Connect Hub\\src\\database\\Messi.jpg",
     "coverPhoto" : null,
     "bio" : null
   },

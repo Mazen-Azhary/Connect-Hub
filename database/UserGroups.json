@@ -1,7 +1,7 @@
 [ {
   "profile" : {
     "groups" : {
-      "1" : "ADMIN",
+      "1" : "PENDING",
       "2" : "MEMBER"
     },
     "profilePhoto" : null
@@ -12,7 +12,8 @@
 }, {
   "profile" : {
     "groups" : {
-      "1" : "MEMBER"
+      "2" : "MEMBER",
+      "1" : "PENDING"
     },
     "profilePhoto" : null
   },
@@ -79,8 +80,7 @@
   "profile" : {
     "profilePhoto" : null,
     "groups" : {
-      "1" : "PENDING",
-      "2" : "ADMIN"
+      "1" : "PENDING"
     }
   },
   "userID" : "9",

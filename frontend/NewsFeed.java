@@ -193,7 +193,7 @@ public class NewsFeed extends javax.swing.JFrame {
         search.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                SearchPage searchPage = new SearchPage(id);
+                SearchPage searchPage = new SearchPage(id,newsFeed);
                 searchPage.setVisible(true);
 
             }
@@ -284,7 +284,7 @@ public class NewsFeed extends javax.swing.JFrame {
                 notificationButtonActionPerformed(evt);
             }
             private void notificationButtonActionPerformed(ActionEvent evt) {
-                GlassPanePopup.showPopup(new NotificationPanel(id), new DefaultOption(){
+                GlassPanePopup.showPopup(new NotificationPanel(id,newsFeed), new DefaultOption(){
                     @Override
                     public float opacity()
                     {
@@ -462,7 +462,7 @@ public class NewsFeed extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new NewsFeed("1").setVisible(true);
+                    new NewsFeed("4").setVisible(true);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

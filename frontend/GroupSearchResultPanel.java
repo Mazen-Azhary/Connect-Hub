@@ -11,10 +11,12 @@ import java.util.List;
 public class GroupSearchResultPanel extends JPanel {
     private String currentUserID;
     private List<String> groupIDs;
+    private NewsFeed newsFeed;
 
-    public GroupSearchResultPanel(String currentUserID, List<String> groupIDs) throws IOException {
+    public GroupSearchResultPanel(String currentUserID, List<String> groupIDs,NewsFeed newsFeed) throws IOException {
         this.currentUserID = currentUserID;
         this.groupIDs = new ArrayList<>(groupIDs);
+        this.newsFeed = newsFeed;
         initializeUI();
     }
 
@@ -24,7 +26,7 @@ public class GroupSearchResultPanel extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         for (String groupID : groupIDs) {
-            GroupSearchResultFrontend groupResult = new GroupSearchResultFrontend(currentUserID, groupID, (ArrayList<String>) groupIDs, this);
+            GroupSearchResultFrontend groupResult = new GroupSearchResultFrontend(currentUserID, groupID, (ArrayList<String>) groupIDs, this,newsFeed);
             add(groupResult);
             add(Box.createRigidArea(new Dimension(0, 10)));
         }
