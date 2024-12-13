@@ -58,32 +58,34 @@ public class NewsFeed extends javax.swing.JFrame {
         setResizable(false);
         setSize(1000, 700);
         setVisible(true);
-        FriendListPannel friendPanel = new FriendListPannel(this,null,id);
-        friendsScroll.setViewportView(friendPanel);
-        friendsScroll.getVerticalScrollBar().setUI(new CustomScrollBarUI());
-        suggestionsScroll.getVerticalScrollBar().setUI(new CustomScrollBarUI());
-        postsScroll.getVerticalScrollBar().setUI(new CustomScrollBarUI());
-        postsScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        storiesScrollable.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
-        storiesScrollable.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-        FriendSuggestionPannel friendSuggestionPanel = new FriendSuggestionPannel(this,id);
-        suggestionsScroll.setViewportView(friendSuggestionPanel);
+
+
         ContentViewer contentViewer = ContentViewer.getInstance();
         ArrayList<Content> posts = contentViewer.generatePosts(id);
 
-        PostPanel postPanel = new PostPanel(posts);
-        postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
 
-        postsScroll.add(postPanel);
+        FriendListPannel friendPanel = new FriendListPannel(this,null,id);
+        friendsScroll.setViewportView(friendPanel);
+        friendsScroll.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+
+        PostPanel postPanel = new PostPanel(posts);
+        postsScroll.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+        postsScroll.setViewportView(postPanel);
+
+
+        FriendSuggestionPannel friendSuggestionPanel = new FriendSuggestionPannel(this,id);
+        suggestionsScroll.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+        suggestionsScroll.setViewportView(friendSuggestionPanel);
+
+
         JPanel storiesPanel = new StoryPanel(id);
 
 
 
-        postsScroll.setViewportView(postPanel);
+        storiesScrollable.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
+        storiesScrollable.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
         storiesScrollable.setViewportView(storiesPanel);
         storiesScrollable.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        postsScroll.getVerticalScrollBar().setUnitIncrement(20);
-        postsScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
         revalidate();
         repaint();

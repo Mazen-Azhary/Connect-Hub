@@ -456,7 +456,7 @@ public class ProfilePage extends javax.swing.JFrame {
         postScrollPane.setViewportView(postPanel);
 
         for (backend.Content content : contents) {
-            PostFrontend post = new PostFrontend(content.getContentId(), content.getContent(), "Author" + content.getContent(), content.getImage(),false,null);
+            PostFrontend post = new PostFrontend(content,false,null);
             postScrollPane.add(post);
             postScrollPane.add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between posts
         }
