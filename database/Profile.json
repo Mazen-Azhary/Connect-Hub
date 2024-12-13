@@ -1,8 +1,8 @@
 [ {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : "C:\\Users\\etijah\\Downloads\\Lamine.jpg",
-    "coverPhoto" : "C:\\Users\\etijah\\Downloads\\fcb.jpg",
+    "profilePhoto" : "src/database/Lamine.jpg",
+    "coverPhoto" : "src/database/fcb.jpg",
     "bio" : "lamine yamal"
   },
   "dateOfBirth" : [ 2024, 12, 5 ],
@@ -11,7 +11,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : "C:\\Users\\etijah\\Downloads\\Lamine.jpg",
+    "profilePhoto" : "src/database/pedri.jpg",
     "coverPhoto" : "src/database/CoverDefault.jpg",
     "bio" : null
   },
@@ -21,7 +21,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : null,
+    "profilePhoto" : "src/database/frenkie.jpg",
     "coverPhoto" : null,
     "bio" : null
   },
@@ -31,7 +31,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : null,
+    "profilePhoto" : "src/database/mbappe.jpg",
     "coverPhoto" : null,
     "bio" : null
   },
@@ -41,7 +41,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : "src/database/defaultIcon.jpg",
+    "profilePhoto" : "src/database/vini.jpg",
     "coverPhoto" : "src/database/CoverDefault.jpg",
     "bio" : "vsdav"
   },
@@ -51,7 +51,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : null,
+    "profilePhoto" : "src/database/beli.jpg",
     "coverPhoto" : null,
     "bio" : "ana jude"
   },
@@ -61,7 +61,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : null,
+    "profilePhoto" : "src/database/mazenAzhary.jpg",
     "coverPhoto" : null,
     "bio" : null
   },
@@ -71,7 +71,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : "C:\\Users\\Etijah\\Documents\\NetBeansProjects\\ConnectHub\\src\\database\\MohamedMoeen.jpg",
+    "profilePhoto" : "src/database/MohamedMoeen.jpg",
     "coverPhoto" : null,
     "bio" : null
   },
@@ -81,7 +81,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : null,
+    "profilePhoto" : "src/database/Messi.jpg",
     "coverPhoto" : null,
     "bio" : null
   },

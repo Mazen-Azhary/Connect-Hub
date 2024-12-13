@@ -10,6 +10,7 @@ public class Content {
     private String content;
     private String image;
     private LocalDateTime timestamp=LocalDateTime.now();
+    private String groupId;
     private boolean deleted=false;
     public Content()
     {
@@ -22,12 +23,26 @@ public class Content {
         this.timestamp = timestamp;
     }
 
-    public Content(int contentId, int authorId, String content, String image, LocalDateTime timestamp) {
+    public Content(int contentId, int authorId, String content, String image, LocalDateTime timestamp, String groupId, boolean deleted) {
         this.contentId = contentId;
         this.authorId = authorId;
         this.content = content;
         this.image = image;
         this.timestamp = timestamp;
+        this.groupId = groupId;
+        this.deleted = deleted;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     public void setTimestamp(LocalDateTime timestamp) {

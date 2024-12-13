@@ -249,18 +249,21 @@ public class GroupPage extends javax.swing.JFrame {
         });
 
         ImageIcon imageIcon;
+           // System.out.println(groupId);
         if(GroupManager.getInstance().getGroup(groupId).getPhoto()==null)
         {
             imageIcon=new ImageIcon("src/database/CoverDefault.jpg");
         }
         else imageIcon= new ImageIcon(GroupManager.getInstance().getGroup(groupId).getPhoto());
+        jLabel1.setPreferredSize(new Dimension(300,300));
+        jLabel1.setSize(new Dimension(300,300));
 
         jLabel1.setIcon(imageIcon); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Group group=GroupManager.getInstance().getGroup(groupId);
         jLabel2.setText(group.getName());
-        descLabel.setFont(new java.awt.Font("Segoe UI", 2, 20));
+        descLabel.setFont(new java.awt.Font("Segoe UI", 1, 20));
         descLabel.setText(group.getDescription());
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -341,7 +344,7 @@ public class GroupPage extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(descLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(BackButton))
                                                 .addContainerGap(316, Short.MAX_VALUE))
                                         .addGroup(layout.createSequentialGroup()
@@ -369,7 +372,7 @@ public class GroupPage extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(leaveButton))
                         .addGap(18, 18, 18)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)

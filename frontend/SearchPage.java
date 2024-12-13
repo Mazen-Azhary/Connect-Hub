@@ -15,17 +15,18 @@ public class SearchPage extends javax.swing.JFrame {
     private ArrayList<User> searchedUsers;
     private HashMap<String, ArrayList<String>> peopleSearchResults = new HashMap<>();
     private HashMap<String, ArrayList<String>> groupSearchResults = new HashMap<>();
-
+    private NewsFeed newsFeed;
     /**
      * Creates new form SearchPage
      */
-    public SearchPage(String id) {
+    public SearchPage(String id,NewsFeed newsFeed) {
         this.id = id;
         initComponents();
         setTitle("Search Page");
         setLocationRelativeTo(null);
         setResizable(false);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.newsFeed = newsFeed;
     }
 
     /**
@@ -156,7 +157,7 @@ public class SearchPage extends javax.swing.JFrame {
         }
         ArrayList<String> searchedUsersID;
         if(peopleSearchResults.get(query)!=null){
-        //JOptionPane.showMessageDialog(null,"loaded from hasmap");
+        JOptionPane.showMessageDialog(null,"loaded from hasmap");
         searchedUsersID = peopleSearchResults.get(query);
         }else {
 
@@ -194,7 +195,7 @@ public class SearchPage extends javax.swing.JFrame {
             groupSearchResults.put(query, searchedGroupIDs);
         }
 
-        GroupSearchResultPanel groupSearchResultPanel = new GroupSearchResultPanel(id, searchedGroupIDs);
+        GroupSearchResultPanel groupSearchResultPanel = new GroupSearchResultPanel(id, searchedGroupIDs,newsFeed);
         updateScrollPane(groupSearchResultPanel);
 
     }
@@ -203,10 +204,6 @@ public class SearchPage extends javax.swing.JFrame {
         jScrollPane1.setViewportView(panel);
         jScrollPane1.revalidate();
         jScrollPane1.repaint();
-    }
-
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> new SearchPage(id).setVisible(true));
     }
 
     // Variables declaration - do not modify

@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -57,107 +58,35 @@ public class NewsFeed extends javax.swing.JFrame {
         setResizable(false);
         setSize(1000, 700);
         setVisible(true);
+
+
+        ContentViewer contentViewer = ContentViewer.getInstance();
+        ArrayList<Content> posts = contentViewer.generatePosts(id);
+
+
         FriendListPannel friendPanel = new FriendListPannel(this,null,id);
         friendsScroll.setViewportView(friendPanel);
         friendsScroll.getVerticalScrollBar().setUI(new CustomScrollBarUI());
-        suggestionsScroll.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+
+        PostPanel postPanel = new PostPanel(posts);
         postsScroll.getVerticalScrollBar().setUI(new CustomScrollBarUI());
-        postsScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        storiesScrollable.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
-        storiesScrollable.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        postsScroll.setViewportView(postPanel);
+        postsScroll.getVerticalScrollBar().setUnitIncrement(20);
+
+
         FriendSuggestionPannel friendSuggestionPanel = new FriendSuggestionPannel(this,id);
+        suggestionsScroll.getVerticalScrollBar().setUI(new CustomScrollBarUI());
         suggestionsScroll.setViewportView(friendSuggestionPanel);
-        ContentViewer contentViewer = ContentViewer.getInstance();
-        ArrayList<Content> posts = contentViewer.generatePosts(id);
-        ArrayList<Content> stories = contentViewer.generateStories(id);
 
-        JPanel postPanel = new JPanel();
-        postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
-
-        for (Content post : posts) {
-            // Retrieve user details
-            User user = manager.getUser("" + post.getAuthorId());
-            ImageIcon photo = new ImageIcon(user.getProfile().getProfilePhoto());
-
-            // Check if the image is valid
-            if (photo.getIconWidth() <= 0 || photo.getIconHeight() <= 0) {
-                photo = new ImageIcon("src/database/defaultIcon.jpg");
-            }
-
-            // Create circular profile photo
-            int diameter = 30;
-            ImageIcon circularPhoto = FriendFrontend.getCircularImageIcon(photo, diameter);
-            JLabel friendPhoto = new JLabel(circularPhoto);
-            friendPhoto.setPreferredSize(new Dimension(diameter, diameter));
-            friendPhoto.setHorizontalAlignment(JLabel.CENTER);
-
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-            LocalDateTime localDateTime=post.getTimestamp();
-            String formattedDate = localDateTime.format(formatter);
-            JLabel friendName = new JLabel(user.getUsername()+"        "+formattedDate);
-            friendName.setHorizontalAlignment(JLabel.LEFT);
-            friendName.setFont(new Font("Arial", Font.BOLD, 14));
-            friendName.setBorder(new EmptyBorder(0, 5, 0, 0)); // Add spacing from the photo
-
-            // Content label
-            JLabel contentLabel = new JLabel("<html>" + post.getContent().replace("\n", "<br>") + "</html>");
-            contentLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-            contentLabel.setForeground(Color.BLACK);
-            contentLabel.setBorder(new EmptyBorder(5, 0, 0, 0));
-
-            // Image (if applicable)
-            JLabel imageLabel = null;
-            if (post.getImage() != null) {
-                ImageIcon postImage = new ImageIcon(post.getImage());
-                // Resize the image while maintaining aspect ratio
-                int maxWidth = 200; // Desired maximum width
-                int maxHeight = 150; // Desired maximum height
-                Image scaledImage = postImage.getImage().getScaledInstance(maxWidth, maxHeight, Image.SCALE_SMOOTH);
-
-                // Wrap the resized image in an ImageIcon
-                imageLabel = new JLabel(new ImageIcon(scaledImage));
-                imageLabel.setBorder(new EmptyBorder(5, 0, 0, 0));
-            }
-
-
-            // Create a horizontal panel for photo and username
-            JPanel headerPanel = new JPanel();
-            headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.X_AXIS));
-            headerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-            headerPanel.setOpaque(false); // Ensure it blends with background
-            headerPanel.add(friendPhoto);
-            headerPanel.add(Box.createRigidArea(new Dimension(10, 0))); // Space between photo and name
-            headerPanel.add(friendName);
-
-            // Create a vertical panel for the entire post
-            JPanel singlePostPanel = new JPanel();
-            singlePostPanel.setLayout(new BoxLayout(singlePostPanel, BoxLayout.Y_AXIS));
-            singlePostPanel.setBorder(BorderFactory.createCompoundBorder(
-                    BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
-                    BorderFactory.createEmptyBorder(10, 10, 10, 10)
-            ));
-            singlePostPanel.setBackground(Color.WHITE);
-            singlePostPanel.add(headerPanel);
-            singlePostPanel.add(contentLabel);
-            if (imageLabel != null) {
-                singlePostPanel.add(imageLabel);
-            }
-            singlePostPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Space between posts
-
-            // Add the single post to the main postPanel
-            postPanel.add(singlePostPanel);
-            postPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Space between posts in the main panel
-        }
 
         JPanel storiesPanel = new StoryPanel(id);
 
 
 
-        postsScroll.setViewportView(postPanel);
+        storiesScrollable.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
+        storiesScrollable.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
         storiesScrollable.setViewportView(storiesPanel);
         storiesScrollable.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        postsScroll.getVerticalScrollBar().setUnitIncrement(20);
-        postsScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
         revalidate();
         repaint();
@@ -265,7 +194,7 @@ public class NewsFeed extends javax.swing.JFrame {
         search.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                SearchPage searchPage = new SearchPage(id);
+                SearchPage searchPage = new SearchPage(id,newsFeed);
                 searchPage.setVisible(true);
 
             }
@@ -356,7 +285,7 @@ public class NewsFeed extends javax.swing.JFrame {
                 notificationButtonActionPerformed(evt);
             }
             private void notificationButtonActionPerformed(ActionEvent evt) {
-                GlassPanePopup.showPopup(new NotificationPanel(id), new DefaultOption(){
+                GlassPanePopup.showPopup(new NotificationPanel(id,newsFeed), new DefaultOption(){
                     @Override
                     public float opacity()
                     {
@@ -391,11 +320,6 @@ public class NewsFeed extends javax.swing.JFrame {
                 createPostButtonActionPerformed(evt);
             }
         });
-        for (backend.Content content : contents) {
-            Post post = new Post(content.getContentId(), content.getContent(), "Author" + content.getContent(),content.getImage());
-            postsScroll.add(post);
-            postsScroll.add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between posts
-        }
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -539,7 +463,7 @@ public class NewsFeed extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new NewsFeed("1").setVisible(true);
+                    new NewsFeed("4").setVisible(true);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

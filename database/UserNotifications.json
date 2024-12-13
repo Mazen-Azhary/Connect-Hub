@@ -2,61 +2,33 @@
   "profile" : {
     "profilePhoto" : null,
     "notifications" : [ {
-      "relativeId" : "1",
+      "relativeId" : "2",
       "notificationId" : "1",
-      "time" : [ 2024, 12, 12, 15, 36, 16, 887224100 ],
-      "message" : "not my group group: You have been promoted to ADMIN",
+      "time" : [ 2024, 12, 13, 13, 28, 42, 150606400 ],
+      "message" : "عشاق ليونيل ميسي group: You have been demoted to MEMBER",
+      "authorId" : null,
+      "type" : "DEMOTION"
+    }, {
+      "relativeId" : "2",
+      "notificationId" : "2",
+      "time" : [ 2024, 12, 13, 13, 29, 26, 864216500 ],
+      "message" : "Mbappe added a post to عشاق ليونيل ميسي",
+      "authorId" : "4",
+      "type" : "POST"
+    }, {
+      "relativeId" : "2",
+      "notificationId" : "55",
+      "time" : [ 2024, 12, 13, 14, 6, 53, 171597500 ],
+      "message" : "Mbappe added a post to عشاق ليونيل ميسي",
+      "authorId" : "4",
+      "type" : "POST"
+    }, {
+      "relativeId" : "2",
+      "notificationId" : "59",
+      "time" : [ 2024, 12, 13, 14, 45, 33, 473193100 ],
+      "message" : "عشاق ليونيل ميسي group: You have been promoted to ADMIN",
       "authorId" : null,
       "type" : "PROMOTION"
-    }, {
-      "relativeId" : "7",
-      "notificationId" : "22",
-      "time" : [ 2024, 12, 12, 22, 38, 11, 690197000 ],
-      "message" : "mazen azhary Accepted your friend request",
-      "authorId" : null,
-      "type" : "ACCEPTED"
-    }, {
-      "relativeId" : "19",
-      "notificationId" : "34",
-      "time" : [ 2024, 12, 12, 23, 13, 38, 158383500 ],
-      "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
-      "authorId" : "9",
-      "type" : "POST"
-    }, {
-      "relativeId" : "20",
-      "notificationId" : "37",
-      "time" : [ 2024, 12, 12, 23, 14, 1, 849940300 ],
-      "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
-      "authorId" : "9",
-      "type" : "POST"
-    }, {
-      "relativeId" : "21",
-      "notificationId" : "40",
-      "time" : [ 2024, 12, 12, 23, 14, 9, 518992600 ],
-      "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
-      "authorId" : "9",
-      "type" : "POST"
-    }, {
-      "relativeId" : "22",
-      "notificationId" : "43",
-      "time" : [ 2024, 12, 12, 23, 14, 31, 465682200 ],
-      "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
-      "authorId" : "9",
-      "type" : "POST"
-    }, {
-      "relativeId" : "23",
-      "notificationId" : "46",
-      "time" : [ 2024, 12, 12, 23, 14, 34, 829538600 ],
-      "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
-      "authorId" : "9",
-      "type" : "POST"
-    }, {
-      "relativeId" : "24",
-      "notificationId" : "49",
-      "time" : [ 2024, 12, 12, 23, 14, 37, 837591400 ],
-      "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
-      "authorId" : "9",
-      "type" : "POST"
     } ]
   },
   "userID" : "1",
@@ -65,26 +37,19 @@
   "profile" : {
     "profilePhoto" : null,
     "notifications" : [ {
-      "relativeId" : "1",
-      "notificationId" : "2",
-      "time" : [ 2024, 12, 12, 15, 36, 19, 546322600 ],
-      "message" : "not my group group: You have been demoted to MEMBER",
-      "authorId" : null,
-      "type" : "DEMOTION"
+      "relativeId" : "2",
+      "notificationId" : "3",
+      "time" : [ 2024, 12, 13, 13, 29, 26, 888688900 ],
+      "message" : "Mbappe added a post to عشاق ليونيل ميسي",
+      "authorId" : "4",
+      "type" : "POST"
     }, {
-      "relativeId" : "8",
-      "notificationId" : "23",
-      "time" : [ 2024, 12, 12, 22, 46, 36, 301410500 ],
-      "message" : "Mohamed Moeen Accepted your friend request",
-      "authorId" : null,
-      "type" : "ACCEPTED"
-    }, {
-      "relativeId" : "9",
-      "notificationId" : "30",
-      "time" : [ 2024, 12, 12, 23, 12, 33, 942827200 ],
-      "message" : "Lionel Messi sent you a friend request",
-      "authorId" : null,
-      "type" : "REQUEST"
+      "relativeId" : "2",
+      "notificationId" : "56",
+      "time" : [ 2024, 12, 13, 14, 6, 53, 197496000 ],
+      "message" : "Mbappe added a post to عشاق ليونيل ميسي",
+      "authorId" : "4",
+      "type" : "POST"
     } ]
   },
   "userID" : "2",
@@ -93,12 +58,12 @@
   "profile" : {
     "profilePhoto" : null,
     "notifications" : [ {
-      "relativeId" : "9",
-      "notificationId" : "31",
-      "time" : [ 2024, 12, 12, 23, 12, 35, 350013900 ],
-      "message" : "Lionel Messi sent you a friend request",
-      "authorId" : null,
-      "type" : "REQUEST"
+      "relativeId" : "1",
+      "notificationId" : "58",
+      "time" : [ 2024, 12, 13, 14, 42, 40, 755897700 ],
+      "message" : "Mbappe added a post to not my group",
+      "authorId" : "4",
+      "type" : "POST"
     } ]
   },
   "userID" : "3",
@@ -107,47 +72,12 @@
   "profile" : {
     "profilePhoto" : null,
     "notifications" : [ {
-      "relativeId" : "19",
-      "notificationId" : "35",
-      "time" : [ 2024, 12, 12, 23, 13, 38, 179708000 ],
-      "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
-      "authorId" : "9",
-      "type" : "POST"
-    }, {
-      "relativeId" : "20",
-      "notificationId" : "38",
-      "time" : [ 2024, 12, 12, 23, 14, 1, 882114300 ],
-      "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
-      "authorId" : "9",
-      "type" : "POST"
-    }, {
-      "relativeId" : "21",
-      "notificationId" : "41",
-      "time" : [ 2024, 12, 12, 23, 14, 9, 551208700 ],
-      "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
-      "authorId" : "9",
-      "type" : "POST"
-    }, {
-      "relativeId" : "22",
-      "notificationId" : "44",
-      "time" : [ 2024, 12, 12, 23, 14, 31, 492578200 ],
-      "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
-      "authorId" : "9",
-      "type" : "POST"
-    }, {
-      "relativeId" : "23",
-      "notificationId" : "47",
-      "time" : [ 2024, 12, 12, 23, 14, 34, 858306200 ],
-      "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
-      "authorId" : "9",
-      "type" : "POST"
-    }, {
-      "relativeId" : "24",
-      "notificationId" : "50",
-      "time" : [ 2024, 12, 12, 23, 14, 37, 877449000 ],
-      "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
-      "authorId" : "9",
-      "type" : "POST"
+      "relativeId" : "7",
+      "notificationId" : "60",
+      "time" : [ 2024, 12, 13, 21, 45, 55, 774696100 ],
+      "message" : "mazen azhary sent you a friend request",
+      "authorId" : null,
+      "type" : "REQUEST"
     } ]
   },
   "userID" : "4",
@@ -156,53 +86,18 @@
   "profile" : {
     "profilePhoto" : null,
     "notifications" : [ {
-      "relativeId" : "9",
-      "notificationId" : "32",
-      "time" : [ 2024, 12, 12, 23, 12, 36, 749718600 ],
-      "message" : "Lionel Messi sent you a friend request",
-      "authorId" : null,
-      "type" : "REQUEST"
-    }, {
-      "relativeId" : "19",
-      "notificationId" : "36",
-      "time" : [ 2024, 12, 12, 23, 13, 38, 212368500 ],
-      "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
-      "authorId" : "9",
+      "relativeId" : "2",
+      "notificationId" : "4",
+      "time" : [ 2024, 12, 13, 13, 29, 26, 921985100 ],
+      "message" : "Mbappe added a post to عشاق ليونيل ميسي",
+      "authorId" : "4",
       "type" : "POST"
     }, {
-      "relativeId" : "20",
-      "notificationId" : "39",
-      "time" : [ 2024, 12, 12, 23, 14, 1, 933218700 ],
-      "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
-      "authorId" : "9",
-      "type" : "POST"
-    }, {
-      "relativeId" : "21",
-      "notificationId" : "42",
-      "time" : [ 2024, 12, 12, 23, 14, 9, 590733100 ],
-      "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
-      "authorId" : "9",
-      "type" : "POST"
-    }, {
-      "relativeId" : "22",
-      "notificationId" : "45",
-      "time" : [ 2024, 12, 12, 23, 14, 31, 551218800 ],
-      "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
-      "authorId" : "9",
-      "type" : "POST"
-    }, {
-      "relativeId" : "23",
-      "notificationId" : "48",
-      "time" : [ 2024, 12, 12, 23, 14, 34, 908565900 ],
-      "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
-      "authorId" : "9",
-      "type" : "POST"
-    }, {
-      "relativeId" : "24",
-      "notificationId" : "51",
-      "time" : [ 2024, 12, 12, 23, 14, 37, 922826400 ],
-      "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
-      "authorId" : "9",
+      "relativeId" : "2",
+      "notificationId" : "57",
+      "time" : [ 2024, 12, 13, 14, 6, 53, 237724900 ],
+      "message" : "Mbappe added a post to عشاق ليونيل ميسي",
+      "authorId" : "4",
       "type" : "POST"
     } ]
   },
@@ -211,49 +106,14 @@
 }, {
   "profile" : {
     "profilePhoto" : null,
-    "notifications" : [ {
-      "relativeId" : "9",
-      "notificationId" : "29",
-      "time" : [ 2024, 12, 12, 23, 11, 55, 619419200 ],
-      "message" : "Lionel Messi Accepted your friend request",
-      "authorId" : null,
-      "type" : "ACCEPTED"
-    } ]
-  },
-  "userID" : "6",
-  "username" : "Bellingham"
-}, {
-  "profile" : {
-    "profilePhoto" : null,
-    "notifications" : [ {
-      "relativeId" : "9",
-      "notificationId" : "33",
-      "time" : [ 2024, 12, 12, 23, 12, 37, 949222300 ],
-      "message" : "Lionel Messi sent you a friend request",
-      "authorId" : null,
-      "type" : "REQUEST"
-    } ]
+    "notifications" : [ ]
   },
   "userID" : "7",
   "username" : "mazen azhary"
 }, {
   "profile" : {
     "profilePhoto" : null,
-    "notifications" : [ {
-      "relativeId" : "9",
-      "notificationId" : "26",
-      "time" : [ 2024, 12, 12, 22, 49, 55, 781077300 ],
-      "message" : "Lionel Messi Accepted your friend request",
-      "authorId" : null,
-      "type" : "ACCEPTED"
-    }, {
-      "relativeId" : "6",
-      "notificationId" : "27",
-      "time" : [ 2024, 12, 12, 23, 3, 49, 179608600 ],
-      "message" : "Bellingham Accepted your friend request",
-      "authorId" : null,
-      "type" : "ACCEPTED"
-    } ]
+    "notifications" : [ ]
   },
   "userID" : "8",
   "username" : "Mohamed Moeen"
@@ -262,11 +122,25 @@
     "profilePhoto" : null,
     "notifications" : [ {
       "relativeId" : "2",
-      "notificationId" : "3",
-      "time" : [ 2024, 12, 12, 15, 36, 29, 762095400 ],
+      "notificationId" : "61",
+      "time" : [ 2024, 12, 13, 21, 53, 39, 168528600 ],
+      "message" : "عشاق ليونيل ميسي group: You have been added to the group",
+      "authorId" : null,
+      "type" : "ADDING"
+    }, {
+      "relativeId" : "2",
+      "notificationId" : "62",
+      "time" : [ 2024, 12, 13, 21, 53, 46, 55645500 ],
       "message" : "عشاق ليونيل ميسي group: You have been promoted to ADMIN",
       "authorId" : null,
       "type" : "PROMOTION"
+    }, {
+      "relativeId" : "7",
+      "notificationId" : "63",
+      "time" : [ 2024, 12, 13, 22, 17, 46, 104372000 ],
+      "message" : "mazen azhary Accepted your friend request",
+      "authorId" : null,
+      "type" : "ACCEPTED"
     } ]
   },
   "userID" : "9",

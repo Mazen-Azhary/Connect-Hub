@@ -30,8 +30,10 @@ public class NotificationPanel extends javax.swing.JPanel {
     private String userId;
     private ArrayList<Notification> notifications;
     private NotificationManager notificationManager=NotificationManager.getInstance();
-    public NotificationPanel(String userId) {
+    private NewsFeed newsFeed;
+    public NotificationPanel(String userId,NewsFeed newsFeed) {
         this.userId = userId;
+        this.newsFeed = newsFeed;
         try {
             notifications=notificationManager.getNotifications(userId);
         } catch (IOException e) {
@@ -54,7 +56,7 @@ public class NotificationPanel extends javax.swing.JPanel {
         panel.removeAll();
         Collections.reverse(notifications);
         for (Notification notification : notifications) {
-            notificationItem item=new notificationItem(userId,notification);
+            notificationItem item=new notificationItem(userId,notification,newsFeed);
             panel.add(item);
         }
         panel.revalidate();

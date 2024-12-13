@@ -20,13 +20,13 @@ public class GroupSearchResultFrontend extends JPanel {
     private JLabel groupName;
     private JButton button1;
     private JButton button2;
-
-    public GroupSearchResultFrontend(String currentUserID, String groupID, ArrayList<String> groupIDs, GroupSearchResultPanel groupSearchResultPanel) throws IOException {
+    private NewsFeed newsFeed;
+    public GroupSearchResultFrontend(String currentUserID, String groupID, ArrayList<String> groupIDs, GroupSearchResultPanel groupSearchResultPanel,NewsFeed newsFeed) throws IOException {
+        this.newsFeed = newsFeed;
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(10, 10, 10, 10)); // Add padding
         GroupManager groupManager = GroupManager.getInstance();
         Group group = groupManager.getGroup(groupID);
-
         ImageIcon photo = new ImageIcon(group.getPhoto());
         if (photo.getIconWidth() <= 0 || photo.getIconHeight() <= 0) {
             photo = new ImageIcon("src/database/ACM-LEVEL-UP-COVER.jpg");
@@ -60,7 +60,19 @@ public class GroupSearchResultFrontend extends JPanel {
         groupName.setBorder(new EmptyBorder(0, 10, 0, 10)); // Add padding
 
         boolean isMember = groupManager.isMember(currentUserID, groupID);
-        button1 = new JButton(isMember ? "Leave" : "Request to Join");
+        boolean isPending = groupManager.isPending(currentUserID, groupID);
+        button1 = new JButton();
+        System.out.println(isMember);
+        System.out.println(isPending);
+        if(isMember){
+            button1.setText("Leave");
+        }
+        else if (isPending){
+            button1.setVisible(false);
+        }
+        else {
+            button1.setText("Request");
+        }
         button1.setBackground(new Color(70, 130, 180)); // Steel blue color
         button1.setForeground(Color.WHITE);
         button1.setPreferredSize(new Dimension(150, 40)); // Button size
@@ -68,18 +80,17 @@ public class GroupSearchResultFrontend extends JPanel {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(groupManager.getRequests(groupID).contains(currentUserID)){//request already sent to acoid duplicate reuqest
+                if(groupManager.isPending(currentUserID,groupID)){//request already sent to acoid duplicate reuqest
                     JOptionPane.showMessageDialog(null,"Request already sent");
-                    return;
-                }else if(groupManager.getRole(currentUserID,groupID)!=null){//leave group if member
-                        groupManager.leave(currentUserID, groupID);
+                }else if(groupManager.isMember(currentUserID,groupID)){//leave group if member
+                        groupManager.leave(groupID, currentUserID);
+                        button1.setText("Request");
                         JOptionPane.showMessageDialog(null,"left group");
-
                 }
                 else{//send request
                     JOptionPane.showMessageDialog(null,"Sent request for group");
                     groupManager.request(currentUserID, groupID);
-
+                    button1.setVisible(false);
                 }
 
                 revalidate();
@@ -95,12 +106,19 @@ public class GroupSearchResultFrontend extends JPanel {
         button2.addActionListener(new ActionListener() {//view group button
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(groupManager.getRole(currentUserID,groupID)!=null) {
-                    GroupPage groupView = new GroupPage(currentUserID, groupID);
-                    groupView.setVisible(true);
-                }else{
+                if(groupManager.isMember(currentUserID,groupID)){
+                    new GroupPage(currentUserID, groupID);
+                    newsFeed.dispose();
+                }else if (groupManager.isPending(currentUserID,groupID))
+                {
+                    JOptionPane.showMessageDialog(null,"You can join when some one approve you");
+                }
+                else
+                {
                     JOptionPane.showMessageDialog(null,"Please request joining group first and wait for acceptance");
                 }
+                revalidate();
+                repaint();
             }
         });
 

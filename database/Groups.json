@@ -2,8 +2,8 @@
   "deleted" : false,
   "groupId" : "1",
   "members" : {
-    "1" : "ADMIN",
-    "2" : "MEMBER",
+    "1" : "PENDING",
+    "2" : "PENDING",
     "3" : "ADMIN",
     "4" : "PRIMARYADMIN",
     "9" : "PENDING"
@@ -13,79 +13,43 @@
   "photo" : null,
   "posts" : [ {
     "image" : null,
-    "deleted" : true,
-    "contentId" : 0,
-    "authorId" : 1,
-    "content" : "ana mesh gamed",
-    "timestamp" : [ 2024, 12, 11, 15, 29, 22, 526281300 ]
-  }, {
-    "image" : "C:\\Users\\etijah\\Downloads\\Lamine.jpg",
-    "deleted" : true,
-    "contentId" : 18,
+    "deleted" : false,
+    "groupId" : "1",
+    "contentId" : 29,
     "authorId" : 4,
-    "content" : "a7san la3eb fel 3alam <3",
-    "timestamp" : [ 2024, 12, 11, 15, 54, 42, 864389400 ]
-  }, {
-    "image" : null,
-    "deleted" : true,
-    "contentId" : 19,
-    "authorId" : 4,
-    "content" : "ana mesh mbappe",
-    "timestamp" : [ 2024, 12, 11, 16, 3, 6, 844345600 ]
+    "content" : "not my post",
+    "timestamp" : [ 2024, 12, 13, 14, 42, 40, 721768800 ]
   } ]
 }, {
   "deleted" : false,
   "groupId" : "2",
   "members" : {
-    "1" : "MEMBER",
+    "1" : "ADMIN",
+    "2" : "MEMBER",
     "4" : "PRIMARYADMIN",
     "5" : "MEMBER",
     "9" : "ADMIN"
   },
   "name" : "عشاق ليونيل ميسي",
   "description" : "للعبابسة فقط",
-  "photo" : "C:\\Users\\etijah\\Downloads\\messi.jpg",
+  "photo" : "src/database/messi.jpg",
   "posts" : [ {
     "image" : null,
     "deleted" : false,
-    "contentId" : 19,
-    "authorId" : 9,
-    "content" : "ميسي الاعظم",
-    "timestamp" : [ 2024, 12, 12, 23, 13, 38, 138506100 ]
-  }, {
-    "image" : null,
-    "deleted" : false,
-    "contentId" : 20,
-    "authorId" : 9,
-    "content" : "انا بطل العالم",
-    "timestamp" : [ 2024, 12, 12, 23, 14, 1, 816135300 ]
-  }, {
-    "image" : null,
-    "deleted" : false,
-    "contentId" : 21,
-    "authorId" : 9,
-    "content" : "ana leo messi",
-    "timestamp" : [ 2024, 12, 12, 23, 14, 9, 498397000 ]
-  }, {
-    "image" : null,
-    "deleted" : false,
-    "contentId" : 22,
-    "authorId" : 9,
-    "content" : "I love Mohamed Moeen",
-    "timestamp" : [ 2024, 12, 12, 23, 14, 31, 440792000 ]
-  }, {
-    "image" : null,
-    "deleted" : false,
-    "contentId" : 23,
-    "authorId" : 9,
-    "content" : "fsdafdsfsa",
-    "timestamp" : [ 2024, 12, 12, 23, 14, 34, 804048300 ]
-  }, {
-    "image" : null,
-    "deleted" : false,
-    "contentId" : 24,
-    "authorId" : 9,
-    "content" : "fasfdsaf",
-    "timestamp" : [ 2024, 12, 12, 23, 14, 37, 808408300 ]
+    "groupId" : "2",
+    "contentId" : 27,
+    "authorId" : 4,
+    "content" : "Here We Go",
+    "timestamp" : [ 2024, 12, 13, 14, 6, 53, 138958000 ]
   } ]
+}, {
+  "deleted" : false,
+  "groupId" : "3",
+  "members" : {
+    "1" : "PRIMARYADMIN"
+  },
+  "name" : "عشاق لامين يامال",
+  "description" : "لامين يامال ملوش مثال",
+  "photo" : "C:\\Users\\Mazen\\Desktop\\Koleya\\Term 5\\prog2\\ConnectHub\\src\\database\\Lamine.jpg",
+  "posts" : [ ]
 } ]

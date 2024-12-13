@@ -63,17 +63,16 @@ public class GroupManager {
     }
 
     public boolean isMember(String userId,String groupId){
-       Group group;
-        try {
-            group=groupsDatabase.getGroup(groupId);
-            if(!group.isDeleted() && group.getMembers().containsKey(userId)){
-                return true;
-            }
-        } catch (IOException e) {
-
+       if(getRole(userId,groupId)!=null&&getRole(userId,groupId)!=GroupRole.PENDING){
+           return true;
+       }
+       return false;
+    }
+    public boolean isPending(String userId,String groupId){
+        if(getRole(userId,groupId)!=null&&getRole(userId,groupId)==GroupRole.PENDING){
+            return true;
         }
-
-return false;
+        return false;
     }
 
     public Group getGroup(String groupId) {

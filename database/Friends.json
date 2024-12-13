@@ -1,29 +1,29 @@
 [ {
   "profile" : {
     "friendRequests" : [ ],
-    "friendSuggestions" : [ "2", "2", "2", "2" ],
+    "friendSuggestions" : [ ],
     "blockedUsers" : [ "-3" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "5", "6", "8", "9", "4", "7" ]
+    "friends" : [ "5", "6", "8", "9", "4", "7", "2" ]
   },
   "userID" : "1",
   "username" : "Lamine"
 }, {
   "profile" : {
     "friendRequests" : [ "7" ],
-    "friendSuggestions" : [ "1", "1", "1", "9" ],
+    "friendSuggestions" : [ "9", "9", "9" ],
     "blockedUsers" : [ ],
-    "friendReceivedRequests" : [ "9" ],
-    "friends" : [ "3", "5", "6", "4", "8" ]
+    "friendReceivedRequests" : [ ],
+    "friends" : [ "3", "5", "6", "4", "8", "1" ]
   },
   "userID" : "2",
   "username" : "Pedri"
 }, {
   "profile" : {
     "friendRequests" : [ ],
-    "friendSuggestions" : [ "9" ],
+    "friendSuggestions" : [ "5", "5" ],
     "blockedUsers" : [ "1" ],
-    "friendReceivedRequests" : [ "5", "6", "8", "9" ],
+    "friendReceivedRequests" : [ "6", "8", "9" ],
     "friends" : [ "2", "4" ]
   },
   "userID" : "3",
@@ -32,16 +32,16 @@
   "profile" : {
     "friendRequests" : [ ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ "-8", "-9" ],
-    "friendReceivedRequests" : [ ],
+    "blockedUsers" : [ "-8", "-9", "-7" ],
+    "friendReceivedRequests" : [ "7" ],
     "friends" : [ "5", "1", "3", "6", "2" ]
   },
   "userID" : "4",
   "username" : "Mbappe"
 }, {
   "profile" : {
-    "friendRequests" : [ "3", "7" ],
-    "friendSuggestions" : [ ],
+    "friendRequests" : [ "7" ],
+    "friendSuggestions" : [ "3", "3" ],
     "blockedUsers" : [ "-8" ],
     "friendReceivedRequests" : [ "9" ],
     "friends" : [ "4", "1", "6", "2" ]
@@ -52,7 +52,7 @@
   "profile" : {
     "friendRequests" : [ "7", "3" ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ ],
+    "blockedUsers" : [ "-7" ],
     "friendReceivedRequests" : [ ],
     "friends" : [ "5", "1", "2", "4", "8", "9" ]
   },
@@ -60,11 +60,11 @@
   "username" : "Bellingham"
 }, {
   "profile" : {
-    "friendRequests" : [ ],
-    "friendSuggestions" : [ "9", "4" ],
-    "blockedUsers" : [ ],
-    "friendReceivedRequests" : [ "5", "6", "2", "8", "9" ],
-    "friends" : [ "1" ]
+    "friendRequests" : [ "4" ],
+    "friendSuggestions" : [ ],
+    "blockedUsers" : [ "4", "8", "6" ],
+    "friendReceivedRequests" : [ "5", "6", "2", "8" ],
+    "friends" : [ "1", "9" ]
   },
   "userID" : "7",
   "username" : "mazen azhary"
@@ -72,7 +72,7 @@
   "profile" : {
     "friendRequests" : [ "3", "7" ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ "4", "5" ],
+    "blockedUsers" : [ "4", "5", "-7" ],
     "friendReceivedRequests" : [ ],
     "friends" : [ "1", "2", "9", "6" ]
   },
@@ -90,11 +90,11 @@
   "username" : "Mohamed Moeen"
 }, {
   "profile" : {
-    "friendRequests" : [ "2", "3", "5", "7" ],
-    "friendSuggestions" : [ ],
+    "friendRequests" : [ "3", "5" ],
+    "friendSuggestions" : [ "2", "2", "2" ],
     "blockedUsers" : [ "4" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "1", "8", "6" ]
+    "friends" : [ "1", "8", "6", "7" ]
   },
   "userID" : "9",
   "username" : "Lionel Messi"

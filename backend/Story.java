@@ -7,9 +7,8 @@ import java.time.LocalDateTime;
 public class Story extends Content {
 
 
-
-    public Story(int contentId, int authorId, String content, String image, LocalDateTime timestamp) {
-        super(contentId, authorId, content, image, timestamp);
+    public Story(int contentId, int authorId, String content, String image, LocalDateTime timestamp, String groupId, boolean deleted) {
+        super(contentId, authorId, content, image, timestamp, groupId, deleted);
     }
 
     public Story(int contentId, int authorId, LocalDateTime timestamp) {
