@@ -1,14 +1,8 @@
 package frontend;
 
-import backend.GroupManager;
-
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
 public class PostFrontend extends JPanel {
 
@@ -20,6 +14,9 @@ public class PostFrontend extends JPanel {
     private String groupID;
     private static final int PADDING = 10;
 
+    private JLabel contentLabel;
+    private JLabel imageLabel;
+
     public PostFrontend(int id, String content, String author, String imagePath, boolean isFromGroup, String groupID) {
         this.id = id;
         this.content = content;
@@ -28,63 +25,28 @@ public class PostFrontend extends JPanel {
         this.isFromGroup = isFromGroup;
         this.groupID = groupID;
 
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setPreferredSize(new Dimension(400, imagePath != null && !imagePath.isEmpty() ? 200 : 120));
-        setBackground(isFromGroup ? new Color(220, 240, 255) : Color.LIGHT_GRAY); // Different background for group posts
-    }
+        setBackground(isFromGroup ? new Color(220, 240, 255) : Color.LIGHT_GRAY);
 
+        // Create the content label
+        contentLabel = new JLabel("<html>" + content.replace("\n", "<br>") + "</html>");
+        contentLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+        contentLabel.setForeground(Color.BLACK);
+        contentLabel.setBorder(new EmptyBorder(5, 0, 0, 0));
 
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.setColor(Color.BLACK);
-        g.drawString("Author: " + author, 10, 20);
-        g.drawString("Content: " + content, 10, 40);
+        // Handle the image (if any)
         if (imagePath != null && !imagePath.isEmpty()) {
-            try {
-                ImageIcon imageIcon = new ImageIcon(imagePath);
-                imageIcon.paintIcon(this, g, 10, 50);
-            } catch (Exception e) {
-
-            }
-        }
-    }
-
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        int yPosition = 20; // Initial vertical position for text
-
-        // Display group name if the post is from a group
-        if (isFromGroup) {
-            System.out.println("haha");
-            GroupManager groupManager = GroupManager.getInstance();
-            String groupName = groupManager.getGroup(groupID).getName();
-            g.setColor(Color.BLUE);
-            g.setFont(new Font("Arial", Font.BOLD, 14));
-            g.drawString("Group: " + groupName, 10, yPosition);
-            yPosition += 20; // Move down for next text
+            ImageIcon postImage = new ImageIcon(imagePath);
+            Image scaledImage = postImage.getImage().getScaledInstance(200, 150, Image.SCALE_SMOOTH);
+            imageLabel = new JLabel(new ImageIcon(scaledImage));
+            imageLabel.setBorder(new EmptyBorder(5, 0, 0, 0));
         }
 
-        // Display author
-        g.setColor(Color.BLACK);
-        g.setFont(new Font("Arial", Font.PLAIN, 12));
-        g.drawString("Author: " + author, 10, yPosition);
-        yPosition += 20;
-
-        // Display content
-        g.drawString("Content: " + content, 10, yPosition);
-        yPosition += 20;
-
-        // Display image if available
-        if (imagePath != null && !imagePath.isEmpty()) {
-            try {
-                ImageIcon imageIcon = new ImageIcon(imagePath);
-                Image image = imageIcon.getImage();
-                Image scaledImage = image.getScaledInstance(80, 80, Image.SCALE_SMOOTH); // Resize image
-                g.drawImage(scaledImage, 10, yPosition, null);
-            } catch (Exception e) {
-                g.setColor(Color.RED);
-                g.drawString("Image failed to load.", 10, yPosition);
-            }
+        // Add content and image to panel
+        add(contentLabel);
+        if (imageLabel != null) {
+            add(imageLabel);
         }
     }
 }

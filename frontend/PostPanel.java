@@ -24,7 +24,7 @@ public class PostPanel extends JPanel {
             String imagePath = post.getImage();
 
             Random random = new Random();
-            //for frontend testing
+            // For frontend testing: assuming posts are randomly from groups
             boolean isFromGroup = random.nextBoolean();
             String groupID = "1";
 
