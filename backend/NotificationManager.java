@@ -80,7 +80,7 @@ public class NotificationManager {
         ArrayList<Notification> notifications = user.getProfile().getNotifications();
         Notification notification=null;
         for(Notification noti:notifications) {
-            if(noti.getRelativeId().equals(recieverId)&&noti.getType().equals(NotificationType.REQUEST)) {
+            if((noti.getRelativeId().equals(recieverId))&&(noti.getType().equals(NotificationType.REQUEST))) {
                 notification=noti;
                 break;
             }

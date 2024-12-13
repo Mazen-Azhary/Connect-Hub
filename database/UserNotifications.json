@@ -8,6 +8,13 @@
       "message" : "Lionel Messi added a post to عشاق ليونيل ميسي",
       "authorId" : "9",
       "type" : "POST"
+    }, {
+      "relativeId" : "2",
+      "notificationId" : "106",
+      "time" : [ 2024, 12, 13, 10, 50, 43, 152004700 ],
+      "message" : "Pedri Accepted your friend request",
+      "authorId" : null,
+      "type" : "ACCEPTED"
     } ]
   },
   "userID" : "1",
@@ -15,7 +22,77 @@
 }, {
   "profile" : {
     "profilePhoto" : null,
-    "notifications" : [ ]
+    "notifications" : [ {
+      "relativeId" : "1",
+      "notificationId" : "56",
+      "time" : [ 2024, 12, 13, 10, 21, 9, 32857900 ],
+      "message" : "Lamine Accepted your friend request",
+      "authorId" : null,
+      "type" : "ACCEPTED"
+    }, {
+      "relativeId" : "1",
+      "notificationId" : "58",
+      "time" : [ 2024, 12, 13, 10, 23, 50, 858164700 ],
+      "message" : "Lamine Accepted your friend request",
+      "authorId" : null,
+      "type" : "ACCEPTED"
+    }, {
+      "relativeId" : "9",
+      "notificationId" : "66",
+      "time" : [ 2024, 12, 13, 10, 29, 49, 612685400 ],
+      "message" : "Lionel Messi Accepted your friend request",
+      "authorId" : null,
+      "type" : "ACCEPTED"
+    }, {
+      "relativeId" : "9",
+      "notificationId" : "68",
+      "time" : [ 2024, 12, 13, 10, 30, 4, 534025500 ],
+      "message" : "Lionel Messi sent you a friend request",
+      "authorId" : null,
+      "type" : "REQUEST"
+    }, {
+      "relativeId" : "9",
+      "notificationId" : "74",
+      "time" : [ 2024, 12, 13, 10, 30, 54, 480843400 ],
+      "message" : "Lionel Messi Accepted your friend request",
+      "authorId" : null,
+      "type" : "ACCEPTED"
+    }, {
+      "relativeId" : "9",
+      "notificationId" : "75",
+      "time" : [ 2024, 12, 13, 10, 30, 56, 923029500 ],
+      "message" : "Lionel Messi sent you a friend request",
+      "authorId" : null,
+      "type" : "REQUEST"
+    }, {
+      "relativeId" : "1",
+      "notificationId" : "97",
+      "time" : [ 2024, 12, 13, 10, 50, 5, 998317000 ],
+      "message" : "Lamine Accepted your friend request",
+      "authorId" : null,
+      "type" : "ACCEPTED"
+    }, {
+      "relativeId" : "1",
+      "notificationId" : "114",
+      "time" : [ 2024, 12, 13, 10, 57, 0, 843774200 ],
+      "message" : "Lamine Accepted your friend request",
+      "authorId" : null,
+      "type" : "ACCEPTED"
+    }, {
+      "relativeId" : "1",
+      "notificationId" : "116",
+      "time" : [ 2024, 12, 13, 10, 57, 40, 593080300 ],
+      "message" : "Lamine Accepted your friend request",
+      "authorId" : null,
+      "type" : "ACCEPTED"
+    }, {
+      "relativeId" : "1",
+      "notificationId" : "117",
+      "time" : [ 2024, 12, 13, 10, 57, 42, 607091000 ],
+      "message" : "Lamine sent you a friend request",
+      "authorId" : null,
+      "type" : "REQUEST"
+    } ]
   },
   "userID" : "2",
   "username" : "Pedri"
@@ -71,7 +148,70 @@
 }, {
   "profile" : {
     "profilePhoto" : null,
-    "notifications" : [ ]
+    "notifications" : [ {
+      "relativeId" : "2",
+      "notificationId" : "60",
+      "time" : [ 2024, 12, 13, 10, 28, 22, 910905000 ],
+      "message" : "Pedri Accepted your friend request",
+      "authorId" : null,
+      "type" : "ACCEPTED"
+    }, {
+      "relativeId" : "2",
+      "notificationId" : "63",
+      "time" : [ 2024, 12, 13, 10, 29, 4, 567856500 ],
+      "message" : "Pedri sent you a friend request",
+      "authorId" : null,
+      "type" : "REQUEST"
+    }, {
+      "relativeId" : "2",
+      "notificationId" : "64",
+      "time" : [ 2024, 12, 13, 10, 29, 4, 926403100 ],
+      "message" : "Pedri sent you a friend request",
+      "authorId" : null,
+      "type" : "REQUEST"
+    }, {
+      "relativeId" : "2",
+      "notificationId" : "65",
+      "time" : [ 2024, 12, 13, 10, 29, 7, 274414700 ],
+      "message" : "Pedri sent you a friend request",
+      "authorId" : null,
+      "type" : "REQUEST"
+    }, {
+      "relativeId" : "2",
+      "notificationId" : "69",
+      "time" : [ 2024, 12, 13, 10, 30, 19, 658689700 ],
+      "message" : "Pedri Accepted your friend request",
+      "authorId" : null,
+      "type" : "ACCEPTED"
+    }, {
+      "relativeId" : "2",
+      "notificationId" : "70",
+      "time" : [ 2024, 12, 13, 10, 30, 27, 590278100 ],
+      "message" : "Pedri sent you a friend request",
+      "authorId" : null,
+      "type" : "REQUEST"
+    }, {
+      "relativeId" : "2",
+      "notificationId" : "71",
+      "time" : [ 2024, 12, 13, 10, 30, 28, 390795000 ],
+      "message" : "Pedri sent you a friend request",
+      "authorId" : null,
+      "type" : "REQUEST"
+    }, {
+      "relativeId" : "2",
+      "notificationId" : "72",
+      "time" : [ 2024, 12, 13, 10, 30, 29, 48667700 ],
+      "message" : "Pedri sent you a friend request",
+      "authorId" : null,
+      "type" : "REQUEST"
+    }, {
+      "relativeId" : "2",
+      "notificationId" : "73",
+      "time" : [ 2024, 12, 13, 10, 30, 41, 118279300 ],
+      "message" : "Pedri sent you a friend request",
+      "authorId" : null,
+      "type" : "REQUEST"
+    } ]
   },
   "userID" : "9",
   "username" : "Lionel Messi"

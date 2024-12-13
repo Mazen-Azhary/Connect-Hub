@@ -1,7 +1,7 @@
 [ {
   "profile" : {
-    "friendRequests" : [ ],
-    "friendSuggestions" : [ "2", "2", "2", "2" ],
+    "friendRequests" : [ "2" ],
+    "friendSuggestions" : [ ],
     "blockedUsers" : [ "-3" ],
     "friendReceivedRequests" : [ ],
     "friends" : [ "5", "6", "8", "9", "4", "7" ]
@@ -11,9 +11,9 @@
 }, {
   "profile" : {
     "friendRequests" : [ "7" ],
-    "friendSuggestions" : [ "1", "1", "1", "9" ],
+    "friendSuggestions" : [ "1", "1", "9", "1", "1", "9" ],
     "blockedUsers" : [ ],
-    "friendReceivedRequests" : [ "9" ],
+    "friendReceivedRequests" : [ "1" ],
     "friends" : [ "3", "5", "6", "4", "8" ]
   },
   "userID" : "2",
@@ -21,9 +21,9 @@
 }, {
   "profile" : {
     "friendRequests" : [ ],
-    "friendSuggestions" : [ "9" ],
+    "friendSuggestions" : [ "5", "5" ],
     "blockedUsers" : [ "1" ],
-    "friendReceivedRequests" : [ "5", "6", "8", "9" ],
+    "friendReceivedRequests" : [ "6", "8", "9" ],
     "friends" : [ "2", "4" ]
   },
   "userID" : "3",
@@ -40,8 +40,8 @@
   "username" : "Mbappe"
 }, {
   "profile" : {
-    "friendRequests" : [ "3", "7" ],
-    "friendSuggestions" : [ ],
+    "friendRequests" : [ "7" ],
+    "friendSuggestions" : [ "3", "3" ],
     "blockedUsers" : [ "-8" ],
     "friendReceivedRequests" : [ "9" ],
     "friends" : [ "4", "1", "6", "2" ]
@@ -90,7 +90,7 @@
   "username" : "Mohamed Moeen"
 }, {
   "profile" : {
-    "friendRequests" : [ "2", "3", "5", "7" ],
+    "friendRequests" : [ "3", "5", "7" ],
     "friendSuggestions" : [ ],
     "blockedUsers" : [ "4" ],
     "friendReceivedRequests" : [ ],
