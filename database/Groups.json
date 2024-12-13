@@ -31,7 +31,7 @@
   },
   "name" : "عشاق ليونيل ميسي",
   "description" : "للعبابسة فقط",
-  "photo" : "C:\\Users\\etijah\\Downloads\\messi.jpg",
+  "photo" : "src/database/messi.jpg",
   "posts" : [ {
     "image" : null,
     "deleted" : false,
