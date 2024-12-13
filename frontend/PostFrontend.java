@@ -1,22 +1,19 @@
 package frontend;
 
-import backend.GroupManager;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class Post extends JPanel {
-    private GroupManager groupManager = GroupManager.getInstance();
+public class PostFrontend extends JPanel {
 
     private int id;
     private String content;
     private String author;
     private String imagePath;
     private boolean isFromGroup;
-    public Post(int id, String content, String author, String imagePath) {
+    public PostFrontend(int id, String content, String author, String imagePath,boolean isFromGroup) {
         this.id = id;
         this.content = content;
         this.author = author;
@@ -25,7 +22,7 @@ public class Post extends JPanel {
         setPreferredSize(new Dimension(300, 100));
         setBackground(Color.LIGHT_GRAY);
 
-        if(groupManager.)
+
 
     }
 

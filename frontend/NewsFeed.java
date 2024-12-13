@@ -71,7 +71,7 @@ public class NewsFeed extends javax.swing.JFrame {
         ArrayList<Content> posts = contentViewer.generatePosts(id);
         ArrayList<Content> stories = contentViewer.generateStories(id);
 
-        JPanel postPanel = new JPanel();
+        JPanel postPanel = new PostPanel(posts);
         postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
 
         for (Content post : posts) {
@@ -392,7 +392,7 @@ public class NewsFeed extends javax.swing.JFrame {
             }
         });
         for (backend.Content content : contents) {
-            Post post = new Post(content.getContentId(), content.getContent(), "Author" + content.getContent(),content.getImage());
+            PostFrontend post = new PostFrontend(content.getContentId(), content.getContent(), "Author" + content.getContent(),content.getImage());
             postsScroll.add(post);
             postsScroll.add(Box.createRigidArea(new Dimension(0, 10))); // Add spacing between posts
         }
