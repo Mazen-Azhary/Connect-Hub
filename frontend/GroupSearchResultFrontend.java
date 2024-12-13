@@ -20,13 +20,13 @@ public class GroupSearchResultFrontend extends JPanel {
     private JLabel groupName;
     private JButton button1;
     private JButton button2;
-
-    public GroupSearchResultFrontend(String currentUserID, String groupID, ArrayList<String> groupIDs, GroupSearchResultPanel groupSearchResultPanel) throws IOException {
+    private NewsFeed newsFeed;
+    public GroupSearchResultFrontend(String currentUserID, String groupID, ArrayList<String> groupIDs, GroupSearchResultPanel groupSearchResultPanel,NewsFeed newsFeed) throws IOException {
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(10, 10, 10, 10)); // Add padding
         GroupManager groupManager = GroupManager.getInstance();
         Group group = groupManager.getGroup(groupID);
-
+        this.newsFeed = newsFeed;
         ImageIcon photo = new ImageIcon(group.getPhoto());
         if (photo.getIconWidth() <= 0 || photo.getIconHeight() <= 0) {
             photo = new ImageIcon("src/database/ACM-LEVEL-UP-COVER.jpg");
@@ -96,6 +96,7 @@ public class GroupSearchResultFrontend extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(groupManager.getRole(currentUserID,groupID)!=null) {
+                    newsFeed.dispose();
                     GroupPage groupView = new GroupPage(currentUserID, groupID);
                     groupView.setVisible(true);
                 }else{

@@ -265,7 +265,7 @@ public class NewsFeed extends javax.swing.JFrame {
         search.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                SearchPage searchPage = new SearchPage(id);
+                SearchPage searchPage = new SearchPage(id,newsFeed);
                 searchPage.setVisible(true);
 
             }
@@ -356,7 +356,7 @@ public class NewsFeed extends javax.swing.JFrame {
                 notificationButtonActionPerformed(evt);
             }
             private void notificationButtonActionPerformed(ActionEvent evt) {
-                GlassPanePopup.showPopup(new NotificationPanel(id), new DefaultOption(){
+                GlassPanePopup.showPopup(new NotificationPanel(id,newsFeed), new DefaultOption(){
                     @Override
                     public float opacity()
                     {

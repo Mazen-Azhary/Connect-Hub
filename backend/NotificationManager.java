@@ -53,7 +53,7 @@ public class NotificationManager {
             if(userGroupsDatabase.getUser(member).getUserID().equals(userId)) {
                 continue;
             }
-            createNotification(message,contentId,userId,NotificationType.POST,member);
+            createNotification(message,groupId,userId,NotificationType.POST,member);
         }
     }
 

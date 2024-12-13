@@ -35,6 +35,7 @@ public class notificationItem extends JPanel {
     private ProfileManager profileManager=ProfileManager.getInstance();
     private GroupManager groupManager=GroupManager.getInstance();
     private FriendManager friendManager;
+    private NewsFeed newsFeed;
     {
         try {
             friendManager = FriendManager.getInstance();
@@ -43,8 +44,9 @@ public class notificationItem extends JPanel {
         }
     }
 
-    public notificationItem(String userId,Notification notification) {
+    public notificationItem(String userId,Notification notification,NewsFeed newsFeed) {
         this.userId = userId;
+        this.newsFeed = newsFeed;
         this.notification = notification;
         if(notification.getType().equals(NotificationType.POST)){
             if(profileManager.getUser(notification.getAuthorId()).getProfile().getProfilePhoto()!=null){
@@ -227,6 +229,7 @@ public class notificationItem extends JPanel {
                     VIewOrAcceptButtonActionPerformed(evt);
                 }
                 private void VIewOrAcceptButtonActionPerformed(ActionEvent evt) {
+                    newsFeed.dispose();
                     new GroupPage(userId,notification.getRelativeId());
                     revalidate();
                     repaint();
@@ -241,6 +244,7 @@ public class notificationItem extends JPanel {
                     VIewOrAcceptButtonActionPerformed(evt);
                 }
                 private void VIewOrAcceptButtonActionPerformed(ActionEvent evt) {
+                    newsFeed.dispose();
                     new GroupPage(userId,notification.getRelativeId());
                     revalidate();
                     repaint();
@@ -255,6 +259,7 @@ public class notificationItem extends JPanel {
                     VIewOrAcceptButtonActionPerformed(evt);
                 }
                 private void VIewOrAcceptButtonActionPerformed(ActionEvent evt) {
+                    newsFeed.dispose();
                     new GroupPage(userId,notification.getRelativeId());
                     revalidate();
                     repaint();
@@ -268,6 +273,7 @@ public class notificationItem extends JPanel {
                     VIewOrAcceptButtonActionPerformed(evt);
                 }
                 private void VIewOrAcceptButtonActionPerformed(ActionEvent evt) {
+                    newsFeed.dispose();
                     new GroupPage(userId,notification.getRelativeId());
                     revalidate();
                     repaint();

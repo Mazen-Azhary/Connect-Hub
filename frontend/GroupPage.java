@@ -249,6 +249,7 @@ public class GroupPage extends javax.swing.JFrame {
         });
 
         ImageIcon imageIcon;
+            System.out.println(groupId);
         if(GroupManager.getInstance().getGroup(groupId).getPhoto()==null)
         {
             imageIcon=new ImageIcon("src/database/CoverDefault.jpg");
