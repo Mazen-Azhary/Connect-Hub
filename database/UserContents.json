@@ -13,19 +13,19 @@
       "content" : "Ana lamine yamal",
       "timestamp" : [ 2024, 12, 5, 20, 33, 53, 116483100 ]
     }, {
-      "image" : "C:\\Users\\Mazen\\Pictures\\Screenshots\\Screenshot 2023-07-11 165650.png",
+      "image" : "src/database/Screenshot 2023-07-11 165650.png",
       "contentId" : 5,
       "authorId" : 1,
       "content" : "post by meeeeeeeeeeeeeeeeee",
       "timestamp" : [ 2024, 12, 6, 2, 54, 11, 249474200 ]
     }, {
-      "image" : "C:\\Users\\etijah\\Downloads\\fcb.jpg",
+      "image" : "src/database/fcb.jpg",
       "contentId" : 6,
       "authorId" : 1,
       "content" : "hey",
       "timestamp" : [ 2024, 12, 6, 11, 25, 51, 843514400 ]
     }, {
-      "image" : "C:\\Users\\etijah\\Downloads\\fcb.jpg",
+      "image" : "src/database/fcb.jpg",
       "contentId" : 7,
       "authorId" : 1,
       "content" : "hey",
@@ -43,7 +43,7 @@
       "content" : "asdsadsad",
       "timestamp" : [ 2024, 12, 6, 14, 0, 58, 593540900 ]
     }, {
-      "image" : "C:\\Users\\etijah\\Downloads\\Lamine.jpg",
+      "image" : "src/database/Lamine.jpg",
       "contentId" : -11,
       "authorId" : 1,
       "content" : "sad",
@@ -55,7 +55,7 @@
       "content" : "hey",
       "timestamp" : [ 2024, 12, 10, 0, 10, 7, 392224000 ]
     }, {
-      "image" : "C:\\Users\\Mazen\\Desktop\\croco\\3.jpg",
+      "image" : "src/database/3.jpg",
       "contentId" : -30,
       "authorId" : 1,
       "content" : "lamine",
@@ -64,7 +64,7 @@
   },
   "userID" : "1",
   "username" : "Lamine",
-  "status" : "offline"
+  "status" : "online"
 }, {
   "profile" : {
     "contents" : [ {
@@ -86,7 +86,7 @@
       "content" : "mmmmmm",
       "timestamp" : [ 2024, 12, 6, 13, 14, 19, 72388000 ]
     }, {
-      "image" : "C:\\Users\\Etijah\\Desktop\\images.jpg",
+      "image" : "src/database/images.jpg",
       "contentId" : 18,
       "authorId" : 2,
       "content" : "Messiiiiiii",
@@ -175,7 +175,7 @@
 }, {
   "profile" : {
     "contents" : [ {
-      "image" : "C:\\Users\\Mazen\\Pictures\\powerpoint\\acceleration.jpg",
+      "image" : "src/database/acceleration.jpg",
       "contentId" : 3,
       "authorId" : 7,
       "content" : " post test ",

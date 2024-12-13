@@ -21,7 +21,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : "D:\\CCE\\5th term\\Programming 2\\Connect Hub\\src\\database\\frenkie.jpg",
+    "profilePhoto" : "src/database/frenkie.jpg",
     "coverPhoto" : null,
     "bio" : null
   },
@@ -31,7 +31,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : "D:\\CCE\\5th term\\Programming 2\\Connect Hub\\src\\database\\mbappe.jpg",
+    "profilePhoto" : "src/database/mbappe.jpg",
     "coverPhoto" : null,
     "bio" : null
   },
@@ -41,7 +41,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : "D:\\CCE\\5th term\\Programming 2\\Connect Hub\\src\\database\\vini.jpg",
+    "profilePhoto" : "src/database/vini.jpg",
     "coverPhoto" : "src/database/CoverDefault.jpg",
     "bio" : "vsdav"
   },
@@ -51,7 +51,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : "D:\\CCE\\5th term\\Programming 2\\Connect Hub\\src\\database\\beli.jpg",
+    "profilePhoto" : "src/database/beli.jpg",
     "coverPhoto" : null,
     "bio" : "ana jude"
   },
@@ -71,7 +71,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : "C:\\Users\\Etijah\\Documents\\NetBeansProjects\\ConnectHub\\src\\database\\MohamedMoeen.jpg",
+    "profilePhoto" : "src/database/MohamedMoeen.jpg",
     "coverPhoto" : null,
     "bio" : null
   },
@@ -81,7 +81,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : "D:\\CCE\\5th term\\Programming 2\\Connect Hub\\src\\database\\Messi.jpg",
+    "profilePhoto" : "src/database/Messi.jpg",
     "coverPhoto" : null,
     "bio" : null
   },

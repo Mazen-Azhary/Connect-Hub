@@ -11,31 +11,31 @@
   "content" : "Ana lamine yamal",
   "timestamp" : "2024-12-05T20:33:53.116483100"
 }, {
-  "image" : "C:\\Users\\Mazen\\Pictures\\powerpoint\\acceleration.jpg",
+  "image" : "src/database/acceleration.jpg",
   "contentId" : 3,
   "authorId" : 7,
   "content" : " post test ",
   "timestamp" : "2024-12-06T02:38:33.523403900"
 }, {
-  "image" : "C:\\Users\\Mazen\\Pictures\\Screenshots\\Screenshot 2023-08-22 111318.png",
+  "image" : "src/database/Screenshot 2023-08-22 111318.png",
   "contentId" : 4,
   "authorId" : 7,
   "content" : "test meeee ",
   "timestamp" : "2024-12-06T02:52:52.588567900"
 }, {
-  "image" : "C:\\Users\\Mazen\\Pictures\\Screenshots\\Screenshot 2023-07-11 165650.png",
+  "image" : "src/database/Screenshot 2023-07-11 165650.png",
   "contentId" : 5,
   "authorId" : 1,
   "content" : "post by meeeeeeeeeeeeeeeeee",
   "timestamp" : "2024-12-06T02:54:11.249474200"
 }, {
-  "image" : "C:\\Users\\etijah\\Downloads\\fcb.jpg",
+  "image" : "src/database/fcb.jpg",
   "contentId" : 6,
   "authorId" : 1,
   "content" : "hey",
   "timestamp" : "2024-12-06T11:25:51.843514400"
 }, {
-  "image" : "C:\\Users\\etijah\\Downloads\\fcb.jpg",
+  "image" : "src/database/fcb.jpg",
   "contentId" : 7,
   "authorId" : 1,
   "content" : "hey",
@@ -71,7 +71,7 @@
   "content" : "asdsadsad",
   "timestamp" : "2024-12-06T14:00:58.593540900"
 }, {
-  "image" : "C:\\Users\\etijah\\Downloads\\Lamine.jpg",
+  "image" : "src/database/Lamine.jpg",
   "contentId" : -11,
   "authorId" : 1,
   "content" : "sad",
@@ -137,7 +137,7 @@
   "content" : "ana  lamine yamal",
   "timestamp" : "2024-12-11T14:28:09.338629900"
 }, {
-  "image" : "C:\\Users\\Etijah\\Desktop\\images.jpg",
+  "image" : "src/database/images.jpg",
   "contentId" : 18,
   "authorId" : 2,
   "content" : "Messiiiiiii",
@@ -209,7 +209,7 @@
   "content" : "not my post",
   "timestamp" : "2024-12-13T14:42:40.721768800"
 }, {
-  "image" : "C:\\Users\\Mazen\\Desktop\\croco\\3.jpg",
+  "image" : "src/database/3.jpg",
   "contentId" : -30,
   "authorId" : 1,
   "content" : "lamine",
