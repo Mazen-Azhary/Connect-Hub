@@ -2,7 +2,7 @@
   "profile" : {
     "groups" : {
       "1" : "PENDING",
-      "2" : "MEMBER"
+      "2" : "ADMIN"
     },
     "profilePhoto" : null
   },

@@ -68,4 +68,18 @@
   "message" : "Mbappe added a post to عشاق ليونيل ميسي",
   "authorId" : "4",
   "type" : "POST"
+}, {
+  "relativeId" : "1",
+  "notificationId" : "58",
+  "time" : [ 2024, 12, 13, 14, 42, 40, 755897700 ],
+  "message" : "Mbappe added a post to not my group",
+  "authorId" : "4",
+  "type" : "POST"
+}, {
+  "relativeId" : "2",
+  "notificationId" : "59",
+  "time" : [ 2024, 12, 13, 14, 45, 33, 473193100 ],
+  "message" : "عشاق ليونيل ميسي group: You have been promoted to ADMIN",
+  "authorId" : null,
+  "type" : "PROMOTION"
 } ]

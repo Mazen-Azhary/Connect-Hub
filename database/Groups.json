@@ -11,12 +11,20 @@
   "name" : "not my group",
   "description" : "visca barca",
   "photo" : null,
-  "posts" : [ ]
+  "posts" : [ {
+    "image" : null,
+    "deleted" : false,
+    "groupId" : "1",
+    "contentId" : 29,
+    "authorId" : 4,
+    "content" : "not my post",
+    "timestamp" : [ 2024, 12, 13, 14, 42, 40, 721768800 ]
+  } ]
 }, {
   "deleted" : false,
   "groupId" : "2",
   "members" : {
-    "1" : "MEMBER",
+    "1" : "ADMIN",
     "2" : "MEMBER",
     "4" : "PRIMARYADMIN",
     "5" : "MEMBER"

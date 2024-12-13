@@ -261,7 +261,7 @@ public class GroupPage extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Group group=GroupManager.getInstance().getGroup(groupId);
         jLabel2.setText(group.getName());
-        descLabel.setFont(new java.awt.Font("Segoe UI", 2, 20));
+        descLabel.setFont(new java.awt.Font("Segoe UI", 1, 20));
         descLabel.setText(group.getDescription());
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
