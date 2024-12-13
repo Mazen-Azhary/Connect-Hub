@@ -66,8 +66,8 @@ public class notificationItem extends JPanel {
         else
         {
 
-            if(profileManager.getUser(notification.getRelativeId()).getProfile().getProfilePhoto()!=null){
-                this.photo = profileManager.getUser(notification.getRelativeId()).getProfile().getProfilePhoto();
+            if(groupManager.getGroup(notification.getRelativeId()).getPhoto()!=null){
+                this.photo = groupManager.getGroup(notification.getRelativeId()).getPhoto();
             }
             else photo="src/database/CoverDefault.jpg";
             this.username=groupManager.getGroup(notification.getRelativeId()).getName();

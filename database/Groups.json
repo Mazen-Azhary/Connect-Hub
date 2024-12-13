@@ -2,8 +2,8 @@
   "deleted" : false,
   "groupId" : "1",
   "members" : {
-    "1" : "ADMIN",
-    "2" : "MEMBER",
+    "1" : "PENDING",
+    "2" : "PENDING",
     "3" : "ADMIN",
     "4" : "PRIMARYADMIN",
     "9" : "PENDING"
@@ -38,9 +38,9 @@
   "groupId" : "2",
   "members" : {
     "1" : "MEMBER",
+    "2" : "MEMBER",
     "4" : "PRIMARYADMIN",
-    "5" : "MEMBER",
-    "9" : "ADMIN"
+    "5" : "MEMBER"
   },
   "name" : "عشاق ليونيل ميسي",
   "description" : "للعبابسة فقط",
@@ -54,14 +54,14 @@
     "timestamp" : [ 2024, 12, 12, 23, 13, 38, 138506100 ]
   }, {
     "image" : null,
-    "deleted" : false,
+    "deleted" : true,
     "contentId" : 20,
     "authorId" : 9,
     "content" : "انا بطل العالم",
     "timestamp" : [ 2024, 12, 12, 23, 14, 1, 816135300 ]
   }, {
     "image" : null,
-    "deleted" : false,
+    "deleted" : true,
     "contentId" : 21,
     "authorId" : 9,
     "content" : "ana leo messi",
@@ -94,5 +94,12 @@
     "authorId" : 9,
     "content" : "hello",
     "timestamp" : [ 2024, 12, 13, 10, 9, 39, 54697100 ]
+  }, {
+    "image" : null,
+    "deleted" : false,
+    "contentId" : 26,
+    "authorId" : 4,
+    "content" : "Here We GO",
+    "timestamp" : [ 2024, 12, 13, 13, 29, 26, 825827300 ]
   } ]
 } ]
