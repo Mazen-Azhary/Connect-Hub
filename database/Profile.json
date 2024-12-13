@@ -1,8 +1,8 @@
 [ {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : "D:\\CCE\\5th term\\Programming 2\\Connect Hub\\src\\database\\Lamine.jpg",
-    "coverPhoto" : "C:\\Users\\etijah\\Downloads\\fcb.jpg",
+    "profilePhoto" : "src/database/Lamine.jpg",
+    "coverPhoto" : "src/database/fcb.jpg",
     "bio" : "lamine yamal"
   },
   "dateOfBirth" : [ 2024, 12, 5 ],
@@ -11,7 +11,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : "D:\\CCE\\5th term\\Programming 2\\Connect Hub\\src\\database\\pedri.jpg",
+    "profilePhoto" : "src/database/pedri.jpg",
     "coverPhoto" : "src/database/CoverDefault.jpg",
     "bio" : null
   },
@@ -61,7 +61,7 @@
 }, {
   "gender" : "Male",
   "profile" : {
-    "profilePhoto" : null,
+    "profilePhoto" : "src/database/mazenAzhary.jpg",
     "coverPhoto" : null,
     "bio" : null
   },

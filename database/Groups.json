@@ -27,7 +27,8 @@
     "1" : "ADMIN",
     "2" : "MEMBER",
     "4" : "PRIMARYADMIN",
-    "5" : "MEMBER"
+    "5" : "MEMBER",
+    "9" : "ADMIN"
   },
   "name" : "عشاق ليونيل ميسي",
   "description" : "للعبابسة فقط",
@@ -41,4 +42,14 @@
     "content" : "Here We Go",
     "timestamp" : [ 2024, 12, 13, 14, 6, 53, 138958000 ]
   } ]
+}, {
+  "deleted" : false,
+  "groupId" : "3",
+  "members" : {
+    "1" : "PRIMARYADMIN"
+  },
+  "name" : "عشاق لامين يامال",
+  "description" : "لامين يامال ملوش مثال",
+  "photo" : "C:\\Users\\Mazen\\Desktop\\Koleya\\Term 5\\prog2\\ConnectHub\\src\\database\\Lamine.jpg",
+  "posts" : [ ]
 } ]

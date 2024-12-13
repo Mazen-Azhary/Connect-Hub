@@ -71,7 +71,14 @@
 }, {
   "profile" : {
     "profilePhoto" : null,
-    "notifications" : [ ]
+    "notifications" : [ {
+      "relativeId" : "7",
+      "notificationId" : "60",
+      "time" : [ 2024, 12, 13, 21, 45, 55, 774696100 ],
+      "message" : "mazen azhary sent you a friend request",
+      "authorId" : null,
+      "type" : "REQUEST"
+    } ]
   },
   "userID" : "4",
   "username" : "Mbappe"
@@ -113,7 +120,28 @@
 }, {
   "profile" : {
     "profilePhoto" : null,
-    "notifications" : [ ]
+    "notifications" : [ {
+      "relativeId" : "2",
+      "notificationId" : "61",
+      "time" : [ 2024, 12, 13, 21, 53, 39, 168528600 ],
+      "message" : "عشاق ليونيل ميسي group: You have been added to the group",
+      "authorId" : null,
+      "type" : "ADDING"
+    }, {
+      "relativeId" : "2",
+      "notificationId" : "62",
+      "time" : [ 2024, 12, 13, 21, 53, 46, 55645500 ],
+      "message" : "عشاق ليونيل ميسي group: You have been promoted to ADMIN",
+      "authorId" : null,
+      "type" : "PROMOTION"
+    }, {
+      "relativeId" : "7",
+      "notificationId" : "63",
+      "time" : [ 2024, 12, 13, 22, 17, 46, 104372000 ],
+      "message" : "mazen azhary Accepted your friend request",
+      "authorId" : null,
+      "type" : "ACCEPTED"
+    } ]
   },
   "userID" : "9",
   "username" : "Lionel Messi"

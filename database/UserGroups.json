@@ -2,7 +2,8 @@
   "profile" : {
     "groups" : {
       "1" : "PENDING",
-      "2" : "ADMIN"
+      "2" : "ADMIN",
+      "3" : "PRIMARYADMIN"
     },
     "profilePhoto" : null
   },
@@ -80,7 +81,8 @@
   "profile" : {
     "profilePhoto" : null,
     "groups" : {
-      "1" : "PENDING"
+      "1" : "PENDING",
+      "2" : "ADMIN"
     }
   },
   "userID" : "9",

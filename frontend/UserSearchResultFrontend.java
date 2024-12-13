@@ -47,10 +47,16 @@ public class UserSearchResultFrontend extends JPanel {
         userPhoto.setPreferredSize(new Dimension(diameter, diameter));
         userPhoto.setHorizontalAlignment(JLabel.CENTER);
 
-        // Make the photo clickable and print "Hello World"
         userPhoto.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+
+                try {
+                    UserProfileFrame userProfileFrame = new UserProfileFrame(userID);
+                    userProfileFrame.setVisible(true);
+                } catch (IOException ex) {
+
+                }
 
             }
         });

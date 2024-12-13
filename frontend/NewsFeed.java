@@ -71,6 +71,7 @@ public class NewsFeed extends javax.swing.JFrame {
         PostPanel postPanel = new PostPanel(posts);
         postsScroll.getVerticalScrollBar().setUI(new CustomScrollBarUI());
         postsScroll.setViewportView(postPanel);
+        postsScroll.getVerticalScrollBar().setUnitIncrement(20);
 
 
         FriendSuggestionPannel friendSuggestionPanel = new FriendSuggestionPannel(this,id);

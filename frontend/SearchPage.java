@@ -157,7 +157,7 @@ public class SearchPage extends javax.swing.JFrame {
         }
         ArrayList<String> searchedUsersID;
         if(peopleSearchResults.get(query)!=null){
-        //JOptionPane.showMessageDialog(null,"loaded from hasmap");
+        JOptionPane.showMessageDialog(null,"loaded from hasmap");
         searchedUsersID = peopleSearchResults.get(query);
         }else {
 
