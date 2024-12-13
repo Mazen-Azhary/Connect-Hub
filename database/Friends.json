@@ -1,10 +1,10 @@
 [ {
   "profile" : {
     "friendRequests" : [ ],
-    "friendSuggestions" : [ "2", "2", "2", "2" ],
-    "blockedUsers" : [ "-3" ],
+    "friendSuggestions" : [ "2", "2", "2" ],
+    "blockedUsers" : [ "-3", "4" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "5", "6", "8", "9", "4", "7" ]
+    "friends" : [ "5", "6", "8", "9", "7" ]
   },
   "userID" : "1",
   "username" : "Lamine"
@@ -32,9 +32,9 @@
   "profile" : {
     "friendRequests" : [ ],
     "friendSuggestions" : [ ],
-    "blockedUsers" : [ "-8", "-9" ],
+    "blockedUsers" : [ "-8", "-9", "-1" ],
     "friendReceivedRequests" : [ ],
-    "friends" : [ "5", "1", "3", "6", "2" ]
+    "friends" : [ "5", "3", "6", "2" ]
   },
   "userID" : "4",
   "username" : "Mbappe"
