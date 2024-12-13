@@ -7,6 +7,7 @@ import java.util.Collections;
 public class ContentViewer {
     private UserContentDatabase userContentDatabase = new UserContentDatabase("src/database/UserContents.json");
     private FriendDatabase friendDatabase = new FriendDatabase("src/database/Friends.json");
+    private GroupManager groupManager = GroupManager.getInstance();
     private static ContentViewer instance;
     private ContentViewer() {
     }
@@ -17,6 +18,7 @@ public class ContentViewer {
     public ArrayList<Content> generatePosts(String id) throws IOException {
         ArrayList<Content> posts = new ArrayList<>();
         ArrayList<String> friends=friendDatabase.getUser(id).getProfile().getFriends();
+        ArrayList<Group> groups = groupManager.getGroups(id);
         for (String friend : friends) {
             User f = userContentDatabase.getUser(friend);
             for (Content content : f.getProfile().getContents()) {
@@ -24,6 +26,11 @@ public class ContentViewer {
                     posts.add(content);
                 }
             }
+                for (Group group : groups) { //for every grp add all its posts
+                    posts.addAll(group.getPosts());
+                }
+
+
         }
         User user=userContentDatabase.getUser(id);
         for(Content content:user.getProfile().getContents()) {

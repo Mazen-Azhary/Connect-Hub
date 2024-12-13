@@ -9,6 +9,9 @@ public class WelcomePage extends javax.swing.JFrame {
     /**
      * Creates new form WelcomePage
      */
+
+
+
     public WelcomePage() {
         initComponents();
         setLocationRelativeTo(null);
